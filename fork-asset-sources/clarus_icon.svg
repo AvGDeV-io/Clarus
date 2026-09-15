@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2A2524" />
+      <stop offset="50%" stop-color="#24201F" />
+      <stop offset="100%" stop-color="#1A1716" />
+    </linearGradient>
+    <linearGradient id="arcGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D5A24A" />
+      <stop offset="50%" stop-color="#B8754B" />
+      <stop offset="100%" stop-color="#C9786A" />
+    </linearGradient>
+    <linearGradient id="arcGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#AAA0D2" stop-opacity="0.9" />
+      <stop offset="60%" stop-color="#7B73A8" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#36335F" stop-opacity="0.5" />
+    </linearGradient>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="16" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  <!-- Squircle Base for Android adaptive icon -->
+  <rect x="32" y="32" width="448" height="448" rx="104" fill="url(#bgGrad)" stroke="#3D3735" stroke-width="2"/>
+  
+  <!-- Subtle inner ambient halo -->
+  <circle cx="256" cy="256" r="140" fill="#B8754B" opacity="0.08" filter="url(#softGlow)" />
+  <circle cx="280" cy="240" r="110" fill="#AAA0D2" opacity="0.08" filter="url(#softGlow)" />
+
+  <!-- Overlapping translucent arcs forming a calm, architectural C / lens aperture of clarity -->
+  <!-- Outer Arc C -->
+  <path d="M336 160 A130 130 0 1 0 336 352" fill="none" stroke="url(#arcGrad1)" stroke-width="32" stroke-linecap="round"/>
+  
+  <!-- Inner intersecting lens arc with soft lavender/indigo tint -->
+  <path d="M280 180 A95 95 0 0 1 280 332" fill="none" stroke="url(#arcGrad2)" stroke-width="22" stroke-linecap="round"/>
+
+  <!-- Warm central focal beam point -->
+  <circle cx="256" cy="256" r="12" fill="#F7F3EC" opacity="0.95" filter="url(#softGlow)"/>
+</svg>
