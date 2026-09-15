@@ -3,6 +3,38 @@
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Clarus Color Token Foundation -->
+    <color name="clarus_warm_ivory">#F7F3EC</color>
+    <color name="clarus_porcelain">#FCFAF6</color>
+    <color name="clarus_soft_sand">#EAE1D4</color>
+    <color name="clarus_espresso">#24201F</color>
+    <color name="clarus_warm_charcoal">#302B2A</color>
+    <color name="clarus_copper">#B8754B</color>
+    <color name="clarus_saffron">#D5A24A</color>
+    <color name="clarus_dusty_lavender">#AAA0D2</color>
+    <color name="clarus_muted_coral">#C9786A</color>
+    <color name="clarus_deep_indigo">#36335F</color>
+    <color name="clarus_soft_blue_gray">#9CA8B7</color>
+
+    <!-- Clarus Light Semantic Palette -->
+    <color name="clarus_primary">@color/clarus_copper</color>
+    <color name="clarus_on_primary">@color/clarus_porcelain</color>
+    <color name="clarus_secondary">@color/clarus_saffron</color>
+    <color name="clarus_on_secondary">@color/clarus_espresso</color>
+    <color name="clarus_tertiary">@color/clarus_deep_indigo</color>
+    <color name="clarus_on_tertiary">@color/clarus_porcelain</color>
+    <color name="clarus_background">@color/clarus_warm_ivory</color>
+    <color name="clarus_on_background">@color/clarus_espresso</color>
+    <color name="clarus_surface">@color/clarus_warm_ivory</color>
+    <color name="clarus_surface_container">@color/clarus_porcelain</color>
+    <color name="clarus_on_surface">@color/clarus_espresso</color>
+    <color name="clarus_on_surface_variant">@color/clarus_warm_charcoal</color>
+    <color name="clarus_outline">@color/clarus_soft_sand</color>
+    <color name="clarus_outline_variant">@color/clarus_soft_blue_gray</color>
+    <color name="clarus_accent">@color/clarus_copper</color>
+    <color name="clarus_accent_warm">@color/clarus_saffron</color>
+    <color name="clarus_accent_cool">@color/clarus_dusty_lavender</color>
+
     <!-- Material3 color variables -->
     <color name="fx_mobile_primary">@color/novaViolet70</color>
     <color name="fx_mobile_on_primary">@color/novaWhite</color>
@@ -53,7 +85,7 @@
     <color name="fx_mobile_icon_private">@color/novaViolet50</color>
     <color name="fx_mobile_scrim">@color/novaBlackA50</color>
 
-    <color name="fx_mobile_splashscreen_background">#FCF3EE</color>
+    <color name="fx_mobile_splashscreen_background">@color/clarus_warm_ivory</color>
 
     <!-- Design system color variables -->
 

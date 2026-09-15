@@ -4,7 +4,7 @@
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Name of the application -->
-    <string name="app_name" translatable="false">Iceraven Fenix</string>
+    <string name="app_name" translatable="false">Clarus</string>
     <string name="firefox" translatable="false">Iceraven</string>
 
     <!-- Preference for developers -->

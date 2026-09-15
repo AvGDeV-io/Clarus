@@ -776,4 +776,39 @@
     <style name="RadioButtonStyle" parent="Widget.Material3.CompoundButton.RadioButton">
         <item name="buttonTint">@color/compound_button_tint</item>
     </style>
+
+    <!-- Clarus Typography Foundation -->
+    <style name="Clarus.TextAppearance.Title" parent="TextAppearance.Material3.TitleLarge">
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/clarus_on_surface</item>
+        <item name="android:letterSpacing">0.01</item>
+    </style>
+
+    <style name="Clarus.TextAppearance.Subtitle" parent="TextAppearance.Material3.TitleMedium">
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/clarus_on_surface_variant</item>
+    </style>
+
+    <style name="Clarus.TextAppearance.Body" parent="TextAppearance.Material3.BodyMedium">
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/clarus_on_surface</item>
+        <item name="android:letterSpacing">0.015</item>
+    </style>
+
+    <!-- Clarus Shape Foundation -->
+    <style name="Clarus.ShapeAppearance.SmallComponent" parent="ShapeAppearance.Material3.SmallComponent">
+        <item name="cornerSize">@dimen/clarus_corner_radius_small</item>
+    </style>
+
+    <style name="Clarus.ShapeAppearance.MediumComponent" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerSize">@dimen/clarus_corner_radius_medium</item>
+    </style>
+
+    <style name="Clarus.ShapeAppearance.LargeComponent" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerSize">@dimen/clarus_corner_radius_large</item>
+    </style>
+
+    <style name="Clarus.ShapeAppearance.Pill" parent="ShapeAppearance.Material3.Corner.Full">
+        <item name="cornerSize">@dimen/clarus_corner_radius_pill</item>
+    </style>
 </resources>
