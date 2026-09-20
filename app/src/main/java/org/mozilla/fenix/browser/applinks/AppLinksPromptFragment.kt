@@ -537,9 +537,9 @@ private fun AppLinkRedirectBottomSheetPreview(
     FirefoxTheme(theme) {
         AppLinkRedirectBottomSheetContent(
             config = AppLinkRedirectConfig(
-                appName = "Firefox",
+                appName = "Clarus",
                 title = "Open in YouTube",
-                message = "Would you like to leave Firefox to view this content?",
+                message = "Would you like to leave Clarus to view this content?",
                 appIcon = null,
                 sourceUrl = "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
                 destinationUrl = "youtube://watch?v=dQw4w9WgXcQ",
@@ -561,9 +561,9 @@ private fun AppLinkRedirectBottomSheetWithCheckboxPreview(
     FirefoxTheme(theme) {
         AppLinkRedirectBottomSheetContent(
             config = AppLinkRedirectConfig(
-                appName = "Firefox",
+                appName = "Clarus",
                 title = "Open in YouTube",
-                message = "Would you like to leave Firefox to view this content?",
+                message = "Would you like to leave Clarus to view this content?",
                 appIcon = null,
                 sourceUrl = "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
                 destinationUrl = "youtube://watch?v=dQw4w9WgXcQ",
@@ -585,9 +585,9 @@ private fun AppLinkRedirectBottomSheetExpandedPreview(
     FirefoxTheme(theme) {
         AppLinkRedirectBottomSheetContent(
             config = AppLinkRedirectConfig(
-                appName = "Firefox",
+                appName = "Clarus",
                 title = "Open in YouTube",
-                message = "Would you like to leave Firefox to view this content?",
+                message = "Would you like to leave Clarus to view this content?",
                 appIcon = null,
                 sourceUrl = "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
                 destinationUrl = "youtube://watch?v=dQw4w9WgXcQ",

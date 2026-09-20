@@ -17,6 +17,7 @@ import org.mozilla.fenix.GleanMetrics.Events
 import org.mozilla.fenix.NavGraphDirections
 import org.mozilla.fenix.R
 import org.mozilla.fenix.browser.SwipeGestureListener
+import org.mozilla.fenix.browser.browsingmode.BrowsingMode
 import org.mozilla.fenix.browser.browsingmode.BrowsingMode.Normal
 import org.mozilla.fenix.browser.browsingmode.BrowsingMode.Private
 import org.mozilla.fenix.components.AppStore
@@ -46,6 +47,7 @@ class ToolbarVerticalGesturesHandler(
     private val navBarLayout: View?,
     private val toolbarPosition: ToolbarPosition,
     private val navController: NavController,
+    private val getCurrentBrowsingMode: (() -> BrowsingMode)? = null,
 ) : SwipeGestureListener {
     private val scaledTouchSlop = ViewConfiguration.get(toolbarLayout.context).scaledTouchSlop * 2
     private var currentSwipeXDistance = 0f
@@ -74,6 +76,11 @@ class ToolbarVerticalGesturesHandler(
         // no-op
     }
 
+    /**
+     * Navigates to the tabs tray if a valid swipe gesture was made.
+     *
+     * @return true if the gesture was valid and can continue else false.
+     */
     private fun maybeShowTabsOnSwipe(): Boolean {
         val currentDestinationId = navController.currentDestination?.id
         // Avoid negative side effects of the race between navigation and swipe callbacks
@@ -92,10 +99,11 @@ class ToolbarVerticalGesturesHandler(
         if (isSwipeValid()) {
             Events.toolbarTabstraySwipe.record(NoExtras())
 
+            val currentMode = getCurrentBrowsingMode?.invoke() ?: appStore.state.mode
             navController.nav(
                 navController.currentDestination?.id,
                 NavGraphDirections.actionGlobalTabManagementFragment(
-                    page = when (appStore.state.mode) {
+                    page = when (currentMode) {
                         Normal -> Page.NormalTabs
                         Private -> Page.PrivateTabs
                     },

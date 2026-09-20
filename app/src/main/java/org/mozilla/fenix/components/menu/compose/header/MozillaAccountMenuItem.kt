@@ -5,7 +5,10 @@
 package org.mozilla.fenix.components.menu.compose.header
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
+import org.mozilla.fenix.theme.glass.ClarusGlassTokens
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
@@ -93,6 +96,9 @@ internal fun MozillaAccountMenuItem(
 
     contentDescription = if (description != null) "$label $description" else label
 
+    val isDark = isSystemInDarkTheme()
+    val cardShape = ClarusGlassTokens.Shapes.Card
+
     Row(
         modifier = modifier
             .clearAndSetSemantics {
@@ -100,8 +106,23 @@ internal fun MozillaAccountMenuItem(
                 this.contentDescription = contentDescription
             }
             .wrapContentSize()
-            .clip(MaterialTheme.shapes.extraSmall)
-            .background(color = MaterialTheme.colorScheme.surfaceBright)
+            .clip(cardShape)
+            .background(
+                color = if (isDark) {
+                    ClarusGlassTokens.Colors.DarkElevated.copy(alpha = 0.55f)
+                } else {
+                    ClarusGlassTokens.Colors.LightSubstrate.copy(alpha = 0.55f)
+                },
+            )
+            .border(
+                width = ClarusGlassTokens.Border.Width,
+                brush = if (isDark) {
+                    ClarusGlassTokens.Border.restingDarkBorderBrush()
+                } else {
+                    ClarusGlassTokens.Border.restingLightBorderBrush()
+                },
+                shape = cardShape,
+            )
             .height(IntrinsicSize.Min)
             .defaultMinSize(minHeight = BUTTON_HEIGHT)
             .clickable { onClick() }

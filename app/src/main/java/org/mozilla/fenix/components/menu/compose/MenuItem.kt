@@ -99,6 +99,7 @@ internal fun MenuItem(
     labelModifier: Modifier = Modifier,
     beforeIconDescription: String? = null,
     isBeforeIconHighlighted: Boolean = false,
+    beforeIconTint: Color? = null,
     description: String? = null,
     maxDescriptionLines: Int = 2,
     stateDescription: String = "",
@@ -151,7 +152,7 @@ internal fun MenuItem(
             .wrapContentSize()
             .clip(shape = MaterialTheme.shapes.extraSmall)
             .background(
-                color = MaterialTheme.colorScheme.surfaceBright,
+                color = Color.Transparent,
             ),
         labelModifier = labelModifier,
         colors = ListItemDefaults.colors(
@@ -170,7 +171,7 @@ internal fun MenuItem(
         onClick = onClick,
         beforeIconPainter = beforeIconPainter,
         beforeIconDescription = beforeIconDescription,
-        beforeIconTint = iconTint,
+        beforeIconTint = beforeIconTint ?: iconTint,
         isBeforeIconHighlighted = isBeforeIconHighlighted,
         showDivider = showDivider,
         afterIconPainter = afterIconPainter,
@@ -214,7 +215,7 @@ internal fun MenuTextItem(
         modifier = modifier
             .clip(shape = MaterialTheme.shapes.extraSmall)
             .background(
-                color = MaterialTheme.colorScheme.surfaceBright,
+                color = Color.Transparent,
             ),
         iconPainter = iconPainter,
         onClick = onClick,
@@ -268,7 +269,7 @@ internal fun WebExtensionMenuItem(
             .wrapContentSize()
             .clip(shape = MaterialTheme.shapes.extraSmall)
             .background(
-                color = MaterialTheme.colorScheme.surfaceBright,
+                color = Color.Transparent,
             ),
         afterListAction = {
             Row(
@@ -291,7 +292,7 @@ internal fun WebExtensionMenuItem(
                         modifier = Modifier.size(24.dp),
                     ) {
                         Icon(
-                            painter = painterResource(iconsR.drawable.mozac_ic_settings_24),
+                            painter = painterResource(R.drawable.ic_clarus_settings),
                             tint = MaterialTheme.colorScheme.onSurfaceVariant,
                             contentDescription = null,
                         )
@@ -332,7 +333,7 @@ internal fun MenuBadgeItem(
             .semantics { disabled() }
             .clip(shape = MaterialTheme.shapes.extraSmall)
             .background(
-                color = MaterialTheme.colorScheme.surfaceBright,
+                color = Color.Transparent,
             )
             .padding(horizontal = 16.dp, vertical = 8.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp),

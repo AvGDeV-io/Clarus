@@ -400,7 +400,7 @@ internal object FakeHomepagePreview {
     internal fun tab(): Tab {
         return object : Tab {
             override val id = 2L
-            override val title = "Mozilla-Firefox"
+            override val title = "Clarus"
             override val url = "https://www.mozilla.org/en-US/firefox/whats-new-in-last-version"
 
             override fun restore(

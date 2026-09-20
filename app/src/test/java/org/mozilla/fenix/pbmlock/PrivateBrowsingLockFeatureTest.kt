@@ -644,7 +644,8 @@ class PrivateBrowsingLockFeatureTest {
         val appStore = createAppStore(mode, isPrivateScreenLocked = true)
         val browserStore = createBrowserStore(mixedTabs)
 
-        createFeature(appStore, browserStore, createStorage(isFeatureEnabled))
+        val feature = createFeature(appStore, browserStore, createStorage(isFeatureEnabled))
+        val activity = mockk<AppCompatActivity>(relaxed = true)
 
         appStore.dispatch(AppAction.BrowsingModeManagerModeChanged(mode = BrowsingMode.Normal))
         testDispatcher.scheduler.advanceUntilIdle()
@@ -652,6 +653,7 @@ class PrivateBrowsingLockFeatureTest {
 
         assertTrue(appStore.state.mode == BrowsingMode.Normal)
         assertTrue(appStore.state.isPrivateScreenLocked)
+    }
 
     @Test
     fun `GIVEN the feature is enabled and there are no private tabs open WHEN switching from private to normal mode THEN private mode is not locked`() {

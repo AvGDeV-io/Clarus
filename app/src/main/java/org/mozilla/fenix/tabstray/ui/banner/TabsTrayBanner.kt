@@ -239,7 +239,8 @@ private fun TabPageBanner(
         shouldShowTabGroupsPage = shouldShowTabGroupsPage,
     )
 
-    Surface(color = MaterialTheme.colorScheme.surfaceContainerHigh) {
+    val bannerBg = if (selectedPage == Page.PrivateTabs) Color(0xFF16141D) else MaterialTheme.colorScheme.surfaceContainerHigh
+    Surface(color = bannerBg) {
         PrimaryTabRow(
             selectedTabIndex = selectedTabIndex,
             modifier = Modifier
@@ -258,7 +259,7 @@ private fun TabPageBanner(
                         topStartPercent = 50,
                         topEndPercent = 50,
                     ),
-                    color = MaterialTheme.colorScheme.onSurface,
+                    color = if (selectedPage == Page.PrivateTabs) Color(0xFFF59E0B) else MaterialTheme.colorScheme.onSurface,
                 )
             },
             divider = {},
@@ -315,7 +316,11 @@ private fun TabPageBannerTabs(
         contentDescription = privateTabDescription,
         onClick = { onTabPageIndicatorClicked(Page.PrivateTabs) },
     ) {
-        Icon(painterResource(iconsR.drawable.mozac_ic_private_mode_24), null)
+        Icon(
+            painter = painterResource(R.drawable.ic_clarus_private_mode),
+            contentDescription = null,
+            tint = if (selectedPage == Page.PrivateTabs) Color.Unspecified else LocalContentColor.current,
+        )
     }
 
     BannerTab(

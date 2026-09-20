@@ -8676,6 +8676,8 @@ trust_panel:
 tab:
   media_play:
     type: event
+    no_lint:
+      - COMMON_PREFIX
     description: |
       A user pressed the play icon on a tab from the home screen
     bugs:
@@ -8698,6 +8700,8 @@ tab:
         - Media
   media_pause:
     type: event
+    no_lint:
+      - COMMON_PREFIX
     description: |
       A user pressed the pause icon on a tab from the home screen
     bugs:

@@ -112,9 +112,38 @@ private const val POPULAR_SITES_TO_SHOW = 8
  * @param onTopSitesItemBound Invoked during the composition of a top site item.
  * @param modifier [Modifier] to be applied to the layout.
  */
-@Suppress("LongMethod", "CyclomaticComplexMethod", "CognitiveComplexMethod")
 @Composable
 internal fun Homepage(
+    state: HomepageState,
+    interactor: HomepageInteractor,
+    onTopSitesItemBound: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    val isPrivateMode = state.browsingMode == BrowsingMode.Private
+
+    LaunchedEffect(Unit) {
+        onTopSitesItemBound()
+    }
+
+    ClarusMinimalHomepage(
+        isPrivateMode = isPrivateMode,
+        modifier = modifier
+            .fillMaxSize()
+            .semantics {
+                testTagsAsResourceId = true
+                testTag = HOMEPAGE
+            },
+        onLogoClick = {
+            if (state.isSearchInProgress) {
+                interactor.onHomeContentFocusedWhileSearchIsActive()
+            }
+        },
+    )
+}
+
+@Suppress("LongMethod", "CyclomaticComplexMethod", "CognitiveComplexMethod")
+@Composable
+internal fun LegacyHomepage(
     state: HomepageState,
     interactor: HomepageInteractor,
     onTopSitesItemBound: () -> Unit,

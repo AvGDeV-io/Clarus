@@ -176,7 +176,11 @@
         app:popExitAnim="@anim/slide_out_right" />
     <action
         android:id="@+id/action_global_tabManagementFragment"
-        app:destination="@id/tabManagementFragment" />
+        app:destination="@id/tabManagementFragment"
+        app:enterAnim="@anim/slide_in_bottom"
+        app:exitAnim="@anim/fade_out"
+        app:popEnterAnim="@anim/fade_in"
+        app:popExitAnim="@anim/slide_out_bottom" />
     <action
         android:id="@+id/action_global_savedLoginsAuthFragment"
         app:destination="@id/savedLoginsAuthFragment" />

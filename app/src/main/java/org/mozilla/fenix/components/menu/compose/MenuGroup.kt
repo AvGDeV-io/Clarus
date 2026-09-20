@@ -20,6 +20,10 @@ import org.mozilla.fenix.R
 import org.mozilla.fenix.theme.FirefoxTheme
 import mozilla.components.ui.icons.R as iconsR
 
+import androidx.compose.foundation.border
+import androidx.compose.foundation.isSystemInDarkTheme
+import org.mozilla.fenix.theme.glass.ClarusGlassTokens
+
 /**
  * A menu group container.
  *
@@ -27,10 +31,29 @@ import mozilla.components.ui.icons.R as iconsR
  */
 @Composable
 internal fun MenuGroup(content: @Composable () -> Unit) {
+    val isDark = isSystemInDarkTheme()
+    val groupShape = ClarusGlassTokens.Shapes.Card
+
     Column(
         modifier = Modifier
-            .clip(shape = MaterialTheme.shapes.extraLarge),
-        verticalArrangement = Arrangement.spacedBy(2.dp),
+            .clip(shape = groupShape)
+            .background(
+                color = if (isDark) {
+                    ClarusGlassTokens.Colors.DarkElevated.copy(alpha = 0.55f)
+                } else {
+                    ClarusGlassTokens.Colors.LightSubstrate.copy(alpha = 0.55f)
+                },
+            )
+            .border(
+                width = ClarusGlassTokens.Border.Width,
+                brush = if (isDark) {
+                    ClarusGlassTokens.Border.restingDarkBorderBrush()
+                } else {
+                    ClarusGlassTokens.Border.restingLightBorderBrush()
+                },
+                shape = groupShape,
+            ),
+        verticalArrangement = Arrangement.spacedBy(1.dp),
     ) {
         content()
     }

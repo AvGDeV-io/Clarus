@@ -323,7 +323,7 @@ private class TabSearchParameterProvider : PreviewParameterProvider<TabsTrayStat
         ),
         TabsTrayState(
             tabSearchState = TabSearchState(
-                query = "firefox",
+                query = "clarus",
                 searchResults = emptyList(),
             ),
         ),

@@ -249,7 +249,7 @@ private fun TextLinePlaceHolder() {
 @Composable
 private fun LoadedRecentSyncedTab() {
     val tab = RecentSyncedTab(
-        deviceDisplayName = "Firefox on MacBook",
+        deviceDisplayName = "Clarus on MacBook",
         deviceType = DeviceType.DESKTOP,
         title = "This is a long site title",
         url = "https://mozilla.org",

@@ -8,6 +8,7 @@ package org.mozilla.fenix.settings
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -32,12 +33,14 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
+import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
@@ -77,6 +80,7 @@ import org.mozilla.fenix.ipprotection.ui.debouncedToggleable
 import org.mozilla.fenix.theme.FirefoxTheme
 import org.mozilla.fenix.theme.PreviewThemeProvider
 import org.mozilla.fenix.theme.Theme
+import org.mozilla.fenix.theme.glass.ClarusGlassTokens
 import mozilla.components.ui.icons.R as iconsR
 
 private val PROMO_ILLUSTRATION_SIZE = 60.dp
@@ -399,10 +403,19 @@ private fun VpnToggleRow(
             style = FirefoxTheme.typography.subtitle1,
             color = MaterialTheme.colorScheme.onSurface,
         )
+        val isDark = isSystemInDarkTheme()
         Switch(
             checked = checked,
             onCheckedChange = null,
             enabled = enabled,
+            colors = SwitchDefaults.colors(
+                checkedThumbColor = ClarusGlassTokens.Switch.CheckedThumb,
+                checkedTrackColor = ClarusGlassTokens.Switch.CheckedTrack,
+                checkedBorderColor = ClarusGlassTokens.Switch.CheckedBorder,
+                uncheckedThumbColor = ClarusGlassTokens.Switch.UncheckedThumb,
+                uncheckedTrackColor = if (isDark) ClarusGlassTokens.Switch.UncheckedTrackDark else ClarusGlassTokens.Switch.UncheckedTrackLight,
+                uncheckedBorderColor = if (isDark) ClarusGlassTokens.Switch.UncheckedBorderDark else ClarusGlassTokens.Switch.UncheckedBorderLight,
+            ),
         )
     }
 }

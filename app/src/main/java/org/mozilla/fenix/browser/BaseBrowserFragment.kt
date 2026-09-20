@@ -227,11 +227,13 @@ import org.mozilla.fenix.perf.MarkersFragmentLifecycleCallbacks
 import org.mozilla.fenix.search.awesomebar.AwesomeBarComposable
 import org.mozilla.fenix.settings.SupportUtils
 import org.mozilla.fenix.settings.biometric.BiometricPromptFeature
+import org.mozilla.fenix.settings.deletebrowsingdata.DeleteBrowsingDataFragment
 import org.mozilla.fenix.settings.downloads.DownloadLocationManager
 import org.mozilla.fenix.snackbar.FenixSnackbarDelegate
 import org.mozilla.fenix.snackbar.SnackbarBinding
 import org.mozilla.fenix.tabstray.ext.toDisplayTitle
 import org.mozilla.fenix.tabstray.redux.state.Page
+import org.mozilla.fenix.theater.ClarusTheaterActivity
 import org.mozilla.fenix.theme.FirefoxTheme
 import org.mozilla.fenix.theme.ThemeManager
 import org.mozilla.fenix.utils.allowUndo
@@ -753,6 +755,34 @@ abstract class BaseBrowserFragment :
                     openFileAction,
                 ->
                 run {
+                    val download = currentDownloadState.value
+                    if (ClarusTheaterActivity.isPlayableMedia(
+                            url = download.url,
+                            fileName = download.fileName,
+                            mimeType = download.contentType,
+                        )
+                    ) {
+                        negativeAction.value.invoke()
+
+                        val isAudio = ClarusTheaterActivity.isAudioUrl(download.url) ||
+                            (download.fileName?.let { ClarusTheaterActivity.isAudioUrl(it) } == true) ||
+                            (download.contentType?.startsWith("audio/") == true)
+                        val title = download.fileName?.ifBlank { null }
+                            ?: download.url.substringAfterLast('/').substringBefore('?').substringBefore('#')
+                        val intent = ClarusTheaterActivity.createIntent(
+                            context = context,
+                            videoUrl = download.url,
+                            title = title.ifBlank { "Media" },
+                            initialPositionMs = 0L,
+                            initialPaused = false,
+                            badges = if (isAudio) arrayListOf("Lossless Audio") else arrayListOf("HD"),
+                            isLive = false,
+                            isAudio = isAudio,
+                        )
+                        context.startActivity(intent)
+                        return@run
+                    }
+
                     if (canShowDownloadDialog()) {
                         context.components.analytics.crashReporter.recordCrashBreadcrumb(
                             Breadcrumb("FirstPartyDownloadDialog created"),

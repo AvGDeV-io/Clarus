@@ -32,6 +32,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -263,19 +264,27 @@ internal fun FloatingToolbarFAB(
 
     when (state.selectedPage) {
         Page.NormalTabs -> {
-            icon = iconsR.drawable.mozac_ic_plus_24
+            icon = R.drawable.ic_clarus_plus_tab
             contentDescription = stringResource(id = R.string.add_tab)
             onClick = onOpenNewNormalTabClicked
+            colors = FloatingActionButtonDefaults.colorsPrimary(
+                containerColor = Color(0xFFF59E0B),
+                contentColor = Color(0xFF16141D),
+            )
         }
 
         Page.PrivateTabs -> {
-            icon = iconsR.drawable.mozac_ic_plus_24
+            icon = R.drawable.ic_clarus_plus_tab
             contentDescription = stringResource(id = R.string.add_private_tab)
             onClick = onOpenNewPrivateTabClicked
+            colors = FloatingActionButtonDefaults.colorsPrimary(
+                containerColor = Color(0xFF7C3AED),
+                contentColor = Color(0xFFFEF3C7),
+            )
         }
 
         Page.TabGroups -> {
-            icon = iconsR.drawable.mozac_ic_plus_24
+            icon = R.drawable.ic_clarus_plus_tab
             contentDescription = stringResource(id = R.string.create_tab_group_content_description)
             onClick = onTabGroupsFabClicked
         }
@@ -397,7 +406,7 @@ private fun generateMenuItems(
     )
     val tabSettingsItem = MenuItem.IconItem(
         text = Text.Resource(R.string.tab_tray_menu_tab_settings),
-        drawableRes = iconsR.drawable.mozac_ic_settings_24,
+        drawableRes = R.drawable.ic_clarus_settings,
         testTag = TabsTrayTestTag.TAB_SETTINGS,
         onClick = onTabSettingsClick,
     )

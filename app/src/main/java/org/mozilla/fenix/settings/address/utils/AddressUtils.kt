@@ -7,7 +7,7 @@ package org.mozilla.fenix.settings.address.utils
 import mozilla.components.concept.storage.Address
 
 internal fun generateAddress(
-    name: String = "Firefox The Browser",
+    name: String = "Clarus The Browser",
     organization: String = "Mozilla",
     streetAddress: String = "street",
     addressLevel3: String = "3",

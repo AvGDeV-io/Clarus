@@ -433,7 +433,7 @@
     <string name="onboarding_home_content_description_close_button">Close</string>
 
     <!-- Title for the privacy preferences dialog shown during onboarding. Note: The word "Firefox" should NOT be translated. -->
-    <string name="onboarding_preferences_dialog_title" tools:ignore="BrandUsage">Help us make Firefox better</string>
+    <string name="onboarding_preferences_dialog_title" tools:ignore="BrandUsage">Help us make Clarus better</string>
     <!-- Title for the crash reporting option in the privacy preferences dialog shown during onboarding. -->
     <string name="onboarding_preferences_dialog_crash_reporting_title">Automatically send crash reports</string>
     <!-- Description for the crash reporting option in the privacy preferences dialog shown during onboarding. -->
@@ -458,7 +458,7 @@
     <string name="onboarding_preferences_dialog_positive_button">Done</string>
 
     <!-- Terms of service onboarding title card label. 'Firefox' intentionally hardcoded here-->
-    <string name="onboarding_welcome_to_firefox" tools:ignore="BrandUsage">Welcome to Firefox</string>
+    <string name="onboarding_welcome_to_firefox" tools:ignore="BrandUsage">Welcome to Clarus</string>
     <!-- Line one of the terms of service onboarding page. %1$s is replaced by an active link, using onboarding_term_of_service_line_one_link_text_2 as text (“Firefox Terms of Use”). -->
     <string name="onboarding_term_of_service_line_one_2">By continuing, you agree to the %1$s.</string>
     <!-- Used as text for the link in onboarding_term_of_service_line_one_2. -->
@@ -667,10 +667,10 @@
     <string name="nova_onboarding_marketing_secondary_button_text_2">No</string>
 
     <!-- Notifications onboarding title. 'Firefox' is intentionally hardcoded. -->
-    <string name="nova_onboarding_notifications_title" tools:ignore="BrandUsage,UnusedResources">Notifications help you stay safer with Firefox</string>
+    <string name="nova_onboarding_notifications_title" tools:ignore="BrandUsage,UnusedResources">Notifications help you stay safer with Clarus</string>
 
     <!-- Notifications onboarding subtitle. 'Firefox' is intentionally hardcoded. -->
-    <string name="nova_onboarding_notifications_subtitle" tools:ignore="BrandUsage,UnusedResources">Discover the latest privacy features in Firefox so you’re always up to date on how to stay protected.</string>
+    <string name="nova_onboarding_notifications_subtitle" tools:ignore="BrandUsage,UnusedResources">Discover the latest privacy features in Clarus so you’re always up to date on how to stay protected.</string>
 
     <!-- Notifications onboarding button. -->
     <string name="nova_onboarding_notifications_button">Turn on notifications</string>
@@ -679,10 +679,10 @@
     <string name="nova_onboarding_add_search_widget_title">Make every search more private</string>
 
     <!-- "Add search widget" onboarding subtitle. 'Firefox' is intentionally hardcoded. -->
-    <string name="nova_onboarding_add_search_widget_subtitle" tools:ignore="BrandUsage">Start every search from your phone’s home screen and know Firefox’s automatic protections have your back.</string>
+    <string name="nova_onboarding_add_search_widget_subtitle" tools:ignore="BrandUsage">Start every search from your phone’s home screen and know Clarus’s automatic protections have your back.</string>
 
     <!-- "Add search widget" onboarding button. 'Firefox' is intentionally hardcoded. -->
-    <string name="nova_onboarding_add_search_widget_button" tools:ignore="BrandUsage">Add Firefox widget</string>
+    <string name="nova_onboarding_add_search_widget_button" tools:ignore="BrandUsage">Add Clarus widget</string>
 
     <!-- Customize prompt onboarding title. -->
     <string name="nova_onboarding_customize_prompt_title" tools:ignore="UnusedResources">Easy to customize and more private with every tap</string>
@@ -2266,10 +2266,10 @@
     <string name="notification_marketing_channel_name">Marketing</string>
     <!-- Title shown in the notification that pops up to remind the user to set fenix as default browser.
     The app name is in the text, due to limitations with localizing Nimbus experiments -->
-    <string name="nimbus_notification_default_browser_title" tools:ignore="BrandUsage,UnusedResources">Firefox is fast and private</string>
+    <string name="nimbus_notification_default_browser_title" tools:ignore="BrandUsage,UnusedResources">Clarus is fast and private</string>
     <!-- Text shown in the notification that pops up to remind the user to set fenix as default browser.
     The app name is in the text, due to limitations with localizing Nimbus experiments -->
-    <string name="nimbus_notification_default_browser_text" tools:ignore="BrandUsage,UnusedResources">Make Firefox your default browser</string>
+    <string name="nimbus_notification_default_browser_text" tools:ignore="BrandUsage,UnusedResources">Make Clarus your default browser</string>
 
     <!-- Survey -->
     <!-- Text shown in the fullscreen message that pops up to ask user to take a short survey.
@@ -2905,7 +2905,7 @@
     <!-- Title for the browser VPN location picker screen. -->
     <string name="ip_protection_location_picker_title" tools:ignore="UnusedResources">Choose VPN location</string>
     <!-- Description for what it means to use the Recommended setting and let the app automatically pick the best server location. -->
-    <string name="ip_protection_location_fastest_description" tools:ignore="BrandUsage">Firefox finds the fastest location</string>
+    <string name="ip_protection_location_fastest_description" tools:ignore="BrandUsage">Clarus finds the fastest location</string>
     <!-- Error message shown when the selected browser VPN location is unavailable. -->
     <string name="ip_protection_location_unavailable" tools:ignore="UnusedResources">Location unavailable. Choose another location.</string>
     <!-- Snackbar (in-app pop-up notification) text shown when the previously selected browser VPN location is unavailable and the recommended location was used instead. -->
@@ -3259,7 +3259,7 @@
     <!-- The header text of the auto-close message when the user is asked if they want to turn on the auto-closing of inactive tabs. -->
     <string name="inactive_tabs_auto_close_message_header" tools:ignore="UnusedResources">Auto-close after one month?</string>
     <!-- A description below the header to notify the user what the inactive tabs auto-close feature is. -->
-    <string name="inactive_tabs_auto_close_message_description" tools:ignore="BrandUsage,UnusedResources">Firefox can close tabs you haven’t viewed over the past month.</string>
+    <string name="inactive_tabs_auto_close_message_description" tools:ignore="BrandUsage,UnusedResources">Clarus can close tabs you haven’t viewed over the past month.</string>
     <!-- A call to action below the description to allow the user to turn on the auto closing of inactive tabs. -->
     <string name="inactive_tabs_auto_close_message_action" tools:ignore="UnusedResources">TURN ON AUTO CLOSE</string>
     <!-- Text for the snackbar to confirm auto-close is enabled for inactive tabs -->
@@ -3282,7 +3282,7 @@
     <!-- Default browser card title -->
     <string name="default_browser_experiment_card_title">Switch your default browser</string>
     <!-- Default browser card text -->
-    <string name="default_browser_experiment_card_text" tools:ignore="BrandUsage">Set links from websites, emails, and messages to open automatically in Firefox.</string>
+    <string name="default_browser_experiment_card_text" tools:ignore="BrandUsage">Set links from websites, emails, and messages to open automatically in Clarus.</string>
 
     <!-- Content description radio buttons with a link to more information -->
     <string name="radio_preference_info_content_description">Click for more details</string>

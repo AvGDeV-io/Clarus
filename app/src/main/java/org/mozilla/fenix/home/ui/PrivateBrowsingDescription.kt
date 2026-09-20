@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -52,8 +53,9 @@ fun PrivateBrowsingDescription(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Image(
-                painter = painterResource(id = iconsR.drawable.mozac_ic_private_mode_circle_fill_72),
+                painter = painterResource(id = R.drawable.ic_clarus_private_mode),
                 contentDescription = null,
+                modifier = Modifier.size(72.dp),
             )
 
             Spacer(modifier = Modifier.height(height = FirefoxTheme.layout.space.static300))

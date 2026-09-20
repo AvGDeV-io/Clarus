@@ -13,5 +13,9 @@
     android:background="@null"
     android:clickable="false"
     android:focusable="false"
-    app:trackTint="@color/material_switch_track_tint"
+    app:track="@drawable/clarus_switch_track"
+    android:thumb="@drawable/clarus_switch_thumb"
+    app:trackTint="@null"
+    app:thumbTint="@null"
+    app:trackDecoration="@null"
     app:useMaterialThemeColors="false" />

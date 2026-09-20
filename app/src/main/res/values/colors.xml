@@ -16,6 +16,23 @@
     <color name="clarus_deep_indigo">#36335F</color>
     <color name="clarus_soft_blue_gray">#9CA8B7</color>
 
+    <!-- Clarus Glass Tokens (Light Frost / Serene Tactile) -->
+    <color name="clarus_glass_surface_resting">#C7FCFAF6</color>
+    <color name="clarus_glass_surface_active">#D9FCFAF6</color>
+    <color name="clarus_glass_surface_fallback">#EBFCFAF6</color>
+    <color name="clarus_glass_border_resting">#A6FFFFFF</color>
+    <color name="clarus_glass_border_active">#D9B8754B</color>
+
+    <!-- Clarus Glass Toggle Colors (Light Mode) -->
+    <color name="clarus_switch_track_unchecked_fill">#1824201F</color>
+    <color name="clarus_switch_track_unchecked_stroke">#3324201F</color>
+    <color name="clarus_switch_track_checked_fill">#D9B8754B</color>
+    <color name="clarus_switch_track_checked_stroke">#B8754B</color>
+    <color name="clarus_switch_thumb_unchecked_fill">#FCFAF6</color>
+    <color name="clarus_switch_thumb_unchecked_stroke">#2824201F</color>
+    <color name="clarus_switch_thumb_checked_fill">#FCFAF6</color>
+    <color name="clarus_switch_thumb_checked_stroke">#F59E0B</color>
+
     <!-- Clarus Light Semantic Palette -->
     <color name="clarus_primary">@color/clarus_copper</color>
     <color name="clarus_on_primary">@color/clarus_porcelain</color>
@@ -49,14 +66,14 @@
     <color name="fx_mobile_on_tertiary">@color/novaWhite</color>
     <color name="fx_mobile_tertiary_container">@color/novaViolet0</color>
     <color name="fx_mobile_on_tertiary_container">@color/novaVioletDesaturated90</color>
-    <color name="fx_mobile_background">@color/novaGray5</color>
-    <color name="fx_mobile_on_background">@color/novaVioletDesaturated90</color>
-    <color name="fx_mobile_surface">@color/novaGray5</color>
-    <color name="fx_mobile_on_surface">@color/novaVioletDesaturated90</color>
-    <color name="fx_mobile_surface_variant">@color/novaGray15</color>
-    <color name="fx_mobile_on_surface_variant">@color/novaVioletDesaturated90A70</color>
-    <color name="fx_mobile_surface_inverse">@color/novaGray70</color>
-    <color name="fx_mobile_on_surface_inverse">@color/novaWhite</color>
+    <color name="fx_mobile_background">@color/clarus_warm_ivory</color>
+    <color name="fx_mobile_on_background">@color/clarus_espresso</color>
+    <color name="fx_mobile_surface">@color/clarus_warm_ivory</color>
+    <color name="fx_mobile_on_surface">@color/clarus_espresso</color>
+    <color name="fx_mobile_surface_variant">@color/clarus_porcelain</color>
+    <color name="fx_mobile_on_surface_variant">@color/clarus_warm_charcoal</color>
+    <color name="fx_mobile_surface_inverse">@color/clarus_warm_charcoal</color>
+    <color name="fx_mobile_on_surface_inverse">@color/clarus_porcelain</color>
     <color name="fx_mobile_error">@color/novaRed50</color>
     <color name="fx_mobile_on_error">@color/novaWhite</color>
     <color name="fx_mobile_error_container">@color/novaRed10</color>
@@ -71,15 +88,15 @@
     <color name="fx_mobile_on_warning">@color/novaWhite</color>
     <color name="fx_mobile_warning_container">@color/novaYellow10</color>
     <color name="fx_mobile_on_warning_container">@color/novaVioletDesaturated90</color>
-    <color name="fx_mobile_outline">@color/novaGray45</color>
-    <color name="fx_mobile_outline_variant">@color/novaGray15</color>
-    <color name="fx_mobile_surface_bright">@color/novaWhite</color>
-    <color name="fx_mobile_surface_dim">@color/novaGray15</color>
-    <color name="fx_mobile_surface_container">@color/novaGray5</color>
-    <color name="fx_mobile_surface_container_high">@color/novaGray10</color>
-    <color name="fx_mobile_surface_container_highest">@color/novaGray15</color>
-    <color name="fx_mobile_surface_container_low">@color/novaGray0</color>
-    <color name="fx_mobile_surface_container_lowest">@color/novaWhite</color>
+    <color name="fx_mobile_outline">@color/clarus_soft_sand</color>
+    <color name="fx_mobile_outline_variant">@color/clarus_soft_blue_gray</color>
+    <color name="fx_mobile_surface_bright">@color/clarus_porcelain</color>
+    <color name="fx_mobile_surface_dim">@color/clarus_soft_sand</color>
+    <color name="fx_mobile_surface_container">@color/clarus_warm_ivory</color>
+    <color name="fx_mobile_surface_container_high">@color/clarus_porcelain</color>
+    <color name="fx_mobile_surface_container_highest">@color/clarus_porcelain</color>
+    <color name="fx_mobile_surface_container_low">@color/clarus_warm_ivory</color>
+    <color name="fx_mobile_surface_container_lowest">@color/clarus_porcelain</color>
     <color name="fx_mobile_autofill_text">@color/novaVioletDesaturated30</color>
     <color name="fx_mobile_selected_text">@color/novaGray35</color>
     <color name="fx_mobile_icon_private">@color/novaViolet50</color>
@@ -93,7 +110,7 @@
     <!-- Card background, Menu background, Dialog, Banner -->
     <color name="fx_mobile_layer_color_2">@color/novaWhite</color>
     <!-- Search -->
-    <color name="fx_mobile_layer_color_3">@color/photonLightGrey20</color>
+    <color name="fx_mobile_layer_color_3">@color/clarus_porcelain</color>
     <!-- Warning background -->
     <color name="fx_mobile_layer_color_warning">@color/photonYellow20</color>
     <!-- Error background -->

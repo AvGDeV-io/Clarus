@@ -215,7 +215,7 @@ private fun WebCompatReporterPreviewSheetContent() {
             PreviewReporterItem(
                 title = "Browser Info",
                 data = mapOf(
-                    "App" to "Fenix",
+                    "App" to "Clarus",
                     "Version" to "123.0",
                     "OS" to "Android 14",
                 ),

@@ -47,6 +47,10 @@ import org.mozilla.fenix.R
 import org.mozilla.fenix.theme.FirefoxTheme
 import mozilla.components.ui.icons.R as iconsR
 
+import androidx.compose.foundation.border
+import androidx.compose.foundation.isSystemInDarkTheme
+import org.mozilla.fenix.theme.glass.ClarusGlassTokens
+
 /**
  * A [Surface]-backed menu item used in the library menu group, displaying an icon above a label
  * and automatically adapting its background, icon tint, and text color according to [MenuItemState].
@@ -72,11 +76,27 @@ fun LibraryMenuItem(
     onClick: () -> Unit,
 ) {
     val contentDescription = stringResource(labelRes)
+    val isDark = isSystemInDarkTheme()
+    val tileColor = if (isDark) {
+        ClarusGlassTokens.Colors.DarkElevated.copy(alpha = 0.60f)
+    } else {
+        ClarusGlassTokens.Colors.LightSubstrate.copy(alpha = 0.60f)
+    }
+    val tileBorderBrush = if (isDark) {
+        ClarusGlassTokens.Border.restingDarkBorderBrush()
+    } else {
+        ClarusGlassTokens.Border.restingLightBorderBrush()
+    }
 
     Surface(
         modifier = modifier
             .fillMaxWidth()
             .clip(shape)
+            .border(
+                width = ClarusGlassTokens.Border.Width,
+                brush = tileBorderBrush,
+                shape = shape,
+            )
             .clickable(enabled = state != MenuItemState.DISABLED, onClick = onClick)
             .clearAndSetSemantics {
                 collectionItemInfo =
@@ -89,7 +109,7 @@ fun LibraryMenuItem(
                 this.contentDescription = contentDescription
                 role = Role.Button
             },
-        color = MaterialTheme.colorScheme.surfaceBright,
+        color = tileColor,
         shape = shape,
     ) {
         Column(

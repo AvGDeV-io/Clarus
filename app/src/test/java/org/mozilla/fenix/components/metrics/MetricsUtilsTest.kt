@@ -22,7 +22,7 @@ class MetricsUtilsTest {
     fun `getAdvertisingID() returns null if the API throws`() {
         val exceptions = listOf(
             GooglePlayServicesNotAvailableException(1),
-            GooglePlayServicesRepairableException(0, "", mockk()),
+            GooglePlayServicesRepairableException(0, "", mockk<android.content.Intent>()),
             IllegalStateException(),
             IOException(),
         )

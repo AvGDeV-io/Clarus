@@ -8,8 +8,10 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Resources
 import android.content.res.XmlResourceParser
+import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.withTimeoutOrNull
 import mozilla.components.support.base.log.logger.Logger
 import org.mozilla.fenix.R
 import java.io.IOException
@@ -36,6 +38,7 @@ class DefaultFenixSettingsIndexer(
     private val excludedPreferenceKeys: () -> Set<String> = { emptySet() },
 ) : SettingsIndexer {
     private val settings = AtomicReference<List<SettingsSearchItem>>(emptyList())
+    private var indexingDeferred = CompletableDeferred<Unit>()
 
     /**
      * Index all settings.
@@ -62,6 +65,8 @@ class DefaultFenixSettingsIndexer(
                 newSettings.filterNot { it.preferenceKey in excluded }
             },
         )
+        indexingDeferred.complete(Unit)
+        Unit
     }
 
     /**
@@ -73,14 +78,21 @@ class DefaultFenixSettingsIndexer(
     override suspend fun getSettingsWithQuery(query: String): List<SettingsSearchItem> {
         if (query.isBlank()) return emptyList()
 
+        if (settings.get().isEmpty()) {
+            withTimeoutOrNull(2000L) {
+                indexingDeferred.await()
+            }
+        }
+
         val trimmedQuery = query.trim()
 
         return withContext(Dispatchers.Default) {
             settings.get()
                 .filter { item ->
-                    item.title.contains(trimmedQuery, ignoreCase = true)
+                    item.title.contains(trimmedQuery, ignoreCase = true) ||
+                        item.summary.contains(trimmedQuery, ignoreCase = true)
                 }
-            .distinctBy { it.preferenceKey }
+                .distinctBy { it.preferenceKey }
         }
     }
 
@@ -181,6 +193,28 @@ class DefaultFenixSettingsIndexer(
         }
     }
 
+    private fun resolveAttributeString(parser: XmlResourceParser, index: Int): String {
+        val resId = parser.getAttributeResourceValue(index, 0)
+        if (resId != 0) {
+            return try {
+                if (stringsWithRequiredFormatting.contains(resId)) {
+                    val appName = context.getString(R.string.app_name)
+                    context.getString(resId, appName)
+                } else {
+                    context.getString(resId)
+                }
+            } catch (e: Resources.NotFoundException) {
+                parser.getAttributeValue(index) ?: ""
+            }
+        }
+        val rawValue = parser.getAttributeValue(index) ?: return ""
+        return if (rawValue.startsWith("@") && rawValue.length > 1) {
+            getStringResource(rawValue.substring(1))
+        } else {
+            rawValue
+        }
+    }
+
     private fun createSettingsSearchItemFromAttributes(
         parser: XmlResourceParser,
         preferenceFileInformation: PreferenceFileInformation,
@@ -191,27 +225,13 @@ class DefaultFenixSettingsIndexer(
 
         for (i in 0 until parser.attributeCount) {
             val attributeName = parser.getAttributeName(i)
-            val attributeValue = parser.getAttributeValue(i)
 
             when (attributeName) {
-                KEY_ATTRIBUTE_NAME -> {
-                    key = attributeValue.takeIf { it.isNotBlank() }
-                        ?.substring(1)
-                        ?.let { getStringResource(it) }
-                }
-                TITLE_ATTRIBUTE_NAME -> {
-                    title = attributeValue.takeIf { it.isNotBlank() }
-                        ?.substring(1)
-                        ?.let { getStringResource(it) }
-                }
-                SUMMARY_ATTRIBUTE_NAME -> {
-                    summary = attributeValue.takeIf { it.isNotBlank() }
-                        ?.substring(1)
-                        ?.let { getStringResource(it) }
-                        ?: ""
-                }
+                KEY_ATTRIBUTE_NAME -> key = resolveAttributeString(parser, i)
+                TITLE_ATTRIBUTE_NAME -> title = resolveAttributeString(parser, i)
+                SUMMARY_ATTRIBUTE_NAME -> summary = resolveAttributeString(parser, i)
                 IS_VISIBLE_ATTRIBUTE_NAME -> {
-                    if (attributeValue == "false") {
+                    if (parser.getAttributeValue(i) == "false") {
                         return null
                     }
                 }
@@ -250,14 +270,13 @@ class DefaultFenixSettingsIndexer(
 
         for (i in 0 until parser.attributeCount) {
             val attributeName = parser.getAttributeName(i)
-            val attributeValue = parser.getAttributeValue(i)
 
             when (attributeName) {
-                KEY_ATTRIBUTE_NAME -> key = getStringResource(attributeValue.substring(1))
-                TITLE_ATTRIBUTE_NAME -> title = getStringResource(attributeValue.substring(1))
-                SUMMARY_ATTRIBUTE_NAME -> summary = getStringResource(attributeValue.substring(1))
+                KEY_ATTRIBUTE_NAME -> key = resolveAttributeString(parser, i)
+                TITLE_ATTRIBUTE_NAME -> title = resolveAttributeString(parser, i)
+                SUMMARY_ATTRIBUTE_NAME -> summary = resolveAttributeString(parser, i)
                 IS_VISIBLE_ATTRIBUTE_NAME, IS_ENABLED_ATTRIBUTE_NAME -> {
-                    if (attributeValue == "false") {
+                    if (parser.getAttributeValue(i) == "false") {
                         return null
                     }
                 }
@@ -284,10 +303,9 @@ class DefaultFenixSettingsIndexer(
         var key: String? = null
         for (i in 0 until parser.attributeCount) {
             val attributeName = parser.getAttributeName(i)
-            val attributeValue = parser.getAttributeValue(i)
 
             when (attributeName) {
-                KEY_ATTRIBUTE_NAME -> key = getStringResource(attributeValue.substring(1))
+                KEY_ATTRIBUTE_NAME -> key = resolveAttributeString(parser, i)
             }
         }
         return key
@@ -306,7 +324,17 @@ class DefaultFenixSettingsIndexer(
                 resourceName,
                 "string",
                 context.packageName,
-            )
+            ).let { id ->
+                if (id == 0) {
+                    context.resources.getIdentifier(
+                        resourceName,
+                        "string",
+                        "org.mozilla.fenix",
+                    )
+                } else {
+                    id
+                }
+            }
             if (resourceId == 0) {
                 logger.warn("Could not resolve string resource: $resourceName")
                 return resourceName

@@ -58,8 +58,17 @@ import org.mozilla.fenix.components.appstate.AppAction
 import org.mozilla.fenix.components.appstate.AppAction.SnackbarAction
 import org.mozilla.fenix.components.metrics.installSourcePackage
 import org.mozilla.fenix.components.share.isSystemShareSheetSupported
+import androidx.compose.ui.unit.dp
+import org.mozilla.fenix.theater.ClarusTheaterActivity
+import java.util.ArrayList
+import mozilla.components.browser.state.selector.selectedTab
+import org.mozilla.fenix.HomeActivity
+import org.mozilla.fenix.browser.browsingmode.BrowsingMode
 import org.mozilla.fenix.components.toolbar.gestures.ToolbarHorizontalGesturesHandler
 import org.mozilla.fenix.components.toolbar.gestures.ToolbarVerticalGesturesHandler
+import org.mozilla.fenix.gestures.zen.ZenGestureConfig
+import org.mozilla.fenix.gestures.zen.ZenGestureDispatcherHelper
+import org.mozilla.fenix.gestures.zen.ZenSwipeGestureListener
 import org.mozilla.fenix.compose.snackbar.Snackbar
 import org.mozilla.fenix.compose.snackbar.SnackbarState
 import org.mozilla.fenix.e2e.SystemInsetsPaddedFragment
@@ -126,6 +135,23 @@ class BrowserFragment : BaseBrowserFragment(), UserInteractionHandler, SystemIns
     private val continuousOnboardingDefaultBrowserLauncher: ActivityResultLauncher<Intent> =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             continuousOnboardingFeature.get()?.onDefaultBrowserStepCompleted(result.resultCode)
+        }
+
+    private val theaterLauncher: ActivityResultLauncher<Intent> =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == android.app.Activity.RESULT_OK) {
+                val data = result.data
+                val returnPosMs = data?.getLongExtra(ClarusTheaterActivity.EXTRA_RESULT_POSITION_MS, -1L) ?: -1L
+                val returnPaused = data?.getBooleanExtra(ClarusTheaterActivity.EXTRA_RESULT_IS_PAUSED, false) ?: false
+                if (returnPosMs >= 0L) {
+                    val returnPosSec = returnPosMs / 1000.0
+                    android.util.Log.d(
+                        "ClarusTheater",
+                        "Safari-style handoff: syncing in-page video to pos=${returnPosSec}s, paused=$returnPaused",
+                    )
+                    requireComponents.core.clarusTheater.seekAndSync(returnPosSec, returnPaused)
+                }
+            }
         }
 
     private val summarizationNavigator by lazy {
@@ -197,6 +223,46 @@ class BrowserFragment : BaseBrowserFragment(), UserInteractionHandler, SystemIns
         }
 
         setupShakeDetection()
+        setupClarusTheaterInterception()
+    }
+
+    private fun setupClarusTheaterInterception() {
+        val clarusTheater = requireComponents.core.clarusTheater
+        clarusTheater.onFullscreenRequestedListener = { payload ->
+            viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
+                if (payload.isSupported && payload.src.isNotBlank()) {
+                    android.util.Log.d(
+                        "ClarusTheater",
+                        "Intercepting web video fullscreen: launching Clarus Theater for ${payload.src}",
+                    )
+                    clarusTheater.pauseWebVideo()
+                    clarusTheater.exitWebFullscreen()
+
+                    val isAudio = ClarusTheaterActivity.isAudioUrl(payload.src)
+                    val intent = ClarusTheaterActivity.createIntent(
+                        context = requireContext(),
+                        videoUrl = payload.src,
+                        title = payload.title,
+                        initialPositionMs = (payload.currentTime * 1000).toLong(),
+                        initialPaused = payload.paused,
+                        badges = if (payload.qualityBadge.isNotEmpty()) arrayListOf(payload.qualityBadge) else ArrayList(),
+                        isLive = payload.isLive,
+                        isAudio = isAudio,
+                    )
+                    theaterLauncher.launch(intent)
+                } else {
+                    android.util.Log.d(
+                        "ClarusTheater",
+                        "Direct playback unsupported (${payload.reason}). Retaining standard web fullscreen.",
+                    )
+                }
+            }
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        requireComponents.core.clarusTheater.onFullscreenRequestedListener = null
     }
 
     private fun setupToolbarSwipeBehavior(settings: Settings, components: Components) {
@@ -225,9 +291,50 @@ class BrowserFragment : BaseBrowserFragment(), UserInteractionHandler, SystemIns
                     navBarLayout = browserNavigationBar?.layout,
                     toolbarPosition = settings.toolbarPosition,
                     navController = findNavController(),
+                    getCurrentBrowsingMode = {
+                        val isTabPrivate = components.core.store.state.selectedTab?.content?.private
+                        val activityMode = (activity as? HomeActivity)?.browsingModeManager?.mode
+                        when {
+                            isTabPrivate == true -> BrowsingMode.Private
+                            isTabPrivate == false -> BrowsingMode.Normal
+                            activityMode != null -> activityMode
+                            else -> components.appStore.state.mode
+                        }
+                    },
                 ),
             )
         }
+
+        val gestureConfig = ZenGestureConfig(edgeZoneWidth = 48.dp)
+        val density = resources.displayMetrics.density
+        binding.gestureLayout.edgeZoneWidthPx = gestureConfig.edgeZoneWidth.value * density
+
+        val zenActions = ZenGestureDispatcherHelper.create(
+            browserStore = components.core.store,
+            sessionUseCases = components.useCases.sessionUseCases,
+            tabsUseCases = components.useCases.tabsUseCases,
+            fenixBrowserUseCases = components.useCases.fenixBrowserUseCases,
+            navController = findNavController(),
+            onFallbackBack = { onBackPressed() },
+            isPrivateMode = {
+                val isTabPrivate = components.core.store.state.selectedTab?.content?.private
+                val activityMode = (activity as? HomeActivity)?.browsingModeManager?.mode
+                when {
+                    isTabPrivate == true -> true
+                    isTabPrivate == false -> false
+                    activityMode != null -> activityMode.isPrivate
+                    else -> components.appStore.state.mode.isPrivate
+                }
+            },
+        )
+        binding.gestureLayout.addGestureListener(
+            ZenSwipeGestureListener(
+                context = requireContext(),
+                actions = zenActions,
+                config = gestureConfig,
+                toolbarLayoutRect = { browserToolbar.layout.getRectWithScreenLocation() },
+            ),
+        )
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)

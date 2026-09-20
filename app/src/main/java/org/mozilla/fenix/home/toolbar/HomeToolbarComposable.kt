@@ -13,13 +13,17 @@ import androidx.compose.animation.core.Easing
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTag
@@ -51,6 +55,8 @@ import org.mozilla.fenix.components.appstate.VoiceSearchAction.VoiceInputRequest
 import org.mozilla.fenix.components.metrics.MetricsUtils
 import org.mozilla.fenix.components.toolbar.ToolbarPosition.BOTTOM
 import org.mozilla.fenix.theme.FirefoxTheme
+import org.mozilla.fenix.theme.glass.ClarusGlassSurface
+import org.mozilla.fenix.theme.glass.ClarusGlassTokens
 import org.mozilla.fenix.utils.Settings
 import org.mozilla.fenix.wallpapers.Wallpaper
 import org.mozilla.fenix.wallpapers.WallpaperTheme
@@ -153,13 +159,21 @@ internal class HomeToolbarComposable(
                         },
                 ),
             ) {
-                ToolbarContent(wallpaperTextColor = wallpaperTextColor)
+                ToolbarContent(
+                    wallpaperTextColor = wallpaperTextColor,
+                    isPrivateMode = isPrivateMode,
+                    isSearchActive = isSearching,
+                )
             }
         }
     }
 
     @Composable
-    private fun ToolbarContent(wallpaperTextColor: Color?) {
+    private fun ToolbarContent(
+        wallpaperTextColor: Color?,
+        isPrivateMode: Boolean = false,
+        isSearchActive: Boolean = false,
+    ) {
         val shouldShowTabStrip: Boolean = remember { settings.isTabStripEnabled }
         val isAddressBarVisible = remember { addressBarVisibility }
 
@@ -177,30 +191,41 @@ internal class HomeToolbarComposable(
                 searchSuggestionsContent(Modifier.weight(1f))
             }
 
-            Box {
-                if (settings.enableHomepageSearchBar) {
-                    BrowserSimpleToolbar(toolbarStore, appStore)
-                }
+            ClarusGlassSurface(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
+                shape = ClarusGlassTokens.Shapes.Pill,
+                elevation = ClarusGlassTokens.Elevation.Level2,
+                isDarkTheme = isSystemInDarkTheme() || isPrivateMode,
+                isPrivate = isPrivateMode,
+                isActive = isSearchActive,
+            ) {
+                Box {
+                    if (settings.enableHomepageSearchBar) {
+                        BrowserSimpleToolbar(toolbarStore, appStore)
+                    }
 
-                this@Column.AnimatedVisibility(
-                    visible = isAddressBarVisible.value || appStore.state.searchState.isSearchActive,
-                    enter = fadeIn(
-                        animationSpec = tween(
-                            durationMillis = 250,
-                            easing = Easing { fraction -> fraction * fraction },
+                    this@Column.AnimatedVisibility(
+                        visible = isAddressBarVisible.value || appStore.state.searchState.isSearchActive,
+                        enter = fadeIn(
+                            animationSpec = tween(
+                                durationMillis = 250,
+                                easing = Easing { fraction -> fraction * fraction },
+                            ),
                         ),
-                    ),
-                    exit = fadeOut(
-                        animationSpec = tween(
-                            durationMillis = 250,
-                            easing = Easing { fraction -> 1f - (1f - fraction) * (1f - fraction) },
+                        exit = fadeOut(
+                            animationSpec = tween(
+                                durationMillis = 250,
+                                easing = Easing { fraction -> 1f - (1f - fraction) * (1f - fraction) },
+                            ),
                         ),
-                    ),
-                ) {
-                    BrowserToolbar(
-                        store = toolbarStore,
-                        browserActionsColor = wallpaperTextColor,
-                    )
+                    ) {
+                        BrowserToolbar(
+                            store = toolbarStore,
+                            browserActionsColor = wallpaperTextColor,
+                        )
+                    }
                 }
             }
 

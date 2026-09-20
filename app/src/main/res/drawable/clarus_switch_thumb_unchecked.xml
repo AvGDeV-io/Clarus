@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Porcelain pebble base disc -->
+    <item
+        android:gravity="center"
+        android:width="24dp"
+        android:height="24dp">
+        <shape android:shape="oval">
+            <solid android:color="@color/clarus_switch_thumb_unchecked_fill" />
+            <stroke
+                android:width="0.75dp"
+                android:color="@color/clarus_switch_thumb_unchecked_stroke" />
+        </shape>
+    </item>
+    <!-- Specular highlight reflection glint (upper-left arc) -->
+    <item
+        android:gravity="center"
+        android:top="3dp"
+        android:left="3dp"
+        android:right="13dp"
+        android:bottom="13dp">
+        <shape android:shape="oval">
+            <solid android:color="#90FFFFFF" />
+        </shape>
+    </item>
+</layer-list>

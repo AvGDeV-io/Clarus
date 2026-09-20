@@ -107,8 +107,8 @@ private fun PrivateBrowsingButton(
         },
     ) {
         Icon(
-            tint = color,
-            painter = painterResource(iconsR.drawable.mozac_ic_private_mode_fill_24),
+            tint = if (browsingMode.isPrivate) Color.Unspecified else color,
+            painter = painterResource(R.drawable.ic_clarus_private_mode),
             contentDescription = stringResource(R.string.content_description_private_browsing),
         )
     }

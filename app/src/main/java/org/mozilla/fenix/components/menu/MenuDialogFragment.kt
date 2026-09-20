@@ -212,15 +212,18 @@ class MenuDialogFragment : BottomSheetDialogFragment() {
                         insets
                     }
                 }
-                bottomSheet?.setBackgroundResource(R.drawable.bottom_sheet_with_top_rounded_corners)
+                bottomSheet?.setBackgroundColor(android.graphics.Color.TRANSPARENT)
 
-                // https://bugzilla.mozilla.org/show_bug.cgi?id=1982004
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
-                    bottomSheet?.let { sheet ->
-                        sheet.translationY = sheet.height * MenuAnimationConfig.START_OFFSET_RATIO
+                // Clarus: Smooth spring/overshoot entrance animation on all Android versions
+                bottomSheet?.let { sheet ->
+                    sheet.post {
+                        val offset = if (sheet.height > 0) sheet.height * MenuAnimationConfig.START_OFFSET_RATIO else 140f
+                        sheet.translationY = offset
+                        sheet.alpha = 0.6f
                         sheet.animate()
                             .translationY(0f)
-                            .setInterpolator(OvershootInterpolator())
+                            .alpha(1f)
+                            .setInterpolator(OvershootInterpolator(1.05f))
                             .setDuration(MenuAnimationConfig.DURATION)
                             .start()
                     }

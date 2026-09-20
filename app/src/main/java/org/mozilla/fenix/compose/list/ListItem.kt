@@ -12,6 +12,7 @@ import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -33,6 +34,7 @@ import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
@@ -63,6 +65,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import org.mozilla.fenix.theme.glass.ClarusGlassTokens
 import mozilla.components.compose.base.Switch
 import mozilla.components.compose.base.badge.BADGE_SIZE_SMALL
 import mozilla.components.compose.base.badge.BadgedIcon
@@ -491,11 +494,20 @@ fun SwitchListItem(
     belowListItemContent: @Composable ColumnScope.() -> Unit = {},
     onClick: (Boolean) -> Unit,
 ) {
+    val isDark = isSystemInDarkTheme()
     val switch: @Composable RowScope.() -> Unit = {
         Switch(
             checked = checked,
             onCheckedChange = onClick,
             enabled = enabled,
+            colors = SwitchDefaults.colors(
+                checkedThumbColor = ClarusGlassTokens.Switch.CheckedThumb,
+                checkedTrackColor = ClarusGlassTokens.Switch.CheckedTrack,
+                checkedBorderColor = ClarusGlassTokens.Switch.CheckedBorder,
+                uncheckedThumbColor = ClarusGlassTokens.Switch.UncheckedThumb,
+                uncheckedTrackColor = if (isDark) ClarusGlassTokens.Switch.UncheckedTrackDark else ClarusGlassTokens.Switch.UncheckedTrackLight,
+                uncheckedBorderColor = if (isDark) ClarusGlassTokens.Switch.UncheckedBorderDark else ClarusGlassTokens.Switch.UncheckedBorderLight,
+            ),
             modifier = Modifier
                 .clearAndSetSemantics {},
         )

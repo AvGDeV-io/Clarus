@@ -42,6 +42,18 @@ class SettingsSearchMiddleware(
                 next(action)
                 scope.launch(dispatcher) {
                     fenixSettingsIndexer.indexAllSettings()
+                    val currentQuery = store.state.searchQuery
+                    if (currentQuery.isNotBlank()) {
+                        val results = fenixSettingsIndexer.getSettingsWithQuery(currentQuery)
+                        if (results.isNotEmpty()) {
+                            store.dispatch(
+                                SettingsSearchAction.SearchResultsLoaded(
+                                    query = currentQuery,
+                                    results = results,
+                                ),
+                            )
+                        }
+                    }
                 }
                 if (recentSettingsSearchesRepository != null) {
                     observeRecentSearches(store, recentSettingsSearchesRepository)

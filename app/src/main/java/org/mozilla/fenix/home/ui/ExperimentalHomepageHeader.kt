@@ -152,8 +152,9 @@ private fun PrivateModeButton(onClick: () -> Unit) {
         },
     ) {
         Icon(
-            painter = painterResource(iconsR.drawable.mozac_ic_private_mode_24),
+            painter = painterResource(R.drawable.ic_clarus_private_mode),
             contentDescription = stringResource(R.string.content_description_private_browsing),
+            tint = Color.Unspecified,
         )
     }
 }

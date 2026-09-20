@@ -199,8 +199,8 @@ fun ProfilerErrorDialog(
 private fun ProfilerDialogueCardPreview(
     @PreviewParameter(PreviewThemeProvider::class) theme: Theme,
 ) {
-    val radioOptions = listOf("Firefox", "Graphics", "Media", "Networking")
-    val selectedOption = remember { mutableStateOf("Firefox") }
+    val radioOptions = listOf("Clarus", "Graphics", "Media", "Networking")
+    val selectedOption = remember { mutableStateOf("Clarus") }
 
     FirefoxTheme(theme) {
         ProfilerDialogueCard {

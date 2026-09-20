@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="72dp"
+    android:height="72dp"
+    android:viewportWidth="72"
+    android:viewportHeight="72">
+
+    <!-- Clarus Celestial Cloud: Minimalist geometric curves with orbital halo -->
+    <!-- Cloud body -->
+    <path
+        android:fillColor="@color/mozac_ui_icons_fill"
+        android:pathData="M52.5,49.5 H21 C14.4,49.5 9,44.1 9,37.5 C9,31.4 13.6,26.3 19.6,25.6 C21.1,17.4 28.3,11.2 37,11.2 C46.5,11.2 54.3,18.5 55,27.9 C60.6,28.8 64.5,33.7 64.5,39.5 C64.5,45 60.1,49.5 54.6,49.5 Z M21,46.5 H52.5 C56.6,46.5 60,43.4 60,39.5 C60,35.6 56.9,32.5 53,32.3 L50.5,32.1 L50.3,29.6 C49.5,21.5 42.6,15.7 34.5,15.7 C27.5,15.7 21.4,20.4 19.8,27.2 L19.2,29.8 L16.6,30.3 C12.8,31 10.5,34 10.5,37.5 C10.5,42.5 15.2,46.5 21,46.5 Z" />
+
+    <!-- Synchronizing orbital dots inside cloud -->
+    <path
+        android:fillColor="@color/mozac_ui_icons_fill"
+        android:pathData="M28,34m-2.2,0a2.2,2.2 0,1 1,4.4 0a2.2,2.2 0,1 1,-4.4 0" />
+    <path
+        android:fillColor="@color/mozac_ui_icons_fill"
+        android:pathData="M36,34m-2.2,0a2.2,2.2 0,1 1,4.4 0a2.2,2.2 0,1 1,-4.4 0" />
+    <path
+        android:fillColor="@color/mozac_ui_icons_fill"
+        android:pathData="M44,34m-2.2,0a2.2,2.2 0,1 1,4.4 0a2.2,2.2 0,1 1,-4.4 0" />
+
+    <!-- Lower sync ripple arc -->
+    <path
+        android:strokeColor="@color/mozac_ui_icons_fill"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round"
+        android:pathData="M26,56.5 C32,59 40,59 46,56.5" />
+
+</vector>

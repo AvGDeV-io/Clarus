@@ -38,8 +38,12 @@ class BottomToolbarContainerView(
 
     val toolbarContainerView = ToolbarContainerView(context).apply {
         id = R.id.navigation_bar
+        clipChildren = false
+        clipToPadding = false
     }
     private val composeView = ComposeView(context).apply {
+        clipChildren = false
+        clipToPadding = false
         setContent {
             content()
         }

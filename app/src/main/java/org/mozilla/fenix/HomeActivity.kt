@@ -495,7 +495,29 @@ open class HomeActivity : LocaleAwareAppCompatActivity(), NavHostActivity, Crash
             scope = lifecycleScope,
             splashScreenTimeout = FxNimbus.features.splashScreen.value().maximumDurationMs.toLong(),
             storage = DefaultSplashScreenStorage(components.settings),
-            showSplashScreen = { installSplashScreen().setKeepOnScreenCondition(it) },
+            showSplashScreen = { condition ->
+                val splashScreen = installSplashScreen()
+                splashScreen.setKeepOnScreenCondition(condition)
+                splashScreen.setOnExitAnimationListener { splashScreenViewProvider ->
+                    val iconView = splashScreenViewProvider.iconView
+                    val splashView = splashScreenViewProvider.view
+                    iconView.animate()
+                        .scaleX(1.12f)
+                        .scaleY(1.12f)
+                        .alpha(0f)
+                        .setDuration(300L)
+                        .setInterpolator(android.view.animation.DecelerateInterpolator())
+                        .start()
+                    splashView.animate()
+                        .alpha(0f)
+                        .setDuration(320L)
+                        .setInterpolator(android.view.animation.AccelerateDecelerateInterpolator())
+                        .withEndAction {
+                            splashScreenViewProvider.remove()
+                        }
+                        .start()
+                }
+            },
             onSplashScreenFinished = { result ->
                 if (result.sendTelemetry) {
                     SplashScreen.firstLaunchExtended.record(

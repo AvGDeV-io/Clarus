@@ -908,6 +908,21 @@
             <action android:name="org.mozilla.fenix.NIMBUS_TOOLING" />
           </intent-filter>
         </receiver>
+
+        <activity
+            android:name=".theater.ClarusTheaterActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout"
+            android:screenOrientation="sensorLandscape"
+            android:exported="true"
+            android:resizeableActivity="true"
+            android:supportsPictureInPicture="true"
+            android:hardwareAccelerated="true"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="org.mozilla.fenix.THEATER_STANDALONE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

@@ -60,6 +60,28 @@ class SwipeGestureLayout @JvmOverloads constructor(
      */
     var isSwipeEnabled = true
 
+    /**
+     * Configured edge zone width in pixels. Touch gestures starting within this zone
+     * from either the left or right edge will not allow children (such as GeckoView)
+     * to disable intercept touch events.
+     */
+    var edgeZoneWidthPx: Float = 0f
+
+    private var initialDownX: Float = -1f
+
+    override fun requestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {
+        if (disallowIntercept && isSwipeEnabled && edgeZoneWidthPx > 0f) {
+            val isLeftEdge = initialDownX in 0f..edgeZoneWidthPx
+            val isRightEdge = initialDownX >= (width - edgeZoneWidthPx) && initialDownX <= width
+            if (isLeftEdge || isRightEdge) {
+                // Touch originated in edge-swipe zone: ignore disallow request so edge swipe
+                // navigation remains active.
+                return
+            }
+        }
+        super.requestDisallowInterceptTouchEvent(disallowIntercept)
+    }
+
     private val gestureListener = object : GestureDetector.SimpleOnGestureListener() {
         override fun onDown(e: MotionEvent): Boolean {
             return true
@@ -117,6 +139,7 @@ class SwipeGestureLayout @JvmOverloads constructor(
 
         return when (event.actionMasked) {
             MotionEvent.ACTION_DOWN -> {
+                initialDownX = event.x
                 handledInitialScroll = false
                 gestureDetector.onTouchEvent(event)
                 false

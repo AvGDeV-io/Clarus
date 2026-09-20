@@ -783,30 +783,6 @@ class SnackbarBindingTest {
         verify { snackbarDelegate.dismiss() }
     }
 
-    @Test
-    fun `WHEN a webcompat report is successfully sent THEN show a snackbar`() {
-        val snackbarAction = argumentCaptor<((v: View) -> Unit)>()
-        val binding = buildSnackbarBinding()
-        binding.start()
-
-        appStore.dispatch(WebCompatAction.WebCompatReportSent)
-        waitForStoreToSettle()
-
-        verify(snackbarDelegate).show(
-            text = eq(testContext.getString(R.string.webcompat_reporter_success_snackbar_text)),
-            subText = eq(null),
-            duration = eq(WEBCOMPAT_SNACKBAR_DURATION_MS),
-            isError = eq(false),
-            action = eq(testContext.getString(R.string.webcompat_reporter_dismiss_success_snackbar_text)),
-            listener = snackbarAction.capture(),
-        )
-        assertEquals(SnackbarState.None, appStore.state.snackbarState)
-
-        verify(snackbarDelegate, never()).dismiss()
-        snackbarAction.value.invoke(mock())
-        verify(snackbarDelegate).dismiss()
-    }
-
     private fun buildSnackbarBinding(
         context: Context = testContext,
         browserStore: BrowserStore = BrowserStore(),

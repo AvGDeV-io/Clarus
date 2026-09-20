@@ -157,13 +157,13 @@ private fun DownloaderAppItemPreview() {
                 Column {
                     DownloaderAppItem(
                         iconBitmap = placeholderBitmap,
-                        appName = "Firefox Nightly Downloader",
+                        appName = "Clarus Nightly Downloader",
                         onAppSelected = {},
                     )
 
                     DownloaderAppItem(
                         iconBitmap = placeholderBitmap,
-                        appName = "Fenix Downloader",
+                        appName = "Clarus Downloader",
                         onAppSelected = {},
                     )
                 }

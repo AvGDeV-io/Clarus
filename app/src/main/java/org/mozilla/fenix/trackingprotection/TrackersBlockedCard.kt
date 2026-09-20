@@ -146,32 +146,10 @@ fun TrackersBlockedCard(
         Box(
             contentAlignment = Alignment.TopStart,
         ) {
-            if (isPlayingAnimation) {
-                Image(
-                    painter = painterResource(R.drawable.expressive_firefox),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .testTag(LONGFOX_FOX_IMAGE_TEST_TAG)
-                        .offset {
-                            IntOffset(
-                                x = foxHorizontalOffset.toPx().roundToInt(),
-                                y = ((-peekHeight.toPx()) + (foxOffsetY.value * peekHeight.toPx())).roundToInt(),
-                            )
-                        },
-                )
-            }
-
             ProtectionStatusPill(
                 trackersBlockedCount = trackersBlockedCount,
                 onClick = if (longfoxEnabled) onLongfoxEntryPointClicked else onPrivacyReportTapped,
                 longfoxEnabled = longfoxEnabled,
-            )
-        }
-
-        if (isPlayingAnimation && foxOffsetY.value < 1f) {
-            TypewriterText(
-                text = stringResource(org.mozilla.fenix.longfox.R.string.tap_to_play),
-                isReversing = isReversing,
             )
         }
     }

@@ -42,8 +42,20 @@ import org.mozilla.fenix.R
 import org.mozilla.fenix.components.SnackbarBehavior
 import org.mozilla.fenix.compose.core.Action
 import org.mozilla.fenix.ext.components
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.sp
 import org.mozilla.fenix.theme.FirefoxTheme
-import com.google.android.material.snackbar.Snackbar as MaterialSnackbar
+import org.mozilla.fenix.theme.Theme
+import org.mozilla.fenix.theme.getThemeProvider
+import org.mozilla.fenix.theme.glass.ClarusGlassTokens
+import org.mozilla.fenix.theme.clarusPressAnimation
 
 const val SNACKBAR_TEST_TAG = "snackbar"
 const val SNACKBAR_BUTTON_TEST_TAG = "snackbar_button"
@@ -119,14 +131,15 @@ class Snackbar private constructor(
 
                 contentView.setContent {
                     FirefoxTheme {
-                        Snackbar(
-                            snackbarData = snackbarState.copy(
-                                action = action,
-                                onDismiss = {
-                                    snackbar.dismiss()
-                                    snackbarState.onDismiss()
-                                },
-                            ).toSnackbarData(),
+                        ClarusSnackbar(
+                            message = snackbarState.message,
+                            subMessage = snackbarState.subMessage?.text,
+                            actionLabel = action?.label,
+                            onActionClick = action?.onClick,
+                            onDismiss = {
+                                snackbar.dismiss()
+                                snackbarState.onDismiss()
+                            },
                         )
                     }
                 }
@@ -259,6 +272,107 @@ private fun SnackbarHostPreview() {
                     modifier = Modifier.align(Alignment.BottomCenter),
                 ) {
                     Snackbar(snackbarData = it)
+                }
+            }
+        }
+    }
+}
+
+/**
+ * Aesthetic Clarus popup / snackbar matching the Serene Tactile Glass and Obsidian themes.
+ */
+@Composable
+fun ClarusSnackbar(
+    message: String,
+    subMessage: String? = null,
+    actionLabel: String? = null,
+    onActionClick: (() -> Unit)? = null,
+    onDismiss: (() -> Unit)? = null,
+    modifier: Modifier = Modifier,
+) {
+    val theme = getThemeProvider().provideTheme()
+    val isPrivate = theme == Theme.Private
+    val isDark = theme == Theme.Dark || isPrivate
+
+    val surfaceColor = if (isPrivate) {
+        Color(0xF20C0B0E) // Frosted Obsidian base
+    } else if (isDark) {
+        ClarusGlassTokens.Colors.DarkBase.copy(alpha = 0.94f)
+    } else {
+        ClarusGlassTokens.Colors.LightBase.copy(alpha = 0.96f)
+    }
+
+    val outlineColor = if (isPrivate) {
+        Color(0x55F59E0B) // Glowing amber border in obsidian mode
+    } else if (isDark) {
+        Color(0x28FFFFFF)
+    } else {
+        Color(0x1F24201F)
+    }
+
+    val textPrimary = if (isPrivate) Color(0xFFFEF3C7) else if (isDark) Color(0xFFF7F3EC) else Color(0xFF24201F)
+    val textSecondary = if (isPrivate) Color(0xFFD4AF37) else if (isDark) Color(0xFFAAA0D2) else Color(0xFF756F6B)
+    val actionTextColor = if (isPrivate) Color(0xFFF59E0B) else if (isDark) Color(0xFFFBBF24) else Color(0xFFB8754B)
+
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 8.dp),
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(16.dp))
+                .background(surfaceColor)
+                .border(1.dp, outlineColor, RoundedCornerShape(16.dp))
+                .padding(horizontal = 16.dp, vertical = 12.dp),
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween,
+            ) {
+                Column(
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(end = 12.dp),
+                ) {
+                    Text(
+                        text = message,
+                        color = textPrimary,
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Medium,
+                    )
+                    if (subMessage != null) {
+                        Spacer(modifier = Modifier.height(2.dp))
+                        Text(
+                            text = subMessage,
+                            color = textSecondary,
+                            fontSize = 12.sp,
+                        )
+                    }
+                }
+
+                if (actionLabel != null && onActionClick != null) {
+                    Box(
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(12.dp))
+                            .background(actionTextColor.copy(alpha = 0.15f))
+                            .border(1.dp, actionTextColor.copy(alpha = 0.35f), RoundedCornerShape(12.dp))
+                            .clarusPressAnimation(
+                                scaleDown = 0.92f,
+                                onClick = onActionClick,
+                            )
+                            .padding(horizontal = 14.dp, vertical = 8.dp),
+                        contentAlignment = Alignment.Center,
+                    ) {
+                        Text(
+                            text = actionLabel,
+                            color = actionTextColor,
+                            fontSize = 13.sp,
+                            fontWeight = FontWeight.SemiBold,
+                        )
+                    }
                 }
             }
         }

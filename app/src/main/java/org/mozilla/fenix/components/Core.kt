@@ -419,6 +419,9 @@ class Core(
             // Install the "icons" WebExtension to automatically load icons for every visited website.
             icons.install(engine, this)
 
+            // Install Clarus Theater video detection WebExtension
+            clarusTheater.install(engine, this)
+
             CoroutineScope(Dispatchers.Main).launch {
                 val readJson = { context.assets.readJSONObject("search/search_telemetry_v2.json") }
                 val providerList = withContext(Dispatchers.IO) {
@@ -502,6 +505,10 @@ class Core(
             httpClient = client,
             manifestProvider = merinoManifestProvider,
         )
+    }
+
+    val clarusTheater by lazyMonitored {
+        org.mozilla.fenix.theater.ClarusTheaterFeature(context)
     }
 
     val metrics by lazyMonitored {

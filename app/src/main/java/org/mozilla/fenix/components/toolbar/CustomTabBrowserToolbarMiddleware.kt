@@ -39,6 +39,7 @@ import mozilla.components.compose.browser.toolbar.store.BrowserToolbarAction
 import mozilla.components.compose.browser.toolbar.store.BrowserToolbarAction.Init
 import mozilla.components.compose.browser.toolbar.store.BrowserToolbarInteraction
 import mozilla.components.compose.browser.toolbar.store.BrowserToolbarInteraction.BrowserToolbarEvent
+import androidx.compose.ui.graphics.Color
 import mozilla.components.compose.browser.toolbar.store.BrowserToolbarState
 import mozilla.components.compose.browser.toolbar.store.ProgressBarConfig
 import mozilla.components.concept.engine.permission.SitePermissions
@@ -532,7 +533,8 @@ class CustomTabBrowserToolbarMiddleware(
         )
     }
 
-    private fun buildProgressBar(progress: Int = 0) = ProgressBarConfig(progress)
+    private fun buildProgressBar(progress: Int = 0) =
+        ProgressBarConfig(progress, color = listOf(Color.Transparent, Color.Transparent))
 
     /**
      * Get the host of the current URL with the registrable domain span applied.

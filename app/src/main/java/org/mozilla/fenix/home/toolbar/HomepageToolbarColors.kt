@@ -27,7 +27,12 @@ fun homepageToolbarColors(
 
     return when {
         isPrivateMode -> colors.copy(
-            outlineVariant = colorResource(R.color.homepage_tab_edge_to_edge_private_toolbar_outline),
+            surface = Color.Transparent,
+            surfaceContainerHighest = Color(0xFF16141D).copy(alpha = 0.90f),
+            onSurface = Color(0xFFFEF3C7),
+            onSurfaceVariant = Color(0xFFF59E0B),
+            outline = Color(0x40F59E0B),
+            outlineVariant = Color(0xFFF59E0B),
         )
 
         shouldUseEdgeToEdgeColors -> colors.copy(

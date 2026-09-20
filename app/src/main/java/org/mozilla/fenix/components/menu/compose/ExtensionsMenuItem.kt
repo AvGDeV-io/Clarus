@@ -121,7 +121,7 @@ private fun ExtensionsMenuTrailingContent(
     if (isExtensionsProcessDisabled || isAllWebExtensionsDisabled) {
         if (!inCustomTab) {
             Icon(
-                painter = painterResource(id = iconsR.drawable.mozac_ic_settings_24),
+                painter = painterResource(id = R.drawable.ic_clarus_settings),
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.onSurfaceVariant,
             )

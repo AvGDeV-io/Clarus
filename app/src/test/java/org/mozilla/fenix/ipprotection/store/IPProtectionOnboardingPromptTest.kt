@@ -158,7 +158,6 @@ class IPProtectionOnboardingPromptTest {
 
                 assertEquals(0, shownCount)
             }
-        }
 
     private fun startBinding(
         repository: FakeIPProtectionPromptRepository,

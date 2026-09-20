@@ -55,6 +55,7 @@ import mozilla.components.compose.browser.toolbar.store.BrowserToolbarMenuItem.B
 import mozilla.components.compose.browser.toolbar.store.BrowserToolbarMenuItem.BrowserToolbarMenuButton.Icon.DrawableResIcon
 import mozilla.components.compose.browser.toolbar.store.BrowserToolbarMenuItem.BrowserToolbarMenuButton.Text.StringResText
 import mozilla.components.compose.browser.toolbar.store.BrowserToolbarMenuItem.BrowserToolbarMenuDivider
+import androidx.compose.ui.graphics.Color
 import mozilla.components.compose.browser.toolbar.store.BrowserToolbarState
 import mozilla.components.compose.browser.toolbar.store.ProgressBarConfig
 import mozilla.components.compose.browser.toolbar.ui.BrowserToolbarQuery
@@ -908,7 +909,8 @@ class BrowserToolbarMiddleware(
             }
     }
 
-    private fun buildProgressBar(progress: Int = 0) = ProgressBarConfig(progress)
+    private fun buildProgressBar(progress: Int = 0) =
+        ProgressBarConfig(progress, color = listOf(Color.Transparent, Color.Transparent))
 
     private fun openNewTab(
         browsingMode: BrowsingMode,

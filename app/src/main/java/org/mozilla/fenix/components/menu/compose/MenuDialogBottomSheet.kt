@@ -35,38 +35,61 @@ import mozilla.components.compose.base.BottomSheetHandle
  * @param cornerShape The shape of the bottom sheet's top corners.
  * @param content The children composable to be laid out.
  */
+import org.mozilla.fenix.theme.Theme
+import org.mozilla.fenix.theme.getThemeProvider
+import org.mozilla.fenix.theme.glass.ClarusGlassSurface
+import org.mozilla.fenix.theme.glass.ClarusGlassTokens
+
+/**
+ * The menu dialog bottom sheet.
+ *
+ * @param modifier [Modifier] to be applied to [BottomSheetHandle].
+ * @param onRequestDismiss Invoked when accessibility services or UI automation requests
+ * dismissal of the bottom sheet.
+ * @param menuHandleState Configuration of the handle to use for the menu layout.
+ * @param snackbarHostState The [SnackbarHostState] to display snackbars in.
+ * @param cornerShape The shape of the bottom sheet's top corners.
+ * @param content The children composable to be laid out.
+ */
 @Composable
 fun MenuDialogBottomSheet(
     modifier: Modifier = Modifier,
     onRequestDismiss: () -> Unit,
     menuHandleState: MenuHandleState,
     snackbarHostState: SnackbarHostState,
-    cornerShape: Shape = MaterialTheme.shapes.large.copy(
-        bottomStart = CornerSize(0.dp),
-        bottomEnd = CornerSize(0.dp),
-    ),
+    cornerShape: Shape = ClarusGlassTokens.Shapes.BottomSheet,
     content: @Composable () -> Unit,
 ) {
-    Box {
-        Column(
-            modifier = Modifier
-                .background(
-                    color = MaterialTheme.colorScheme.surface,
-                    shape = cornerShape,
-                )
-                .nestedScroll(rememberNestedScrollInteropConnection()),
-        ) {
-            if (menuHandleState.visible) {
-                MenuBottomSheetHandle(
-                    modifier = modifier,
-                    onRequestDismiss = onRequestDismiss,
-                    contentDescription = menuHandleState.contentDescription,
-                    isMenuDragBarDark = menuHandleState.useDarkBackground,
-                    cornerShape = cornerShape,
-                )
-            }
+    val theme = getThemeProvider().provideTheme()
+    val isDark = theme == Theme.Dark || theme == Theme.Private
+    val isPrivate = theme == Theme.Private
 
-            content()
+    Box {
+        ClarusGlassSurface(
+            modifier = Modifier
+                .fillMaxWidth()
+                .nestedScroll(rememberNestedScrollInteropConnection()),
+            shape = cornerShape,
+            elevation = ClarusGlassTokens.Elevation.Level3,
+            blurRadius = ClarusGlassTokens.Blur.Heavy,
+            isDarkTheme = isDark,
+            isPrivate = isPrivate,
+        ) {
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                if (menuHandleState.visible) {
+                    MenuBottomSheetHandle(
+                        modifier = modifier,
+                        onRequestDismiss = onRequestDismiss,
+                        contentDescription = menuHandleState.contentDescription,
+                        isMenuDragBarDark = menuHandleState.useDarkBackground,
+                        cornerShape = cornerShape,
+                    )
+                }
+
+                content()
+            }
         }
 
         SnackbarHost(
@@ -82,20 +105,13 @@ private fun MenuBottomSheetHandle(
     onRequestDismiss: () -> Unit,
     contentDescription: String,
     isMenuDragBarDark: Boolean = false,
-    cornerShape: Shape = MaterialTheme.shapes.large.copy(
-        bottomStart = CornerSize(0.dp),
-        bottomEnd = CornerSize(0.dp),
-    ),
+    cornerShape: Shape = ClarusGlassTokens.Shapes.BottomSheet,
 ) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .background(
-                color = if (isMenuDragBarDark) {
-                    MaterialTheme.colorScheme.surfaceContainerHigh
-                } else {
-                    Color.Transparent
-                },
+                color = Color.Transparent,
                 shape = cornerShape,
             )
             .verticalScroll(rememberScrollState()),

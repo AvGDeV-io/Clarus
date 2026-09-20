@@ -4,9 +4,13 @@
 
 package org.mozilla.fenix.tabstray.ui.tabpage
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
@@ -14,6 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -56,36 +61,42 @@ internal fun PrivateTabsPage(
     tabInteractionHandler: TabInteractionHandler,
     onUnlockPbmClick: () -> Unit,
 ) {
-    when {
-        state.tabs.isEmpty() -> {
-            EmptyPrivateTabsPage()
-        }
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0xFF0D0B12)),
+    ) {
+        when {
+            state.tabs.isEmpty() -> {
+                EmptyPrivateTabsPage()
+            }
 
-        state.isLocked -> {
-            UnlockPrivateTabsTrayScreen { onUnlockPbmClick() }
-        }
+            state.isLocked -> {
+                UnlockPrivateTabsTrayScreen { onUnlockPbmClick() }
+            }
 
-        else -> {
-            TabLayout(
-                tabs = state.tabs,
-                displayTabsInGrid = config.displayTabsInGrid,
-                tabInteractionHandler = tabInteractionHandler,
-                selectedItemIndex = state.selectedItemIndex,
-                selectionMode = Mode.Normal, // Multiselection is not supported in private tabs
-                modifier = Modifier.testTag(TabsTrayTestTag.PRIVATE_TABS_LIST),
-                onTabClose = onTabClose,
-                onItemClick = onItemClick,
-                onItemLongClick = onItemLongClick,
-                onEditTabGroupClick = {},
-                onCloseTabGroupClick = {},
-                onShareTabGroupClick = {},
-                onDeleteTabGroupClick = {},
-                onTabGroupOnboardingDismiss = {},
-                dragAndDropEnabled = false,
-                displayTabGroupOnboarding = false,
-                focusEnabled = true, // Drag and drop is not possible, so there's no reason to hide the focus state
-                liveReorderEnabled = true, // Technically, trivially true as it uses ReorderableGrid today
-            )
+            else -> {
+                TabLayout(
+                    tabs = state.tabs,
+                    displayTabsInGrid = config.displayTabsInGrid,
+                    tabInteractionHandler = tabInteractionHandler,
+                    selectedItemIndex = state.selectedItemIndex,
+                    selectionMode = Mode.Normal, // Multiselection is not supported in private tabs
+                    modifier = Modifier.testTag(TabsTrayTestTag.PRIVATE_TABS_LIST),
+                    onTabClose = onTabClose,
+                    onItemClick = onItemClick,
+                    onItemLongClick = onItemLongClick,
+                    onEditTabGroupClick = {},
+                    onCloseTabGroupClick = {},
+                    onShareTabGroupClick = {},
+                    onDeleteTabGroupClick = {},
+                    onTabGroupOnboardingDismiss = {},
+                    dragAndDropEnabled = false,
+                    displayTabGroupOnboarding = false,
+                    focusEnabled = true, // Drag and drop is not possible, so there's no reason to hide the focus state
+                    liveReorderEnabled = true, // Technically, trivially true as it uses ReorderableGrid today
+                )
+            }
         }
     }
 }
@@ -107,8 +118,10 @@ private fun EmptyPrivateTabsPage(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Icon(
-                painter = painterResource(id = iconsR.drawable.mozac_ic_private_mode_fill_72),
+                painter = painterResource(id = R.drawable.ic_clarus_private_mode),
                 contentDescription = null,
+                tint = Color.Unspecified,
+                modifier = Modifier.size(72.dp),
             )
 
             Text(

@@ -5,7 +5,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Name of the application -->
     <string name="app_name" translatable="false">Clarus</string>
-    <string name="firefox" translatable="false">Iceraven</string>
+    <string name="firefox" translatable="false">Clarus</string>
 
     <!-- Preference for developers -->
     <string name="preference_leakcanary" translatable="false">LeakCanary</string>
@@ -412,5 +412,5 @@
     <string name="customize_toggle_weather" translatable="false">Weather</string>
 
     <!--  Firefox brand name  -->
-    <string name="app_name_firefox" tools:ignore="BrandUsage">Firefox</string>
+    <string name="app_name_firefox" tools:ignore="BrandUsage">Clarus</string>
 </resources>

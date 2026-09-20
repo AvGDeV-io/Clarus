@@ -7,12 +7,16 @@ package org.mozilla.fenix.components.toolbar
 import android.content.Context
 import android.view.Gravity
 import android.view.ViewGroup
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.coordinatorlayout.widget.CoordinatorLayout.LayoutParams
 import androidx.core.view.isVisible
 import mozilla.components.compose.browser.toolbar.NavigationBar
@@ -23,6 +27,10 @@ import mozilla.components.support.utils.KeyboardState
 import mozilla.components.support.utils.keyboardAsState
 import org.mozilla.fenix.R
 import org.mozilla.fenix.theme.FirefoxTheme
+import org.mozilla.fenix.theme.Theme
+import org.mozilla.fenix.theme.getThemeProvider
+import org.mozilla.fenix.theme.glass.ClarusGlassSurface
+import org.mozilla.fenix.theme.glass.ClarusGlassTokens
 import org.mozilla.fenix.utils.Settings
 
 /**
@@ -93,11 +101,25 @@ class BrowserNavigationBar(
 
         if (uiState.displayState.navigationActions.isNotEmpty() && !isKeyboardVisible) {
             FirefoxTheme {
-                NavigationBar(
-                    actions = uiState.displayState.navigationActions,
-                    toolbarGravity = toolbarGravity,
-                    onInteraction = { toolbarStore.dispatch(it) },
-                )
+                val theme = getThemeProvider().provideTheme()
+                val isDark = theme == Theme.Dark || theme == Theme.Private
+                val isPrivate = theme == Theme.Private
+
+                ClarusGlassSurface(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 10.dp, vertical = 3.dp),
+                    shape = ClarusGlassTokens.Shapes.Container,
+                    elevation = ClarusGlassTokens.Elevation.Level2,
+                    isDarkTheme = isDark,
+                    isPrivate = isPrivate,
+                ) {
+                    NavigationBar(
+                        actions = uiState.displayState.navigationActions,
+                        toolbarGravity = toolbarGravity,
+                        onInteraction = { toolbarStore.dispatch(it) },
+                    )
+                }
             }
         }
     }

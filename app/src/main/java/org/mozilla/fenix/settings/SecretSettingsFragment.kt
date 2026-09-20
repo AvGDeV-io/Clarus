@@ -138,6 +138,7 @@ class SecretSettingsFragment : PreferenceFragmentCompat(), SystemInsetsPaddedFra
         val settings = requireComponents.settings
 
         setPreferencesFromResource(R.xml.secret_settings_preferences, rootKey)
+        preferenceScreen.preserveStockSwitchStyle()
 
         requirePreference<SwitchPreferenceCompat>(R.string.pref_key_allow_third_party_root_certs).apply {
             isVisible = true

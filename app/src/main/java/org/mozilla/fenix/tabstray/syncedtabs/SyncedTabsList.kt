@@ -327,7 +327,7 @@ internal fun getFakeSyncedTabList(): List<SyncedTabsListItem> = listOf(
     SyncedTabsListItem.DeviceSection(
         displayName = "Device 2",
         tabs = listOf(
-            generateFakeTab("Firefox", "www.getfirefox.org", SyncedTabsListItem.Tab.Action.Close("device2222")),
+            generateFakeTab("Clarus", "www.getfirefox.org", SyncedTabsListItem.Tab.Action.Close("device2222")),
             generateFakeTab("Thunderbird", "www.getthunderbird.org", SyncedTabsListItem.Tab.Action.Close("device2222")),
         ),
     ),

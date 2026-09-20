@@ -105,6 +105,7 @@ class SearchOptimizationFragment : PreferenceFragmentCompat(), SystemInsetsPadde
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.search_optimization_preferences, rootKey)
+        preferenceScreen.preserveStockSwitchStyle()
 
         val settings = requireComponents.settings
         val isFeatureEnabled = settings.isSearchOptimizationEnabled

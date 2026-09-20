@@ -765,8 +765,23 @@
         <item name="singleLineTitle">false</item>
     </style>
 
+    <style name="StockSwitchCompatPreferenceMaterialStyle" parent="@style/Preference.SwitchPreferenceCompat.Material">
+        <item name="widgetLayout">@layout/preference_material_switch_stock</item>
+        <item name="singleLineTitle">false</item>
+    </style>
+
     <style name="MaterialSwitchStyle" parent="Widget.Material3.CompoundButton.MaterialSwitch">
+        <item name="track">@drawable/clarus_switch_track</item>
+        <item name="android:thumb">@drawable/clarus_switch_thumb</item>
+        <item name="trackTint">@null</item>
+        <item name="thumbTint">@null</item>
+        <item name="trackDecoration">@null</item>
+        <item name="useMaterialThemeColors">false</item>
+    </style>
+
+    <style name="StockMaterialSwitchStyle" parent="Widget.Material3.CompoundButton.MaterialSwitch">
         <item name="trackTint">@color/material_switch_track_tint</item>
+        <item name="useMaterialThemeColors">true</item>
     </style>
 
     <style name="CheckBoxStyle" parent="Widget.Material3.CompoundButton.CheckBox">

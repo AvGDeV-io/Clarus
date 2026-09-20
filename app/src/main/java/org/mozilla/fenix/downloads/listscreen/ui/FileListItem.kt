@@ -5,13 +5,26 @@
 package org.mozilla.fenix.downloads.listscreen.ui
 
 import androidx.annotation.FloatRange
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.progressSemantics
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -21,6 +34,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -216,19 +233,64 @@ private fun AfterListItemAction(
 private fun DownloadProgressIndicator(
     @FloatRange(from = 0.0, to = 1.0) progress: Float?,
 ) {
-    Column {
-        Spacer(modifier = Modifier.height(6.dp))
-
-        if (progress == null) {
-            LinearProgressIndicator(
-                modifier = Modifier.clearAndSetSemantics {},
-            )
+    val isDark = isSystemInDarkTheme()
+    val trackColor = if (isDark) Color(0x33F59E0B) else Color(0x1F24201F)
+    val progressBrush = Brush.horizontalGradient(
+        colors = if (isDark) {
+            listOf(Color(0xFFF59E0B), Color(0xFFFBBF24), Color(0xFFD97706))
         } else {
-            LinearProgressIndicator(
-                modifier = Modifier.clearAndSetSemantics {},
-                progress = { progress },
-                drawStopIndicator = {},
-            )
+            listOf(Color(0xFFD5A24A), Color(0xFFB8754B), Color(0xFFF59E0B))
+        },
+    )
+
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 8.dp, bottom = 4.dp),
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(6.dp)
+                .clip(RoundedCornerShape(3.dp))
+                .background(trackColor),
+        ) {
+            if (progress != null) {
+                val animatedProgress by animateFloatAsState(
+                    targetValue = progress.coerceIn(0f, 1f),
+                    animationSpec = tween(durationMillis = 250),
+                    label = "DownloadProgress",
+                )
+                Box(
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .fillMaxWidth(animatedProgress)
+                        .clip(RoundedCornerShape(3.dp))
+                        .background(progressBrush),
+                )
+            } else {
+                // Indeterminate sweeping shimmer
+                val infiniteTransition = rememberInfiniteTransition(label = "IndeterminateDownload")
+                val sweepOffset by infiniteTransition.animateFloat(
+                    initialValue = 0f,
+                    targetValue = 1f,
+                    animationSpec = infiniteRepeatable(
+                        animation = tween(1200, easing = LinearEasing),
+                        repeatMode = RepeatMode.Restart,
+                    ),
+                    label = "SweepOffset",
+                )
+                Box(
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .fillMaxWidth(0.35f)
+                        .graphicsLayer {
+                            translationX = sweepOffset * 300f
+                        }
+                        .clip(RoundedCornerShape(3.dp))
+                        .background(progressBrush),
+                )
+            }
         }
     }
 }

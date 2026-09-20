@@ -56,7 +56,6 @@ internal fun getTopSitesConfig(
                     }
                 },
             ),
-            showTopRecentSites = settings.showTopRecentSites
         )
     }
 }
