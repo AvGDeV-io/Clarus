@@ -57,7 +57,9 @@ import org.mozilla.fenix.tabstray.redux.state.Page
 import org.mozilla.fenix.tabstray.redux.state.TabsTrayState
 import org.mozilla.fenix.tabstray.redux.store.TabsTrayStore
 import org.mozilla.fenix.tabstray.syncedtabs.SyncedTabsListItem
+import org.mozilla.fenix.theme.ClarusHaptics
 import org.mozilla.fenix.theme.FirefoxTheme
+import org.mozilla.fenix.theme.rememberClarusHaptics
 import androidx.compose.material3.FloatingActionButtonDefaults as M3FloatingActionButtonDefaults
 import mozilla.components.ui.icons.R as iconsR
 
@@ -255,6 +257,8 @@ internal fun FloatingToolbarFAB(
         )
     }
 
+    val haptics = rememberClarusHaptics()
+
     @DrawableRes val icon: Int
     val contentDescription: String
     var colors = FloatingActionButtonDefaults.colorsPrimary()
@@ -266,7 +270,10 @@ internal fun FloatingToolbarFAB(
         Page.NormalTabs -> {
             icon = R.drawable.ic_clarus_plus_tab
             contentDescription = stringResource(id = R.string.add_tab)
-            onClick = onOpenNewNormalTabClicked
+            onClick = {
+                haptics.commit()
+                onOpenNewNormalTabClicked()
+            }
             colors = FloatingActionButtonDefaults.colorsPrimary(
                 containerColor = Color(0xFFF59E0B),
                 contentColor = Color(0xFF16141D),
@@ -276,7 +283,10 @@ internal fun FloatingToolbarFAB(
         Page.PrivateTabs -> {
             icon = R.drawable.ic_clarus_plus_tab
             contentDescription = stringResource(id = R.string.add_private_tab)
-            onClick = onOpenNewPrivateTabClicked
+            onClick = {
+                haptics.commit()
+                onOpenNewPrivateTabClicked()
+            }
             colors = FloatingActionButtonDefaults.colorsPrimary(
                 containerColor = Color(0xFF7C3AED),
                 contentColor = Color(0xFFFEF3C7),
@@ -286,7 +296,10 @@ internal fun FloatingToolbarFAB(
         Page.TabGroups -> {
             icon = R.drawable.ic_clarus_plus_tab
             contentDescription = stringResource(id = R.string.create_tab_group_content_description)
-            onClick = onTabGroupsFabClicked
+            onClick = {
+                haptics.commit()
+                onTabGroupsFabClicked()
+            }
         }
 
         Page.SyncedTabs -> {

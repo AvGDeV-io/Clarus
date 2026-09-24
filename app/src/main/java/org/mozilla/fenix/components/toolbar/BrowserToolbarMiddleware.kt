@@ -148,6 +148,7 @@ import org.mozilla.fenix.summarization.SummarizationNavigator
 import org.mozilla.fenix.summarization.onboarding.SummarizationFeatureDiscoveryConfiguration
 import org.mozilla.fenix.tabstray.ext.isActiveDownload
 import org.mozilla.fenix.tabstray.redux.state.Page
+import org.mozilla.fenix.theme.ClarusHaptics
 import org.mozilla.fenix.translations.TranslationsEnabledSettings
 import org.mozilla.fenix.utils.Settings
 import org.mozilla.fenix.utils.Stories.hasUrlOfAHomeScreenStory
@@ -343,10 +344,12 @@ class BrowserToolbarMiddleware(
                 next(action)
             }
             is AddNewTab -> {
+                ClarusHaptics.performCommit(uiContext)
                 openNewTab(Normal)
                 next(action)
             }
             is AddNewPrivateTab -> {
+                ClarusHaptics.performCommit(uiContext)
                 openNewTab(Private)
                 next(action)
             }

@@ -23,7 +23,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.PreviewLightDark
@@ -54,6 +56,7 @@ import org.mozilla.fenix.tabstray.ui.tabpage.SyncedTabsPage
 import org.mozilla.fenix.tabstray.ui.tabpage.TabGroupsPage
 import org.mozilla.fenix.tabstray.ui.theme.TabManagerThemeProvider
 import org.mozilla.fenix.theme.FirefoxTheme
+import org.mozilla.fenix.theme.rememberClarusHaptics
 import mozilla.components.browser.storage.sync.Tab as SyncTab
 import org.mozilla.fenix.tabstray.ui.syncedtabs.OnTabClick as OnSyncedTabClick
 import org.mozilla.fenix.tabstray.ui.syncedtabs.OnTabCloseClick as OnSyncedTabClose
@@ -178,6 +181,23 @@ fun TabsTray(
                 shouldShowTabGroupsPage = shouldShowTabGroupsPage,
             ),
         )
+    }
+
+    // Light tick when a page swipe settles on a different tab-tray page.
+    val pageSettleHaptics = rememberClarusHaptics()
+    val currentOnTabPageClick by rememberUpdatedState(onTabPageClick)
+    LaunchedEffect(shouldShowTabGroupsPage) {
+        var lastPage = pagerState.currentPage
+        snapshotFlow { pagerState.currentPage }
+            .collect { page ->
+                if (page != lastPage) {
+                    lastPage = page
+                    pageSettleHaptics.tick()
+                    currentOnTabPageClick(
+                        Page.positionToPage(page, shouldShowTabGroupsPage),
+                    )
+                }
+            }
     }
 
     Scaffold(

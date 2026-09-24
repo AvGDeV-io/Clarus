@@ -129,6 +129,7 @@ import org.mozilla.fenix.tabstray.ui.animation.popTransitionSpec
 import org.mozilla.fenix.tabstray.ui.tabsearch.TabSearchScreen
 import org.mozilla.fenix.tabstray.ui.tabstray.TabsTray
 import org.mozilla.fenix.tabstray.ui.theme.TabManagerThemeProvider
+import org.mozilla.fenix.theme.ClarusHaptics
 import org.mozilla.fenix.theme.FirefoxTheme
 import org.mozilla.fenix.theme.ThemeManager
 import org.mozilla.fenix.trackingprotection.TrackersBlockedFeature
@@ -522,6 +523,7 @@ class TabManagementFragment : Fragment() {
                                     },
                                     onAddNewTabClick = if (tabsTrayStore.state.config.homepageAsNewTabEnabled) {
                                         {
+                                            ClarusHaptics.performCommit(view)
                                             val newTabId = requireComponents.useCases.fenixBrowserUseCases
                                                 .addNewHomepageTab(private = false)
                                             tabsTrayStore.dispatch(

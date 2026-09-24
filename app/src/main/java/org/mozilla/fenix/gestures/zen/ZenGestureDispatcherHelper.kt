@@ -16,6 +16,7 @@ import org.mozilla.fenix.components.usecases.FenixBrowserUseCases
 import org.mozilla.fenix.ext.nav
 
 import org.mozilla.fenix.tabstray.redux.state.Page
+import org.mozilla.fenix.theme.ClarusHaptics
 
 /**
  * Factory helper that creates a [ZenGestureActions] implementation bound to existing
@@ -82,6 +83,7 @@ object ZenGestureDispatcherHelper {
             }
 
             override fun onOpenTabOverview() {
+                ClarusHaptics.performTick(navController.context)
                 val currentDestinationId = navController.currentDestination?.id
                 val isPrivate = isPrivateMode?.invoke() ?: (browserStore.state.selectedTab?.content?.private == true)
                 val targetPage = if (isPrivate) Page.PrivateTabs else Page.NormalTabs
@@ -92,15 +94,18 @@ object ZenGestureDispatcherHelper {
             }
 
             override fun onOpenNewTab() {
+                ClarusHaptics.performCommit(navController.context)
                 val isPrivate = browserStore.state.selectedTab?.content?.private ?: false
                 fenixBrowserUseCases.addNewHomepageTab(private = isPrivate)
             }
 
             override fun onSwitchToPreviousTab() {
+                ClarusHaptics.performTick(navController.context)
                 switchTabOffset(-1)
             }
 
             override fun onSwitchToNextTab() {
+                ClarusHaptics.performTick(navController.context)
                 switchTabOffset(1)
             }
 
