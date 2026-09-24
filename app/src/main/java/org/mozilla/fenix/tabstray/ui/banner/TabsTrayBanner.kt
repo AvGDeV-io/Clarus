@@ -6,10 +6,13 @@
 
 package org.mozilla.fenix.tabstray.ui.banner
 
+import androidx.compose.foundation.gestures.awaitEachGesture
+import androidx.compose.foundation.gestures.awaitFirstDown
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -19,7 +22,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.PrimaryTabRow
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRowDefaults
 import androidx.compose.material3.Text
@@ -29,11 +31,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
@@ -66,6 +71,10 @@ import org.mozilla.fenix.tabstray.ui.tabstray.TabsTray
 import org.mozilla.fenix.theme.FirefoxTheme
 import org.mozilla.fenix.theme.ThemedValue
 import org.mozilla.fenix.theme.ThemedValueProvider
+import org.mozilla.fenix.theme.Theme
+import org.mozilla.fenix.theme.getThemeProvider
+import org.mozilla.fenix.theme.glass.ClarusGlassSurface
+import org.mozilla.fenix.theme.glass.ClarusGlassTokens
 import kotlin.math.max
 import mozilla.components.ui.icons.R as iconsR
 
@@ -234,49 +243,109 @@ private fun TabPageBanner(
     hasTabDataLoaded: Boolean,
     onTabPageIndicatorClicked: (Page) -> Unit,
 ) {
-    val selectedTabIndex = Page.pageToPosition(
-        page = selectedPage,
-        shouldShowTabGroupsPage = shouldShowTabGroupsPage,
-    )
-
-    val bannerBg = if (selectedPage == Page.PrivateTabs) Color(0xFF16141D) else MaterialTheme.colorScheme.surfaceContainerHigh
-    Surface(color = bannerBg) {
-        PrimaryTabRow(
-            selectedTabIndex = selectedTabIndex,
-            modifier = Modifier
-                .fillMaxWidth()
-                .windowInsetsPadding(insets = TopAppBarDefaults.windowInsets),
-            contentColor = MaterialTheme.colorScheme.primary,
-            containerColor = Color.Transparent,
-            indicator = {
-                TabRowDefaults.PrimaryIndicator(
-                    modifier = Modifier.tabIndicatorOffset(
-                        selectedTabIndex = selectedTabIndex,
-                        matchContentSize = true,
-                    ),
-                    width = Dp.Unspecified,
-                    shape = RoundedCornerShape(
-                        topStartPercent = 50,
-                        topEndPercent = 50,
-                    ),
-                    color = if (selectedPage == Page.PrivateTabs) Color(0xFFF59E0B) else MaterialTheme.colorScheme.onSurface,
-                )
-            },
-            divider = {},
-        ) {
-            TabPageBannerTabs(
-                selectedPage = selectedPage,
-                normalTabCount = normalTabCount,
-                privateTabCount = privateTabCount,
-                shouldShowTabGroupsPage = shouldShowTabGroupsPage,
-                tabGroupCount = tabGroupCount,
-                shouldShowTabGroupBadge = shouldShowTabGroupBadge,
-                syncedTabCount = syncedTabCount,
-                onTabPageIndicatorClicked = onTabPageIndicatorClicked,
-                hasTabDataLoaded = hasTabDataLoaded,
-            )
+    val pages = remember(shouldShowTabGroupsPage) {
+        buildList {
+            add(Page.PrivateTabs)
+            add(Page.NormalTabs)
+            if (shouldShowTabGroupsPage) add(Page.TabGroups)
+            add(Page.SyncedTabs)
+            add(Page.Sidus)
         }
     }
+    val selectedTabIndex = pages.indexOf(selectedPage).coerceAtLeast(0)
+
+    // Live index while the finger is scrubbing across the pill; -1 when idle.
+    var scrubIndex by remember { mutableIntStateOf(-1) }
+    var rowWidthPx by remember { mutableIntStateOf(0) }
+    val liveSelectedPage = if (scrubIndex in pages.indices) pages[scrubIndex] else selectedPage
+    val liveSelectedTabIndex = if (scrubIndex in pages.indices) scrubIndex else selectedTabIndex
+
+    val theme = getThemeProvider().provideTheme()
+    val isDark = theme == Theme.Dark || theme == Theme.Private
+    val isPrivate = theme == Theme.Private
+
+    // Floaty glass pill — matches the home search pill / tray bottom actions.
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .windowInsetsPadding(insets = TopAppBarDefaults.windowInsets)
+            .padding(horizontal = 16.dp, vertical = 10.dp),
+    ) {
+        ClarusGlassSurface(
+            modifier = Modifier
+                .fillMaxWidth()
+                .onSizeChanged { rowWidthPx = it.width }
+                .pointerInput(pages) {
+                    awaitEachGesture {
+                        val down = awaitFirstDown(requireUnconsumed = false)
+                        var index = scrubIndexFor(down.position.x, rowWidthPx, pages.size)
+                        scrubIndex = index
+                        val downId = down.id
+                        while (true) {
+                            val event = awaitPointerEvent()
+                            val change = event.changes.firstOrNull { it.id == downId } ?: break
+                            if (!change.pressed) break
+                            val next = scrubIndexFor(change.position.x, rowWidthPx, pages.size)
+                            if (next != index) {
+                                index = next
+                                scrubIndex = index
+                            }
+                            change.consume()
+                        }
+                        scrubIndex = -1
+                        pages.getOrNull(index)?.let(onTabPageIndicatorClicked)
+                    }
+                },
+            shape = ClarusGlassTokens.Shapes.Pill,
+            elevation = ClarusGlassTokens.Elevation.Level3,
+            isDarkTheme = isDark,
+            isPrivate = isPrivate,
+            isActive = scrubIndex >= 0,
+        ) {
+            PrimaryTabRow(
+                selectedTabIndex = liveSelectedTabIndex,
+                modifier = Modifier.fillMaxWidth(),
+                contentColor = MaterialTheme.colorScheme.primary,
+                containerColor = Color.Transparent,
+                indicator = {
+                    TabRowDefaults.PrimaryIndicator(
+                        modifier = Modifier.tabIndicatorOffset(
+                            selectedTabIndex = liveSelectedTabIndex,
+                            matchContentSize = true,
+                        ),
+                        width = Dp.Unspecified,
+                        shape = RoundedCornerShape(
+                            topStartPercent = 50,
+                            topEndPercent = 50,
+                        ),
+                        color = when (liveSelectedPage) {
+                            Page.PrivateTabs -> Color(0xFFF59E0B)
+                            Page.Sidus -> Color(0xFFB8754B)
+                            else -> MaterialTheme.colorScheme.onSurface
+                        },
+                    )
+                },
+                divider = {},
+            ) {
+                TabPageBannerTabs(
+                    selectedPage = liveSelectedPage,
+                    normalTabCount = normalTabCount,
+                    privateTabCount = privateTabCount,
+                    shouldShowTabGroupsPage = shouldShowTabGroupsPage,
+                    tabGroupCount = tabGroupCount,
+                    shouldShowTabGroupBadge = shouldShowTabGroupBadge,
+                    syncedTabCount = syncedTabCount,
+                    onTabPageIndicatorClicked = onTabPageIndicatorClicked,
+                    hasTabDataLoaded = hasTabDataLoaded,
+                )
+            }
+        }
+    }
+}
+
+private fun scrubIndexFor(x: Float, widthPx: Int, count: Int): Int {
+    if (count <= 0 || widthPx <= 0) return -1
+    return ((x / widthPx) * count).toInt().coerceIn(0, count - 1)
 }
 
 @Suppress("LongParameterList")
@@ -357,6 +426,19 @@ private fun TabPageBannerTabs(
         onClick = { onTabPageIndicatorClicked(Page.SyncedTabs) },
     ) {
         Icon(painterResource(iconsR.drawable.mozac_ic_sync_tabs_24), null)
+    }
+
+    BannerTab(
+        selected = selectedPage == Page.Sidus,
+        testTag = TabsTrayTestTag.SIDUS_PAGE_BUTTON,
+        contentDescription = "Sidus trail",
+        onClick = { onTabPageIndicatorClicked(Page.Sidus) },
+    ) {
+        Icon(
+            painter = painterResource(R.drawable.ic_sidus_constellation),
+            contentDescription = null,
+            tint = if (selectedPage == Page.Sidus) Color(0xFFB8754B) else LocalContentColor.current,
+        )
     }
 }
 

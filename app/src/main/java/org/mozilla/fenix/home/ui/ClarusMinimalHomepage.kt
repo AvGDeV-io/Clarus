@@ -127,8 +127,8 @@ private fun ClarusEmblemCanvas(
 
     val innerColors = remember(isDark, isPrivate) {
         when {
-            isPrivate -> listOf(Color(0xFFE9D5FF), Color(0xFFA855F7), Color(0xFF6B21A8))
-            isDark -> listOf(Color(0xFFDDD6FE), Color(0xFFA78BFA), Color(0xFF7C3AED))
+            isPrivate -> listOf(Color(0xFFFEF3C7), Color(0xFFFBBF24), Color(0xFFD97706))
+            isDark -> listOf(Color(0xFFFBBF24), Color(0xFFF59E0B), Color(0xFFB45309))
             else -> listOf(Color(0xFFE6AAA0D2), Color(0xFFB37B73A8), Color(0xFF8036335F))
         }
     }
@@ -151,7 +151,7 @@ private fun ClarusEmblemCanvas(
 
     val haloVioletColor = remember(isDark, isPrivate) {
         when {
-            isPrivate -> Color(0xFF8B5CF6).copy(alpha = 0.22f * glowMultiplier)
+            isPrivate -> Color(0xFFF59E0B).copy(alpha = 0.22f * glowMultiplier)
             isDark -> Color(0xFFAAA0D2).copy(alpha = 0.18f * glowMultiplier)
             else -> Color(0xFFAAA0D2).copy(alpha = 0.12f * glowMultiplier)
         }

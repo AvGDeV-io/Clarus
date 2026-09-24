@@ -9,6 +9,7 @@ import android.view.Gravity
 import android.view.ViewGroup
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
@@ -16,6 +17,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.coordinatorlayout.widget.CoordinatorLayout.LayoutParams
 import androidx.core.view.isVisible
@@ -104,6 +106,10 @@ class BrowserNavigationBar(
                 val theme = getThemeProvider().provideTheme()
                 val isDark = theme == Theme.Dark || theme == Theme.Private
                 val isPrivate = theme == Theme.Private
+                val glassChromeColors = MaterialTheme.colorScheme.copy(
+                    surface = Color.Transparent,
+                    surfaceContainerHighest = Color.Transparent,
+                )
 
                 ClarusGlassSurface(
                     modifier = Modifier
@@ -114,11 +120,13 @@ class BrowserNavigationBar(
                     isDarkTheme = isDark,
                     isPrivate = isPrivate,
                 ) {
-                    NavigationBar(
-                        actions = uiState.displayState.navigationActions,
-                        toolbarGravity = toolbarGravity,
-                        onInteraction = { toolbarStore.dispatch(it) },
-                    )
+                    MaterialTheme(colorScheme = glassChromeColors) {
+                        NavigationBar(
+                            actions = uiState.displayState.navigationActions,
+                            toolbarGravity = toolbarGravity,
+                            onInteraction = { toolbarStore.dispatch(it) },
+                        )
+                    }
                 }
             }
         }

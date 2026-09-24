@@ -22,6 +22,7 @@
         <item name="android:windowLightStatusBar">false</item>
 
         <!-- Style the navigation bar -->
+        <item name="android:navigationBarColor">@color/clarus_obsidian</item>
         <item name="android:navigationBarDividerColor">@android:color/transparent</item>
         <item name="android:windowLightNavigationBar">false</item>
         <item name="android:windowLayoutInDisplayCutoutMode">default</item>
@@ -30,8 +31,8 @@
     <style name="BottomSheetPrivate" parent="BottomSheetBasePrivate">
         <item name="android:windowIsFloating">false</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:navigationBarColor">?attr/colorSurface</item>
-        <item name="android:colorBackground">?attr/colorSurface</item>
+        <item name="android:navigationBarColor">@color/clarus_obsidian</item>
+        <item name="android:colorBackground">@color/clarus_obsidian</item>
         <!-- Style the navigation bar -->
         <item name="android:navigationBarDividerColor">@android:color/transparent</item>
         <item name="android:windowLightNavigationBar">false</item>

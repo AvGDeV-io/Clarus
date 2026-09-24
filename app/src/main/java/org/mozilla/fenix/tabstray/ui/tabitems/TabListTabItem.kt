@@ -145,6 +145,9 @@ private fun TabContent(
             .tabItemListInteractionAnimation(
                 interactionState = interactionState,
             )
+            .activeTabRgbGlow(
+                isActive = selectionState.isFocused && selectionState.focusEnabled,
+            )
             .background(contentBackgroundColor)
             .tabItemClickable(
                 clickHandler = TabsTrayItemClickHandler(

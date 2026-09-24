@@ -14,6 +14,7 @@ internal object TabsTrayTestTag {
     const val PRIVATE_TABS_PAGE_BUTTON = "$BANNER_ROOT.privateTabsPageButton"
     const val TAB_GROUPS_PAGE_BUTTON = "$BANNER_ROOT.tabGroupsPageButton"
     const val SYNCED_TABS_PAGE_BUTTON = "$BANNER_ROOT.syncedTabsPageButton"
+    const val SIDUS_PAGE_BUTTON = "$BANNER_ROOT.sidusPageButton"
 
     const val SELECTION_COUNTER = "$BANNER_ROOT.selectionCounter"
     const val COLLECTIONS_BUTTON = "$BANNER_ROOT.collections"

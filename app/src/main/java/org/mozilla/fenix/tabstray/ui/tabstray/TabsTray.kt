@@ -23,7 +23,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.PreviewLightDark
@@ -57,6 +59,10 @@ import org.mozilla.fenix.theme.FirefoxTheme
 import mozilla.components.browser.storage.sync.Tab as SyncTab
 import org.mozilla.fenix.tabstray.ui.syncedtabs.OnTabClick as OnSyncedTabClick
 import org.mozilla.fenix.tabstray.ui.syncedtabs.OnTabCloseClick as OnSyncedTabClose
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emptyFlow
+import org.mozilla.fenix.sidus.storage.TrailNode
+import org.mozilla.fenix.sidus.ui.SidusScreen
 
 /**
  * Top-level UI for displaying the Tabs Tray feature.
@@ -161,6 +167,9 @@ fun TabsTray(
     onShareTabGroupClick: (TabsTrayItem.TabGroup) -> Unit,
     trackersBlockedCount: Int? = null,
     onPrivacyReportTapped: (() -> Unit)? = null,
+    sidusNodesFlow: Flow<List<TrailNode>> = emptyFlow(),
+    activeTabId: String = "",
+    onSidusNodeTapped: (TrailNode) -> Unit = {},
 ) {
     val shouldShowTabGroupsPage = state.config.tabGroupsEnabled
     val pagerState = rememberPagerState(
@@ -178,6 +187,24 @@ fun TabsTray(
                 shouldShowTabGroupsPage = shouldShowTabGroupsPage,
             ),
         )
+    }
+
+    // Keep TabsTrayState.selectedPage in sync when the user swipes between pages.
+    // Uses the same onTabPageClick path as the banner tab row (interactor →
+    // TabManagerController.handleTabPageClicked → PageSelected) so telemetry and
+    // state updates stay in one place. Only dispatch when the settled page differs
+    // from state.selectedPage so programmatic scrolls (clicks, private-lock
+    // PageSelected) do not re-enter through this effect.
+    val currentSelectedPage by rememberUpdatedState(state.selectedPage)
+    val currentOnTabPageClick by rememberUpdatedState(onTabPageClick)
+    LaunchedEffect(pagerState, shouldShowTabGroupsPage) {
+        snapshotFlow { pagerState.currentPage }
+            .collect { position ->
+                val settledPage = Page.positionToPage(position, shouldShowTabGroupsPage)
+                if (settledPage != currentSelectedPage) {
+                    currentOnTabPageClick(settledPage)
+                }
+            }
     }
 
     Scaffold(
@@ -232,7 +259,7 @@ fun TabsTray(
                     .padding(paddingValues)
                     .fillMaxSize(),
                 state = pagerState,
-                userScrollEnabled = false,
+                userScrollEnabled = true,
             ) { position ->
                 when (Page.positionToPage(position, shouldShowTabGroupsPage)) {
                     Page.NormalTabs -> {
@@ -318,6 +345,16 @@ fun TabsTray(
                             onDeleteTabGroupClick = { group ->
                                 onAction(TabGroupAction.DeleteClicked(group))
                             },
+                        )
+                    }
+
+                    Page.Sidus -> {
+                        SidusScreen(
+                            nodesFlow = sidusNodesFlow,
+                            activeTabId = activeTabId,
+                            onOpenNewTab = onOpenNewNormalTabClicked,
+                            onNodeTapped = onSidusNodeTapped,
+                            modifier = Modifier.fillMaxSize(),
                         )
                     }
                 }

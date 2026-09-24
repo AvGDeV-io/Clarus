@@ -10,5 +10,5 @@
     android:startY="0"
     android:endX="36"
     android:endY="72"
-    android:startColor="@color/novaViolet20"
+    android:startColor="#FFFBBF24"
     android:endColor="@color/novaWhite" />

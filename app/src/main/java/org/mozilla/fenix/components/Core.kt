@@ -140,6 +140,11 @@ import org.mozilla.fenix.summarization.onboarding.FenixSummarizationFeatureConfi
 import org.mozilla.fenix.summarization.onboarding.SummarizationFeatureDiscoveryConfiguration
 import org.mozilla.fenix.tabgroups.storage.redux.middleware.TabGroupMiddleware
 import org.mozilla.fenix.tabgroups.storage.repository.DefaultTabGroupRepository
+import org.mozilla.fenix.sidus.SidusMiddleware
+import org.mozilla.fenix.sidus.SidusSessionManager
+import org.mozilla.fenix.sidus.storage.DefaultSidusRepository
+import org.mozilla.fenix.sidus.storage.SidusDatabase
+import androidx.room.Room
 import org.mozilla.fenix.telemetry.TelemetryMiddleware
 import org.mozilla.fenix.translations.TranslationsEnabledSettings
 import org.mozilla.fenix.utils.Settings.DeleteDownloadBehavior
@@ -374,6 +379,7 @@ class Core(
                 AdsTelemetryMiddleware(adsTelemetry),
                 LastMediaAccessMiddleware(),
                 HistoryMetadataMiddleware(historyMetadataService),
+                SidusMiddleware(sidusRepository, SidusSessionManager),
                 ProtectionsDashboardMiddleware(protectionsStorage),
                 SessionPrioritizationMiddleware(),
                 SaveToPDFMiddleware(context),
@@ -679,6 +685,29 @@ class Core(
     }
 
     val tabGroupRepository by lazyMonitored { DefaultTabGroupRepository(context) }
+
+    /**
+     * Room database for the Sidus trail graph feature.
+     *
+     * Separate from Places and the TabGroup database. Session-only trail nodes
+     * are stored here and keyed by [SidusSessionManager.sessionGroupId].
+     */
+    private val sidusDatabase: SidusDatabase by lazyMonitored {
+        Room.databaseBuilder(
+            context.applicationContext,
+            SidusDatabase::class.java,
+            SidusDatabase.DB_NAME,
+        )
+            .fallbackToDestructiveMigration(dropAllTables = true)
+            .build()
+    }
+
+    /**
+     * Repository for Sidus [TrailNode] read/write operations.
+     */
+    val sidusRepository: DefaultSidusRepository by lazyMonitored {
+        DefaultSidusRepository(dao = sidusDatabase.trailNodeDao)
+    }
 
     /**
      * Summarization eligibility checker

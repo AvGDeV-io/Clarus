@@ -28,6 +28,11 @@ enum class Page {
      * The page that displays Synced Tabs.
      */
     SyncedTabs,
+
+    /**
+     * The page that displays the Sidus visual navigation trail.
+     */
+    Sidus,
     ;
 
     companion object {
@@ -42,6 +47,7 @@ enum class Page {
                 NormalTabs,
                 TabGroups.takeIf { shouldShowTabGroupsPage },
                 SyncedTabs,
+                Sidus,
             )
 
         /**
@@ -55,6 +61,8 @@ enum class Page {
                 position == 0 -> PrivateTabs
                 position == 1 -> NormalTabs
                 shouldShowTabGroupsPage && position == 2 -> TabGroups
+                (!shouldShowTabGroupsPage && position == 2) || (shouldShowTabGroupsPage && position == 3) -> SyncedTabs
+                (!shouldShowTabGroupsPage && position == 3) || (shouldShowTabGroupsPage && position == 4) -> Sidus
                 else -> SyncedTabs
             }
         }
@@ -70,7 +78,8 @@ enum class Page {
                 PrivateTabs -> 0
                 NormalTabs -> 1
                 TabGroups -> if (shouldShowTabGroupsPage) 2 else 1
-                SyncedTabs -> visiblePages(shouldShowTabGroupsPage).lastIndex
+                SyncedTabs -> if (shouldShowTabGroupsPage) 3 else 2
+                Sidus -> if (shouldShowTabGroupsPage) 4 else 3
             }
         }
     }

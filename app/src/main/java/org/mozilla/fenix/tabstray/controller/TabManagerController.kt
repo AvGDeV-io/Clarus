@@ -345,6 +345,7 @@ class DefaultTabManagerController(
                 Page.PrivateTabs -> TabsTray.privateModeTapped.record(NoExtras())
                 Page.TabGroups -> TabsTray.tabGroupModeTapped.record(NoExtras())
                 Page.SyncedTabs -> TabsTray.syncedModeTapped.record(NoExtras())
+                Page.Sidus -> Unit
             }
         }
         tabsTrayStore.dispatch(TabsTrayAction.PageSelected(page))

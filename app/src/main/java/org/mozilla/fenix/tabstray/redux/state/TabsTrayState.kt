@@ -301,6 +301,7 @@ data class TabsTrayState(
                 Page.PrivateTabs -> !privateBrowsing.isLocked
                 Page.TabGroups -> config.homepageAsNewTabEnabled
                 Page.SyncedTabs -> true
+                Page.Sidus -> true
             }
         }
 }

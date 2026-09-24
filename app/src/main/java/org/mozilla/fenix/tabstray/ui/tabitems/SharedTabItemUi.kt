@@ -5,9 +5,15 @@
 package org.mozilla.fenix.tabstray.ui.tabitems
 
 import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Indication
 import androidx.compose.foundation.border
@@ -47,6 +53,7 @@ import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
@@ -80,6 +87,7 @@ import org.mozilla.fenix.tabstray.TabsTrayTestTag
 import org.mozilla.fenix.tabstray.browser.compose.TabItemInteractionState
 import org.mozilla.fenix.tabstray.data.TabsTrayItem
 import org.mozilla.fenix.theme.FirefoxTheme
+import org.mozilla.fenix.theme.glass.clarusRgbGlowBrush
 import kotlin.math.abs
 import mozilla.components.ui.icons.R as iconsR
 
@@ -376,7 +384,6 @@ const val LOREM_IPSUM = "Lorem ipsum dolor sit amet, consectetur adipiscing elit
  * When the tab is not in focus, its BorderStroke will be null.
  */
 @Composable
-@ReadOnlyComposable
 fun tabItemConditionalBorder(selectionState: TabsTrayItemSelectionState): BorderStroke? {
     return if (selectionState.isFocused && selectionState.focusEnabled) {
         tabItemBorderFocused()
@@ -386,12 +393,68 @@ fun tabItemConditionalBorder(selectionState: TabsTrayItemSelectionState): Border
 }
 
 /**
- * Renders a border around a [TabsTrayItem] to signify that it is in focus.
+ * Active-tab border: animated RGB hue-cycle ring while focused, otherwise the static tab outline.
+ * Animation state is only composed for the focused card so the rest of the grid stays cheap.
  */
 @Composable
-@ReadOnlyComposable
 fun tabItemBorderFocused(): BorderStroke {
-    return BorderStroke(width = FirefoxTheme.layout.border.heaviest, brush = FirefoxTheme.gradients.tabOutline.brush)
+    val outlineBrush = activeTabRgbRingBrush()
+    return BorderStroke(width = FirefoxTheme.layout.border.heaviest, brush = outlineBrush)
+}
+
+/**
+ * Continuous RGB hue-cycling sweep brush used only on the focused/active tab card.
+ */
+@Composable
+private fun activeTabRgbRingBrush(): Brush {
+    val infiniteTransition = rememberInfiniteTransition(label = "ActiveTabRgbRing")
+    val sweepAngle by infiniteTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 360f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(durationMillis = 1800, easing = LinearEasing),
+            repeatMode = RepeatMode.Restart,
+        ),
+        label = "ActiveTabRgbRingAngle",
+    )
+    return remember(sweepAngle) { clarusRgbGlowBrush(rotationAngle = sweepAngle) }
+}
+
+/**
+ * Soft outer glow drawn behind the active tab card, cycling with the same RGB sweep.
+ * Animation is composed only for the focused card so grid siblings stay static.
+ */
+fun Modifier.activeTabRgbGlow(isActive: Boolean): Modifier {
+    if (!isActive) return this
+    return composed {
+        val infiniteTransition = rememberInfiniteTransition(label = "ActiveTabRgbGlow")
+        val sweepAngle by infiniteTransition.animateFloat(
+            initialValue = 0f,
+            targetValue = 360f,
+            animationSpec = infiniteRepeatable(
+                animation = tween(durationMillis = 1800, easing = LinearEasing),
+                repeatMode = RepeatMode.Restart,
+            ),
+            label = "ActiveTabRgbGlowAngle",
+        )
+        val glowBrush = remember(sweepAngle) { clarusRgbGlowBrush(rotationAngle = sweepAngle) }
+        this.drawBehind {
+            val inset = 2.dp.toPx()
+            val strokeWidth = 5.dp.toPx()
+            val halfStroke = strokeWidth / 2f
+            drawRoundRect(
+                brush = glowBrush,
+                topLeft = Offset(halfStroke - inset, halfStroke - inset),
+                size = Size(
+                    size.width + inset * 2 - strokeWidth,
+                    size.height + inset * 2 - strokeWidth,
+                ),
+                cornerRadius = CornerRadius(16.dp.toPx(), 16.dp.toPx()),
+                style = Stroke(width = strokeWidth),
+                alpha = 0.45f,
+            )
+        }
+    }
 }
 
 /**
@@ -405,17 +468,22 @@ fun Modifier.tabListItemShapeStyling(
     tabShapeInfo: TabListShapeInfo,
     selectionState: TabsTrayItemSelectionState,
 ): Modifier {
+    val isFocusRingVisible = selectionState.isFocused && selectionState.focusEnabled
     return this
         .thenConditional(
             Modifier.clip(tabShapeInfo.borderShape),
             { tabShapeInfo.clipTabToFit },
         )
         .thenConditional(
-            modifier = Modifier.border(
-                border = tabItemBorderFocused(),
-                shape = tabShapeInfo.borderShape,
-            ),
-            { (selectionState.isFocused && selectionState.focusEnabled) },
+            modifier = if (isFocusRingVisible) {
+                Modifier.border(
+                    border = tabItemBorderFocused(),
+                    shape = tabShapeInfo.borderShape,
+                )
+            } else {
+                Modifier
+            },
+            { isFocusRingVisible },
         )
 }
 

@@ -15,6 +15,9 @@ import org.mozilla.fenix.R
 /**
  * Returns the wallpaper and browsing mode derived colors for home content.
  *
+ * Surface fills are forced transparent so [org.mozilla.fenix.theme.glass.ClarusGlassSurface]
+ * owns the floating plate; only content colors (onSurface, outlines) are themed here.
+ *
  * @param isPrivateMode Whether private browsing is enabled.
  * @param shouldUseEdgeToEdgeColors Whether the edge-to-edge wallpaper colors should be used.
  */
@@ -28,7 +31,7 @@ fun homepageToolbarColors(
     return when {
         isPrivateMode -> colors.copy(
             surface = Color.Transparent,
-            surfaceContainerHighest = Color(0xFF16141D).copy(alpha = 0.90f),
+            surfaceContainerHighest = Color.Transparent,
             onSurface = Color(0xFFFEF3C7),
             onSurfaceVariant = Color(0xFFF59E0B),
             outline = Color(0x40F59E0B),
@@ -36,20 +39,23 @@ fun homepageToolbarColors(
         )
 
         shouldUseEdgeToEdgeColors -> colors.copy(
-            surface = colorResource(R.color.homepage_tab_edge_to_edge_toolbar_background),
+            surface = Color.Transparent,
+            surfaceContainerHighest = Color.Transparent,
             outlineVariant = colorResource(R.color.homepage_tab_edge_to_edge_toolbar_outline),
         )
 
-        else -> colors
+        else -> colors.copy(
+            surface = Color.Transparent,
+            surfaceContainerHighest = Color.Transparent,
+        )
     }
 }
 
 /**
  * Returns the background color for the clipboard suggestion bar.
  *
- * When Edge2Edge background is enabled, the surrounding homepage toolbar surface is transparent, so the clipboard bar
- * needs its own color to stay legible on top of the wallpaper. In private mode, we defer
- * to the theme-aware [MaterialTheme] surface, which honors the private color scheme.
+ * Toolbar chrome surfaces are transparent (ClarusGlassSurface owns the plate), so the clipboard
+ * bar always paints its own opaque fill to stay legible over wallpaper or page content.
  *
  * @param shouldUseEdgeToEdgeColors Whether the edge-to-edge wallpaper colors should be used.
  * @param isPrivateMode Whether private browsing is enabled.
@@ -61,8 +67,8 @@ fun edgeToEdgeClipboardBarBackground(
     shouldUseEdgeToEdgeColors: Boolean,
     isPrivateMode: Boolean,
 ): Color =
-    if (shouldUseEdgeToEdgeColors && !isPrivateMode) {
-        colorResource(R.color.fx_mobile_surface)
+    if (isPrivateMode) {
+        Color(0xFF16141D).copy(alpha = 0.90f)
     } else {
-        MaterialTheme.colorScheme.surface
+        colorResource(R.color.fx_mobile_surface)
     }

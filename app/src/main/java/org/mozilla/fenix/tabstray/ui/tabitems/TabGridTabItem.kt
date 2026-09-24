@@ -153,6 +153,9 @@ private fun TabContent(
         modifier = modifier
             .wrapContentSize()
             .tabItemGridInteractionAnimation(interactionState = interactionState)
+            .activeTabRgbGlow(
+                isActive = selectionState.isFocused && selectionState.focusEnabled,
+            )
             .testTag(TabsTrayTestTag.TAB_ITEM_ROOT),
     ) {
         Card(

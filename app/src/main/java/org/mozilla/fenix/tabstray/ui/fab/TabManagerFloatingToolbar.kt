@@ -278,8 +278,8 @@ internal fun FloatingToolbarFAB(
             contentDescription = stringResource(id = R.string.add_private_tab)
             onClick = onOpenNewPrivateTabClicked
             colors = FloatingActionButtonDefaults.colorsPrimary(
-                containerColor = Color(0xFF7C3AED),
-                contentColor = Color(0xFFFEF3C7),
+                containerColor = Color(0xFFF59E0B),
+                contentColor = Color(0xFF16141D),
             )
         }
 
@@ -307,6 +307,16 @@ internal fun FloatingToolbarFAB(
                 )
             }
             iconModifier = Modifier.animateRotation(animate = state.sync.isSyncing)
+        }
+
+        Page.Sidus -> {
+            icon = R.drawable.ic_clarus_plus_tab
+            contentDescription = stringResource(id = R.string.add_tab)
+            onClick = onOpenNewNormalTabClicked
+            colors = FloatingActionButtonDefaults.colorsPrimary(
+                containerColor = Color(0xFFB8754B),
+                contentColor = Color(0xFFFCFAF6),
+            )
         }
     }
 

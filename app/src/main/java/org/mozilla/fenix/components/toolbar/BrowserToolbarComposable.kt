@@ -4,8 +4,6 @@
 
 package org.mozilla.fenix.components.toolbar
 
-import android.graphics.Matrix
-import android.graphics.SweepGradient
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -42,11 +40,8 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shader
-import androidx.compose.ui.graphics.ShaderBrush
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.unit.dp
 import androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -84,6 +79,7 @@ import org.mozilla.fenix.theme.Theme
 import org.mozilla.fenix.theme.getThemeProvider
 import org.mozilla.fenix.theme.glass.ClarusGlassSurface
 import org.mozilla.fenix.theme.glass.ClarusGlassTokens
+import org.mozilla.fenix.theme.glass.ClarusSweepGradientBrush
 import org.mozilla.fenix.utils.Settings
 import mozilla.components.browser.state.selector.selectedTab
 
@@ -166,16 +162,6 @@ class BrowserToolbarComposable(
             val progress = toolbarState.displayState.progressBarConfig?.progress ?: 0
             val isLoading = isTabLoading || (progress in 1..99)
 
-            val clarusSurface = when {
-                isPrivate -> ClarusGlassTokens.Colors.DarkDeep
-                isDarkTheme -> ClarusGlassTokens.Colors.DarkBase
-                else -> ClarusGlassTokens.Colors.LightBase
-            }
-            val clarusUrlBarBg = when {
-                isPrivate -> Color(0xFF16141D).copy(alpha = 0.90f)
-                isDarkTheme -> Color.White.copy(alpha = 0.08f)
-                else -> Color(0xFF24201F).copy(alpha = 0.05f)
-            }
             val clarusOnSurface = when {
                 isPrivate -> Color(0xFFFEF3C7)
                 isDarkTheme -> ClarusGlassTokens.Colors.DarkTextPrimary
@@ -190,15 +176,14 @@ class BrowserToolbarComposable(
             val materialColors = MaterialTheme.colorScheme
             val colorScheme = remember(customColors.value, materialColors, isDarkTheme, isPrivate) {
                 materialColors.copy(
-                    // Toolbar background
+                    // Toolbar background — ClarusGlassSurface owns the plate fill
                     surface = customColors.value?.toolbarColor?.let { Color(it) }
                         ?: Color.Transparent,
-                    // Page origin background
+                    // Page origin / URL pill — transparent so the floating glass reads through
                     surfaceContainerHighest = when (customTabSession) {
-                        // show a different background only for normal tabs
-                        null -> clarusUrlBarBg
+                        null -> Color.Transparent
                         else -> customColors.value?.toolbarColor?.let { Color(it) }
-                            ?: clarusSurface
+                            ?: Color.Transparent
                     },
                     onSurface = customColors.value?.readableColor?.let { Color(it) }
                         ?: clarusOnSurface,
@@ -445,21 +430,8 @@ class BrowserToolbarComposable(
 /**
  * Rotating sweep gradient shader brush used for the Clarus perimeter-tracing RGB loading strip.
  */
-private class ClarusSweepGradientBrush(
-    private val colors: List<Color>,
-    private val rotationAngle: Float,
-) : ShaderBrush() {
-    override fun createShader(size: Size): Shader {
-        val cx = size.width / 2f
-        val cy = size.height / 2f
-        val colorInts = IntArray(colors.size) { colors[it].toArgb() }
-        val shader = SweepGradient(cx, cy, colorInts, null)
-        val matrix = Matrix()
-        matrix.postRotate(rotationAngle, cx, cy)
-        shader.setLocalMatrix(matrix)
-        return shader
-    }
-}
+private fun clarusSweepBrush(colors: List<Color>, rotationAngle: Float) =
+    ClarusSweepGradientBrush(colors, rotationAngle)
 
 /**
  * Clarus floating glassmorphic toolbar container with perimeter-tracing RGB loading strip
@@ -516,22 +488,22 @@ private fun ClarusToolbarContainer(
         )
     }
 
-    // Obsidian Sanctuary chromatic palette for private browsing
+    // Obsidian Sanctuary chromatic palette for private browsing (warm Clarus accents only)
     val privateRgbColors = remember {
         listOf(
             Color(0xFFF59E0B), // Radiant Amber
             Color(0xFFFBBF24), // Warm Honey Gold
-            Color(0xFF8B5CF6), // Velvet Violet
-            Color(0xFFA855F7), // Neon Orchid
-            Color(0xFF6366F1), // Royal Indigo
-            Color(0xFFEC4899), // Deep Rose
+            Color(0xFFB8754B), // Soft Copper
+            Color(0xFFD97706), // Burnt Amber
+            Color(0xFFE07A5F), // Muted Coral
+            Color(0xFFF59E0B), // Radiant Amber
             Color(0xFFF59E0B), // Loop closure
         )
     }
 
     val activeColors = if (isPrivate) privateRgbColors else normalRgbColors
     val sweepBrush = remember(sweepAngle, isPrivate) {
-        ClarusSweepGradientBrush(
+        clarusSweepBrush(
             colors = activeColors,
             rotationAngle = sweepAngle,
         )

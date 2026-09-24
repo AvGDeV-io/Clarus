@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<resources>
+    <!-- API 31+: real window backdrop blur (View-dialog equivalent of frost) -->
+    <style name="BaseDialogStyle" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="materialAlertDialogTitleTextStyle">@style/MaterialAlertDialog.App.Title.Text</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/MaterialAlertDialog.App.Body.Text</item>
+        <item name="android:background">@color/clarus_glass_dialog_plate</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.15</item>
+        <item name="android:windowBlurBehindEnabled">true</item>
+        <item name="android:windowBackgroundBlurRadius">32dp</item>
+        <item name="colorAccent">?accent</item>
+        <item name="buttonBarPositiveButtonStyle">@style/DialogButtonStyle</item>
+        <item name="buttonBarNegativeButtonStyle">@style/DialogButtonStyle</item>
+        <item name="shapeAppearance">@style/MaterialAlertDialogShapeAppearance</item>
+    </style>
+
+    <style name="BaseDialogStyle.Private" parent="BaseDialogStyle">
+        <item name="android:background">@color/clarus_glass_dialog_plate_private</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/MaterialAlertDialog.App.Title.Text.Private</item>
+        <item name="buttonBarPositiveButtonStyle">@style/PrivateDialogButtonStyle</item>
+        <item name="buttonBarNegativeButtonStyle">@style/PrivateDialogButtonStyle</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/MaterialAlertDialog.App.Body.Text.Private</item>
+    </style>
+</resources>

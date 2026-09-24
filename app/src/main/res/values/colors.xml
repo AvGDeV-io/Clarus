@@ -9,17 +9,26 @@
     <color name="clarus_soft_sand">#EAE1D4</color>
     <color name="clarus_espresso">#24201F</color>
     <color name="clarus_warm_charcoal">#302B2A</color>
+    <color name="clarus_obsidian">#0C0B0E</color>
     <color name="clarus_copper">#B8754B</color>
     <color name="clarus_saffron">#D5A24A</color>
     <color name="clarus_dusty_lavender">#AAA0D2</color>
     <color name="clarus_muted_coral">#C9786A</color>
     <color name="clarus_deep_indigo">#36335F</color>
     <color name="clarus_soft_blue_gray">#9CA8B7</color>
+    <!-- Overrides AC context-menu note strip (#1D1133 / photonInk90) so it does not punch purple through glass -->
+    <color name="mozac_additional_note_background">@android:color/transparent</color>
 
-    <!-- Clarus Glass Tokens (Light Frost / Serene Tactile) -->
-    <color name="clarus_glass_surface_resting">#C7FCFAF6</color>
-    <color name="clarus_glass_surface_active">#D9FCFAF6</color>
-    <color name="clarus_glass_surface_fallback">#EBFCFAF6</color>
+    <!-- Clarus Glass Tokens (Light Frost / Serene Tactile) — alphas match ClarusGlassTokens.Alpha -->
+    <color name="clarus_glass_surface_resting">#85FCFAF6</color>
+    <color name="clarus_glass_surface_active">#9EFCFAF6</color>
+    <color name="clarus_glass_surface_fallback">#C7FCFAF6</color>
+    <color name="clarus_glass_surface_private_resting">#8C131319</color>
+    <color name="clarus_glass_surface_private_active">#A6131319</color>
+    <color name="clarus_glass_surface_private_fallback">#D1131319</color>
+    <!-- Dialog plates: API < 31 uses Fallback alpha (no window blur); values-v31 lowers to Resting -->
+    <color name="clarus_glass_dialog_plate">#C7FCFAF6</color>
+    <color name="clarus_glass_dialog_plate_private">#D1131319</color>
     <color name="clarus_glass_border_resting">#A6FFFFFF</color>
     <color name="clarus_glass_border_active">#D9B8754B</color>
 
@@ -99,7 +108,7 @@
     <color name="fx_mobile_surface_container_lowest">@color/clarus_porcelain</color>
     <color name="fx_mobile_autofill_text">@color/novaVioletDesaturated30</color>
     <color name="fx_mobile_selected_text">@color/novaGray35</color>
-    <color name="fx_mobile_icon_private">@color/novaViolet50</color>
+    <color name="fx_mobile_icon_private">#FFF59E0B</color>
     <color name="fx_mobile_scrim">@color/novaBlackA50</color>
 
     <color name="fx_mobile_splashscreen_background">@color/clarus_warm_ivory</color>
@@ -131,67 +140,67 @@
     <!-- Icon -->
     <!-- Icon inverted (on color) -->
     <color name="fx_mobile_icon_color_oncolor">@color/photonLightGrey05</color>
-    <color name="fx_mobile_icon_color_accent_violet">@color/photonViolet70</color>
+    <color name="fx_mobile_icon_color_accent_violet">#FFB8754B</color>
     <color name="fx_mobile_icon_color_accent_blue">@color/photonBlue60</color>
     <color name="fx_mobile_icon_color_accent_pink">@color/photonPink60</color>
     <color name="fx_mobile_icon_color_accent_green">@color/photonGreen60</color>
     <color name="fx_mobile_icon_color_accent_yellow">@color/photonYellow60</color>
 
-    <!-- Private theme color variables -->
+    <!-- Private theme color variables — Clarus orange accents on Obsidian (no Iceraven violet) -->
 
     <!-- Material3 color variables -->
-    <color name="fx_mobile_private_primary">@color/novaViolet20</color>
-    <color name="fx_mobile_private_on_primary">@color/novaGray80</color>
-    <color name="fx_mobile_private_primary_container">@color/novaViolet60</color>
-    <color name="fx_mobile_private_on_primary_container">@color/novaVioletDesaturated0</color>
-    <color name="fx_mobile_private_primary_inverse">@color/novaViolet70</color>
+    <color name="fx_mobile_private_primary">#FFF59E0B</color>
+    <color name="fx_mobile_private_on_primary">#FF1C1410</color>
+    <color name="fx_mobile_private_primary_container">#FFB45309</color>
+    <color name="fx_mobile_private_on_primary_container">#FFFEF3C7</color>
+    <color name="fx_mobile_private_primary_inverse">#FFB8754B</color>
     <color name="fx_mobile_private_secondary">@color/novaGray20</color>
     <color name="fx_mobile_private_on_secondary">@color/novaGray80</color>
-    <color name="fx_mobile_private_secondary_container">@color/novaViolet70</color>
-    <color name="fx_mobile_private_on_secondary_container">@color/novaVioletDesaturated0</color>
-    <color name="fx_mobile_private_tertiary">@color/novaViolet30</color>
-    <color name="fx_mobile_private_on_tertiary">@color/novaGray80</color>
-    <color name="fx_mobile_private_tertiary_container">@color/novaVioletDesaturated90</color>
-    <color name="fx_mobile_private_on_tertiary_container">@color/novaVioletDesaturated0</color>
-    <color name="fx_mobile_private_background">@color/novaVioletDesaturated90</color>
-    <color name="fx_mobile_private_on_background">@color/novaVioletDesaturated0</color>
-    <color name="fx_mobile_private_surface">@color/novaVioletDesaturated90</color>
-    <color name="fx_mobile_private_on_surface">@color/novaVioletDesaturated0</color>
-    <color name="fx_mobile_private_surface_variant">@color/novaVioletDesaturated80</color>
-    <color name="fx_mobile_private_on_surface_variant">@color/novaVioletDesaturated0A70</color>
+    <color name="fx_mobile_private_secondary_container">#FF2A2218</color>
+    <color name="fx_mobile_private_on_secondary_container">#FFFEF3C7</color>
+    <color name="fx_mobile_private_tertiary">#FFFBBF24</color>
+    <color name="fx_mobile_private_on_tertiary">#FF1C1410</color>
+    <color name="fx_mobile_private_tertiary_container">#FF78350F</color>
+    <color name="fx_mobile_private_on_tertiary_container">#FFFEF3C7</color>
+    <color name="fx_mobile_private_background">@color/clarus_obsidian</color>
+    <color name="fx_mobile_private_on_background">#FFFEF3C7</color>
+    <color name="fx_mobile_private_surface">@color/clarus_obsidian</color>
+    <color name="fx_mobile_private_on_surface">#FFFEF3C7</color>
+    <color name="fx_mobile_private_surface_variant">#FF2A2218</color>
+    <color name="fx_mobile_private_on_surface_variant">#B3FEF3C7</color>
     <color name="fx_mobile_private_surface_inverse">@color/novaGray30</color>
     <color name="fx_mobile_private_on_surface_inverse">@color/novaGray80</color>
     <color name="fx_mobile_private_error">@color/novaRed30</color>
     <color name="fx_mobile_private_on_error">@color/novaGray80</color>
     <color name="fx_mobile_private_error_container">@color/novaRed70</color>
-    <color name="fx_mobile_private_on_error_container">@color/novaVioletDesaturated0</color>
+    <color name="fx_mobile_private_on_error_container">#FFFEF3C7</color>
     <color name="fx_mobile_private_information">@color/novaBlue30</color>
     <color name="fx_mobile_private_on_information">@color/novaGray80</color>
     <color name="fx_mobile_private_information_container">@color/novaBlue70</color>
-    <color name="fx_mobile_private_on_information_container">@color/novaVioletDesaturated0</color>
+    <color name="fx_mobile_private_on_information_container">#FFFEF3C7</color>
     <color name="fx_mobile_private_success">@color/novaGreen30</color>
     <color name="fx_mobile_private_on_success">@color/novaGray80</color>
     <color name="fx_mobile_private_warning">@color/novaYellow30</color>
     <color name="fx_mobile_private_on_warning">@color/novaGray80</color>
     <color name="fx_mobile_private_warning_container">@color/novaYellow70</color>
-    <color name="fx_mobile_private_on_warning_container">@color/novaVioletDesaturated0</color>
+    <color name="fx_mobile_private_on_warning_container">#FFFEF3C7</color>
     <color name="fx_mobile_private_outline">@color/novaGray45</color>
-    <color name="fx_mobile_private_outline_variant">#FF332752</color>
-    <color name="fx_mobile_private_surface_bright">@color/novaVioletDesaturated80</color>
-    <color name="fx_mobile_private_surface_dim">#FF0D0321</color>
-    <color name="fx_mobile_private_surface_container">@color/novaVioletDesaturated90</color>
-    <color name="fx_mobile_private_surface_container_high">#FF20163A</color>
-    <color name="fx_mobile_private_surface_container_highest">@color/novaVioletDesaturated80</color>
-    <color name="fx_mobile_private_surface_container_low">#FF11042B</color>
-    <color name="fx_mobile_private_surface_container_lowest">#FF0D0321</color>
-    <color name="fx_mobile_private_autofill_text">@color/novaVioletDesaturated30A55</color>
+    <color name="fx_mobile_private_outline_variant">#FF5C4A3A</color>
+    <color name="fx_mobile_private_surface_bright">#FF2A2218</color>
+    <color name="fx_mobile_private_surface_dim">@color/clarus_obsidian</color>
+    <color name="fx_mobile_private_surface_container">@color/clarus_obsidian</color>
+    <color name="fx_mobile_private_surface_container_high">#FF1C1410</color>
+    <color name="fx_mobile_private_surface_container_highest">#FF2A2218</color>
+    <color name="fx_mobile_private_surface_container_low">#FF141210</color>
+    <color name="fx_mobile_private_surface_container_lowest">@color/clarus_obsidian</color>
+    <color name="fx_mobile_private_autofill_text">#8CFEF3C7</color>
     <color name="fx_mobile_private_selected_text">@color/novaGray45A81</color>
-    <color name="fx_mobile_private_icon_private">@color/novaViolet50</color>
+    <color name="fx_mobile_private_icon_private">#FFF59E0B</color>
     <color name="fx_mobile_private_scrim">@color/novaBlackA50</color>
 
     <!-- Layers -->
     <!-- Card background, Menu background, Dialog, Banner -->
-    <color name="fx_mobile_private_layer_color_2">@color/photonViolet90</color>
+    <color name="fx_mobile_private_layer_color_2">#FF1C1410</color>
     <!-- Search -->
     <color name="fx_mobile_private_layer_color_3">@color/photonInk90</color>
 
@@ -215,11 +224,11 @@
     <color name="dark_grey_90_gradient_end">#0015141A</color>
 
     <!-- Private theme color palette -->
-    <color name="accent_private_theme">@color/photonViolet50</color>
-    <color name="accent_high_contrast_private_theme">#AA71FF</color>
+    <color name="accent_private_theme">#FFF59E0B</color>
+    <color name="accent_high_contrast_private_theme">#FFFBBF24</color>
     <color name="neutral_private_theme">@color/photonGrey20</color>
     <color name="neutral_faded_private_theme">#1FFBFBFE</color>
-    <color name="prompt_login_edit_text_cursor_color_private_theme">@color/photonViolet50</color>
+    <color name="prompt_login_edit_text_cursor_color_private_theme">#FFF59E0B</color>
 
     <!-- Normal theme colors for light mode -->
     <color name="accent_normal_theme">@color/photonInk20</color>
@@ -227,7 +236,7 @@
     <color name="neutral_normal_theme">@color/photonGrey30</color>
     <color name="neutral_faded_normal_theme">@color/photonGrey20</color>
     <color name="fill_link_from_clipboard_normal_theme">@color/photonInk20</color>
-    <color name="add_on_private_browsing_exterior_circle_background_normal_theme">@color/photonViolet70</color>
+    <color name="add_on_private_browsing_exterior_circle_background_normal_theme">#FFF59E0B</color>
     <color name="prompt_login_edit_text_cursor_color_normal_theme">@color/photonInk20</color>
     <color name="search_suggestion_indicator_icon_color_normal_theme">@color/photonGreen70</color>
     <color name="search_suggestion_indicator_icon_bookmark_color_normal_theme">@color/photonBlue50</color>
@@ -242,8 +251,8 @@
     <!-- Tracking protection dashboard colors used in private browsing mode -->
     <color name="protections_dashboard_chip_background_private">#FF3D3264</color>
     <color name="protections_dashboard_chip_text_private">#FFD9D0F5</color>
-    <color name="protections_dashboard_progress_bar_private">@color/novaViolet50</color>
-    <color name="protections_dashboard_gradient_start_private">@color/novaVioletDesaturated90</color>
+    <color name="protections_dashboard_progress_bar_private">#FFF59E0B</color>
+    <color name="protections_dashboard_gradient_start_private">#FF2A2218</color>
     <color name="protections_dashboard_gradient_end_private">@color/novaOrange70</color>
 
     <!-- Colors for Edge to Edge background  -->
@@ -253,7 +262,7 @@
     <color name="homepage_tab_edge_to_edge_tab_strip_item_background_inactive">#EFDCD6</color>
     <color name="homepage_tab_edge_to_edge_toolbar_background">#00000000</color>
     <color name="homepage_tab_edge_to_edge_toolbar_outline">#00000000</color>
-    <color name="homepage_tab_edge_to_edge_private_toolbar_outline">#564A75</color>
+    <color name="homepage_tab_edge_to_edge_private_toolbar_outline">#5C4A3A</color>
 
     <!-- Bookmark buttons -->
     <color name="bookmark_favicon_background">#DFDFE3</color>
@@ -270,11 +279,11 @@
     <color name="preference_scroll_highlight">@color/fx_mobile_surface_container_highest</color>
 
     <!-- Prompt colors -->
-    <color name="mozac_feat_prompt_cancel_save_dialog_text_color" tools:ignore="UnusedResources">@color/photonViolet70A80</color>
+    <color name="mozac_feat_prompt_cancel_save_dialog_text_color" tools:ignore="UnusedResources">#CCB8754B</color>
 
     <!-- Reader View colors -->
     <color name="mozac_feature_readerview_text_color" tools:ignore="UnusedResources">@color/fx_mobile_on_surface</color>
-    <color name="mozac_feature_readerview_selected">@color/photonViolet40</color>
+    <color name="mozac_feature_readerview_selected">#FFB8754B</color>
 
     <!-- Share UI -->
     <color name="default_share_background">#E3E2E3</color>
@@ -286,7 +295,7 @@
     <color name="ic_launcher_background">@color/clarus_espresso</color>
 
     <!-- Private Browsing Mode Persistent Notification -->
-    <color name="pbm_notification_color">@color/photonViolet70</color>
+    <color name="pbm_notification_color">#FFF59E0B</color>
 
     <!-- Static Shortcut Background Color -->
     <color name="static_shortcut_background">#F5F5F5</color>

@@ -20,7 +20,7 @@
                 android:centerX="12"
                 android:centerY="12"
                 android:gradientRadius="10"
-                android:startColor="#258B5CF6"
+                android:startColor="#25F59E0B"
                 android:endColor="#00131319" />
         </aapt:attr>
         <aapt:attr name="android:strokeColor">
@@ -31,7 +31,7 @@
                 android:endX="12"
                 android:endY="21.5">
                 <item android:offset="0.0" android:color="#90F59E0B" />
-                <item android:offset="1.0" android:color="#308B5CF6" />
+                <item android:offset="1.0" android:color="#30F59E0B" />
             </gradient>
         </aapt:attr>
     </path>
@@ -68,8 +68,8 @@
                 android:endX="13"
                 android:endY="16">
                 <item android:offset="0.0" android:color="#FFAAA0D2" />
-                <item android:offset="0.5" android:color="#FF8B5CF6" />
-                <item android:offset="1.0" android:color="#FF6D28D9" />
+                <item android:offset="0.5" android:color="#FFB8754B" />
+                <item android:offset="1.0" android:color="#FF92400E" />
             </gradient>
         </aapt:attr>
     </path>

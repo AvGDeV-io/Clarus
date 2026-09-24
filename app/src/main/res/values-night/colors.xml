@@ -16,10 +16,11 @@
     <color name="clarus_deep_indigo">#36335F</color>
     <color name="clarus_soft_blue_gray">#9CA8B7</color>
 
-    <!-- Clarus Glass Tokens (Obsidian Glass) -->
-    <color name="clarus_glass_surface_resting">#B81C1C22</color>
-    <color name="clarus_glass_surface_active">#CC1C1C22</color>
-    <color name="clarus_glass_surface_fallback">#E61C1C22</color>
+    <!-- Clarus Glass Tokens (Obsidian Glass) — alphas match ClarusGlassTokens.Alpha -->
+    <color name="clarus_glass_surface_resting">#7A1C1C22</color>
+    <color name="clarus_glass_surface_active">#941C1C22</color>
+    <color name="clarus_glass_surface_fallback">#BF1C1C22</color>
+    <color name="clarus_glass_dialog_plate">#BF1C1C22</color>
     <color name="clarus_glass_border_resting">#38FFFFFF</color>
     <color name="clarus_glass_border_active">#F2B8754B</color>
 
@@ -99,7 +100,7 @@
     <color name="fx_mobile_surface_container_lowest">@color/clarus_espresso</color>
     <color name="fx_mobile_autofill_text">@color/novaVioletDesaturated30A55</color>
     <color name="fx_mobile_selected_text">@color/novaGray45A80</color>
-    <color name="fx_mobile_icon_private">@color/novaViolet50</color>
+    <color name="fx_mobile_icon_private">#FFF59E0B</color>
     <color name="fx_mobile_scrim">@color/novaBlackA50</color>
 
     <color name="fx_mobile_splashscreen_background">@color/clarus_espresso</color>
@@ -131,7 +132,7 @@
     <!-- Icon -->
     <!-- Icon inverted (on color) -->
     <color name="fx_mobile_icon_color_oncolor">@color/photonLightGrey05</color>
-    <color name="fx_mobile_icon_color_accent_violet">@color/photonViolet20</color>
+    <color name="fx_mobile_icon_color_accent_violet">#FFB8754B</color>
     <color name="fx_mobile_icon_color_accent_blue">@color/photonBlue20</color>
     <color name="fx_mobile_icon_color_accent_pink">@color/photonPink20</color>
     <color name="fx_mobile_icon_color_accent_green">@color/photonGreen20</color>

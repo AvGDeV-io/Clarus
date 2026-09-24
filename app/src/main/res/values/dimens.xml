@@ -23,7 +23,7 @@
     <dimen name="clarus_corner_radius_medium">16dp</dimen>
     <dimen name="clarus_corner_radius_large">24dp</dimen>
     <dimen name="clarus_corner_radius_pill">999dp</dimen>
-    <dimen name="material_dialog_corner_radius">28dp</dimen>"
+    <dimen name="material_dialog_corner_radius">24dp</dimen>
     <dimen name="preference_icon_drawable_size">24dp</dimen>
     <dimen name="search_bar_search_engine_icon_padding">12dp</dimen>
     <dimen name="search_engine_engine_icon_margin">12dp</dimen>

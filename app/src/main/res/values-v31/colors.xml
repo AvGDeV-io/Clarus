@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<resources>
+    <!-- API 31+: real window backdrop blur + Resting plate (matches ClarusGlassTokens) -->
+    <color name="clarus_glass_dialog_plate">#85FCFAF6</color>
+    <color name="clarus_glass_dialog_plate_private">#8C131319</color>
+</resources>

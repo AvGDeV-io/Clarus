@@ -48,6 +48,7 @@ import androidx.fragment.compose.content
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import org.mozilla.fenix.sidus.SidusSessionManager
 import androidx.navigation.fragment.navArgs
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.scene.DialogSceneStrategy
@@ -57,6 +58,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import mozilla.appservices.places.BookmarkRoot
+import mozilla.components.browser.state.selector.findTab
 import mozilla.components.browser.state.selector.privateTabs
 import mozilla.components.compose.base.modifier.thenConditional
 import mozilla.components.compose.base.snackbar.displaySnackbar
@@ -467,6 +469,27 @@ class TabManagementFragment : Fragment() {
                                     },
                                     trackersBlockedCount = trackersBlockedCount,
                                     onPrivacyReportTapped = tabManagerController::onPrivacyReportTapped,
+                                    sidusNodesFlow = requireComponents.core.sidusRepository.observeNodesForSession(
+                                        SidusSessionManager.sessionGroupId,
+                                    ),
+                                    activeTabId = state.selectedTabId.orEmpty(),
+                                    onSidusNodeTapped = { node ->
+                                        val tabExists =
+                                            requireComponents.core.store.state.findTab(node.tabId) != null
+                                        if (tabExists) {
+                                            requireComponents.useCases.tabsUseCases.selectTab(node.tabId)
+                                            requireComponents.useCases.sessionUseCases.loadUrl(
+                                                url = node.url,
+                                                sessionId = node.tabId,
+                                            )
+                                        } else {
+                                            requireComponents.useCases.fenixBrowserUseCases.loadUrlOrSearch(
+                                                searchTermOrURL = node.url,
+                                                newTab = true,
+                                            )
+                                        }
+                                        tabManagerController.handleNavigateToBrowser()
+                                    },
                                 )
                             }
 

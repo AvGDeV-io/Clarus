@@ -112,7 +112,7 @@ class HomepageEdgeToEdgeFeature(
     private fun setBackground(background: Background) {
         val isPrivateMode = browsingModeManager.mode == BrowsingMode.Private
         activity.window?.setBackgroundDrawableResource(
-            if (isPrivateMode) R.color.fx_mobile_private_surface else background.resourceId,
+            if (isPrivateMode) R.color.clarus_obsidian else background.resourceId,
         )
     }
 
@@ -183,7 +183,7 @@ class HomepageEdgeToEdgeFeature(
 
         return when {
             !shouldShow -> Color.TRANSPARENT
-            isPrivateMode -> ContextCompat.getColor(activity, R.color.fx_mobile_private_surface)
+            isPrivateMode -> ContextCompat.getColor(activity, R.color.clarus_obsidian)
             !settings.isTabStripEnabled &&
                 toolbarState.isShowingResultsScreen && browsingModeManager.mode == BrowsingMode.Normal &&
                 (

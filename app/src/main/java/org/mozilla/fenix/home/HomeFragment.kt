@@ -107,6 +107,7 @@ import org.mozilla.fenix.components.appstate.AppState
 import org.mozilla.fenix.components.components
 import org.mozilla.fenix.components.metrics.installSourcePackage
 import org.mozilla.fenix.components.toolbar.ToolbarPosition
+import org.mozilla.fenix.components.toolbar.gestures.ToolbarVerticalGesturesHandler
 import org.mozilla.fenix.compose.snackbar.SnackbarState
 import org.mozilla.fenix.ext.application
 import org.mozilla.fenix.ext.components
@@ -384,7 +385,7 @@ class HomeFragment : Fragment() {
         homepageComposeView = composeView
         nullableToolbarView = buildToolbar(activity, composeView)
         initComposeHomepage(view = composeView)
-        val view = if (isToolbarSwipeToSwitchTabsEnabled()) {
+        val view = if (shouldWrapInSwipeLayout()) {
             wrapInSwipeLayout(activity, composeView)
         } else {
             composeView
@@ -593,27 +594,56 @@ class HomeFragment : Fragment() {
         isSwipeToolbarToSwitchTabsEnabled && !isTabStripEnabled && enableHomepageAsNewTab
     }
 
-    @Suppress("ReturnCount")
+    /**
+     * Whether the homepage should intercept toolbar swipes. Vertical swipe-up opens tab overview
+     * from either Home or Browser, so the gesture host must exist on Home even when horizontal
+     * tab-switching is unavailable.
+     */
+    private fun shouldWrapInSwipeLayout(): Boolean =
+        isToolbarSwipeToSwitchTabsEnabled() || requireComponents.settings.isSwipeToolbarToShowTabsEnabled
+
+    @Suppress("ReturnCount", "LongMethod")
     private fun initSwipeToSwitchTabs(view: View) {
-        if (!isToolbarSwipeToSwitchTabsEnabled()) {
+        if (!shouldWrapInSwipeLayout()) {
             return
         }
 
         val gestureLayout = view as? SwipeGestureLayout ?: return
         val contentLayout = homepageComposeView ?: return
-        val tabPreview = homeTabPreview ?: return
 
-        HomeSwipeIntegration(
-            activity = requireActivity(),
-            store = requireComponents.core.store,
-            selectTabUseCase = requireComponents.useCases.tabsUseCases.selectTab,
-            contentLayout = contentLayout,
-            gestureLayout = gestureLayout,
-            navController = findNavController(),
-            navBarLayoutRect = { navbarBoundsInRoot.toScreenRect(contentLayout) },
-            toolbarLayoutRect = { toolbarBoundsInRoot.toScreenRect(contentLayout) },
-            tabPreview = tabPreview,
-        ).initializeSwipeUI()
+        if (isToolbarSwipeToSwitchTabsEnabled()) {
+            homeTabPreview?.let { tabPreview ->
+                HomeSwipeIntegration(
+                    activity = requireActivity(),
+                    store = requireComponents.core.store,
+                    selectTabUseCase = requireComponents.useCases.tabsUseCases.selectTab,
+                    contentLayout = contentLayout,
+                    gestureLayout = gestureLayout,
+                    navController = findNavController(),
+                    navBarLayoutRect = { navbarBoundsInRoot.toScreenRect(contentLayout) },
+                    toolbarLayoutRect = { toolbarBoundsInRoot.toScreenRect(contentLayout) },
+                    tabPreview = tabPreview,
+                ).initializeSwipeUI()
+            }
+        }
+
+        if (requireComponents.settings.isSwipeToolbarToShowTabsEnabled) {
+            gestureLayout.addGestureListener(
+                ToolbarVerticalGesturesHandler(
+                    appStore = requireComponents.appStore,
+                    context = requireContext(),
+                    toolbarBounds = { toolbarBoundsInRoot.toScreenRect(contentLayout) },
+                    navBarBounds = { navbarBoundsInRoot.toScreenRect(contentLayout) },
+                    toolbarPosition = requireComponents.settings.toolbarPosition,
+                    navController = findNavController(),
+                    getCurrentBrowsingMode = {
+                        (activity as? HomeActivity)?.browsingModeManager?.mode
+                            ?: requireComponents.appStore.state.mode
+                    },
+                    insetsAnchor = { view },
+                ),
+            )
+        }
     }
 
     private fun Rect?.toScreenRect(contentLayout: ComposeView): Rect? {
@@ -648,7 +678,7 @@ class HomeFragment : Fragment() {
                     initial = privacyNoticeBannerStore.state,
                 )
                 val isToolbarAtTop = settings.toolbarPosition == ToolbarPosition.TOP
-                val captureToolbarBounds = remember { isToolbarSwipeToSwitchTabsEnabled() }
+                val captureToolbarBounds = remember { shouldWrapInSwipeLayout() }
 
                 val microsurveyVisible = settings.microsurveyFeatureEnabled &&
                     !appState.value.mode.isPrivate &&

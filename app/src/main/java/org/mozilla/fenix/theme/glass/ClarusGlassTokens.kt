@@ -42,40 +42,40 @@ object ClarusGlassTokens {
      */
     object Alpha {
         object Light {
-            /** Resting glass plate opacity when RenderEffect blur is active. */
-            const val Resting: Float = 0.78f
+            /** Resting glass plate opacity — low enough to read as floating glass, not a solid plate. */
+            const val Resting: Float = 0.52f
 
             /** Focused or active tab/input glass opacity. */
-            const val Active: Float = 0.85f
+            const val Active: Float = 0.62f
 
             /**
              * Graceful fallback opacity for Android versions prior to API 31 (minSdk 26..30)
              * where RenderEffect is unavailable. A slightly higher opacity maintains
              * high contrast and legibility over underlying web content.
              */
-            const val Fallback: Float = 0.92f
+            const val Fallback: Float = 0.78f
         }
 
         object Dark {
-            /** Resting smoky obsidian glass plate opacity with active blur. */
-            const val Resting: Float = 0.72f
+            /** Resting smoky obsidian glass plate opacity. */
+            const val Resting: Float = 0.48f
 
             /** Focused or active tab/input glass opacity in dark mode. */
-            const val Active: Float = 0.80f
+            const val Active: Float = 0.58f
 
             /** Fallback opacity for API < 31 in dark mode. */
-            const val Fallback: Float = 0.90f
+            const val Fallback: Float = 0.75f
         }
 
         object Private {
             /** Obsidian sanctuary private browsing surface opacity. */
-            const val Resting: Float = 0.82f
+            const val Resting: Float = 0.55f
 
             /** Active state opacity in private browsing mode. */
-            const val Active: Float = 0.88f
+            const val Active: Float = 0.65f
 
             /** Fallback opacity for API < 31 in private mode. */
-            const val Fallback: Float = 0.94f
+            const val Fallback: Float = 0.82f
         }
     }
 
@@ -108,7 +108,7 @@ object ClarusGlassTokens {
 
         // Private Sanctuary Accents
         val PrivateAmber: Color = Color(0xFFF59E0B) // Radiant Amber: Ephemeral private indicator
-        val PrivateViolet: Color = Color(0xFF8B5CF6) // Velvet Violet: Private browsing aura
+        val PrivateViolet: Color = Color(0xFFB8754B) // Soft Copper: private browsing rim (was Velvet Violet)
     }
 
     /**
@@ -145,12 +145,12 @@ object ClarusGlassTokens {
         )
 
         /**
-         * Subtle amber & violet specular highlight for private obsidian mode.
+         * Subtle amber specular highlight for private obsidian mode.
          */
         fun restingPrivateBorderBrush(): Brush = Brush.verticalGradient(
             colors = listOf(
                 Colors.PrivateAmber.copy(alpha = 0.40f),
-                Colors.PrivateViolet.copy(alpha = 0.22f),
+                Colors.PrivateAmber.copy(alpha = 0.22f),
                 Colors.PrivateAmber.copy(alpha = 0.10f),
             ),
         )

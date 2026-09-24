@@ -123,6 +123,7 @@ abstract class ThemeManager {
         }
 
         private fun updateNavigationBar(window: Window, context: Context) {
+            // PrivateTheme colorSurface is clarus_obsidian; Normal is warm ivory.
             window.setNavigationBarColorCompat(context.getColorFromAttr(materialR.attr.colorSurface))
         }
 
