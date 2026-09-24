@@ -209,8 +209,6 @@ fun TabsTray(
                     currentOnTabPageClick(settledPage)
                 }
             }
-    }                }
-            }
     }
 
     Scaffold(
