@@ -66,6 +66,7 @@ import org.mozilla.fenix.tabstray.redux.state.Page
 import org.mozilla.fenix.tabstray.redux.state.TabsTrayState
 import org.mozilla.fenix.tabstray.redux.store.TabsTrayStore
 import org.mozilla.fenix.tabstray.ui.TabManagementFragmentDirections
+import org.mozilla.fenix.theme.ClarusHaptics
 import org.mozilla.fenix.trackingprotection.ProtectionsDashboardFragment
 import org.mozilla.fenix.utils.Settings
 import java.util.concurrent.TimeUnit
@@ -308,6 +309,7 @@ class DefaultTabManagerController(
      */
     private fun openNewTab(isPrivate: Boolean) {
         val startTime = profiler?.getProfilerTime()
+        ClarusHaptics.performCommit(navController.context)
         browsingModeManager.mode = BrowsingMode.fromBoolean(isPrivate)
 
         if (!settings.shouldUseDefaultHomepage) {

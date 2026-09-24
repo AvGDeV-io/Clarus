@@ -31,6 +31,7 @@ import mozilla.components.ui.widgets.SnackbarDelegate
 import org.mozilla.fenix.components.share.ShareSheetChooserAction
 import org.mozilla.fenix.components.share.ShareSource
 import org.mozilla.fenix.components.usecases.ShareUseCases
+import org.mozilla.fenix.theme.ClarusHaptics
 
 /**
  * Provides the context menu candidates for [BrowserFragment] when native share sheet is enabled.
@@ -57,13 +58,13 @@ object NativeShareSheetContextMenuCandidate {
             tabsUseCases,
             snackBarParentView,
             snackbarDelegate,
-        ),
+        ).withCommitHaptic(context),
         createOpenInPrivateTabCandidate(
             context,
             tabsUseCases,
             snackBarParentView,
             snackbarDelegate,
-        ),
+        ).withCommitHaptic(context),
         createCopyLinkCandidate(context, snackBarParentView, snackbarDelegate),
         createCopyLinkTextCandidate(context, snackBarParentView, snackbarDelegate),
         createDownloadLinkCandidate(context, contextMenuUseCases, downloadsLocation),
@@ -79,7 +80,7 @@ object NativeShareSheetContextMenuCandidate {
             tabsUseCases,
             snackBarParentView,
             snackbarDelegate,
-        ),
+        ).withCommitHaptic(context),
         createCopyImageCandidate(
             context,
             contextMenuUseCases,
@@ -91,6 +92,16 @@ object NativeShareSheetContextMenuCandidate {
         createShareEmailAddressCandidate(context),
         createCopyEmailAddressCandidate(context, snackBarParentView, snackbarDelegate),
     )
+
+    private fun ContextMenuCandidate.withCommitHaptic(context: Context): ContextMenuCandidate {
+        val original = action
+        return copy(
+            action = { tab, hitResult ->
+                ClarusHaptics.performCommit(context)
+                original(tab, hitResult)
+            },
+        )
+    }
 
     private fun createShareLinkCandidate(
         context: Context,

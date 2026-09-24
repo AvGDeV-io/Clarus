@@ -56,6 +56,7 @@ import org.mozilla.fenix.tabstray.ui.tabpage.SyncedTabsPage
 import org.mozilla.fenix.tabstray.ui.tabpage.TabGroupsPage
 import org.mozilla.fenix.tabstray.ui.theme.TabManagerThemeProvider
 import org.mozilla.fenix.theme.FirefoxTheme
+import org.mozilla.fenix.theme.rememberClarusHaptics
 import mozilla.components.browser.storage.sync.Tab as SyncTab
 import org.mozilla.fenix.tabstray.ui.syncedtabs.OnTabClick as OnSyncedTabClick
 import org.mozilla.fenix.tabstray.ui.syncedtabs.OnTabCloseClick as OnSyncedTabClose
@@ -189,21 +190,26 @@ fun TabsTray(
         )
     }
 
-    // Keep TabsTrayState.selectedPage in sync when the user swipes between pages.
-    // Uses the same onTabPageClick path as the banner tab row (interactor →
-    // TabManagerController.handleTabPageClicked → PageSelected) so telemetry and
-    // state updates stay in one place. Only dispatch when the settled page differs
-    // from state.selectedPage so programmatic scrolls (clicks, private-lock
-    // PageSelected) do not re-enter through this effect.
+    // Keep TabsTrayState.selectedPage in sync when the user swipes between pages,
+    // and give a light haptic tick on settle. Uses the same onTabPageClick path as
+    // the banner tab row (interactor -> TabManagerController.handleTabPageClicked ->
+    // PageSelected) so telemetry and state updates stay in one place. Only fires
+    // (dispatch + tick) when the settled page differs from state.selectedPage so
+    // programmatic scrolls (clicks, private-lock PageSelected) do not re-enter
+    // through this effect or produce a spurious tick.
     val currentSelectedPage by rememberUpdatedState(state.selectedPage)
     val currentOnTabPageClick by rememberUpdatedState(onTabPageClick)
+    val pageSettleHaptics = rememberClarusHaptics()
     LaunchedEffect(pagerState, shouldShowTabGroupsPage) {
         snapshotFlow { pagerState.currentPage }
             .collect { position ->
                 val settledPage = Page.positionToPage(position, shouldShowTabGroupsPage)
                 if (settledPage != currentSelectedPage) {
+                    pageSettleHaptics.tick()
                     currentOnTabPageClick(settledPage)
                 }
+            }
+    }                }
             }
     }
 

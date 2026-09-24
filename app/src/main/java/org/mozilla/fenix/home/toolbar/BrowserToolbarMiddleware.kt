@@ -84,6 +84,7 @@ import org.mozilla.fenix.search.BrowserToolbarSearchMiddleware
 import org.mozilla.fenix.search.ext.searchEngineShortcuts
 import org.mozilla.fenix.settings.ShortcutType
 import org.mozilla.fenix.tabstray.redux.state.Page
+import org.mozilla.fenix.theme.ClarusHaptics
 import org.mozilla.fenix.translations.TranslationsEnabledSettings
 import org.mozilla.fenix.utils.Settings
 import mozilla.components.feature.summarize.R as summariesR
@@ -209,10 +210,12 @@ class BrowserToolbarMiddleware(
                 next(action)
             }
             is AddNewTab -> {
+                ClarusHaptics.performCommit(uiContext)
                 addNewTab(store, Normal)
                 next(action)
             }
             is AddNewPrivateTab -> {
+                ClarusHaptics.performCommit(uiContext)
                 addNewTab(store, Private)
                 next(action)
             }
@@ -230,10 +233,12 @@ class BrowserToolbarMiddleware(
                 next(action)
             }
             is PasteFromClipboardClicked -> {
+                ClarusHaptics.performCommit(uiContext)
                 openNewTab(store, searchTerms = clipboard.text)
             }
             is LoadFromClipboardClicked -> {
                 clipboard.extractURL()?.let {
+                    ClarusHaptics.performCommit(uiContext)
                     fenixBrowserUseCases.loadUrlOrSearch(
                         searchTermOrURL = it,
                         newTab = true,

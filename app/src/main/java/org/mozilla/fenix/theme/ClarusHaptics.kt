@@ -4,6 +4,9 @@
 
 package org.mozilla.fenix.theme
 
+import android.app.Activity
+import android.content.Context
+import android.content.ContextWrapper
 import android.os.Build
 import android.view.HapticFeedbackConstants
 import android.view.View
@@ -26,6 +29,14 @@ import kotlinx.coroutines.launch
 
 /**
  * Unified haptic feedback and tactile micro-interaction controller for Clarus.
+ *
+ * Prefer these verbs over raw [View.performHapticFeedback] / Compose [HapticFeedback]
+ * so intensity and API-level fallbacks stay consistent app-wide.
+ *
+ * Mapping:
+ * - [performTick] — light settle (page-swipe, tab switch, gesture threshold)
+ * - [performClick] — control press (buttons, toggles)
+ * - [performCommit] — action confirmed (new tab, gesture commit, peek commit)
  */
 object ClarusHaptics {
 
@@ -60,6 +71,37 @@ object ClarusHaptics {
             view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
         }
     }
+
+    /** Resolve a [View] from a possibly non-Activity [Context] (middleware / use-case call sites). */
+    fun viewFrom(context: Context?): View? {
+        var current: Context? = context
+        while (current is ContextWrapper) {
+            if (current is Activity) {
+                return current.window?.decorView
+            }
+            current = current.baseContext
+        }
+        return (context as? Activity)?.window?.decorView
+    }
+
+    fun performTick(context: Context?) = performTick(viewFrom(context))
+    fun performClick(context: Context?) = performClick(viewFrom(context))
+    fun performCommit(context: Context?) = performCommit(viewFrom(context))
+}
+
+/**
+ * Compose handle bound to the local [View], for gesture settle / commit feedback.
+ */
+class ClarusHapticsHandle(private val view: View) {
+    fun tick() = ClarusHaptics.performTick(view)
+    fun click() = ClarusHaptics.performClick(view)
+    fun commit() = ClarusHaptics.performCommit(view)
+}
+
+@Composable
+fun rememberClarusHaptics(): ClarusHapticsHandle {
+    val view = LocalView.current
+    return remember(view) { ClarusHapticsHandle(view) }
 }
 
 /**

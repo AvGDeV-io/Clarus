@@ -144,6 +144,7 @@ fun Modifier.zenEdgeNavigationGestures(
 
                 if (isCommitted && !hasTriggeredHaptic) {
                     if (config.hapticsEnabled) {
+                        // Threshold crossed: light tick (commit fires on gesture completion)
                         hapticFeedback?.performHapticFeedback(HapticFeedbackType.LongPress)
                     }
                     hasTriggeredHaptic = true
@@ -211,6 +212,7 @@ fun Modifier.zenToolbarGestures(
                     change.consume()
                     gestureHandled = true
                     if (config.hapticsEnabled) {
+                        // Swipe-up commit → tab overview
                         hapticFeedback?.performHapticFeedback(HapticFeedbackType.LongPress)
                     }
                     onSwipeUp()
@@ -222,6 +224,7 @@ fun Modifier.zenToolbarGestures(
                     change.consume()
                     gestureHandled = true
                     if (config.hapticsEnabled) {
+                        // Tab-switch settle
                         hapticFeedback?.performHapticFeedback(HapticFeedbackType.LongPress)
                     }
                     if (totalDx > 0) {

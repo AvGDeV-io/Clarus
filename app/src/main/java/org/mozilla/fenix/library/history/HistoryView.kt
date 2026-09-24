@@ -5,7 +5,6 @@
 package org.mozilla.fenix.library.history
 
 import android.os.Build
-import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isInvisible
@@ -23,6 +22,7 @@ import org.mozilla.fenix.components.appstate.AppState
 import org.mozilla.fenix.databinding.ComponentHistoryBinding
 import org.mozilla.fenix.ext.components
 import org.mozilla.fenix.library.LibraryPageView
+import org.mozilla.fenix.theme.ClarusHaptics
 import org.mozilla.fenix.theme.ThemeManager
 import com.google.android.material.R as materialR
 
@@ -94,7 +94,7 @@ class HistoryView(
 
         binding.swipeRefresh.setOnRefreshListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                binding.swipeRefresh.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+                ClarusHaptics.performCommit(binding.swipeRefresh)
             }
             store.dispatch(HistoryFragmentAction.StartSync)
             scope.launch {
