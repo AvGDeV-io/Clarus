@@ -48,9 +48,9 @@ import org.mozilla.fenix.theme.FirefoxTheme
 import mozilla.components.ui.icons.R as iconsR
 
 private val BANNER_IMAGE_SIZE = 80.dp
-private val GradientAISubtleStop2Light = Color(0xFFE9DAFB)
+private val GradientAISubtleStop2Light = Color(0xFFFFEAD9)
 private val GradientAISubtleStop3Light = Color(0xFFFFE3CE)
-private val GradientAISubtleStop2Dark = Color(0xFFAB71FF)
+private val GradientAISubtleStop2Dark = Color(0xFF4A2511)
 private val GradientAISubtleStop3Dark = Color(0xFFFF8A50)
 
 @Immutable

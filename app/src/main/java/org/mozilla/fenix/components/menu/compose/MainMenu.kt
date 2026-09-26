@@ -262,15 +262,6 @@ fun MainMenu(
             )
         }
 
-        if (showIPProtection) {
-            MenuGroup {
-                IPProtectionMenuItem(
-                    state = ipProtectionMenuState,
-                    onToggle = onIPProtectionClick,
-                    onNavigate = onIPProtectionNavigate,
-                )
-            }
-        }
 
         if (accessPoint == MenuAccessPoint.Home) {
             MenuGroup {
@@ -319,11 +310,6 @@ fun MainMenu(
         )
 
         MenuGroup {
-            MozillaAccountMenuItem(
-                account = account,
-                accountState = accountState,
-                onClick = onMozillaAccountButtonClick,
-            )
 
             if (accessPoint == MenuAccessPoint.Home) {
                 MenuItem(

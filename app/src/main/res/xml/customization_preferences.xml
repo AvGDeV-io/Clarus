@@ -169,8 +169,5 @@
         <androidx.preference.SwitchPreferenceCompat
             android:key="@string/pref_key_show_fullscreen_toast"
             android:title="@string/preferences_show_fullscreen_toast" />
-        <androidx.preference.SwitchPreferenceCompat
-            android:key="@string/pref_key_show_sign_in_button"
-            android:title="@string/preferences_show_sign_in_button" />
     </androidx.preference.PreferenceCategory>
 </androidx.preference.PreferenceScreen>

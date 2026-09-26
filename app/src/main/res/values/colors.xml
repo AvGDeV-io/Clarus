@@ -62,19 +62,19 @@
     <color name="clarus_accent_cool">@color/clarus_dusty_lavender</color>
 
     <!-- Material3 color variables -->
-    <color name="fx_mobile_primary">@color/novaViolet70</color>
+    <color name="fx_mobile_primary">@color/clarus_copper</color>
     <color name="fx_mobile_on_primary">@color/novaWhite</color>
-    <color name="fx_mobile_primary_container">@color/novaViolet20</color>
-    <color name="fx_mobile_on_primary_container">@color/novaVioletDesaturated90</color>
-    <color name="fx_mobile_primary_inverse">@color/novaViolet20</color>
+    <color name="fx_mobile_primary_container">#33B8754B</color>
+    <color name="fx_mobile_on_primary_container">@color/clarus_espresso</color>
+    <color name="fx_mobile_primary_inverse">@color/clarus_saffron</color>
     <color name="fx_mobile_secondary">@color/novaGray50</color>
     <color name="fx_mobile_on_secondary">@color/novaWhite</color>
     <color name="fx_mobile_secondary_container">@color/novaVioletDesaturated10</color>
     <color name="fx_mobile_on_secondary_container">@color/novaVioletDesaturated90</color>
-    <color name="fx_mobile_tertiary">@color/novaViolet50</color>
-    <color name="fx_mobile_on_tertiary">@color/novaWhite</color>
-    <color name="fx_mobile_tertiary_container">@color/novaViolet0</color>
-    <color name="fx_mobile_on_tertiary_container">@color/novaVioletDesaturated90</color>
+    <color name="fx_mobile_tertiary">@color/clarus_copper</color>
+    <color name="fx_mobile_on_tertiary">@color/clarus_porcelain</color>
+    <color name="fx_mobile_tertiary_container">#33B8754B</color>
+    <color name="fx_mobile_on_tertiary_container">@color/clarus_copper</color>
     <color name="fx_mobile_background">@color/clarus_warm_ivory</color>
     <color name="fx_mobile_on_background">@color/clarus_espresso</color>
     <color name="fx_mobile_surface">@color/clarus_warm_ivory</color>

@@ -109,8 +109,9 @@ class OnboardingFragment : Fragment() {
     private val pagesToDisplay by lazy {
         allOnboardingPages
             .filterNot {
-                it.type == OnboardingPageUiData.Type.MARKETING_DATA &&
-                    !requireComponents.settings.shouldShowMarketingOnboarding
+                it.type == OnboardingPageUiData.Type.SYNC_SIGN_IN ||
+                    (it.type == OnboardingPageUiData.Type.MARKETING_DATA &&
+                        !requireComponents.settings.shouldShowMarketingOnboarding)
             }
             .toMutableStateList()
     }

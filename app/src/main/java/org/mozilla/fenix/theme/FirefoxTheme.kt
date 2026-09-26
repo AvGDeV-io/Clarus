@@ -71,9 +71,27 @@ fun FirefoxTheme(
     }
 
     val colorScheme: ColorScheme = when (theme) {
-        Theme.Light -> acornLightColorScheme()
-        Theme.Dark -> acornDarkColorScheme()
-        Theme.Private -> acornPrivateColorScheme()
+        Theme.Light -> acornLightColorScheme().copy(
+            primary = Color(0xFFB8754B),
+            tertiary = Color(0xFFB8754B),
+            tertiaryContainer = Color(0x33B8754B),
+            onTertiary = Color(0xFFFCFAF6),
+            onTertiaryContainer = Color(0xFFB8754B),
+        )
+        Theme.Dark -> acornDarkColorScheme().copy(
+            primary = Color(0xFFB8754B),
+            tertiary = Color(0xFFD5A24A),
+            tertiaryContainer = Color(0x40B8754B),
+            onTertiary = Color(0xFF24201F),
+            onTertiaryContainer = Color(0xFFFCFAF6),
+        )
+        Theme.Private -> acornPrivateColorScheme().copy(
+            primary = Color(0xFFB8754B),
+            tertiary = Color(0xFFD5A24A),
+            tertiaryContainer = Color(0x40B8754B),
+            onTertiary = Color(0xFF24201F),
+            onTertiaryContainer = Color(0xFFFCFAF6),
+        )
     }
 
     val gradients: AcornGradientScheme = when (theme) {

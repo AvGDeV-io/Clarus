@@ -899,8 +899,7 @@ class SettingsFragment : PreferenceFragmentCompat(), SystemInsetsPaddedFragment 
         findPreference<IPProtectionPreference>(
             getPreferenceKey(R.string.pref_key_ip_protection_settings),
         )?.apply {
-            isVisible = ipProtectionStore.state.isEligible
-            showBetaBadge = FxNimbus.features.ipProtection.value().showBetaBadge
+            isVisible = false
         }
     }
 

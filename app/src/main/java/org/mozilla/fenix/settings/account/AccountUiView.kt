@@ -46,54 +46,11 @@ class AccountUiView(
      * Possible conditions are logged-in without problems, logged-out, and logged-in but needs to re-authenticate.
      */
     fun updateAccountUIState(context: Context, profile: Profile?) {
-        val account = accountManager.authenticatedAccount()
-
-        // Signed-in, no problems.
-        if (account != null && !accountManager.accountNeedsReauth()) {
-            preferenceSignIn.isVisible = false
-
-            avatarJob?.cancel()
-            val avatarUrl = profile?.avatar?.url
-            if (avatarUrl != null) {
-                avatarJob = scope.launch {
-                    val roundedAvatarDrawable = toRoundedDrawable(avatarUrl, context)
-                    preferenceFirefoxAccount.icon = roundedAvatarDrawable ?: genericAvatar(context)
-                }
-            } else {
-                avatarJob = null
-                preferenceFirefoxAccount.icon = genericAvatar(context)
-            }
-
-            preferenceSignIn.onPreferenceClickListener = null
-            preferenceFirefoxAccountAuthError.isVisible = false
-            preferenceFirefoxAccount.isVisible = true
-            accountPreferenceCategory.isVisible = true
-
-            preferenceFirefoxAccount.displayName = profile?.displayName
-            preferenceFirefoxAccount.email = profile?.email
-
-            // Signed-in, need to re-authenticate.
-        } else if (account != null && accountManager.accountNeedsReauth()) {
-            preferenceFirefoxAccount.isVisible = false
-            preferenceFirefoxAccountAuthError.isVisible = true
-            accountPreferenceCategory.isVisible = true
-
-            preferenceSignIn.isVisible = false
-            preferenceSignIn.onPreferenceClickListener = null
-
-            preferenceFirefoxAccountAuthError.email = profile?.email
-
-            // Signed-out.
-        } else {
-            if (context.components.settings.shouldShowSignInButton) {
-                preferenceSignIn.isVisible = true
-            } else {
-                preferenceSignIn.isVisible = false
-            }
-            preferenceFirefoxAccount.isVisible = false
-            preferenceFirefoxAccountAuthError.isVisible = false
-            accountPreferenceCategory.isVisible = false
-        }
+        preferenceSignIn.isVisible = false
+        preferenceSignIn.onPreferenceClickListener = null
+        preferenceFirefoxAccount.isVisible = false
+        preferenceFirefoxAccountAuthError.isVisible = false
+        accountPreferenceCategory.isVisible = false
     }
 
     /**

@@ -439,15 +439,8 @@ class CustomizationFragment : PreferenceFragmentCompat(), SystemInsetsPaddedFrag
     }
 
     private fun setupOtherCustomizationCategory() {
-
         requirePreference<SwitchPreferenceCompat>(R.string.pref_key_show_fullscreen_toast).apply {
             isChecked = context.components.settings.shouldShowFullScreenToast
-            onPreferenceChangeListener = SharedPreferenceUpdater()
-        }
-
-
-        requirePreference<SwitchPreferenceCompat>(R.string.pref_key_show_sign_in_button).apply {
-            isChecked = context.components.settings.shouldShowSignInButton
             onPreferenceChangeListener = SharedPreferenceUpdater()
         }
     }

@@ -63,13 +63,7 @@ class ContinuousOnboardingFeature(
             ContinuousOnboardingStage.DAY_3,
                 -> maybeRequestDefaultBrowserRole(stage)
 
-            ContinuousOnboardingStage.DAY_7 -> if (!settings.signedInFxaAccount) {
-                showSyncCardDialog()
-            } else {
-                telemetryRecorder.onOnboardingComplete(
-                    sequenceId = OnboardingPageUiData.Type.SYNC_SIGN_IN.telemetryId,
-                    sequencePosition = "0",
-                )
+            ContinuousOnboardingStage.DAY_7 -> {
                 markStageCompleted(stage)
             }
 

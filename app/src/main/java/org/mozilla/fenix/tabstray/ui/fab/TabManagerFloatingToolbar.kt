@@ -474,7 +474,6 @@ private fun generateMenuItems(
         )
 
         selectedPage == Page.SyncedTabs -> listOf(
-            accountSettingsItem,
             recentlyClosedTabsItem,
         )
 

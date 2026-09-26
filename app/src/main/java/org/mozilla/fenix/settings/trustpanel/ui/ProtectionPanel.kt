@@ -110,12 +110,6 @@ internal fun ProtectionPanel(
             onTrackingProtectionToggleClick = onTrackingProtectionToggleClick,
         )
 
-        IPProtectionMenuGroup(
-            visible = showIPProtection,
-            ipProtectionMenuState = ipProtectionMenuState,
-            onIPProtectionToggle = onIPProtectionToggle,
-            onIPProtectionNavigate = onIPProtectionNavigate,
-        )
 
         ConnectionSecurityMenuGroup(
             websiteInfoState = websiteInfoState,
