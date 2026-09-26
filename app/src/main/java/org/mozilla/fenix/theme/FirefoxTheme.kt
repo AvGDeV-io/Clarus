@@ -84,6 +84,9 @@ fun FirefoxTheme(
             tertiaryContainer = Color(0x40B8754B),
             onTertiary = Color(0xFF24201F),
             onTertiaryContainer = Color(0xFFFCFAF6),
+            background = Color(0xFF0C0B0E),
+            surface = Color(0xFF0C0B0E),
+            surfaceVariant = Color(0xFF16141B),
         )
         Theme.Private -> acornPrivateColorScheme().copy(
             primary = Color(0xFFB8754B),

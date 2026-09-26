@@ -32,6 +32,7 @@ import androidx.compose.ui.graphics.drawscope.scale
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.unit.dp
+import org.mozilla.fenix.R
 import org.mozilla.fenix.theme.ClarusHaptics
 import org.mozilla.fenix.theme.clarusPressAnimation
 
@@ -70,11 +71,20 @@ fun ClarusMinimalHomepage(
         label = "EmblemGlowAlpha",
     )
 
-    // Background color: Deep Obsidian for private mode, transparent for normal
+    // Background: Dark obsidian with subtle warm-orange radial glow for normal mode (matching splash), pure obsidian for private mode
     val bgModifier = if (isPrivateMode) {
         Modifier.background(Color(0xFF0C0B0E))
     } else {
-        Modifier
+        Modifier.background(
+            Brush.radialGradient(
+                colors = listOf(
+                    Color(0xFF2E190E), // Subtle warm-orange / copper glow center behind logo
+                    Color(0xFF161014), // Warm charcoal
+                    Color(0xFF0C0B0E), // Pure obsidian outer
+                ),
+                radius = 1200f,
+            )
+        )
     }
 
     Box(
@@ -85,7 +95,7 @@ fun ClarusMinimalHomepage(
     ) {
         Box(
             modifier = Modifier
-                .size(148.dp)
+                .size(156.dp)
                 .graphicsLayer {
                     scaleX = breathScale
                     scaleY = breathScale
@@ -99,11 +109,30 @@ fun ClarusMinimalHomepage(
                 ),
             contentAlignment = Alignment.Center,
         ) {
-            ClarusEmblemCanvas(
-                isDark = isDark,
-                isPrivate = isPrivateMode,
-                glowMultiplier = glowAlpha,
-                modifier = Modifier.fillMaxSize(),
+            // Ambient radial warm glow behind the dragon
+            Canvas(modifier = Modifier.fillMaxSize()) {
+                val haloColor = if (isPrivateMode) {
+                    Color(0xFFAAA0D2).copy(alpha = 0.22f * glowAlpha)
+                } else {
+                    Color(0xFFF59E0B).copy(alpha = 0.25f * glowAlpha)
+                }
+                drawCircle(
+                    brush = Brush.radialGradient(
+                        colors = listOf(haloColor, Color.Transparent),
+                        center = center,
+                        radius = size.minDimension * 0.65f,
+                    ),
+                    radius = size.minDimension * 0.65f,
+                    center = center,
+                )
+            }
+
+            androidx.compose.foundation.Image(
+                painter = androidx.compose.ui.res.painterResource(
+                    if (isPrivateMode) R.drawable.ic_logo_wordmark_private else R.drawable.ic_logo_wordmark_normal
+                ),
+                contentDescription = androidx.compose.ui.res.stringResource(R.string.app_name),
+                modifier = Modifier.size(136.dp),
             )
         }
     }

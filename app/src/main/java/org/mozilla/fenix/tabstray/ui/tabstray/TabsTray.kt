@@ -8,12 +8,16 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Scaffold
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
@@ -268,49 +272,63 @@ fun TabsTray(
             ) { position ->
                 when (Page.positionToPage(position, shouldShowTabGroupsPage)) {
                     Page.NormalTabs -> {
-                        NormalTabsPage(
-                            normalTabsState = state.normalTabsState,
-                            inactiveTabsState = state.inactiveTabs,
-                            selectionMode = state.mode,
-                            tabsTrayConfig = state.config,
-                            displayTabGroupOnboarding = state.shouldShowTabGroupOnboarding,
-                            enteringGroupId = state.tabGroupState.enteringGroupId,
-                            onTabClose = onTabClose,
-                            shouldShowInactiveTabsAutoCloseDialog = state.inactiveTabs.showAutoCloseDialog,
-                            onItemClick = onItemClick,
-                            onItemLongClick = onItemLongClick,
-                            onInactiveTabsHeaderClick = onInactiveTabsHeaderClick,
-                            onDeleteAllInactiveTabsClick = onDeleteAllInactiveTabsClick,
-                            onInactiveTabsAutoCloseDialogShown = onInactiveTabsAutoCloseDialogShown,
-                            onInactiveTabAutoCloseDialogCloseButtonClick = onInactiveTabAutoCloseDialogCloseButtonClick,
-                            onEnableInactiveTabAutoCloseClick = onEnableInactiveTabAutoCloseClick,
-                            onInactiveTabClick = onInactiveTabClick,
-                            onInactiveTabClose = onInactiveTabClose,
-                            tabInteractionHandler = tabInteractionHandler,
-                            shouldShowInactiveTabsCFR = state.inactiveTabs.showCFR,
-                            onInactiveTabsCFRShown = onInactiveTabsCFRShown,
-                            onInactiveTabsCFRClick = onInactiveTabsCFRClick,
-                            onInactiveTabsCFRDismiss = onInactiveTabsCFRDismiss,
-                            onEditTabGroupClick = { group ->
-                                onAction(TabGroupAction.EditTabGroupClicked(group = group))
-                            },
-                            onCloseTabGroupClick = { group ->
-                                onAction(TabGroupAction.CloseTabGroupClicked(group = group))
-                            },
-                            onShareTabGroupClick = onShareTabGroupClick,
-                            onDeleteTabGroupClick = { group ->
-                                onAction(TabGroupAction.DeleteClicked(group))
-                            },
-                            onTabGroupOnboardingDismiss = onTabGroupOnboardingDismiss,
-                            onTabGroupOnboardingShown = onTabGroupOnboardingShown,
-                            trackersBlockedCount = trackersBlockedCount,
-                            focusEnabled = state.normalTabsState.itemFocusIndicatorEnabled,
-                            onPrivacyReportTapped = onPrivacyReportTapped,
-                            onEnteringGroupAnimationPlayed = {
-                                onAction(TabGroupAction.NewGroupAnimationFinished)
-                            },
-                            dragProcessingState = state.tabGroupState.dragProcessingState,
-                        )
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(
+                                    Brush.verticalGradient(
+                                        listOf(
+                                            Color(0xFF000000),
+                                            Color(0xFF08060A),
+                                            Color(0xFF1E1007),
+                                        )
+                                    )
+                                )
+                        ) {
+                            NormalTabsPage(
+                                normalTabsState = state.normalTabsState,
+                                inactiveTabsState = state.inactiveTabs,
+                                selectionMode = state.mode,
+                                tabsTrayConfig = state.config,
+                                displayTabGroupOnboarding = state.shouldShowTabGroupOnboarding,
+                                enteringGroupId = state.tabGroupState.enteringGroupId,
+                                onTabClose = onTabClose,
+                                shouldShowInactiveTabsAutoCloseDialog = state.inactiveTabs.showAutoCloseDialog,
+                                onItemClick = onItemClick,
+                                onItemLongClick = onItemLongClick,
+                                onInactiveTabsHeaderClick = onInactiveTabsHeaderClick,
+                                onDeleteAllInactiveTabsClick = onDeleteAllInactiveTabsClick,
+                                onInactiveTabsAutoCloseDialogShown = onInactiveTabsAutoCloseDialogShown,
+                                onInactiveTabAutoCloseDialogCloseButtonClick = onInactiveTabAutoCloseDialogCloseButtonClick,
+                                onEnableInactiveTabAutoCloseClick = onEnableInactiveTabAutoCloseClick,
+                                onInactiveTabClick = onInactiveTabClick,
+                                onInactiveTabClose = onInactiveTabClose,
+                                tabInteractionHandler = tabInteractionHandler,
+                                shouldShowInactiveTabsCFR = state.inactiveTabs.showCFR,
+                                onInactiveTabsCFRShown = onInactiveTabsCFRShown,
+                                onInactiveTabsCFRClick = onInactiveTabsCFRClick,
+                                onInactiveTabsCFRDismiss = onInactiveTabsCFRDismiss,
+                                onEditTabGroupClick = { group ->
+                                    onAction(TabGroupAction.EditTabGroupClicked(group = group))
+                                },
+                                onCloseTabGroupClick = { group ->
+                                    onAction(TabGroupAction.CloseTabGroupClicked(group = group))
+                                },
+                                onShareTabGroupClick = onShareTabGroupClick,
+                                onDeleteTabGroupClick = { group ->
+                                    onAction(TabGroupAction.DeleteClicked(group))
+                                },
+                                onTabGroupOnboardingDismiss = onTabGroupOnboardingDismiss,
+                                onTabGroupOnboardingShown = onTabGroupOnboardingShown,
+                                trackersBlockedCount = trackersBlockedCount,
+                                focusEnabled = state.normalTabsState.itemFocusIndicatorEnabled,
+                                onPrivacyReportTapped = onPrivacyReportTapped,
+                                onEnteringGroupAnimationPlayed = {
+                                    onAction(TabGroupAction.NewGroupAnimationFinished)
+                                },
+                                dragProcessingState = state.tabGroupState.dragProcessingState,
+                            )
+                        }
                     }
 
                     Page.PrivateTabs -> {
