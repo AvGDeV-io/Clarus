@@ -10,14 +10,27 @@
   let lastTrackedVideo = null;
 
   function getOrCreatePort() {
-    if (!activePort) {
+    if (!activePort || activePort.error) {
+      activePort = null;
       try {
+        if (typeof browser === "undefined" || !browser.runtime || typeof browser.runtime.connectNative !== "function") {
+          return null;
+        }
         activePort = browser.runtime.connectNative(EXTENSION_PORT);
-        activePort.onMessage.addListener(handleNativeMessage);
-        activePort.onDisconnect.addListener(() => {
+        if (activePort && activePort.error) {
           activePort = null;
-        });
+          return null;
+        }
+        if (activePort && activePort.onMessage) {
+          activePort.onMessage.addListener(handleNativeMessage);
+        }
+        if (activePort && activePort.onDisconnect) {
+          activePort.onDisconnect.addListener(() => {
+            activePort = null;
+          });
+        }
       } catch (e) {
+        activePort = null;
         console.debug("[ClarusTheater] Port connection error:", e);
       }
     }
@@ -382,9 +395,6 @@
     const fullUrl = resolveAbsoluteUrl(rawHref);
     if (!fullUrl || !isMediaUrl(fullUrl)) return;
 
-    event.preventDefault();
-    event.stopPropagation();
-
     const isAudio = isAudioExtension(fullUrl);
     const linkText = (anchor.textContent || "").trim();
     const linkTitle = anchor.getAttribute("title") || anchor.getAttribute("aria-label") || linkText;
@@ -411,14 +421,38 @@
       pageUrl: document.location ? document.location.href : "",
     };
 
+    let dispatched = false;
     try {
       const port = getOrCreatePort();
-      if (port) port.postMessage(payload);
-    } catch (e) {}
+      if (port && !port.error) {
+        port.postMessage(payload);
+        dispatched = true;
+      }
+    } catch (e) {
+      activePort = null;
+      console.warn("[ClarusTheater] Port dispatch failed:", e);
+    }
 
-    try {
-      browser.runtime.sendNativeMessage(EXTENSION_PORT, payload);
-    } catch (e) {}
+    if (!dispatched) {
+      try {
+        if (typeof browser !== "undefined" && browser.runtime && typeof browser.runtime.sendNativeMessage === "function") {
+          const promise = browser.runtime.sendNativeMessage(EXTENSION_PORT, payload);
+          if (promise && typeof promise.catch === "function") {
+            promise.catch((err) => {
+              console.warn("[ClarusTheater] Native messaging dispatch failed asynchronously:", err);
+            });
+          }
+          dispatched = true;
+        }
+      } catch (e) {
+        console.warn("[ClarusTheater] Native messaging dispatch failed:", e);
+      }
+    }
+
+    if (dispatched) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
   }
 
   document.addEventListener("click", handleMediaLinkClick, true);

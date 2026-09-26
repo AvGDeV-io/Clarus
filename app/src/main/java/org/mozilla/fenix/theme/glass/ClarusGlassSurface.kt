@@ -137,17 +137,10 @@ fun ClarusGlassSurface(
             )
             .clip(shape),
     ) {
-        // Layer 1: Translucent blur plate (no content children -> only the plate itself is blurred)
+        // Layer 1: Translucent plate with specular glass border
         Box(
             modifier = Modifier
                 .matchParentSize()
-                .then(
-                    if (supportsRenderEffect && blurRadius > 0.dp) {
-                        Modifier.clarusGlassBlur(blurRadius)
-                    } else {
-                        Modifier
-                    },
-                )
                 .background(surfaceColor)
                 .border(
                     width = borderWidth,

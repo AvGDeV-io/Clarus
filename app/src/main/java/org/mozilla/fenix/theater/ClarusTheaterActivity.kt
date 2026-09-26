@@ -50,9 +50,6 @@ class ClarusTheaterActivity : ComponentActivity() {
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
 
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
-        setupImmersiveFullscreen()
-
         val videoUrl = intent.getStringExtra(EXTRA_VIDEO_URL)
             ?: DEFAULT_SAMPLE_URL
         val title = intent.getStringExtra(EXTRA_TITLE)
@@ -63,6 +60,13 @@ class ClarusTheaterActivity : ComponentActivity() {
             ?: arrayListOf("4K HDR", "Dolby Atmos")
         val isLive = intent.getBooleanExtra(EXTRA_IS_LIVE, false)
         val isAudio = intent.getBooleanExtra(EXTRA_IS_AUDIO, false) || isAudioUrl(videoUrl)
+
+        requestedOrientation = if (isAudio) {
+            ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT
+        } else {
+            ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
+        }
+        setupImmersiveFullscreen()
 
         this.currentPositionMs = initialPositionMs
         this.isPaused = initialPaused
@@ -112,10 +116,16 @@ class ClarusTheaterActivity : ComponentActivity() {
     fun enterTheaterPip() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             try {
-                val safeWidth = currentVideoWidth.coerceAtLeast(1)
-                val safeHeight = currentVideoHeight.coerceAtLeast(1)
-                val ratioFloat = (safeWidth.toFloat() / safeHeight.toFloat()).coerceIn(0.42f, 2.38f)
-                val pipRational = Rational((ratioFloat * 1000).toInt(), 1000)
+                val videoUrl = intent.getStringExtra(EXTRA_VIDEO_URL) ?: DEFAULT_SAMPLE_URL
+                val isAudio = intent.getBooleanExtra(EXTRA_IS_AUDIO, false) || isAudioUrl(videoUrl)
+                val pipRational = if (isAudio) {
+                    Rational(16, 9)
+                } else {
+                    val safeWidth = currentVideoWidth.coerceAtLeast(1)
+                    val safeHeight = currentVideoHeight.coerceAtLeast(1)
+                    val ratioFloat = (safeWidth.toFloat() / safeHeight.toFloat()).coerceIn(0.42f, 2.38f)
+                    Rational((ratioFloat * 1000).toInt(), 1000)
+                }
                 val params = PictureInPictureParams.Builder()
                     .setAspectRatio(pipRational)
                     .build()
@@ -141,7 +151,13 @@ class ClarusTheaterActivity : ComponentActivity() {
         super.onPictureInPictureModeChanged(isInPictureInPictureMode, newConfig)
         isInPipMode = isInPictureInPictureMode
         if (!isInPictureInPictureMode) {
-            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
+            val videoUrl = intent.getStringExtra(EXTRA_VIDEO_URL) ?: DEFAULT_SAMPLE_URL
+            val isAudio = intent.getBooleanExtra(EXTRA_IS_AUDIO, false) || isAudioUrl(videoUrl)
+            requestedOrientation = if (isAudio) {
+                ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT
+            } else {
+                ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
+            }
             setupImmersiveFullscreen()
         } else {
             requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
@@ -180,8 +196,10 @@ class ClarusTheaterActivity : ComponentActivity() {
         const val EXTRA_RESULT_IS_PAUSED = "org.mozilla.fenix.theater.EXTRA_RESULT_IS_PAUSED"
 
         const val DEFAULT_SAMPLE_URL =
-            "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-        const val DEFAULT_SAMPLE_TITLE = "Fjord Ep. 04 · Aurora Nocturne"
+            "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+        const val DEFAULT_SAMPLE_TITLE = "MDN · Flower Bloom"
+        const val DEFAULT_SAMPLE_AUDIO_URL =
+            "https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3"
 
         fun isAudioUrl(url: String): Boolean {
             val clean = url.substringBefore('?').substringBefore('#').lowercase()

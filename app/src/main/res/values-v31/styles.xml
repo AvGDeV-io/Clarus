@@ -10,8 +10,6 @@
         <item name="android:background">@color/clarus_glass_dialog_plate</item>
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:backgroundDimAmount">0.15</item>
-        <item name="android:windowBlurBehindEnabled">true</item>
-        <item name="android:windowBackgroundBlurRadius">32dp</item>
         <item name="colorAccent">?accent</item>
         <item name="buttonBarPositiveButtonStyle">@style/DialogButtonStyle</item>
         <item name="buttonBarNegativeButtonStyle">@style/DialogButtonStyle</item>

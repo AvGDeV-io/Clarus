@@ -384,6 +384,7 @@ const val LOREM_IPSUM = "Lorem ipsum dolor sit amet, consectetur adipiscing elit
  * When the tab is not in focus, its BorderStroke will be null.
  */
 @Composable
+@ReadOnlyComposable
 fun tabItemConditionalBorder(selectionState: TabsTrayItemSelectionState): BorderStroke? {
     return if (selectionState.isFocused && selectionState.focusEnabled) {
         tabItemBorderFocused()
@@ -393,52 +394,33 @@ fun tabItemConditionalBorder(selectionState: TabsTrayItemSelectionState): Border
 }
 
 /**
- * Active-tab border: animated RGB hue-cycle ring while focused, otherwise the static tab outline.
- * Animation state is only composed for the focused card so the rest of the grid stays cheap.
+ * Renders a border around a [TabsTrayItem] to signify that it is in focus.
  */
 @Composable
+@ReadOnlyComposable
 fun tabItemBorderFocused(): BorderStroke {
-    val outlineBrush = activeTabRgbRingBrush()
-    return BorderStroke(width = FirefoxTheme.layout.border.heaviest, brush = outlineBrush)
+    return BorderStroke(width = FirefoxTheme.layout.border.heaviest, brush = FirefoxTheme.gradients.tabOutline.brush)
 }
 
 /**
- * Continuous RGB hue-cycling sweep brush used only on the focused/active tab card.
- */
-@Composable
-private fun activeTabRgbRingBrush(): Brush {
-    val infiniteTransition = rememberInfiniteTransition(label = "ActiveTabRgbRing")
-    val sweepAngle by infiniteTransition.animateFloat(
-        initialValue = 0f,
-        targetValue = 360f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(durationMillis = 1800, easing = LinearEasing),
-            repeatMode = RepeatMode.Restart,
-        ),
-        label = "ActiveTabRgbRingAngle",
-    )
-    return remember(sweepAngle) { clarusRgbGlowBrush(rotationAngle = sweepAngle) }
-}
-
-/**
- * Soft outer glow drawn behind the active tab card, cycling with the same RGB sweep.
- * Animation is composed only for the focused card so grid siblings stay static.
+ * Soft outer glow drawn behind the active tab card, cycling with the RGB sweep.
+ * Animation state is read only during the draw phase so the composition stays cheap and static.
  */
 fun Modifier.activeTabRgbGlow(isActive: Boolean): Modifier {
     if (!isActive) return this
     return composed {
         val infiniteTransition = rememberInfiniteTransition(label = "ActiveTabRgbGlow")
-        val sweepAngle by infiniteTransition.animateFloat(
+        val sweepAngle = infiniteTransition.animateFloat(
             initialValue = 0f,
             targetValue = 360f,
             animationSpec = infiniteRepeatable(
-                animation = tween(durationMillis = 1800, easing = LinearEasing),
+                animation = tween(durationMillis = 2400, easing = LinearEasing),
                 repeatMode = RepeatMode.Restart,
             ),
             label = "ActiveTabRgbGlowAngle",
         )
-        val glowBrush = remember(sweepAngle) { clarusRgbGlowBrush(rotationAngle = sweepAngle) }
         this.drawBehind {
+            val glowBrush = clarusRgbGlowBrush(rotationAngle = sweepAngle.value)
             val inset = 2.dp.toPx()
             val strokeWidth = 5.dp.toPx()
             val halfStroke = strokeWidth / 2f

@@ -28,6 +28,7 @@ import org.mozilla.fenix.components.toolbar.ToolbarPosition.BOTTOM
 import org.mozilla.fenix.components.toolbar.ToolbarPosition.TOP
 import org.mozilla.fenix.ext.getRectWithScreenLocation
 import org.mozilla.fenix.ext.nav
+import org.mozilla.fenix.theme.ClarusHaptics
 import org.mozilla.fenix.tabstray.redux.state.Page
 import kotlin.math.abs
 
@@ -82,6 +83,9 @@ class ToolbarVerticalGesturesHandler(
     private var currentSwipeXDistance = 0f
     private var currentSwipeYDistance = 0f
     private var startTouchPoint = PointF(0f, 0f)
+    private var cachedIsStartInSystemInset = false
+    private var cachedToolbarBounds: Rect? = null
+    private var cachedNavBarBounds: Rect? = null
 
     override fun onSwipeStarted(
         start: PointF,
@@ -90,6 +94,10 @@ class ToolbarVerticalGesturesHandler(
         startTouchPoint = start
         currentSwipeXDistance = next.x - start.x
         currentSwipeYDistance = next.y - start.y
+
+        cachedToolbarBounds = toolbarBounds()
+        cachedNavBarBounds = navBarBounds()
+        cachedIsStartInSystemInset = start.isInSystemGestureInset()
 
         return maybeShowTabsOnSwipe()
     }
@@ -102,7 +110,9 @@ class ToolbarVerticalGesturesHandler(
     }
 
     override fun onSwipeFinished(velocityX: Float, velocityY: Float) {
-        // no-op
+        cachedToolbarBounds = null
+        cachedNavBarBounds = null
+        cachedIsStartInSystemInset = false
     }
 
     /**
@@ -119,7 +129,7 @@ class ToolbarVerticalGesturesHandler(
         @Suppress("ComplexCondition")
         if (!isCurrentDestinationValid ||
             appStore.state.searchState.isSearchActive ||
-            startTouchPoint.isInSystemGestureInset() ||
+            cachedIsStartInSystemInset ||
             !startTouchPoint.isSwipeValid(currentSwipeXDistance, currentSwipeYDistance)
         ) {
             return false
@@ -127,6 +137,7 @@ class ToolbarVerticalGesturesHandler(
 
         if (isSwipeValid()) {
             Events.toolbarTabstraySwipe.record(NoExtras())
+            ClarusHaptics.performTick(insetsAnchor())
 
             val currentMode = getCurrentBrowsingMode?.invoke() ?: appStore.state.mode
             navController.nav(
@@ -167,14 +178,17 @@ class ToolbarVerticalGesturesHandler(
         val isHorizontalSwipe = abs(distanceX) > abs(distanceY)
         if (isHorizontalSwipe) return false
 
-        val isSwipeUpOverNavbar = distanceY.isSwipeUp && isInTarget(navBarBounds())
+        val currentNavBarBounds = cachedNavBarBounds ?: navBarBounds()
+        val currentToolbarBounds = cachedToolbarBounds ?: toolbarBounds()
+
+        val isSwipeUpOverNavbar = distanceY.isSwipeUp && isInTarget(currentNavBarBounds)
         if (isSwipeUpOverNavbar) return true
 
         val isToolbarSwipeDirectionValid = when (toolbarPosition) {
             TOP -> distanceY.isSwipeDown
             BOTTOM -> distanceY.isSwipeUp
         }
-        return isToolbarSwipeDirectionValid && isInTarget(toolbarBounds())
+        return isToolbarSwipeDirectionValid && isInTarget(currentToolbarBounds)
     }
 
     /**
@@ -198,10 +212,10 @@ class ToolbarVerticalGesturesHandler(
     }
 
     private fun getTargetHeight(): Int {
-        val navBar = navBarBounds()
+        val navBar = cachedNavBarBounds ?: navBarBounds()
         return when ((navBar?.height() ?: 0) > 0) {
             true -> navBar!!.height()
-            else -> toolbarBounds()?.height() ?: 0
+            else -> (cachedToolbarBounds ?: toolbarBounds())?.height() ?: 0
         }
     }
 

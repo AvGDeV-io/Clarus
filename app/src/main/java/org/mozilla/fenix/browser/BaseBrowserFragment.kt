@@ -170,6 +170,8 @@ import org.mozilla.fenix.biometricauthentication.AuthenticationStatus
 import org.mozilla.fenix.biometricauthentication.BiometricAuthenticationManager
 import org.mozilla.fenix.browser.applinks.AppLinksPromptFragment
 import org.mozilla.fenix.browser.browsingmode.BrowsingMode
+import org.mozilla.fenix.browser.peek.TabPeekController
+import org.mozilla.fenix.browser.peek.isPeekableLink
 import org.mozilla.fenix.browser.permissions.FenixSitePermissionLearnMoreUrlProvider
 import org.mozilla.fenix.browser.readermode.DefaultReaderModeController
 import org.mozilla.fenix.browser.readermode.ReaderModeController
@@ -267,6 +269,7 @@ abstract class BaseBrowserFragment :
     private var suggestStrongPasswordBar: PasswordPromptView? = null
     private var emailMaskBar: EmailMaskPromptView? = null
     internal var blackScreenOverlay: ComposeView? = null
+    private var tabPeekController: TabPeekController? = null
     private lateinit var startForResult: ActivityResultLauncher<Intent>
 
     @VisibleForTesting
@@ -604,12 +607,39 @@ abstract class BaseBrowserFragment :
                 tabId = customTabSessionId,
                 shouldHide = {
                     val state = requireComponents.appStore.state
-                    state.isPrivateScreenLocked && state.mode.isPrivate
+                    (state.isPrivateScreenLocked && state.mode.isPrivate) ||
+                        (tabPeekController?.isPeekVisible == true)
+                },
+                shouldDeferShow = { hit ->
+                    hit.isPeekableLink()
                 },
             ),
             owner = this,
             view = view,
         )
+
+        tabPeekController?.stop()
+        tabPeekController = TabPeekController(
+            browserStore = store,
+            fenixBrowserUseCases = requireComponents.useCases.fenixBrowserUseCases,
+            contextMenuUseCases = requireComponents.useCases.contextMenuUseCases,
+            engine = requireComponents.core.engine,
+            lifecycleOwner = viewLifecycleOwner,
+            container = binding.browserLayout,
+            engineView = binding.engineView.asView(),
+            isPrivateSession = { requireComponents.appStore.state.mode.isPrivate },
+            onActionRequested = { actionId, currentUrl, hit ->
+                handlePeekAction(actionId, currentUrl, hit)
+            },
+            dismissLegacyMenu = {
+                if (isAdded && !isDetached) {
+                    parentFragmentManager.findFragmentByTag("mozac_feature_contextmenu_dialog")
+                        ?.let { frag ->
+                            parentFragmentManager.beginTransaction().remove(frag).commitAllowingStateLoss()
+                        }
+                }
+            },
+        ).also { it.start() }
 
         snackbarBinding.set(
             feature = SnackbarBinding(
@@ -1472,6 +1502,62 @@ abstract class BaseBrowserFragment :
             blackScreenOverlay == null
 
     @VisibleForTesting
+    
+    private fun handlePeekAction(
+        actionId: String,
+        currentUrl: String,
+        hit: mozilla.components.concept.engine.HitResult,
+    ) {
+        val url = currentUrl.ifBlank { hit.getUrl() }
+        android.util.Log.e("PEEK_DEBUG", "handlePeekAction: actionId=$actionId, currentUrl='$currentUrl', resolved='$url'")
+        when (actionId) {
+            TabPeekController.ACTION_OPEN_TAB -> {
+                requireComponents.useCases.fenixBrowserUseCases.loadUrlOrSearch(
+                    searchTermOrURL = url,
+                    newTab = true,
+                    private = false,
+                )
+            }
+            TabPeekController.ACTION_DOWNLOAD -> {
+                val currentTab = requireComponents.core.store.state.selectedTab
+                val downloadLocation = DownloadLocationManager(
+                    requireComponents.settings,
+                    requireContext().contentResolver,
+                ).defaultLocation
+                if (currentTab != null) {
+                    requireComponents.useCases.contextMenuUseCases.injectDownload(
+                        currentTab.id,
+                        DownloadState(
+                            url = url,
+                            skipConfirmation = true,
+                            private = currentTab.content.private,
+                            directoryPath = downloadLocation,
+                            referrerUrl = currentTab.content.url,
+                        ),
+                    )
+                } else {
+                    requireComponents.useCases.fenixBrowserUseCases.loadUrlOrSearch(
+                        searchTermOrURL = url,
+                        newTab = true,
+                        private = false,
+                    )
+                }
+            }
+            TabPeekController.ACTION_COPY -> {
+                val clip = android.content.ClipData.newPlainText(url, url)
+                (requireContext().getSystemService(android.content.Context.CLIPBOARD_SERVICE)
+                    as android.content.ClipboardManager).setPrimaryClip(clip)
+            }
+            TabPeekController.ACTION_SHARE -> {
+                val send = android.content.Intent(android.content.Intent.ACTION_SEND).apply {
+                    type = "text/plain"
+                    putExtra(android.content.Intent.EXTRA_TEXT, url)
+                }
+                startActivity(android.content.Intent.createChooser(send, null))
+            }
+        }
+    }
+
     internal fun addBlackScreen(container: ViewGroup = binding.browserLayout) {
         blackScreenOverlay = ComposeView(requireContext()).apply {
             setContent {
@@ -2352,6 +2438,9 @@ abstract class BaseBrowserFragment :
      * Dereference these views when the fragment view is destroyed to prevent memory leaks
      */
     override fun onDestroyView() {
+        tabPeekController?.stop()
+        tabPeekController = null
+
         super.onDestroyView()
 
         // Diagnostic breadcrumb for "Display already aquired" crash:

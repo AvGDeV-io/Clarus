@@ -182,12 +182,13 @@ fun TabsTray(
     )
 
     LaunchedEffect(state.selectedPage, shouldShowTabGroupsPage) {
-        pagerState.animateScrollToPage(
-            Page.pageToPosition(
-                page = state.selectedPage,
-                shouldShowTabGroupsPage = shouldShowTabGroupsPage,
-            ),
+        val targetPosition = Page.pageToPosition(
+            page = state.selectedPage,
+            shouldShowTabGroupsPage = shouldShowTabGroupsPage,
         )
+        if (pagerState.currentPage != targetPosition && !pagerState.isScrollInProgress) {
+            pagerState.animateScrollToPage(targetPosition)
+        }
     }
 
     // Keep TabsTrayState.selectedPage in sync when the user swipes between pages,
@@ -201,7 +202,7 @@ fun TabsTray(
     val currentOnTabPageClick by rememberUpdatedState(onTabPageClick)
     val pageSettleHaptics = rememberClarusHaptics()
     LaunchedEffect(pagerState, shouldShowTabGroupsPage) {
-        snapshotFlow { pagerState.currentPage }
+        snapshotFlow { pagerState.settledPage }
             .collect { position ->
                 val settledPage = Page.positionToPage(position, shouldShowTabGroupsPage)
                 if (settledPage != currentSelectedPage) {

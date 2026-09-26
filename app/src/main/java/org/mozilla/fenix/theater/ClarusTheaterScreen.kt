@@ -77,6 +77,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalViewConfiguration
 import androidx.compose.ui.res.painterResource
+import android.util.Log
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -86,17 +87,23 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.media3.common.C
 import androidx.media3.common.MediaItem
+import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
 import androidx.media3.common.VideoSize
+import androidx.media3.datasource.DefaultDataSource
+import androidx.media3.datasource.DefaultHttpDataSource
 import androidx.media3.exoplayer.DefaultLoadControl
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.exoplayer.SeekParameters
+import androidx.media3.exoplayer.source.DefaultMediaSourceFactory
 import androidx.compose.runtime.rememberCoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import mozilla.components.ui.icons.R as iconsR
 import org.mozilla.fenix.R
+import org.mozilla.fenix.ext.components
+import org.mozilla.fenix.theme.glass.ClarusGlassTokens
 import kotlin.math.abs
 import kotlin.math.hypot
 import kotlin.math.sin
@@ -161,7 +168,28 @@ fun ClarusTheaterScreen(
             .setPrioritizeTimeOverSizeThresholds(true)
             .build()
 
+        val userAgent = runCatching {
+            context.components.core.engine.settings.userAgentString
+        }.getOrNull()?.ifBlank { null }
+            ?: "Mozilla/5.0 (Linux; Android 14; Mobile; rv:128.0) Gecko/128.0 Firefox/128.0"
+
+        val httpDataSourceFactory = DefaultHttpDataSource.Factory()
+            .setUserAgent(userAgent)
+            .setAllowCrossProtocolRedirects(true)
+            .setConnectTimeoutMs(15_000)
+            .setReadTimeoutMs(20_000)
+            .setDefaultRequestProperties(
+                mapOf(
+                    "Accept" to "*/*",
+                    "Accept-Encoding" to "identity",
+                ),
+            )
+
+        val dataSourceFactory = DefaultDataSource.Factory(context, httpDataSourceFactory)
+        val mediaSourceFactory = DefaultMediaSourceFactory(dataSourceFactory)
+
         ExoPlayer.Builder(context)
+            .setMediaSourceFactory(mediaSourceFactory)
             .setLoadControl(loadControl)
             .setSeekParameters(SeekParameters.EXACT)
             .build()
@@ -176,6 +204,7 @@ fun ClarusTheaterScreen(
 
     var isPlaying by remember { mutableStateOf(!initialPaused) }
     var playbackState by remember { mutableIntStateOf(player.playbackState) }
+    var playbackError by remember { mutableStateOf<String?>(null) }
     var currentPositionMs by remember { mutableLongStateOf(initialPositionMs) }
     var durationMs by remember { mutableLongStateOf(0L) }
     var bufferedPositionMs by remember { mutableLongStateOf(0L) }
@@ -192,7 +221,14 @@ fun ClarusTheaterScreen(
                 playbackState = state
                 if (state == Player.STATE_READY) {
                     durationMs = player.duration.coerceAtLeast(0L)
+                    playbackError = null
                 }
+            }
+
+            override fun onPlayerError(error: PlaybackException) {
+                Log.e("ClarusTheater", "ExoPlayer playback error: ${error.errorCodeName}", error)
+                val detailedMsg = error.cause?.message ?: error.message ?: error.errorCodeName
+                playbackError = detailedMsg
             }
 
             override fun onVideoSizeChanged(videoSize: VideoSize) {
@@ -300,6 +336,7 @@ fun ClarusTheaterScreen(
     } else {
         Modifier.pointerInput(touchSlop) {
             awaitEachGesture {
+                val wasControlsVisibleAtDown = controlsVisible
                 val down = awaitFirstDown(requireUnconsumed = false)
                 val startX = down.position.x
                 val startY = down.position.y
@@ -320,10 +357,20 @@ fun ClarusTheaterScreen(
 
                     if (!change.pressed) {
                         // Touch released
+                        Log.d("ClarusTheater", "gestureModifier touch release: isDragging=$isDragging, wasVisibleAtDown=$wasControlsVisibleAtDown, isConsumed=${change.isConsumed}")
                         if (!isDragging) {
-                            // Tap anywhere: toggle controls visibility smoothly
-                            controlsVisible = !controlsVisible
-                            markInteraction()
+                            if (!wasControlsVisibleAtDown) {
+                                // Controls were hidden when touch started: reveal them smoothly
+                                Log.d("ClarusTheater", "Revealing controls on screen tap")
+                                controlsVisible = true
+                                lastInteractionTimestamp = System.currentTimeMillis()
+                            } else {
+                                // Controls were visible when touch started: hide them smoothly if not consumed by button
+                                if (!change.isConsumed) {
+                                    Log.d("ClarusTheater", "Hiding controls on unconsumed screen tap")
+                                    controlsVisible = false
+                                }
+                            }
                         } else {
                             when (resolvedZone) {
                                 GestureZone.CENTER_SCRUB -> {
@@ -461,6 +508,74 @@ fun ClarusTheaterScreen(
         }
     }
 
+    if (isAudio) {
+        if (isInPip) {
+            ClarusAudioPipScreen(
+                title = title ?: "Audio Stream",
+                isPlaying = isPlaying,
+                currentPosMs = currentPositionMs,
+                durationMs = durationMs,
+                onPlayPause = {
+                    if (isPlaying) player.pause() else player.play()
+                },
+                modifier = modifier,
+            )
+            return
+        }
+        ClarusPortraitAudioScreen(
+            title = title ?: "Audio Stream",
+            badges = resolvedBadges,
+            isPlaying = isPlaying,
+            playbackState = playbackState,
+            playbackError = playbackError,
+            currentPosMs = if (isScrubberDragging) scrubDragPositionMs else currentPositionMs,
+            durationMs = durationMs,
+            bufferedPosMs = bufferedPositionMs,
+            currentVolume = currentVolume,
+            maxVolume = maxVolume,
+            onVolumeChange = { newVol ->
+                currentVolume = newVol
+                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, newVol, 0)
+            },
+            onPlayPause = {
+                if (isPlaying) player.pause() else player.play()
+            },
+            onReplay10 = {
+                val target = (player.currentPosition - 10_000L).coerceAtLeast(0L)
+                player.seekTo(target)
+            },
+            onForward10 = {
+                val target = (player.currentPosition + 10_000L).coerceAtMost(durationMs)
+                player.seekTo(target)
+            },
+            onSeek = { targetMs ->
+                player.seekTo(targetMs)
+            },
+            onScrubStart = {
+                isScrubberDragging = true
+                scrubDragPositionMs = currentPositionMs
+            },
+            onScrubProgress = { posMs ->
+                scrubDragPositionMs = posMs
+            },
+            onScrubEnd = { posMs ->
+                player.seekTo(posMs)
+                isScrubberDragging = false
+            },
+            onRetry = {
+                playbackError = null
+                player.prepare()
+                player.play()
+            },
+            onClose = {
+                onClose(player.currentPosition, !isPlaying)
+            },
+            onEnterPip = onEnterPip,
+            modifier = modifier,
+        )
+        return
+    }
+
     Box(
         modifier = modifier
             .fillMaxSize()
@@ -473,17 +588,9 @@ fun ClarusTheaterScreen(
             .then(gestureModifier),
     ) {
         // -------------------------------------------------------------
-        // Background Media Surface: Video SurfaceView OR Ambient Audio Visualizer
+        // Background Fullscreen Video Surface
         // -------------------------------------------------------------
-        if (isAudio) {
-            AmbientAudioVisualizer(
-                isPlaying = isPlaying,
-                title = title ?: "Audio Stream",
-                modifier = Modifier.fillMaxSize(),
-            )
-        } else {
-            // Fullscreen Video Surface with Fit / Fill / Stretch geometry
-            BoxWithConstraints(
+        BoxWithConstraints(
                 modifier = Modifier
                     .fillMaxSize()
                     .clipToBounds(),
@@ -539,7 +646,6 @@ fun ClarusTheaterScreen(
                     }
                 }
             }
-        }
 
         // -------------------------------------------------------------
         // Center Buffering Indicator
@@ -624,11 +730,21 @@ fun ClarusTheaterScreen(
         // -------------------------------------------------------------
         AnimatedVisibility(
             visible = controlsVisible && !isInPip,
-            enter = fadeIn(tween(250)),
-            exit = fadeOut(tween(350)),
+            enter = fadeIn(tween(durationMillis = 250, easing = FastOutSlowInEasing)),
+            exit = fadeOut(tween(durationMillis = 250, easing = FastOutSlowInEasing)),
             modifier = Modifier.fillMaxSize(),
         ) {
-            Box(modifier = Modifier.fillMaxSize()) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .clickable(
+                        interactionSource = remember { MutableInteractionSource() },
+                        indication = null,
+                    ) {
+                        Log.d("ClarusTheater", "Overlay empty space clicked -> controlsVisible = false")
+                        controlsVisible = false
+                    },
+            ) {
                 // Top Bar with Circular Exit-Fullscreen Button in Top-Left
                 TheaterTopBar(
                     badges = resolvedBadges,
@@ -745,6 +861,23 @@ fun ClarusTheaterScreen(
                 )
             }
         }
+
+        // -------------------------------------------------------------
+        // Video Playback Error Overlay
+        // -------------------------------------------------------------
+        if (playbackError != null && !isInPip) {
+            TheaterErrorOverlay(
+                errorMessage = playbackError ?: "Playback error",
+                onRetry = {
+                    playbackError = null
+                    player.prepare()
+                    player.play()
+                },
+                onClose = {
+                    onClose(player.currentPosition, !isPlaying)
+                },
+            )
+        }
     }
 }
 
@@ -805,28 +938,6 @@ private fun TheaterTopBar(
                     overflow = TextOverflow.Ellipsis,
                     textAlign = TextAlign.Center,
                 )
-            }
-
-            if (badges.isNotEmpty()) {
-                Spacer(modifier = Modifier.height(2.dp))
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(6.dp),
-                ) {
-                    Box(
-                        modifier = Modifier
-                            .size(5.dp)
-                            .clip(CircleShape)
-                            .background(Color(0xFFD5A24A)), // Amber accent dot
-                    )
-                    Text(
-                        text = badges.joinToString(" · "),
-                        color = Color(0xFF94A3B8),
-                        fontSize = 10.sp,
-                        fontWeight = FontWeight.Medium,
-                        letterSpacing = 0.5.sp,
-                    )
-                }
             }
         }
 
@@ -1210,33 +1321,51 @@ private fun InteractiveScrubberTrack(
 }
 
 // -------------------------------------------------------------
-// Calm Ambient Animated Visualizer for Direct Audio Playback
-// Renders pulsating radial harmonic aura in place of video
+// Clarus Serene Tactile Glass Portrait Audio Player Screen
 // -------------------------------------------------------------
 @Composable
-private fun AmbientAudioVisualizer(
-    isPlaying: Boolean,
+private fun ClarusPortraitAudioScreen(
     title: String,
+    badges: List<String>,
+    isPlaying: Boolean,
+    playbackState: Int,
+    playbackError: String?,
+    currentPosMs: Long,
+    durationMs: Long,
+    bufferedPosMs: Long,
+    currentVolume: Int = 0,
+    maxVolume: Int = 1,
+    onVolumeChange: (Int) -> Unit = {},
+    onPlayPause: () -> Unit,
+    onReplay10: () -> Unit,
+    onForward10: () -> Unit,
+    onSeek: (Long) -> Unit,
+    onScrubStart: () -> Unit,
+    onScrubProgress: (Long) -> Unit,
+    onScrubEnd: (Long) -> Unit,
+    onRetry: () -> Unit,
+    onClose: () -> Unit,
+    onEnterPip: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val infiniteTransition = rememberInfiniteTransition()
 
     // Breathing pulse scale
     val pulseScale by infiniteTransition.animateFloat(
-        initialValue = 0.85f,
-        targetValue = 1.15f,
+        initialValue = 0.90f,
+        targetValue = 1.10f,
         animationSpec = infiniteRepeatable(
-            animation = tween(durationMillis = 3200, easing = FastOutSlowInEasing),
+            animation = tween(durationMillis = 3000, easing = FastOutSlowInEasing),
             repeatMode = RepeatMode.Reverse,
         ),
     )
 
-    // Gentle rotation of aura
+    // Aura rotation
     val auraRotation by infiniteTransition.animateFloat(
         initialValue = 0f,
         targetValue = 360f,
         animationSpec = infiniteRepeatable(
-            animation = tween(durationMillis = 30000, easing = LinearEasing),
+            animation = tween(durationMillis = 28000, easing = LinearEasing),
             repeatMode = RepeatMode.Restart,
         ),
     )
@@ -1244,38 +1373,38 @@ private fun AmbientAudioVisualizer(
     // Ambient glow alpha
     val glowAlpha by infiniteTransition.animateFloat(
         initialValue = 0.40f,
-        targetValue = 0.75f,
+        targetValue = 0.70f,
         animationSpec = infiniteRepeatable(
-            animation = tween(durationMillis = 2400, easing = FastOutSlowInEasing),
+            animation = tween(durationMillis = 2200, easing = FastOutSlowInEasing),
             repeatMode = RepeatMode.Reverse,
         ),
     )
 
-    val activeScale = if (isPlaying) pulseScale else 0.90f
+    val activeScale = if (isPlaying) pulseScale else 0.92f
     val activeAlpha = if (isPlaying) glowAlpha else 0.35f
 
     Box(
         modifier = modifier
             .fillMaxSize()
-            .background(Color(0xFF090A0F)),
-        contentAlignment = Alignment.Center,
+            .background(Color(0xFF090A10)), // Serene deep midnight canvas
     ) {
+        // Ambient background aura canvas
         Canvas(modifier = Modifier.fillMaxSize()) {
-            val centerOffset = Offset(size.width / 2f, size.height / 2f)
-            val baseRadius = hypot(size.width, size.height) * 0.28f * activeScale
+            val centerOffset = Offset(size.width * 0.5f, size.height * 0.38f)
+            val baseRadius = size.width * 0.48f * activeScale
 
             // Outermost soft violet/lavender aura
             drawCircle(
                 brush = Brush.radialGradient(
                     colors = listOf(
-                        Color(0x55AAA0D2).copy(alpha = activeAlpha * 0.7f),
-                        Color(0x224C1D95).copy(alpha = activeAlpha * 0.4f),
+                        Color(0x44AAA0D2).copy(alpha = activeAlpha * 0.6f),
+                        Color(0x224C1D95).copy(alpha = activeAlpha * 0.35f),
                         Color.Transparent,
                     ),
                     center = centerOffset,
-                    radius = baseRadius * 1.5f,
+                    radius = baseRadius * 1.6f,
                 ),
-                radius = baseRadius * 1.5f,
+                radius = baseRadius * 1.6f,
                 center = centerOffset,
             )
 
@@ -1283,18 +1412,18 @@ private fun AmbientAudioVisualizer(
             drawCircle(
                 brush = Brush.radialGradient(
                     colors = listOf(
-                        Color(0x66E08A44).copy(alpha = activeAlpha),
-                        Color(0x33B8754B).copy(alpha = activeAlpha * 0.6f),
+                        Color(0x55E08A44).copy(alpha = activeAlpha * 0.9f),
+                        Color(0x26B8754B).copy(alpha = activeAlpha * 0.5f),
                         Color.Transparent,
                     ),
                     center = centerOffset,
-                    radius = baseRadius * 1.05f,
+                    radius = baseRadius * 1.15f,
                 ),
-                radius = baseRadius * 1.05f,
+                radius = baseRadius * 1.15f,
                 center = centerOffset,
             )
 
-            // Inner subtle concentric sound ripples
+            // Inner concentric sound ripples
             for (i in 1..3) {
                 val rippleRadius = baseRadius * (0.35f + i * 0.22f)
                 val rippleAlpha = (activeAlpha * (1f - i * 0.25f)).coerceIn(0f, 1f)
@@ -1307,40 +1436,378 @@ private fun AmbientAudioVisualizer(
             }
         }
 
-        // Center Frosted Glass Audio Orb
+        // Main Portrait Audio Content Column
         Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 24.dp)
+                .padding(top = 48.dp, bottom = 36.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
         ) {
+            // TOP BAR: Frosted Exit Button, Category Pill, PiP Button
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween,
+            ) {
+                IconButton(
+                    onClick = onClose,
+                    modifier = Modifier
+                        .size(42.dp)
+                        .clip(CircleShape)
+                        .background(Color(0x660F172A))
+                        .border(0.75.dp, Color(0x33FFFFFF), CircleShape),
+                ) {
+                    Icon(
+                        painter = painterResource(id = iconsR.drawable.mozac_ic_back_24),
+                        contentDescription = "Exit Theater",
+                        tint = Color.White,
+                        modifier = Modifier.size(20.dp),
+                    )
+                }
+
+                // Centered subtle category pill
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(6.dp),
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(14.dp))
+                        .background(Color(0x401E293B))
+                        .border(0.5.dp, Color(0x22FFFFFF), RoundedCornerShape(14.dp))
+                        .padding(horizontal = 12.dp, vertical = 6.dp),
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .size(6.dp)
+                            .clip(CircleShape)
+                            .background(Color(0xFFD5A24A)),
+                    )
+                    Text(
+                        text = "CLARUS THEATER",
+                        color = Color(0xFFCBD5E1),
+                        fontSize = 11.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        letterSpacing = 1.sp,
+                    )
+                }
+
+                IconButton(
+                    onClick = onEnterPip,
+                    modifier = Modifier
+                        .size(42.dp)
+                        .clip(CircleShape)
+                        .background(Color(0x660F172A))
+                        .border(0.75.dp, Color(0x33FFFFFF), CircleShape),
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_theater_pip),
+                        contentDescription = "Picture-in-Picture",
+                        tint = Color.White,
+                        modifier = Modifier.size(20.dp),
+                    )
+                }
+            }
+
+            Spacer(modifier = Modifier.weight(0.7f))
+
+            // HERO ARTWORK / SOUNDWAVE GLASS CARD (240dp x 240dp)
             Box(
                 modifier = Modifier
-                    .size(96.dp)
-                    .clip(CircleShape)
-                    .background(Color(0x8C11131F))
-                    .border(1.dp, Color(0x33FFFFFF), CircleShape),
+                    .size(240.dp)
+                    .clip(RoundedCornerShape(36.dp))
+                    .background(Color(0x6611131F))
+                    .border(
+                        1.dp,
+                        Brush.verticalGradient(
+                            listOf(
+                                Color.White.copy(alpha = 0.28f),
+                                Color.White.copy(alpha = 0.08f),
+                                Color(0x22B8754B),
+                            ),
+                        ),
+                        RoundedCornerShape(36.dp),
+                    ),
                 contentAlignment = Alignment.Center,
             ) {
-                // Harmonic soundwave bars
+                // Internal vinyl sound ring
+                Box(
+                    modifier = Modifier
+                        .size(170.dp)
+                        .clip(CircleShape)
+                        .background(Color(0x550F172A))
+                        .border(1.dp, Color(0x26D5A24A), CircleShape),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    // Harmonic soundwave bars
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(5.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        val barHeights = listOf(20.dp, 36.dp, 56.dp, 32.dp, 48.dp, 24.dp)
+                        barHeights.forEachIndexed { index, targetHeight ->
+                            val barHeight = if (isPlaying) {
+                                val factor = 0.55f + 0.45f * sin((auraRotation * 0.06f) + index.toFloat())
+                                targetHeight * factor
+                            } else {
+                                targetHeight * 0.35f
+                            }
+                            Box(
+                                modifier = Modifier
+                                    .width(4.5.dp)
+                                    .height(barHeight)
+                                    .clip(RoundedCornerShape(3.dp))
+                                    .background(
+                                        Brush.verticalGradient(
+                                            listOf(Color(0xFFE08A44), Color(0xFFD5A24A), Color(0xFFAAA0D2)),
+                                        ),
+                                    ),
+                            )
+                        }
+                    }
+                }
+            }
+
+            Spacer(modifier = Modifier.height(28.dp))
+
+            // TRACK TITLE & BADGES
+            Text(
+                text = title,
+                color = Color(0xFFF8FAFC),
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                letterSpacing = 0.3.sp,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.padding(horizontal = 16.dp),
+            )
+
+            Spacer(modifier = Modifier.height(6.dp))
+
+            // Format Badges pill
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(6.dp),
+            ) {
+                Box(
+                    modifier = Modifier
+                        .size(5.dp)
+                        .clip(CircleShape)
+                        .background(Color(0xFFD5A24A)),
+                )
+                Text(
+                    text = if (badges.isNotEmpty()) badges.joinToString(" · ") else "Lossless Audio Stream",
+                    color = Color(0xFF94A3B8),
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Medium,
+                    letterSpacing = 0.5.sp,
+                )
+            }
+
+            Spacer(modifier = Modifier.weight(0.5f))
+
+            // SCRUBBER TRACK & TIMECODES
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 8.dp),
+            ) {
+                InteractiveScrubberTrack(
+                    currentPosMs = currentPosMs,
+                    durationMs = durationMs,
+                    bufferedPosMs = bufferedPosMs,
+                    onSeek = onSeek,
+                    onScrubStart = onScrubStart,
+                    onScrubProgress = onScrubProgress,
+                    onScrubEnd = onScrubEnd,
+                    modifier = Modifier.fillMaxWidth(),
+                )
+
+                Spacer(modifier = Modifier.height(8.dp))
+
                 Row(
-                    horizontalArrangement = Arrangement.spacedBy(4.dp),
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                ) {
+                    Text(
+                        text = formatTime(currentPosMs),
+                        color = Color(0xFFE2E8F0),
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Medium,
+                        fontFamily = FontFamily.Monospace,
+                    )
+                    Text(
+                        text = formatTime(durationMs),
+                        color = Color(0xFF94A3B8),
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Normal,
+                        fontFamily = FontFamily.Monospace,
+                    )
+                }
+            }
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            // PLAYBACK CONTROLS TRIO (10s Back, Hero Play/Pause, 10s Forward)
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(36.dp),
+            ) {
+                // Replay 10s
+                IconButton(
+                    onClick = onReplay10,
+                    modifier = Modifier
+                        .size(52.dp)
+                        .clip(CircleShape)
+                        .background(Color(0x660F172A))
+                        .border(0.75.dp, Color(0x33FFFFFF), CircleShape),
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_theater_replay_10),
+                        contentDescription = "Replay 10 seconds",
+                        tint = Color(0xFFE2E8F0),
+                        modifier = Modifier.size(26.dp),
+                    )
+                }
+
+                // Hero Frosted Glass Play/Pause Button
+                FrostedHeroPlayButton(
+                    isPlaying = isPlaying,
+                    onClick = onPlayPause,
+                )
+
+                // Forward 10s
+                IconButton(
+                    onClick = onForward10,
+                    modifier = Modifier
+                        .size(52.dp)
+                        .clip(CircleShape)
+                        .background(Color(0x660F172A))
+                        .border(0.75.dp, Color(0x33FFFFFF), CircleShape),
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_theater_forward_10),
+                        contentDescription = "Forward 10 seconds",
+                        tint = Color(0xFFE2E8F0),
+                        modifier = Modifier.size(26.dp),
+                    )
+                }
+            }
+
+
+
+            Spacer(modifier = Modifier.weight(0.4f))
+        }
+
+        // Center Buffering Indicator
+        if (playbackState == Player.STATE_BUFFERING) {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center,
+            ) {
+                CircularProgressIndicator(
+                    modifier = Modifier.size(52.dp),
+                    color = Color(0xFFD5A24A),
+                    strokeWidth = 3.dp,
+                )
+            }
+        }
+
+        // Playback Error Banner / Overlay
+        if (playbackError != null) {
+            TheaterErrorOverlay(
+                errorMessage = playbackError,
+                onRetry = onRetry,
+                onClose = onClose,
+            )
+        }
+    }
+}
+
+// -------------------------------------------------------------
+// Clarus Minimal Frosted Glass Audio PiP Screen
+// -------------------------------------------------------------
+@Composable
+private fun ClarusAudioPipScreen(
+    title: String,
+    isPlaying: Boolean,
+    currentPosMs: Long,
+    durationMs: Long,
+    onPlayPause: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    val progress = if (durationMs > 0L) (currentPosMs.toFloat() / durationMs.toFloat()).coerceIn(0f, 1f) else 0f
+
+    val infiniteTransition = rememberInfiniteTransition(label = "AudioPipWave")
+    val wavePhase by infiniteTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 6.28318f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(durationMillis = 2000, easing = LinearEasing),
+            repeatMode = RepeatMode.Restart,
+        ),
+        label = "AudioPipWavePhase",
+    )
+
+    Box(
+        modifier = modifier
+            .fillMaxSize()
+            .background(Color(0xFF080B12))
+            .border(1.dp, Color(0x33FFFFFF), RoundedCornerShape(12.dp))
+            .clip(RoundedCornerShape(12.dp)),
+        contentAlignment = Alignment.Center,
+    ) {
+        // Ambient soft copper/indigo glow
+        Canvas(modifier = Modifier.fillMaxSize()) {
+            drawCircle(
+                brush = Brush.radialGradient(
+                    colors = listOf(
+                        Color(0x33D5A24A),
+                        Color(0x184C1D95),
+                        Color.Transparent,
+                    ),
+                    center = Offset(size.width * 0.15f, size.height * 0.5f),
+                    radius = size.width * 0.7f,
+                ),
+            )
+        }
+
+        Row(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 14.dp, vertical = 8.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
+        ) {
+            // Left Art / Harmonic soundwave badge
+            Box(
+                modifier = Modifier
+                    .size(46.dp)
+                    .clip(RoundedCornerShape(12.dp))
+                    .background(Color(0x660F172A))
+                    .border(1.dp, Color(0x33FFFFFF), RoundedCornerShape(12.dp)),
+                contentAlignment = Alignment.Center,
+            ) {
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(2.5.dp),
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    val barHeights = listOf(18.dp, 32.dp, 44.dp, 26.dp, 38.dp, 20.dp)
+                    val barHeights = listOf(8.dp, 16.dp, 24.dp, 14.dp, 20.dp, 10.dp)
                     barHeights.forEachIndexed { index, targetHeight ->
                         val barHeight = if (isPlaying) {
-                            val factor = 0.6f + 0.4f * sin((auraRotation * 0.05f) + index.toFloat())
+                            val factor = 0.5f + 0.5f * sin(wavePhase + index.toFloat() * 1.1f)
                             targetHeight * factor
                         } else {
-                            targetHeight * 0.4f
+                            targetHeight * 0.35f
                         }
                         Box(
                             modifier = Modifier
-                                .width(3.5.dp)
+                                .width(3.dp)
                                 .height(barHeight)
-                                .clip(RoundedCornerShape(2.dp))
+                                .clip(RoundedCornerShape(1.5.dp))
                                 .background(
                                     Brush.verticalGradient(
-                                        listOf(Color(0xFFE08A44), Color(0xFFAAA0D2)),
+                                        listOf(Color(0xFFE08A44), Color(0xFFD5A24A), Color(0xFFAAA0D2)),
                                     ),
                                 ),
                         )
@@ -1348,27 +1815,176 @@ private fun AmbientAudioVisualizer(
                 }
             }
 
-            Spacer(modifier = Modifier.height(18.dp))
+            // Track title, status pill, progress bar
+            Column(
+                modifier = Modifier.weight(1f),
+                verticalArrangement = Arrangement.Center,
+            ) {
+                Text(
+                    text = title,
+                    color = Color(0xFFF1F5F9),
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Bold,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
+                Spacer(modifier = Modifier.height(2.dp))
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(5.dp),
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .size(5.dp)
+                            .clip(CircleShape)
+                            .background(if (isPlaying) Color(0xFF10B981) else Color(0xFF94A3B8)),
+                    )
+                    Text(
+                        text = if (isPlaying) "Playing" else "Paused",
+                        color = if (isPlaying) Color(0xFF10B981) else Color(0xFF94A3B8),
+                        fontSize = 9.sp,
+                        fontWeight = FontWeight.Medium,
+                    )
+                    if (durationMs > 0L) {
+                        Text(
+                            text = "${formatTime(currentPosMs)} / ${formatTime(durationMs)}",
+                            color = Color(0xFF64748B),
+                            fontSize = 9.sp,
+                        )
+                    }
+                }
+                Spacer(modifier = Modifier.height(3.dp))
+                // Clean sleek mini progress line
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(2.5.dp)
+                        .clip(RoundedCornerShape(1.5.dp))
+                        .background(Color(0x33FFFFFF)),
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth(fraction = progress)
+                            .fillMaxHeight()
+                            .background(
+                                Brush.horizontalGradient(
+                                    listOf(Color(0xFFD5A24A), Color(0xFFF59E0B)),
+                                ),
+                            ),
+                    )
+                }
+            }
 
+            // Play / Pause Mini Button
+            Box(
+                modifier = Modifier
+                    .size(38.dp)
+                    .clip(CircleShape)
+                    .background(Color(0x800F172A))
+                    .border(1.dp, Color(0x40FFFFFF), CircleShape)
+                    .clickable(
+                        interactionSource = remember { MutableInteractionSource() },
+                        indication = null,
+                        onClick = onPlayPause,
+                    ),
+                contentAlignment = Alignment.Center,
+            ) {
+                if (isPlaying) {
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(3.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .width(3.dp)
+                                .height(13.dp)
+                                .clip(RoundedCornerShape(1.dp))
+                                .background(Color.White),
+                        )
+                        Box(
+                            modifier = Modifier
+                                .width(3.dp)
+                                .height(13.dp)
+                                .clip(RoundedCornerShape(1.dp))
+                                .background(Color.White),
+                        )
+                    }
+                } else {
+                    Icon(
+                        imageVector = Icons.Filled.PlayArrow,
+                        contentDescription = "Play",
+                        tint = Color.White,
+                        modifier = Modifier.size(20.dp),
+                    )
+                }
+            }
+        }
+    }
+}
+
+// -------------------------------------------------------------
+// Frosted Glass Error Overlay
+// -------------------------------------------------------------
+@Composable
+private fun TheaterErrorOverlay(
+    errorMessage: String,
+    onRetry: () -> Unit,
+    onClose: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Box(
+        modifier = modifier
+            .fillMaxSize()
+            .background(Color(0xB3000000)),
+        contentAlignment = Alignment.Center,
+    ) {
+        Column(
+            modifier = Modifier
+                .padding(32.dp)
+                .clip(RoundedCornerShape(24.dp))
+                .background(Color(0xD91E293B))
+                .border(1.dp, Color(0x33EF4444), RoundedCornerShape(24.dp))
+                .padding(horizontal = 28.dp, vertical = 24.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
             Text(
-                text = title,
-                color = Color(0xFFF1F5F9),
-                fontSize = 15.sp,
-                fontWeight = FontWeight.SemiBold,
-                letterSpacing = 0.5.sp,
-                maxLines = 1,
+                text = "Playback Error",
+                color = Color(0xFFF87171),
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold,
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = errorMessage,
+                color = Color(0xFFE2E8F0),
+                fontSize = 13.sp,
+                textAlign = TextAlign.Center,
+                maxLines = 3,
                 overflow = TextOverflow.Ellipsis,
             )
-
-            Spacer(modifier = Modifier.height(4.dp))
-
-            Text(
-                text = if (isPlaying) "Playing Direct Audio" else "Paused",
-                color = Color(0xFF94A3B8),
-                fontSize = 11.sp,
-                fontWeight = FontWeight.Normal,
-                letterSpacing = 0.5.sp,
-            )
+            Spacer(modifier = Modifier.height(20.dp))
+            Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                Box(
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(12.dp))
+                        .background(Color(0x33FFFFFF))
+                        .clickable(onClick = onClose)
+                        .padding(horizontal = 18.dp, vertical = 10.dp),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Text("Close", color = Color.White, fontSize = 13.sp, fontWeight = FontWeight.Medium)
+                }
+                Box(
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(12.dp))
+                        .background(Color(0xFFD5A24A))
+                        .clickable(onClick = onRetry)
+                        .padding(horizontal = 22.dp, vertical = 10.dp),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Text("Retry", color = Color(0xFF0F172A), fontSize = 13.sp, fontWeight = FontWeight.Bold)
+                }
+            }
         }
     }
 }
