@@ -52,6 +52,8 @@ data class ClarusVideoPayload(
     val qualityBadge: String,
     val pageUrl: String,
     val isLive: Boolean = false,
+    val referrer: String = "",
+    val cookies: String = "",
 )
 
 /**
@@ -184,6 +186,8 @@ class ClarusTheaterFeature(
             isLive = json.optBoolean("isLive", false) ||
                 json.optDouble("duration", -1.0) == Double.POSITIVE_INFINITY ||
                 json.optString("reason") == "DIRECT_HLS_MANIFEST",
+            referrer = json.optString("referrer", json.optString("pageUrl", "")),
+            cookies = json.optString("cookies", ""),
         )
     }
 

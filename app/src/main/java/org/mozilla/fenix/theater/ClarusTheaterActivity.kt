@@ -9,6 +9,7 @@ import android.app.PictureInPictureParams
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Rational
@@ -60,6 +61,10 @@ class ClarusTheaterActivity : ComponentActivity() {
             ?: arrayListOf("4K HDR", "Dolby Atmos")
         val isLive = intent.getBooleanExtra(EXTRA_IS_LIVE, false)
         val isAudio = intent.getBooleanExtra(EXTRA_IS_AUDIO, false) || isAudioUrl(videoUrl)
+        val referrer = intent.getStringExtra(EXTRA_REFERRER)
+        val cookies = intent.getStringExtra(EXTRA_COOKIES)
+        val customUserAgent = intent.getStringExtra(EXTRA_USER_AGENT)
+        val trigger = intent.getStringExtra(EXTRA_TRIGGER)
 
         requestedOrientation = if (isAudio) {
             ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT
@@ -81,6 +86,10 @@ class ClarusTheaterActivity : ComponentActivity() {
                 isLive = isLive,
                 isAudio = isAudio,
                 isInPip = isInPipMode,
+                referrer = referrer,
+                cookies = cookies,
+                customUserAgent = customUserAgent,
+                trigger = trigger,
                 onVideoSizeChanged = { w, h ->
                     currentVideoWidth = w
                     currentVideoHeight = h
@@ -90,6 +99,9 @@ class ClarusTheaterActivity : ComponentActivity() {
                 },
                 onEnterPip = {
                     enterTheaterPip()
+                },
+                onOpenInBrowser = { url ->
+                    openInBrowser(url)
                 },
             )
         }
@@ -183,6 +195,17 @@ class ClarusTheaterActivity : ComponentActivity() {
         }
     }
 
+    private fun openInBrowser(url: String) {
+        runCatching {
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url)).apply {
+                setPackage(packageName)
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
+            startActivity(browserIntent)
+        }
+        finish()
+    }
+
     companion object {
         const val EXTRA_VIDEO_URL = "org.mozilla.fenix.theater.EXTRA_VIDEO_URL"
         const val EXTRA_TITLE = "org.mozilla.fenix.theater.EXTRA_TITLE"
@@ -191,6 +214,10 @@ class ClarusTheaterActivity : ComponentActivity() {
         const val EXTRA_BADGES = "org.mozilla.fenix.theater.EXTRA_BADGES"
         const val EXTRA_IS_LIVE = "org.mozilla.fenix.theater.EXTRA_IS_LIVE"
         const val EXTRA_IS_AUDIO = "org.mozilla.fenix.theater.EXTRA_IS_AUDIO"
+        const val EXTRA_REFERRER = "org.mozilla.fenix.theater.EXTRA_REFERRER"
+        const val EXTRA_COOKIES = "org.mozilla.fenix.theater.EXTRA_COOKIES"
+        const val EXTRA_USER_AGENT = "org.mozilla.fenix.theater.EXTRA_USER_AGENT"
+        const val EXTRA_TRIGGER = "org.mozilla.fenix.theater.EXTRA_TRIGGER"
 
         const val EXTRA_RESULT_POSITION_MS = "org.mozilla.fenix.theater.EXTRA_RESULT_POSITION_MS"
         const val EXTRA_RESULT_IS_PAUSED = "org.mozilla.fenix.theater.EXTRA_RESULT_IS_PAUSED"
@@ -260,6 +287,10 @@ class ClarusTheaterActivity : ComponentActivity() {
             badges: ArrayList<String> = arrayListOf("4K HDR", "Dolby Atmos"),
             isLive: Boolean = false,
             isAudio: Boolean = false,
+            referrer: String? = null,
+            cookies: String? = null,
+            userAgent: String? = null,
+            trigger: String? = null,
         ): Intent {
             return Intent(context, ClarusTheaterActivity::class.java).apply {
                 putExtra(EXTRA_VIDEO_URL, videoUrl)
@@ -269,6 +300,18 @@ class ClarusTheaterActivity : ComponentActivity() {
                 putStringArrayListExtra(EXTRA_BADGES, badges)
                 putExtra(EXTRA_IS_LIVE, isLive)
                 putExtra(EXTRA_IS_AUDIO, isAudio || isAudioUrl(videoUrl))
+                if (!referrer.isNullOrBlank()) {
+                    putExtra(EXTRA_REFERRER, referrer)
+                }
+                if (!cookies.isNullOrBlank()) {
+                    putExtra(EXTRA_COOKIES, cookies)
+                }
+                if (!userAgent.isNullOrBlank()) {
+                    putExtra(EXTRA_USER_AGENT, userAgent)
+                }
+                if (!trigger.isNullOrBlank()) {
+                    putExtra(EXTRA_TRIGGER, trigger)
+                }
             }
         }
     }

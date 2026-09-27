@@ -239,6 +239,11 @@ class BrowserFragment : BaseBrowserFragment(), UserInteractionHandler, SystemIns
                     clarusTheater.exitWebFullscreen()
 
                     val isAudio = ClarusTheaterActivity.isAudioUrl(payload.src)
+                    val referrer = payload.referrer.ifBlank { payload.pageUrl }
+                    val userAgent = runCatching {
+                        requireComponents.core.engine.settings.userAgentString
+                    }.getOrNull()
+
                     val intent = ClarusTheaterActivity.createIntent(
                         context = requireContext(),
                         videoUrl = payload.src,
@@ -248,6 +253,10 @@ class BrowserFragment : BaseBrowserFragment(), UserInteractionHandler, SystemIns
                         badges = if (payload.qualityBadge.isNotEmpty()) arrayListOf(payload.qualityBadge) else ArrayList(),
                         isLive = payload.isLive,
                         isAudio = isAudio,
+                        referrer = referrer,
+                        cookies = payload.cookies,
+                        userAgent = userAgent,
+                        trigger = payload.trigger,
                     )
                     theaterLauncher.launch(intent)
                 } else {

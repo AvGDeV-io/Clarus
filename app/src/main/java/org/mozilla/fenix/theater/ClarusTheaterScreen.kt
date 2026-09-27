@@ -142,9 +142,14 @@ fun ClarusTheaterScreen(
     isLive: Boolean = false,
     isAudio: Boolean = false,
     isInPip: Boolean = false,
+    referrer: String? = null,
+    cookies: String? = null,
+    customUserAgent: String? = null,
+    trigger: String? = null,
     onVideoSizeChanged: ((width: Int, height: Int) -> Unit)? = null,
     onClose: (currentPositionMs: Long, isPaused: Boolean) -> Unit,
     onEnterPip: () -> Unit,
+    onOpenInBrowser: ((url: String) -> Unit)? = null,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
@@ -157,7 +162,7 @@ fun ClarusTheaterScreen(
     // -------------------------------------------------------------
     // Low-Latency ExoPlayer Lifecycle & State Management
     // -------------------------------------------------------------
-    val player = remember(videoUrl) {
+    val player = remember(videoUrl, referrer, cookies, customUserAgent) {
         val loadControl = DefaultLoadControl.Builder()
             .setBufferDurationsMs(
                 /* minBufferMs = */ 15_000,
@@ -168,22 +173,29 @@ fun ClarusTheaterScreen(
             .setPrioritizeTimeOverSizeThresholds(true)
             .build()
 
-        val userAgent = runCatching {
-            context.components.core.engine.settings.userAgentString
-        }.getOrNull()?.ifBlank { null }
+        val userAgent = customUserAgent?.ifBlank { null }
+            ?: runCatching {
+                context.components.core.engine.settings.userAgentString
+            }.getOrNull()?.ifBlank { null }
             ?: "Mozilla/5.0 (Linux; Android 14; Mobile; rv:128.0) Gecko/128.0 Firefox/128.0"
+
+        val requestProperties = mutableMapOf(
+            "Accept" to "*/*",
+            "Accept-Encoding" to "identity",
+        )
+        if (!referrer.isNullOrBlank()) {
+            requestProperties["Referer"] = referrer
+        }
+        if (!cookies.isNullOrBlank()) {
+            requestProperties["Cookie"] = cookies
+        }
 
         val httpDataSourceFactory = DefaultHttpDataSource.Factory()
             .setUserAgent(userAgent)
             .setAllowCrossProtocolRedirects(true)
             .setConnectTimeoutMs(15_000)
             .setReadTimeoutMs(20_000)
-            .setDefaultRequestProperties(
-                mapOf(
-                    "Accept" to "*/*",
-                    "Accept-Encoding" to "identity",
-                ),
-            )
+            .setDefaultRequestProperties(requestProperties)
 
         val dataSourceFactory = DefaultDataSource.Factory(context, httpDataSourceFactory)
         val mediaSourceFactory = DefaultMediaSourceFactory(dataSourceFactory)
@@ -205,6 +217,7 @@ fun ClarusTheaterScreen(
     var isPlaying by remember { mutableStateOf(!initialPaused) }
     var playbackState by remember { mutableIntStateOf(player.playbackState) }
     var playbackError by remember { mutableStateOf<String?>(null) }
+    var isContainerUnsupported by remember { mutableStateOf(false) }
     var currentPositionMs by remember { mutableLongStateOf(initialPositionMs) }
     var durationMs by remember { mutableLongStateOf(0L) }
     var bufferedPositionMs by remember { mutableLongStateOf(0L) }
@@ -222,13 +235,20 @@ fun ClarusTheaterScreen(
                 if (state == Player.STATE_READY) {
                     durationMs = player.duration.coerceAtLeast(0L)
                     playbackError = null
+                    isContainerUnsupported = false
                 }
             }
 
             override fun onPlayerError(error: PlaybackException) {
                 Log.e("ClarusTheater", "ExoPlayer playback error: ${error.errorCodeName}", error)
-                val detailedMsg = error.cause?.message ?: error.message ?: error.errorCodeName
-                playbackError = detailedMsg
+                if (error.errorCode == PlaybackException.ERROR_CODE_PARSING_CONTAINER_UNSUPPORTED) {
+                    isContainerUnsupported = true
+                    playbackError = "This link does not appear to be a direct media stream."
+                } else {
+                    isContainerUnsupported = false
+                    val detailedMsg = error.cause?.message ?: error.message ?: error.errorCodeName
+                    playbackError = detailedMsg
+                }
             }
 
             override fun onVideoSizeChanged(videoSize: VideoSize) {
@@ -564,6 +584,7 @@ fun ClarusTheaterScreen(
             },
             onRetry = {
                 playbackError = null
+                isContainerUnsupported = false
                 player.prepare()
                 player.play()
             },
@@ -571,6 +592,8 @@ fun ClarusTheaterScreen(
                 onClose(player.currentPosition, !isPlaying)
             },
             onEnterPip = onEnterPip,
+            isContainerUnsupported = isContainerUnsupported,
+            onOpenInBrowser = if (onOpenInBrowser != null) { { onOpenInBrowser(videoUrl) } } else null,
             modifier = modifier,
         )
         return
@@ -870,12 +893,15 @@ fun ClarusTheaterScreen(
                 errorMessage = playbackError ?: "Playback error",
                 onRetry = {
                     playbackError = null
+                    isContainerUnsupported = false
                     player.prepare()
                     player.play()
                 },
                 onClose = {
                     onClose(player.currentPosition, !isPlaying)
                 },
+                isOpenInBrowserVisible = isContainerUnsupported && onOpenInBrowser != null,
+                onOpenInBrowser = if (onOpenInBrowser != null) { { onOpenInBrowser(videoUrl) } } else null,
             )
         }
     }
@@ -1346,6 +1372,8 @@ private fun ClarusPortraitAudioScreen(
     onRetry: () -> Unit,
     onClose: () -> Unit,
     onEnterPip: () -> Unit,
+    isContainerUnsupported: Boolean = false,
+    onOpenInBrowser: (() -> Unit)? = null,
     modifier: Modifier = Modifier,
 ) {
     val infiniteTransition = rememberInfiniteTransition()
@@ -1719,6 +1747,8 @@ private fun ClarusPortraitAudioScreen(
                 errorMessage = playbackError,
                 onRetry = onRetry,
                 onClose = onClose,
+                isOpenInBrowserVisible = isContainerUnsupported && onOpenInBrowser != null,
+                onOpenInBrowser = onOpenInBrowser,
             )
         }
     }
@@ -1930,6 +1960,8 @@ private fun TheaterErrorOverlay(
     errorMessage: String,
     onRetry: () -> Unit,
     onClose: () -> Unit,
+    isOpenInBrowserVisible: Boolean = false,
+    onOpenInBrowser: (() -> Unit)? = null,
     modifier: Modifier = Modifier,
 ) {
     Box(
@@ -1973,6 +2005,18 @@ private fun TheaterErrorOverlay(
                     contentAlignment = Alignment.Center,
                 ) {
                     Text("Close", color = Color.White, fontSize = 13.sp, fontWeight = FontWeight.Medium)
+                }
+                if (isOpenInBrowserVisible && onOpenInBrowser != null) {
+                    Box(
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(12.dp))
+                            .background(Color(0xFF3B82F6))
+                            .clickable(onClick = onOpenInBrowser)
+                            .padding(horizontal = 18.dp, vertical = 10.dp),
+                        contentAlignment = Alignment.Center,
+                    ) {
+                        Text("Open in Browser", color = Color.White, fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
+                    }
                 }
                 Box(
                     modifier = Modifier

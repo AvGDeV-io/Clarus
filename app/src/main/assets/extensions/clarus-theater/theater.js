@@ -196,6 +196,8 @@
       poster: video.poster ? resolveAbsoluteUrl(video.poster) : "",
       qualityBadge: qualityBadge,
       pageUrl: document.location ? document.location.href : "",
+      referrer: getEffectiveReferrer(),
+      cookies: safeGetCookies(),
     };
 
     try {
@@ -338,6 +340,41 @@
     return VIDEO_EXTENSIONS.some((ext) => clean.endsWith(ext));
   }
 
+  function safeGetCookies() {
+    try {
+      return document.cookie || "";
+    } catch (e) {
+      return "";
+    }
+  }
+
+  function getEffectiveReferrer() {
+    try {
+      return (document.location && document.location.href) ? document.location.href : (document.referrer || "");
+    } catch (e) {
+      return "";
+    }
+  }
+
+  const VIEWER_PATH_SEGMENTS = new Set([
+    "blob", "tree", "browse", "view", "viewer", "blame", "commits", "commit", "edit", "pull", "pulls", "issues", "issue"
+  ]);
+
+  function isWebViewerUrl(url) {
+    try {
+      const parsed = new URL(url);
+      const segments = parsed.pathname.toLowerCase().split("/").filter(Boolean);
+      if (segments.length <= 1) return false;
+      // If the link explicitly targets a raw endpoint or raw domain, it's not a web viewer
+      if (segments.includes("raw") || parsed.hostname.startsWith("raw.")) return false;
+      // Check if any segment preceding the final filename is a web viewer indicator
+      const leadingSegments = segments.slice(0, -1);
+      return leadingSegments.some((seg) => VIEWER_PATH_SEGMENTS.has(seg));
+    } catch (e) {
+      return false;
+    }
+  }
+
   function isMediaUrl(url) {
     return isAudioExtension(url) || isVideoExtension(url);
   }
@@ -367,6 +404,8 @@
         poster: "",
         qualityBadge: "Lossless Audio",
         pageUrl: document.location.href,
+        referrer: getEffectiveReferrer(),
+        cookies: safeGetCookies(),
       };
       setTimeout(() => {
         try {
@@ -393,7 +432,7 @@
     if (!rawHref || rawHref.startsWith("#") || rawHref.startsWith("javascript:")) return;
 
     const fullUrl = resolveAbsoluteUrl(rawHref);
-    if (!fullUrl || !isMediaUrl(fullUrl)) return;
+    if (!fullUrl || !isMediaUrl(fullUrl) || isWebViewerUrl(fullUrl)) return;
 
     const isAudio = isAudioExtension(fullUrl);
     const linkText = (anchor.textContent || "").trim();
@@ -419,6 +458,8 @@
       poster: "",
       qualityBadge: isAudio ? "Lossless Audio" : "",
       pageUrl: document.location ? document.location.href : "",
+      referrer: getEffectiveReferrer(),
+      cookies: safeGetCookies(),
     };
 
     let dispatched = false;

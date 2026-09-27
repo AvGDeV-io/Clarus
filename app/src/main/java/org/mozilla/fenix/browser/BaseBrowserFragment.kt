@@ -799,6 +799,12 @@ abstract class BaseBrowserFragment :
                             (download.contentType?.startsWith("audio/") == true)
                         val title = download.fileName?.ifBlank { null }
                             ?: download.url.substringAfterLast('/').substringBefore('?').substringBefore('#')
+                        val referrer = download.referrerUrl
+                            ?: requireComponents.core.store.state.selectedTab?.content?.url
+                        val userAgent = runCatching {
+                            requireComponents.core.engine.settings.userAgentString
+                        }.getOrNull()
+
                         val intent = ClarusTheaterActivity.createIntent(
                             context = context,
                             videoUrl = download.url,
@@ -808,6 +814,9 @@ abstract class BaseBrowserFragment :
                             badges = if (isAudio) arrayListOf("Lossless Audio") else arrayListOf("HD"),
                             isLive = false,
                             isAudio = isAudio,
+                            referrer = referrer,
+                            userAgent = userAgent,
+                            trigger = "DOWNLOAD_INTERCEPT",
                         )
                         context.startActivity(intent)
                         return@run
