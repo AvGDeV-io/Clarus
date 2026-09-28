@@ -45,7 +45,7 @@ android {
             arg("room.schemaLocation", "$projectDir/schemas".toString())
         }
 
-        applicationId "io.github.forkmaintainers"
+        applicationId "io.github.volursbreath.clarus"
         minSdk config.minSdkVersion
         targetSdk config.targetSdkVersion
         versionCode 1
@@ -158,15 +158,14 @@ android {
             isDefault true
             shrinkResources false
             minifyEnabled false
-            applicationIdSuffix ".iceraven.debug"
+            applicationIdSuffix ".debug"
             pseudoLocalesEnabled true
             // Need to replicate default debug config features
             signingConfig signingConfigs.debug
             debuggable true
-            def deepLinkSchemeValue = "iceraven-debug"
+            def deepLinkSchemeValue = "clarus-debug"
             buildConfigField "String", "DEEP_LINK_SCHEME", "\"$deepLinkSchemeValue\""
             manifestPlaceholders.putAll([
-                    "sharedUserId": "io.github.forkmaintainers.iceraven.sharedID",
                     "deepLinkScheme": deepLinkSchemeValue,
             ])
             // Use custom default allowed addon list
@@ -177,11 +176,10 @@ android {
         }
         forkRelease releaseTemplate >> {
             buildConfigField "boolean", "USE_RELEASE_VERSIONING", "true"
-            applicationIdSuffix ".iceraven"
-            def deepLinkSchemeValue = "iceraven"
+            applicationIdSuffix ""
+            def deepLinkSchemeValue = "clarus"
             buildConfigField "String", "DEEP_LINK_SCHEME", "\"$deepLinkSchemeValue\""
             manifestPlaceholders.putAll([
-                    "sharedUserId": "io.github.forkmaintainers.iceraven.sharedID",
                     "deepLinkScheme": deepLinkSchemeValue,
             ])
             // Use custom default allowed addon list
