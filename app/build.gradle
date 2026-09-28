@@ -221,8 +221,10 @@ android {
 
             if (signingConfigs.release.storeFile != null && signingConfigs.release.storeFile.exists()) {
                 signingConfig signingConfigs.release
+                println "Clarus Build: forkRelease is using RELEASE signing config (keystore: ${signingConfigs.release.storeFile.name}, alias: ${signingConfigs.release.keyAlias})"
             } else if (!project.hasProperty("disableDebugSigning") && !gradle.hasProperty("localProperties.disableDebugSigning")) {
                 signingConfig signingConfigs.debug
+                println "Clarus Build: forkRelease FALLBACK to debug signing config"
             }
         }
         benchmark releaseTemplate >> {
