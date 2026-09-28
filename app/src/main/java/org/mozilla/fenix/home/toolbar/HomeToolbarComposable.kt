@@ -194,7 +194,7 @@ internal class HomeToolbarComposable(
             ClarusGlassSurface(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp),
+                    .padding(horizontal = 16.dp, vertical = 6.dp),
                 shape = ClarusGlassTokens.Shapes.Pill,
                 elevation = ClarusGlassTokens.Elevation.Level2,
                 isDarkTheme = isSystemInDarkTheme() || isPrivateMode,

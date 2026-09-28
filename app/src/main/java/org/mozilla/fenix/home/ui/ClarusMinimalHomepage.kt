@@ -71,26 +71,8 @@ fun ClarusMinimalHomepage(
         label = "EmblemGlowAlpha",
     )
 
-    // Background: Dark obsidian with subtle warm-orange radial glow for normal mode (matching splash), pure obsidian for private mode
-    val bgModifier = if (isPrivateMode) {
-        Modifier.background(Color(0xFF0C0B0E))
-    } else {
-        Modifier.background(
-            Brush.radialGradient(
-                colors = listOf(
-                    Color(0xFF2E190E), // Subtle warm-orange / copper glow center behind logo
-                    Color(0xFF161014), // Warm charcoal
-                    Color(0xFF0C0B0E), // Pure obsidian outer
-                ),
-                radius = 1200f,
-            )
-        )
-    }
-
     Box(
-        modifier = modifier
-            .fillMaxSize()
-            .then(bgModifier),
+        modifier = modifier.fillMaxSize(),
         contentAlignment = Alignment.Center,
     ) {
         Box(

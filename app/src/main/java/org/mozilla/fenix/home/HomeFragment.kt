@@ -14,6 +14,7 @@ import android.widget.FrameLayout
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.VisibleForTesting
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -33,6 +34,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.boundsInRoot
 import androidx.compose.ui.layout.onGloballyPositioned
@@ -698,18 +700,26 @@ class HomeFragment : Fragment() {
                     }
                 }
 
+                val homeBgModifier = if (isPrivateMode) {
+                    Modifier.background(Color(0xFF0C0B0E))
+                } else {
+                    Modifier.background(
+                        Brush.radialGradient(
+                            colors = listOf(
+                                Color(0xFF2E190E), // Subtle warm-orange / copper glow center behind logo
+                                Color(0xFF161014), // Warm charcoal
+                                Color(0xFF0C0B0E), // Pure obsidian outer
+                            ),
+                            radius = 1400f,
+                        ),
+                    )
+                }
+
                 CompositionLocalProvider(LocalWallpaperState provides appState.value.wallpaperState) {
                     Box(
                         modifier = Modifier
                             .fillMaxSize()
-                            .thenConditional(
-                                // Without the universal treatment the wallpaper is inset by the system
-                                // bars; with it, the wallpaper stays edge-to-edge and only the Scaffold
-                                // content is inset (below).
-                                Modifier
-                                    .systemBarsPadding()
-                                    .displayCutoutPadding(),
-                            ) { !universalEdgeToEdge },
+                            .then(homeBgModifier),
                     ) {
                         if (!isPrivateMode) {
                             WallpaperBackground(
@@ -731,11 +741,8 @@ class HomeFragment : Fragment() {
                         Scaffold(
                             modifier = Modifier
                                 .fillMaxSize()
-                                .thenConditional(
-                                    Modifier
-                                        .systemBarsPadding()
-                                        .displayCutoutPadding(),
-                                ) { universalEdgeToEdge }
+                                .systemBarsPadding()
+                                .displayCutoutPadding()
                                 .imePadding(),
                             topBar = {
                                 if (isToolbarAtTop) {

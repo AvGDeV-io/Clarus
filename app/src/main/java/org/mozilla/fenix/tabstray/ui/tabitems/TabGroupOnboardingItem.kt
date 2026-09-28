@@ -27,11 +27,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import mozilla.components.compose.base.PromoCard
-import mozilla.components.ui.animation.AnimatedIllustration
 import org.mozilla.fenix.R
 import org.mozilla.fenix.tabstray.TabsTrayTestTag
 import org.mozilla.fenix.theme.FirefoxTheme
-import kotlin.time.Duration.Companion.seconds
 
 private val OnboardingGridItemMinHeight = 104.dp
 
@@ -53,15 +51,13 @@ fun TabGroupOnboardingGridItem(
             .testTag(TabsTrayTestTag.TAB_GROUP_ONBOARDING_GRID_ITEM),
         title = stringResource(R.string.tab_group_onboarding_item_title),
         illustration = {
-            AnimatedIllustration(
-                animationResource = R.raw.mozac_ic_kit_tab_groups_animation,
-                staticDrawableResource = R.drawable.mozac_ic_kit_tab_groups,
+            Image(
+                painter = painterResource(R.drawable.mozac_ic_kit_tab_groups),
                 modifier = Modifier
                     .height(OnboardingGridItemMinHeight)
                     .padding(vertical = FirefoxTheme.layout.space.static150)
                     .testTag(TabsTrayTestTag.TAB_GROUP_ONBOARDING_ILLUSTRATION),
                 contentDescription = null,
-                iterationDelay = 8.seconds,
             )
         },
         contentSpacing = 0.dp,
