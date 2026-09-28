@@ -76,6 +76,40 @@ android {
         buildConfigField "boolean", "IS_BENCHMARK_BUILD", "false"
     }
 
+    signingConfigs {
+        release {
+            def keystorePropertiesFile = rootProject.file("keystore.properties")
+            if (!keystorePropertiesFile.exists()) {
+                keystorePropertiesFile = project.file("keystore.properties")
+            }
+            def keystoreProperties = new Properties()
+            if (keystorePropertiesFile.exists()) {
+                keystorePropertiesFile.withInputStream { keystoreProperties.load(it) }
+            }
+
+            def storeFilePath = keystoreProperties['storeFile'] ?: keystoreProperties['storeFilePath'] ?: System.getenv("KEYSTORE_PATH") ?: System.getenv("RELEASE_STORE_FILE")
+            def storePasswordVal = keystoreProperties['storePassword'] ?: System.getenv("KEYSTORE_PASSWORD") ?: System.getenv("RELEASE_STORE_PASSWORD")
+            def keyAliasVal = keystoreProperties['keyAlias'] ?: System.getenv("KEY_ALIAS") ?: System.getenv("RELEASE_KEY_ALIAS")
+            def keyPasswordVal = keystoreProperties['keyPassword'] ?: System.getenv("KEY_PASSWORD") ?: System.getenv("RELEASE_KEY_PASSWORD")
+
+            if (storeFilePath) {
+                def resolvedFile = new File(storeFilePath.toString().trim())
+                if (!resolvedFile.isAbsolute()) {
+                    resolvedFile = rootProject.file(storeFilePath.toString().trim())
+                    if (!resolvedFile.exists()) {
+                        resolvedFile = project.file(storeFilePath.toString().trim())
+                    }
+                }
+                if (resolvedFile.exists() && storePasswordVal && keyAliasVal && keyPasswordVal) {
+                    storeFile resolvedFile
+                    storePassword storePasswordVal.toString().trim()
+                    keyAlias keyAliasVal.toString().trim()
+                    keyPassword keyPasswordVal.toString().trim()
+                }
+            }
+        }
+    }
+
     def releaseTemplate = {
         // We allow disabling optimization by passing `-PdisableOptimization` to gradle. This is used
         // in automation for UI testing non-debug builds.
@@ -89,13 +123,12 @@ android {
             buildConfigField("String", "VCS_HASH", "\"" + gradle.mozconfig.source_repo.MOZ_SOURCE_STAMP + "\"")
         }
 
-	    // If building locally, just use debug signing. In official automation builds, the
-	    // files are signed using a separate service and not within gradle.
-	    // Also skip during buildconfig linting, and skip if the `disableDebugSigning` Gradle property is set.
-        // use iceraven CI signing instead
-        // if (!project.hasProperty("disableDebugSigning") && !gradle.hasProperty("localProperties.disableDebugSigning") && !gradle.mozconfig.substs.MOZ_AUTOMATION && System.getenv("MOZ_BUILD_CONFIG_LINT") != "1") {
-        //     signingConfig = signingConfigs.debug
-        // }
+        // Release signing if configured; graceful fallback to debug signing or unsigned
+        if (signingConfigs.release.storeFile != null && signingConfigs.release.storeFile.exists()) {
+            signingConfig = signingConfigs.release
+        } else if (!project.hasProperty("disableDebugSigning") && !gradle.hasProperty("localProperties.disableDebugSigning") && !gradle.mozconfig.substs.MOZ_AUTOMATION && System.getenv("MOZ_BUILD_CONFIG_LINT") != "1") {
+            signingConfig = signingConfigs.debug
+        }
 
         if (gradle.hasProperty("localProperties.debuggable") ||
             gradle.mozconfig.substs.MOZ_ANDROID_DEBUGGABLE) {
@@ -185,6 +218,12 @@ android {
             // Use custom default allowed addon list
             buildConfigField "String", "AMO_COLLECTION_USER", "\"18187371\""
             buildConfigField "String", "AMO_COLLECTION_NAME", "\"Iceraven_Addon_Collection\""
+
+            if (signingConfigs.release.storeFile != null && signingConfigs.release.storeFile.exists()) {
+                signingConfig signingConfigs.release
+            } else if (!project.hasProperty("disableDebugSigning") && !gradle.hasProperty("localProperties.disableDebugSigning")) {
+                signingConfig signingConfigs.debug
+            }
         }
         benchmark releaseTemplate >> {
             initWith buildTypes.nightly
