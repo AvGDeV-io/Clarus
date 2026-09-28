@@ -40,6 +40,13 @@ data class NimbusMessageState(val cardState: MessageCardState, val message: Mess
                 return null
             }
             return appState.messaging.messageToShow[FenixMessageSurfaceId.HOMESCREEN]?.let {
+                // Gate off root certificate expiry warning cards
+                if (it.id.contains("certificate", ignoreCase = true) ||
+                    it.text.contains("certificate", ignoreCase = true) ||
+                    it.title?.contains("certificate", ignoreCase = true) == true
+                ) {
+                    return null
+                }
                 NimbusMessageState(
                     cardState = MessageCardState.build(
                         message = it,

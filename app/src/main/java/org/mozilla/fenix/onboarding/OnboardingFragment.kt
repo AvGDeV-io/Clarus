@@ -354,10 +354,11 @@ class OnboardingFragment : Fragment() {
             )
         }
 
-        if (!settings.isTelemetryEnabled) {
-            Pings.onboardingOptOut.setEnabled(true)
-            Pings.onboardingOptOut.submit()
-        }
+        // Disabled for Clarus Beta hardening: do not send opt-out ping to Mozilla.
+        // if (!settings.isTelemetryEnabled) {
+        //     Pings.onboardingOptOut.setEnabled(true)
+        //     Pings.onboardingOptOut.submit()
+        // }
 
         rtamoAttributionHandler.handleReferrer(InstallReferrerHandlingService.response)
 

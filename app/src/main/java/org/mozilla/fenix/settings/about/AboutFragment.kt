@@ -116,18 +116,8 @@ class AboutFragment(
      */
     @VisibleForTesting
     internal fun setupDebugMenu(view: View, settings: Settings, lifecycle: Lifecycle) {
-        val secretDebugMenuTrigger = SecretDebugMenuTrigger(
-            onLogoClicked = { clicksLeft -> onLogoClicked(view.context, clicksLeft) },
-            onDebugMenuActivated = { onDebugMenuActivated(view.context, settings) },
-        )
-
-        if (!settings.showSecretDebugMenuThisSession) {
-            view.setOnClickListener {
-                secretDebugMenuTrigger.onClick()
-            }
-        }
-
-        lifecycle.addObserver(secretDebugMenuTrigger)
+        // Disabled for Beta hardening: multi-tap trigger on the About logo is disabled
+        // so users cannot reach the secret settings/debug menu.
     }
 
     /**

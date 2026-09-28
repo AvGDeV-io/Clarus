@@ -382,7 +382,7 @@ class Settings(
      */
     var customReviewPromptUiEnabled by booleanPreference(
         appContext.getPreferenceKey(R.string.pref_key_custom_review_prompt_ui_enabled),
-        default = { FxNimbus.features.customReviewPromptUi.value().enabled },
+        default = { false },
     )
 
     var lastCfrShownTimeInMillis by longPreference(
@@ -655,12 +655,12 @@ class Settings(
         get() = isCrashReportEnabledInBuild &&
             preferences.getBoolean(
                 appContext.getPreferenceKey(R.string.pref_key_crash_reporter),
-                true,
+                false,
             )
 
     var crashReportChoice by stringPreference(
         appContext.getPreferenceKey(R.string.pref_key_crash_reporting_choice),
-        default = CrashReportOption.Ask.toString(),
+        default = CrashReportOption.Never.toString(),
     )
 
     val isRemoteDebuggingEnabled by booleanPreference(
@@ -2695,7 +2695,7 @@ class Settings(
      */
     var isEmailMaskFeatureEnabled by booleanPreference(
         key = appContext.getPreferenceKey(R.string.pref_key_enable_email_masks),
-        default = { FxNimbus.features.emailMasks.value().enabled },
+        default = { false },
     )
 
     /**
@@ -2747,7 +2747,7 @@ class Settings(
      */
     var microsurveyFeatureEnabled by booleanPreference(
         key = appContext.getPreferenceKey(R.string.pref_key_microsurvey_feature_enabled),
-        default = { FxNimbus.features.microsurveys.value().enabled },
+        default = { false },
     )
 
     /**

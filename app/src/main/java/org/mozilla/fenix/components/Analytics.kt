@@ -135,9 +135,9 @@ class Analytics(
             shouldPrompt = CrashReporter.Prompt.ALWAYS,
             promptConfiguration = CrashReporter.PromptConfiguration(
                 appName = context.getString(R.string.app_name),
-                organizationName = "Mozilla",
+                organizationName = "Clarus",
             ),
-            enabled = true,
+            enabled = settings.isCrashReportingEnabled && settings.crashReportOption() != CrashReportOption.Never,
             nonFatalCrashIntent = pendingIntent,
             useLegacyReporting = settings.crashReportOption() != CrashReportOption.Auto,
             runtimeTagProviders = listOf(

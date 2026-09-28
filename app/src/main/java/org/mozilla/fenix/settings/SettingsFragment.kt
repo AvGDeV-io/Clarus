@@ -674,6 +674,7 @@ class SettingsFragment : PreferenceFragmentCompat(), SystemInsetsPaddedFragment 
         setupTrackingProtectionPreference(settings)
         setupDnsOverHttpsPreference(settings)
         setupEmailMaskPreference(settings, requireComponents)
+        findPreference<Preference>(getPreferenceKey(R.string.pref_key_rate))?.isVisible = false
     }
 
     private val setToDefaultPromptRequestLauncher: ActivityResultLauncher<Intent> =
@@ -861,8 +862,7 @@ class SettingsFragment : PreferenceFragmentCompat(), SystemInsetsPaddedFragment 
     @VisibleForTesting
     internal fun setupEmailMaskPreference(settings: Settings, components: Components) {
         findPreference<Preference>(getPreferenceKey(R.string.pref_key_email_masks))?.let {
-            it.isVisible = settings.isEmailMaskFeatureEnabled &&
-                    components.relayEligibilityStore.state.eligibilityState is Eligible
+            it.isVisible = false
         }
     }
 
