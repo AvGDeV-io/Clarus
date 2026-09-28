@@ -26,7 +26,7 @@ object SupportUtils {
     const val GOOGLE_URL = "https://www.google.com/"
     const val GOOGLE_US_URL = "https://www.google.com/webhp?client=firefox-b-1-m&channel=ts"
     const val GOOGLE_XX_URL = "https://www.google.com/webhp?client=firefox-b-m&channel=ts"
-    const val WHATS_NEW_URL = "https://github.com/fork-maintainers/iceraven-browser/releases"
+    const val WHATS_NEW_URL = "https://github.com/volursbreath/Clarus/releases"
     const val FXACCOUNT_SUMO_URL = "https://support.mozilla.org/kb/access-mozilla-services-firefox-account"
     const val ANDROID_SUPPORT_SUMO_URL = "mzl.la/AndroidSupport"
     const val RELAY_MANAGE_URL = "https://relay.firefox.com"
