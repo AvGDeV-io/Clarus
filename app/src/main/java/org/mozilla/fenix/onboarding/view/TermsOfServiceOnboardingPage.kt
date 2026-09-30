@@ -50,8 +50,7 @@ private val TOU_IMAGE_HEIGHT = 176.dp
 private val TOU_IMAGE_HEIGHT_SMALL_DEVICE = 130.dp
 
 private val kitImageResources = listOf(
-    R.drawable.nova_onboarding_tou,
-    R.drawable.nova_onboarding_tou_2,
+    R.drawable.ic_onboarding_welcome,
 )
 
 /**
@@ -275,7 +274,7 @@ private fun OnboardingPagePreview() {
                     lineThreeText = stringResource(id = R.string.nova_onboarding_tou_body_line_3),
                     lineThreeLinkText = stringResource(id = R.string.nova_onboarding_tou_body_line_3_link_text),
                 ),
-                imageRes = R.drawable.nova_onboarding_tou,
+                imageRes = R.drawable.ic_onboarding_welcome,
                 primaryButton = Action(
                     text = stringResource(
                         id = R.string.nova_onboarding_continue_button,
