@@ -360,10 +360,10 @@ androidComponents {
             // The Google Play Store does not allow multiple APKs for the same app that all have the
             // same version code. Therefore we need to have different version codes for our ARM and x86
             // builds.
-            def versionName = buildType == 'nightly' ?
-                    "${Config.nightlyVersionName(project)}" :
-                    "${Config.releaseVersionName(project)}"
-            project.logger.debug("versionName override: $versionName")
+            def resolvedVersionName = buildType == 'nightly' ?
+                    Config.nightlyVersionName(project) :
+                    (Config.releaseVersionName(project) ?: Config.generateDebugVersionName())
+            project.logger.debug("versionName override: $resolvedVersionName")
 
             variant.outputs.each { output ->
                 // We use the same version code generator, that we inherited from Fennec, across all channels - even on
@@ -371,7 +371,9 @@ androidComponents {
                 def abi = output.filters.find { it.filterType == FilterConfiguration.FilterType.ABI }?.identifier ?: "universal"
                 def versionCodeOverride = Config.generateFennecVersionCode(abi)
                 project.logger.debug("versionCode for $abi = $versionCodeOverride")
-                output.versionName.set(versionName)
+                if (resolvedVersionName != null) {
+                    output.versionName.set(resolvedVersionName)
+                }
                 output.versionCode.set(versionCodeOverride)
             }
         } else if (gradle.hasProperty("localProperties.branchBuild.fenix.version")) {
