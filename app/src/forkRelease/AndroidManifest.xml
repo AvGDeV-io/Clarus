@@ -14,6 +14,23 @@
         <receiver
             android:name="com.adjust.sdk.AdjustPreinstallReferrerReceiver"
             tools:node="remove" />
+
+        <receiver
+            android:name="androidx.work.impl.diagnostics.DiagnosticsReceiver"
+            tools:node="remove" />
+
+        <receiver
+            android:name="org.mozilla.fenix.messaging.QAMessageNotificationWorkerReceiver"
+            tools:node="remove" />
+
+        <receiver
+            android:name="org.mozilla.fenix.experiments.QANimbusToolingReceiver"
+            tools:node="remove" />
+
+        <receiver
+            android:name="org.mozilla.fenix.onboarding.WidgetPinnedReceiver"
+            android:exported="false"
+            tools:replace="android:exported" />
     </application>
 
 </manifest>
