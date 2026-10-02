@@ -22,7 +22,7 @@ plugins {
 
 // The OSS-licenses plugin is only needed for shipping builds, so skip it during
 // `mach lint` (which always passes `-Pandroid-lint`) to avoid unnecessary overhead.
-if (gradle.mozconfig.substs.MOZILLA_OFFICIAL && !project.hasProperty('android-lint')) {
+if (!project.hasProperty('android-lint')) {
     apply plugin: 'com.google.android.gms.oss-licenses-plugin'
 }
 
