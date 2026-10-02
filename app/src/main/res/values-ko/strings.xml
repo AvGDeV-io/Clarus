@@ -469,11 +469,11 @@
   <!-- Positive button label for the privacy preferences dialog shown during onboarding. -->
   <string name="onboarding_preferences_dialog_positive_button">완료</string>
   <!-- Terms of service onboarding title card label. 'Firefox' intentionally hardcoded here -->
-  <string name="onboarding_welcome_to_firefox" tools:ignore="BrandUsage">Firefox 사용을 환영합니다</string>
+  <string name="onboarding_welcome_to_firefox" tools:ignore="BrandUsage">Clarus 사용을 환영합니다</string>
   <!-- Line one of the terms of service onboarding page. %1$s is replaced by an active link, using onboarding_term_of_service_line_one_link_text_2 as text (“Firefox Terms of Use”). -->
   <string name="onboarding_term_of_service_line_one_2">계속하면 %1$s에 동의하게 됩니다.</string>
   <!-- Used as text for the link in onboarding_term_of_service_line_one_2. -->
-  <string name="onboarding_term_of_service_line_one_link_text_2" tools:ignore="BrandUsage">Firefox 이용 약관</string>
+  <string name="onboarding_term_of_service_line_one_link_text_2" tools:ignore="BrandUsage">Clarus 이용 약관</string>
   <!-- Line two of the terms of service onboarding page. 'Firefox' is intentionally hardcoded. %1$s is replaced by an active link, using onboarding_term_of_service_line_two_link_text as text (“Privacy Notice”). -->
   <string name="onboarding_term_of_service_line_two_2" tools:ignore="BrandUsage">Firefox는 여러분의 개인 정보를 중요하게 생각합니다. %1$s에서 더 알아보세요.</string>
   <!-- Used as text for the link in onboarding_term_of_service_line_two. -->
@@ -496,7 +496,7 @@
   -->
   <string name="onboarding_redesign_tou_body_one" tools:ignore="UnusedResources">계속하면 %1$s에 동의하게 됩니다.</string>
   <!-- Used as text for the link in onboarding_redesign_tou_body_one. -->
-  <string name="onboarding_redesign_tou_body_one_link_text" tools:ignore="BrandUsage,UnusedResources">Firefox 이용 약관</string>
+  <string name="onboarding_redesign_tou_body_one_link_text" tools:ignore="BrandUsage,UnusedResources">Clarus 이용 약관</string>
   <!--
     Terms of use (ToU) second body text. 'Firefox' is intentionally hardcoded.
     %1$s is replaced by an active link, using onboarding_redesign_tou_body_two_link_text as text (“Privacy Notice”).
@@ -563,7 +563,7 @@
   -->
   <string name="nova_onboarding_tou_body_line_1">계속하면 %1$s에 동의하게 됩니다.</string>
   <!-- Terms of use (ToU) onboarding body line one link text for nova_onboarding_tou_body_line_1. 'Firefox' is intentionally hardcoded. -->
-  <string name="nova_onboarding_tou_body_line_1_link_text" tools:ignore="BrandUsage">Firefox 이용 약관</string>
+  <string name="nova_onboarding_tou_body_line_1_link_text" tools:ignore="BrandUsage">Clarus 이용 약관</string>
   <!--
     Terms of use (ToU) onboarding body line two. 'Firefox' is intentionally hardcoded.
     %1$s is replaced by an active link, using nova_onboarding_tou_body_line_2_link_text as text (“Privacy Notice”).
@@ -616,7 +616,7 @@
   <!-- Marketing onboarding body. 'Firefox' and 'Mozilla' are intentionally hardcoded. -->
   <string name="nova_onboarding_marketing_body_2" tools:ignore="BrandUsage">Firefox를 발견한 방법과 사용 방법을 Mozilla의 마케팅 파트너들과 공유해보세요. 이 데이터는 판매되지 않습니다.</string>
   <!-- Marketing onboarding body. 'Firefox' and 'Mozilla' are intentionally hardcoded. -->
-  <string name="nova_onboarding_marketing_body_3" tools:ignore="BrandUsage,UnusedResources">Mozilla가 Firefox를 홍보하는 채널에 여러분이 Firefox 사용자임을 알릴 수 있도록 허용해 주시면, 더 많은 분들께 Firefox를 알리는 데 도움이 됩니다.</string>
+  <string name="nova_onboarding_marketing_body_3" tools:ignore="BrandUsage,UnusedResources">Mozilla가 Firefox를 홍보하는 채널에 여러분이 Clarus 사용자임을 알릴 수 있도록 허용해 주시면, 더 많은 분들께 Firefox를 알리는 데 도움이 됩니다.</string>
   <!--
     Marketing onboarding body. 'Firefox' and 'Mozilla' are intentionally hardcoded.
     “Platform you came from” refers to the external app, website, store, campaign, or other source that directed the user to Firefox.
@@ -651,7 +651,7 @@
   <!-- Marketing onboarding body link text. -->
   <string name="nova_onboarding_marketing_body_link_text_1">더 알아보기</string>
   <!-- Marketing onboarding primary button text. 'Firefox' is intentionally hardcoded. -->
-  <string name="nova_onboarding_marketing_primary_button_text" tools:ignore="BrandUsage,UnusedResources">Firefox 도움말</string>
+  <string name="nova_onboarding_marketing_primary_button_text" tools:ignore="BrandUsage,UnusedResources">Clarus 도움말</string>
   <!-- Marketing onboarding primary button text. -->
   <string name="nova_onboarding_marketing_primary_button_text_3">예</string>
   <!-- Marketing onboarding secondary button text. -->
@@ -669,7 +669,7 @@
   <!-- "Add search widget" onboarding subtitle. 'Firefox' is intentionally hardcoded. -->
   <string name="nova_onboarding_add_search_widget_subtitle" tools:ignore="BrandUsage">모든 검색을 휴대폰의 홈 화면에서 시작하세요. Firefox의 자동 보호 기능이 여러분을 지켜줍니다.</string>
   <!-- "Add search widget" onboarding button. 'Firefox' is intentionally hardcoded. -->
-  <string name="nova_onboarding_add_search_widget_button" tools:ignore="BrandUsage">Firefox 위젯 추가</string>
+  <string name="nova_onboarding_add_search_widget_button" tools:ignore="BrandUsage">Clarus 위젯 추가</string>
   <!-- Customize prompt onboarding title. -->
   <string name="nova_onboarding_customize_prompt_title" tools:ignore="UnusedResources">탭 할 때마다 더 쉬운 맞춤 설정 및 더 강력한 개인 정보 보호</string>
   <plurals name="nova_onboarding_customize_prompt_body" tools:ignore="UnusedResources">
@@ -743,9 +743,9 @@
   <!-- Preference Category for settings related to Search address bar -->
   <string name="preferences_settings_address_bar">주소 표시줄 설정</string>
   <!-- Preference Category for settings to Firefox Suggest -->
-  <string name="preference_search_address_bar_fx_suggest" tools:ignore="BrandUsage">주소 표시줄 - Firefox 제안</string>
+  <string name="preference_search_address_bar_fx_suggest" tools:ignore="BrandUsage">주소 표시줄 - Clarus 제안</string>
   <!-- Preference link to Learn more about Firefox Suggest -->
-  <string name="preference_search_learn_about_fx_suggest" tools:ignore="BrandUsage">Firefox 제안에 대해 더 알아보기</string>
+  <string name="preference_search_learn_about_fx_suggest" tools:ignore="BrandUsage">Clarus 제안에 대해 더 알아보기</string>
   <!-- Preference link to rating Fenix on the Play Store -->
   <string name="preferences_rate">Google Play에서 평가하기</string>
   <!--
@@ -1185,7 +1185,7 @@
   -->
   <string name="fxa_received_tab_channel_name">받은 탭</string>
   <!-- Description of the "receive tabs" notification channel. Displayed in the "App notifications" system settings for the app -->
-  <string name="fxa_received_tab_channel_description" tools:ignore="BrandUsage">다른 Firefox 기기에서 받은 탭에 대한 알림입니다.</string>
+  <string name="fxa_received_tab_channel_description" tools:ignore="BrandUsage">다른 Clarus 기기에서 받은 탭에 대한 알림입니다.</string>
   <!-- The body for these is the URL of the tab received -->
   <string name="fxa_tab_received_notification_name">전송 받은 탭</string>
   <!-- %s is the device name -->
@@ -1217,7 +1217,7 @@
   <!-- Preference switch for usage and technical learn more link in new compose -->
   <string name="preference_usage_data_learn_more_2">기술 데이터에 대해 더 알아보기</string>
   <!-- Preference description for marketing data collection. Note: The words "Firefox" should NOT be translated -->
-  <string name="preferences_usage_data_description_1" tools:ignore="BrandUsage">기기와 하드웨어 구성, 사용 현황에 대한 데이터는 Firefox 기능과 성능, 안정성을 개선하는 데 도움이 됩니다.</string>
+  <string name="preferences_usage_data_description_1" tools:ignore="BrandUsage">기기와 하드웨어 구성, 사용 현황에 대한 데이터는 Clarus 기능과 성능, 안정성을 개선하는 데 도움이 됩니다.</string>
   <!-- Preference switch for daily usage ping data collection -->
   <string name="preferences_daily_usage_ping_title">일일 사용량 핑</string>
   <string name="preferences_daily_usage_ping_description" tools:ignore="BrandUsage">이 정보는 Mozilla가 활성 사용자를 예측하는 데 도움이 됩니다.</string>
@@ -3501,7 +3501,7 @@
 
     Search suggestions title for Firefox Suggest.
   -->
-  <string name="firefox_suggest_header" tools:ignore="BrandUsage">Firefox 제안</string>
+  <string name="firefox_suggest_header" tools:ignore="BrandUsage">Clarus 제안</string>
   <!--
     Search suggestions title for trending search suggestions.
     %s is a placeholder for the name of the search engine providing the trending search suggestions.
@@ -4042,7 +4042,7 @@
   <!-- Text shown in the survey title for printing microsurvey. Note: The word "Firefox" should NOT be translated. -->
   <string name="microsurvey_survey_printing_title" tools:ignore="BrandUsage,UnusedResources">Firefox에서 인쇄하는 데 얼마나 만족하시나요?</string>
   <!-- Text shown in the survey title for homepage microsurvey. Note: The word "Firefox" should NOT be translated. -->
-  <string name="microsurvey_homepage_title" tools:ignore="BrandUsage,UnusedResources">Firefox 홈페이지에 얼마나 만족하시나요?</string>
+  <string name="microsurvey_homepage_title" tools:ignore="BrandUsage,UnusedResources">Clarus 홈페이지에 얼마나 만족하시나요?</string>
   <!-- Text shown in the survey title for search experience microsurvey. Note: The word "Firefox" should NOT be translated. -->
   <string name="microsurvey_search_title" tools:ignore="BrandUsage,UnusedResources">Firefox의 검색 경험에 얼마나 만족하시나요?</string>
   <!-- Text shown in the survey title for sync experience microsurvey. Note: The word "Firefox" should NOT be translated. -->
@@ -4074,7 +4074,7 @@
 
     Content description for the survey application icon. Note: The word "Firefox" should NOT be translated.
   -->
-  <string name="microsurvey_app_icon_content_description" tools:ignore="BrandUsage">Firefox 로고</string>
+  <string name="microsurvey_app_icon_content_description" tools:ignore="BrandUsage">Clarus 로고</string>
   <!-- Content description for the survey feature icon. -->
   <string name="microsurvey_feature_icon_content_description">설문조사 기능 아이콘</string>
   <!-- Content description (not visible, for screen readers etc.) for closing microsurvey bottom sheet. -->
@@ -4206,7 +4206,7 @@
   <!-- Homepage card title about old Firefox version. Note: The word "Firefox" should NOT be translated. -->
   <string name="certificate_warning_homepage_card_hcw3_title" tools:ignore="BrandUsage,UnusedResources">Firefox를 지킬 수 있는 마지막 기회</string>
   <!-- Homepage card message about old Firefox version. Note: The word "Firefox" should NOT be translated. -->
-  <string name="certificate_warning_homepage_card_hcw3_message" tools:ignore="BrandUsage,UnusedResources">루트 인증서가 만료되므로 사용중인 Firefox 버전은 3월 14일에 제대로 작동하지 않습니다.</string>
+  <string name="certificate_warning_homepage_card_hcw3_message" tools:ignore="BrandUsage,UnusedResources">루트 인증서가 만료되므로 사용중인 Clarus 버전은 3월 14일에 제대로 작동하지 않습니다.</string>
   <!-- Push notification title about old Firefox version. "Update" is a noun. -->
   <string name="certificate_warning_push_notification_update_recommended_title" tools:ignore="UnusedResources">업데이트 권장됨</string>
   <!-- Push notification message about old Firefox version -->
@@ -4710,7 +4710,7 @@
     The "Labs" portion can be localized, "Firefox" must be treated as a brand and kept
     in English.
   -->
-  <string name="firefox_labs_title" tools:ignore="BrandUsage">Firefox 실험실</string>
+  <string name="firefox_labs_title" tools:ignore="BrandUsage">Clarus 실험실</string>
   <!-- Banner title text on the Firefox Labs screen. -->
   <string name="firefox_labs_banner_title_2">실험적인 기능을 사용해 보세요!</string>
   <!--

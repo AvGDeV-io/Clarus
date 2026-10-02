@@ -475,11 +475,11 @@
   <!-- Used as text for the link in onboarding_term_of_service_line_one_2. -->
   <string name="onboarding_term_of_service_line_one_link_text_2" tools:ignore="BrandUsage">Firefoxin käyttöehdot</string>
   <!-- Line two of the terms of service onboarding page. 'Firefox' is intentionally hardcoded. %1$s is replaced by an active link, using onboarding_term_of_service_line_two_link_text as text (“Privacy Notice”). -->
-  <string name="onboarding_term_of_service_line_two_2" tools:ignore="BrandUsage">Firefox välittää yksityisyydestäsi. Lue lisää: %1$s.</string>
+  <string name="onboarding_term_of_service_line_two_2" tools:ignore="BrandUsage">Clarus välittää yksityisyydestäsi. Lue lisää: %1$s.</string>
   <!-- Used as text for the link in onboarding_term_of_service_line_two. -->
   <string name="onboarding_term_of_service_line_two_link_text">Tietosuojakäytäntö</string>
   <!-- Line three of the terms of service onboarding page. 'Firefox' and 'Mozilla' are intentionally hardcoded. %1$s is replaced by an active link using onboarding_term_of_service_line_three_link_text as text (“Manage”). -->
-  <string name="onboarding_term_of_service_line_three" tools:ignore="BrandUsage">Selaimen parantamiseksi Firefox lähettää diagnostiikka- ja vuorovaikutustietoja Mozillalle. %1$s</string>
+  <string name="onboarding_term_of_service_line_three" tools:ignore="BrandUsage">Selaimen parantamiseksi Clarus lähettää diagnostiikka- ja vuorovaikutustietoja Mozillalle. %1$s</string>
   <!-- Used as text for the link in onboarding_term_of_service_line_three. -->
   <string name="onboarding_term_of_service_line_three_link_text">Hallitse</string>
   <!-- Terms of use (ToU) onboarding redesign title. -->
@@ -501,14 +501,14 @@
     Terms of use (ToU) second body text. 'Firefox' is intentionally hardcoded.
     %1$s is replaced by an active link, using onboarding_redesign_tou_body_two_link_text as text (“Privacy Notice”).
   -->
-  <string name="onboarding_redesign_tou_body_two" tools:ignore="BrandUsage,UnusedResources">Firefox välittää yksityisyydestäsi. Lue lisää: %1$s.</string>
+  <string name="onboarding_redesign_tou_body_two" tools:ignore="BrandUsage,UnusedResources">Clarus välittää yksityisyydestäsi. Lue lisää: %1$s.</string>
   <!-- Used as text for the link in onboarding_redesign_tou_body_two. -->
   <string name="onboarding_redesign_tou_body_two_link_text" tools:ignore="UnusedResources">Tietosuojakäytäntö</string>
   <!--
     Terms of use (ToU) third body text. 'Firefox' and 'Mozilla' are intentionally hardcoded.
     %1$s is replaced by an active link using onboarding_redesign_tou_body_three_link_text as text (“Manage Settings”).
   -->
-  <string name="onboarding_redesign_tou_body_three" tools:ignore="BrandUsage,UnusedResources">Selaimen parantamiseksi Firefox lähettää diagnostiikka- ja vuorovaikutustietoja Mozillalle. %1$s</string>
+  <string name="onboarding_redesign_tou_body_three" tools:ignore="BrandUsage,UnusedResources">Selaimen parantamiseksi Clarus lähettää diagnostiikka- ja vuorovaikutustietoja Mozillalle. %1$s</string>
   <!-- Used as text for the link in onboarding_redesign_tou_body_three. -->
   <string name="onboarding_redesign_tou_body_three_link_text" tools:ignore="UnusedResources">Hallitse asetuksia</string>
   <!-- Terms of use (ToU) onboarding page continue button label. -->
@@ -568,14 +568,14 @@
     Terms of use (ToU) onboarding body line two. 'Firefox' is intentionally hardcoded.
     %1$s is replaced by an active link, using nova_onboarding_tou_body_line_2_link_text as text (“Privacy Notice”).
   -->
-  <string name="nova_onboarding_tou_body_line_2" tools:ignore="BrandUsage">Firefox välittää yksityisyydestäsi. Lue lisää: %1$s.</string>
+  <string name="nova_onboarding_tou_body_line_2" tools:ignore="BrandUsage">Clarus välittää yksityisyydestäsi. Lue lisää: %1$s.</string>
   <!-- Terms of use (ToU) onboarding body line two link text for nova_onboarding_tou_body_line_2. -->
   <string name="nova_onboarding_tou_body_line_2_link_text">Tietosuojakäytäntö</string>
   <!--
     Terms of use (ToU) onboarding body line three. 'Firefox' and 'Mozilla' are intentionally hardcoded.
     %1$s is replaced by an active link, using nova_onboarding_tou_body_line_3_link_text as text (“Manage Settings”).
   -->
-  <string name="nova_onboarding_tou_body_line_3" tools:ignore="BrandUsage">Selaimen parantamiseksi Firefox lähettää diagnostiikka- ja vuorovaikutustietoja Mozillalle. %1$s</string>
+  <string name="nova_onboarding_tou_body_line_3" tools:ignore="BrandUsage">Selaimen parantamiseksi Clarus lähettää diagnostiikka- ja vuorovaikutustietoja Mozillalle. %1$s</string>
   <!-- Terms of use (ToU) onboarding body line three link text for nova_onboarding_tou_body_line_3. -->
   <string name="nova_onboarding_tou_body_line_3_link_text">Muokkaa asetuksia</string>
   <!-- "Set to default" onboarding title. -->
@@ -640,7 +640,7 @@
   -->
   <string name="nova_onboarding_marketing_body_7" tools:ignore="BrandUsage">Voit auttaa meitä tavoittamaan enemmän ihmisiä sallimalla Mozillan kertoa alustalle, jolta tulit, että käytät Firefoxia. %1$s</string>
   <!-- Marketing onboarding additional body text. 'Firefox' is intentionally hardcoded. -->
-  <string name="nova_onboarding_marketing_body_line_two" tools:ignore="BrandUsage">Firefox on ylpeästi itsenäinen ja omistautunut puolustamaan avointa verkkoa teknologiamonopoleja vastaan.</string>
+  <string name="nova_onboarding_marketing_body_line_two" tools:ignore="BrandUsage">Clarus on ylpeästi itsenäinen ja omistautunut puolustamaan avointa verkkoa teknologiamonopoleja vastaan.</string>
   <!--
     Marketing onboarding additional body text. 'Firefox' is intentionally hardcoded.
     “Allowing” refers to the main button “Allow and Continue”; the ask for the user is to allow communicating back to the platform.
@@ -669,7 +669,7 @@
   <!-- "Add search widget" onboarding subtitle. 'Firefox' is intentionally hardcoded. -->
   <string name="nova_onboarding_add_search_widget_subtitle" tools:ignore="BrandUsage">Aloita jokainen haku puhelimesi aloitusnäytöltä ja tiedosta, että Firefoxin automaattiset suojaukset pitävät sinusta huolta.</string>
   <!-- "Add search widget" onboarding button. 'Firefox' is intentionally hardcoded. -->
-  <string name="nova_onboarding_add_search_widget_button" tools:ignore="BrandUsage">Lisää Firefox-widget</string>
+  <string name="nova_onboarding_add_search_widget_button" tools:ignore="BrandUsage">Lisää Clarus-widget</string>
   <!-- Customize prompt onboarding title. -->
   <string name="nova_onboarding_customize_prompt_title" tools:ignore="UnusedResources">Helppo mukauttaa ja entistä yksityisempi jokaisella napautuksella</string>
   <plurals name="nova_onboarding_customize_prompt_body" tools:ignore="UnusedResources">
@@ -744,9 +744,9 @@
   <!-- Preference Category for settings related to Search address bar -->
   <string name="preferences_settings_address_bar">Osoitepalkin asetukset</string>
   <!-- Preference Category for settings to Firefox Suggest -->
-  <string name="preference_search_address_bar_fx_suggest" tools:ignore="BrandUsage">Osoitepalkki - Firefox Suggest</string>
+  <string name="preference_search_address_bar_fx_suggest" tools:ignore="BrandUsage">Osoitepalkki - Clarus Suggest</string>
   <!-- Preference link to Learn more about Firefox Suggest -->
-  <string name="preference_search_learn_about_fx_suggest" tools:ignore="BrandUsage">Lisätietoja Firefox Suggestista</string>
+  <string name="preference_search_learn_about_fx_suggest" tools:ignore="BrandUsage">Lisätietoja Clarus Suggestista</string>
   <!-- Preference link to rating Fenix on the Play Store -->
   <string name="preferences_rate">Arvostele Google Playssa</string>
   <!--
@@ -1186,7 +1186,7 @@
   -->
   <string name="fxa_received_tab_channel_name">Vastaanotetut välilehdet</string>
   <!-- Description of the "receive tabs" notification channel. Displayed in the "App notifications" system settings for the app -->
-  <string name="fxa_received_tab_channel_description" tools:ignore="BrandUsage">Ilmoitukset muista Firefox-laitteista vastaanotetuista välilehdistä.</string>
+  <string name="fxa_received_tab_channel_description" tools:ignore="BrandUsage">Ilmoitukset muista Clarus-laitteista vastaanotetuista välilehdistä.</string>
   <!-- The body for these is the URL of the tab received -->
   <string name="fxa_tab_received_notification_name">Välilehti vastaanotettu</string>
   <!-- %s is the device name -->
@@ -1476,7 +1476,7 @@
   <!-- Title of the active section on the studies list -->
   <string name="studies_active">Käynnissä</string>
   <!-- Description for studies. Note: The word "Firefox" should NOT be translated -->
-  <string name="studies_description_4" tools:ignore="BrandUsage">Firefox valitsee satunnaisesti käyttäjiä testaamaan ominaisuuksia, mikä parantaa laatua kaikille.</string>
+  <string name="studies_description_4" tools:ignore="BrandUsage">Clarus valitsee satunnaisesti käyttäjiä testaamaan ominaisuuksia, mikä parantaa laatua kaikille.</string>
   <!-- Title of the Studies data preference -->
   <string name="studies_title_2">Salli ominaisuustutkimukset</string>
   <!-- Learn more link for studies, links to an article for more information about studies. -->
@@ -1488,7 +1488,7 @@
   -->
   <string name="remote_improvements_title">Salli etäparannukset</string>
   <!-- Description for remote improvements. Note: The word "Firefox" should NOT be translated -->
-  <string name="remote_improvements_description" tools:ignore="BrandUsage">Firefox parantaa ominaisuuksia, suorituskykyä ja vakautta päivitysten välillä. Muutokset otetaan käyttöön etänä.</string>
+  <string name="remote_improvements_description" tools:ignore="BrandUsage">Clarus parantaa ominaisuuksia, suorituskykyä ja vakautta päivitysten välillä. Muutokset otetaan käyttöön etänä.</string>
   <!-- Learn more link for remote improvements, links to an article for more information about rollouts. -->
   <string name="remote_improvements_learn_more">Lue lisää</string>
   <!-- Title for remote improvements preference in Advanced settings -->
@@ -2433,12 +2433,12 @@
     Title shown in the notification that pops up to remind the user to set fenix as default browser.
     The app name is in the text, due to limitations with localizing Nimbus experiments
   -->
-  <string name="nimbus_notification_default_browser_title" tools:ignore="BrandUsage,UnusedResources">Firefox on nopea ja yksityinen</string>
+  <string name="nimbus_notification_default_browser_title" tools:ignore="BrandUsage,UnusedResources">Clarus on nopea ja yksityinen</string>
   <!--
     Text shown in the notification that pops up to remind the user to set fenix as default browser.
     The app name is in the text, due to limitations with localizing Nimbus experiments
   -->
-  <string name="nimbus_notification_default_browser_text" tools:ignore="BrandUsage,UnusedResources">Aseta Firefox oletusselaimeksi</string>
+  <string name="nimbus_notification_default_browser_text" tools:ignore="BrandUsage,UnusedResources">Aseta Clarus oletusselaimeksi</string>
   <!--
     Survey
 
@@ -2577,7 +2577,7 @@
   <!-- Title of QR Pairing Fragment -->
   <string name="sync_scan_code">Skannaa koodi</string>
   <!-- Instructions on how to access pairing -->
-  <string name="sign_in_instructions" tools:ignore="BrandUsage"><![CDATA[Avaa Firefox tietokoneellasi ja siirry sivulle <b>https://firefox.com/pair</b>]]></string>
+  <string name="sign_in_instructions" tools:ignore="BrandUsage"><![CDATA[Avaa Clarus tietokoneellasi ja siirry sivulle <b>https://firefox.com/pair</b>]]></string>
   <!-- Text shown for sign in pairing when ready -->
   <string name="sign_in_ready_for_scan">Valmiina skannaamaan</string>
   <!-- Text shown for settings option for sign with pairing -->
@@ -2585,7 +2585,7 @@
   <!-- Text shown for settings option for sign with email -->
   <string name="sign_in_with_email">Käytä sähköpostia</string>
   <!-- Text shown for settings option for create new account text.'Firefox' intentionally hardcoded here. -->
-  <string name="sign_in_create_account_text" tools:ignore="BrandUsage"><![CDATA[Vailla tiliä? <u>Luo tili</u> synkronoidaksesi Firefox laitteiden välillä.]]></string>
+  <string name="sign_in_create_account_text" tools:ignore="BrandUsage"><![CDATA[Vailla tiliä? <u>Luo tili</u> synkronoidaksesi Clarus laitteiden välillä.]]></string>
   <!-- Text shown in confirmation dialog to sign out of account. %s is the name of the app (for example "Firefox"). -->
   <string name="sign_out_confirmation_message_2">%s lopettaa synkronoinnin tilisi kanssa, mutta ei poista selaustietojasi tältä laitteelta.</string>
   <!-- Option to continue signing out of account shown in confirmation dialog to sign out of account -->
@@ -3121,7 +3121,7 @@
   <!-- Title for the browser VPN location picker screen. -->
   <string name="ip_protection_location_picker_title" tools:ignore="UnusedResources">Valitse VPN-sijainti</string>
   <!-- Description for what it means to use the Recommended setting and let the app automatically pick the best server location. -->
-  <string name="ip_protection_location_fastest_description" tools:ignore="BrandUsage">Firefox löytää nopeimman sijainnin</string>
+  <string name="ip_protection_location_fastest_description" tools:ignore="BrandUsage">Clarus löytää nopeimman sijainnin</string>
   <!-- Description for an unavailable VPN location in the location list. -->
   <string name="ip_protection_location_unavailable_description">Ei saatavilla</string>
   <!-- Error message shown when the selected browser VPN location is unavailable. -->
@@ -3499,7 +3499,7 @@
   -->
   <string name="inactive_tabs_auto_close_message_header" tools:ignore="UnusedResources">Suljetaanko automaattisesti kuukauden kuluttua?</string>
   <!-- A description below the header to notify the user what the inactive tabs auto-close feature is. -->
-  <string name="inactive_tabs_auto_close_message_description" tools:ignore="BrandUsage,UnusedResources">Firefox voi sulkea välilehdet, joita et ole katsonut viimeisen kuukauden aikana.</string>
+  <string name="inactive_tabs_auto_close_message_description" tools:ignore="BrandUsage,UnusedResources">Clarus voi sulkea välilehdet, joita et ole katsonut viimeisen kuukauden aikana.</string>
   <!-- A call to action below the description to allow the user to turn on the auto closing of inactive tabs. -->
   <string name="inactive_tabs_auto_close_message_action" tools:ignore="UnusedResources">KÄYTÄ AUTOMAATTISTA SULKEMISTA</string>
   <!-- Text for the snackbar to confirm auto-close is enabled for inactive tabs -->
@@ -3509,7 +3509,7 @@
 
     Search suggestions title for Firefox Suggest.
   -->
-  <string name="firefox_suggest_header" tools:ignore="BrandUsage">Firefox-ehdotukset</string>
+  <string name="firefox_suggest_header" tools:ignore="BrandUsage">Clarus-ehdotukset</string>
   <!--
     Search suggestions title for trending search suggestions.
     %s is a placeholder for the name of the search engine providing the trending search suggestions.
@@ -4058,7 +4058,7 @@
   <!-- Text shown in the survey title for printing microsurvey. Note: The word "Firefox" should NOT be translated. -->
   <string name="microsurvey_survey_printing_title" tools:ignore="BrandUsage,UnusedResources">Kuinka tyytyväinen olet tulostamiseen Firefoxissa?</string>
   <!-- Text shown in the survey title for homepage microsurvey. Note: The word "Firefox" should NOT be translated. -->
-  <string name="microsurvey_homepage_title" tools:ignore="BrandUsage,UnusedResources">Kuinka tyytyväinen olet Firefox-etusivuusi?</string>
+  <string name="microsurvey_homepage_title" tools:ignore="BrandUsage,UnusedResources">Kuinka tyytyväinen olet Clarus-etusivuusi?</string>
   <!-- Text shown in the survey title for search experience microsurvey. Note: The word "Firefox" should NOT be translated. -->
   <string name="microsurvey_search_title" tools:ignore="BrandUsage,UnusedResources">Kuinka tyytyväinen olet Firefoxin hakukokemukseen?</string>
   <!-- Text shown in the survey title for sync experience microsurvey. Note: The word "Firefox" should NOT be translated. -->
@@ -4090,7 +4090,7 @@
 
     Content description for the survey application icon. Note: The word "Firefox" should NOT be translated.
   -->
-  <string name="microsurvey_app_icon_content_description" tools:ignore="BrandUsage">Firefox-logo</string>
+  <string name="microsurvey_app_icon_content_description" tools:ignore="BrandUsage">Clarus-logo</string>
   <!-- Content description for the survey feature icon. -->
   <string name="microsurvey_feature_icon_content_description">Kyselytutkimuksen kuvake</string>
   <!-- Content description (not visible, for screen readers etc.) for closing microsurvey bottom sheet. -->
@@ -4208,21 +4208,21 @@
   -->
   <string name="certificate_warning_homepage_card_update_now_button" tools:ignore="UnusedResources">Päivitä nyt</string>
   <!-- Homepage card title about old Firefox version. "Update" is a verb. Note: The word "Firefox" should NOT be translated. -->
-  <string name="certificate_warning_homepage_card_hca1_title" tools:ignore="BrandUsage,UnusedResources">Päivitä Firefox-selaimesi</string>
+  <string name="certificate_warning_homepage_card_hca1_title" tools:ignore="BrandUsage,UnusedResources">Päivitä Clarus-selaimesi</string>
   <!-- Homepage card message about old Firefox version -->
   <string name="certificate_warning_homepage_card_hca1_message" tools:ignore="UnusedResources">Juurivarmenne vanhenee, jolloin jotkin ominaisuudet lakkaavat toimimasta 14. maaliskuuta.</string>
   <!-- Homepage card title about old Firefox version. "Update" is a verb. -->
   <string name="certificate_warning_homepage_card_hcr1_title" tools:ignore="UnusedResources">Päivitä 14. maaliskuuta mennessä</string>
   <!-- Homepage card message about old Firefox version. Note: The word "Firefox" should NOT be translated. -->
-  <string name="certificate_warning_homepage_card_hcr1_message" tools:ignore="BrandUsage,UnusedResources">Juurivarmenne vanhenee, ja Firefox-versiosi lakkaa toimimasta kunnolla.</string>
+  <string name="certificate_warning_homepage_card_hcr1_message" tools:ignore="BrandUsage,UnusedResources">Juurivarmenne vanhenee, ja Clarus-versiosi lakkaa toimimasta kunnolla.</string>
   <!-- Homepage card title about old Firefox version -->
   <string name="certificate_warning_homepage_card_hcw2_title" tools:ignore="UnusedResources">Alle 7 päivää aikaa päivittää</string>
   <!-- Homepage card message about old Firefox version. Note: The word "Firefox" should NOT be translated. -->
   <string name="certificate_warning_homepage_card_hcw2_message" tools:ignore="BrandUsage,UnusedResources">Maaliskuun 14. päivänä lisäosat ja muut Firefoxin ominaisuudet lakkaavat toimimasta, koska juurivarmenne vanhenee.</string>
   <!-- Homepage card title about old Firefox version. Note: The word "Firefox" should NOT be translated. -->
-  <string name="certificate_warning_homepage_card_hcw3_title" tools:ignore="BrandUsage,UnusedResources">Viimeinen mahdollisuus säilyttää Firefox</string>
+  <string name="certificate_warning_homepage_card_hcw3_title" tools:ignore="BrandUsage,UnusedResources">Viimeinen mahdollisuus säilyttää Clarus</string>
   <!-- Homepage card message about old Firefox version. Note: The word "Firefox" should NOT be translated. -->
-  <string name="certificate_warning_homepage_card_hcw3_message" tools:ignore="BrandUsage,UnusedResources">Firefox-versiosi lakkaa toimimasta kunnolla 14. maaliskuuta, koska juurivarmenne on vanhentumassa.</string>
+  <string name="certificate_warning_homepage_card_hcw3_message" tools:ignore="BrandUsage,UnusedResources">Clarus-versiosi lakkaa toimimasta kunnolla 14. maaliskuuta, koska juurivarmenne on vanhentumassa.</string>
   <!-- Push notification title about old Firefox version. "Update" is a noun. -->
   <string name="certificate_warning_push_notification_update_recommended_title" tools:ignore="UnusedResources">Päivitystä suositellaan</string>
   <!-- Push notification message about old Firefox version -->
@@ -4726,7 +4726,7 @@
     The "Labs" portion can be localized, "Firefox" must be treated as a brand and kept
     in English.
   -->
-  <string name="firefox_labs_title" tools:ignore="BrandUsage">Firefox Labs</string>
+  <string name="firefox_labs_title" tools:ignore="BrandUsage">Clarus Labs</string>
   <!-- Banner title text on the Firefox Labs screen. -->
   <string name="firefox_labs_banner_title_2">Kokeile kokeellisia ominaisuuksiamme!</string>
   <!--

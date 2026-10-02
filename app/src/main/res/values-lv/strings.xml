@@ -37,7 +37,7 @@
   <!-- ==== Project "Nova" onboarding strings ==== -->
 
   <!-- "Add search widget" onboarding button. 'Firefox' is intentionally hardcoded. -->
-  <string name="nova_onboarding_add_search_widget_button" tools:ignore="BrandUsage">Pievienot Firefox logrīku</string>
+  <string name="nova_onboarding_add_search_widget_button" tools:ignore="BrandUsage">Pievienot Clarus logrīku</string>
   <!-- ==== End of Project "Nova" onboarding strings ==== -->
 
   <!-- Preference for adding private browsing shortcut -->

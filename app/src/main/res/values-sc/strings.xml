@@ -74,7 +74,7 @@
   <!-- Text for the menu button to remove a recently saved bookmark from the user's home screen -->
   <string name="home_bookmarks_menu_item_remove">Boga</string>
   <!-- About content. %1$s is the name of the app (for example "Firefox"). -->
-  <string name="about_content" tools:ignore="BrandUsage">%1$s est prodotu dae Mozilla.</string>
+  <string name="about_content" tools:ignore="BrandUsage">%1$s est prodotu dae Clarus.</string>
   <!-- Private Browsing -->
   <string name="private_browsing_common_myths">Mitos fitianos subra de sa navigatzione privada</string>
   <!-- Text to be announced by the accessibility service to inform the user that the private browsing mode is currently active. -->
@@ -427,7 +427,7 @@
   -->
   <string name="onboarding_home_content_description_close_button">Serra</string>
   <!-- Title for the privacy preferences dialog shown during onboarding. Note: The word "Firefox" should NOT be translated. -->
-  <string name="onboarding_preferences_dialog_title" tools:ignore="BrandUsage">Agiuda·nos a fàghere Firefox mègius</string>
+  <string name="onboarding_preferences_dialog_title" tools:ignore="BrandUsage">Agiuda·nos a fàghere Clarus mègius</string>
   <!-- Title for the crash reporting option in the privacy preferences dialog shown during onboarding. -->
   <string name="onboarding_preferences_dialog_crash_reporting_title">Imbia informes de faddinas in automàticu</string>
   <!-- Description for the crash reporting option in the privacy preferences dialog shown during onboarding. -->
@@ -444,22 +444,22 @@
   <string name="startup_crash_restart">Torra a abèrrere %s</string>
   <!-- Title for the usage data option in the privacy preferences dialog shown during onboarding. Note: The word "Mozilla" should NOT be translated. -->
   <string name="onboarding_preferences_dialog_usage_data_title" tools:ignore="BrandUsage">Imbia datos tècnicos e de interatzione a Mozilla</string>
-  <string name="onboarding_preferences_dialog_usage_data_description_2" tools:ignore="BrandUsage">Is datos in contu de su dispositivu tuo, de sa cunfiguratzione e de comente impreas Firefox agiudant a megiorare is funtziones, su rendimentu e s’istabilidade pro totus.</string>
+  <string name="onboarding_preferences_dialog_usage_data_description_2" tools:ignore="BrandUsage">Is datos in contu de su dispositivu tuo, de sa cunfiguratzione e de comente impreas Clarus agiudant a megiorare is funtziones, su rendimentu e s’istabilidade pro totus.</string>
   <string name="onboarding_preferences_dialog_usage_data_learn_more_2">Àteras informatziones</string>
   <!-- Positive button label for the privacy preferences dialog shown during onboarding. -->
   <string name="onboarding_preferences_dialog_positive_button">Fatu</string>
   <!-- Terms of service onboarding title card label. 'Firefox' intentionally hardcoded here -->
-  <string name="onboarding_welcome_to_firefox" tools:ignore="BrandUsage">Bos donamus su benebènnidu a Firefox</string>
+  <string name="onboarding_welcome_to_firefox" tools:ignore="BrandUsage">Bos donamus su benebènnidu a Clarus</string>
   <!-- Line one of the terms of service onboarding page. %1$s is replaced by an active link, using onboarding_term_of_service_line_one_link_text_2 as text (“Firefox Terms of Use”). -->
   <string name="onboarding_term_of_service_line_one_2">Si sighis, atzetas is %1$s.</string>
   <!-- Used as text for the link in onboarding_term_of_service_line_one_2. -->
-  <string name="onboarding_term_of_service_line_one_link_text_2" tools:ignore="BrandUsage">Cunditziones de su servìtziu de Firefox</string>
+  <string name="onboarding_term_of_service_line_one_link_text_2" tools:ignore="BrandUsage">Cunditziones de su servìtziu de Clarus</string>
   <!-- Line two of the terms of service onboarding page. 'Firefox' is intentionally hardcoded. %1$s is replaced by an active link, using onboarding_term_of_service_line_two_link_text as text (“Privacy Notice”). -->
-  <string name="onboarding_term_of_service_line_two_2" tools:ignore="BrandUsage">Firefox si òcupat de sa riservadesa tua. Àteras informatziones in s’%1$s nostru.</string>
+  <string name="onboarding_term_of_service_line_two_2" tools:ignore="BrandUsage">Clarus si òcupat de sa riservadesa tua. Àteras informatziones in s’%1$s nostru.</string>
   <!-- Used as text for the link in onboarding_term_of_service_line_two. -->
   <string name="onboarding_term_of_service_line_two_link_text">Avisu de riservadesa</string>
   <!-- Line three of the terms of service onboarding page. 'Firefox' and 'Mozilla' are intentionally hardcoded. %1$s is replaced by an active link using onboarding_term_of_service_line_three_link_text as text (“Manage”). -->
-  <string name="onboarding_term_of_service_line_three" tools:ignore="BrandUsage">Pro agiudare a megiorare su navigadore, Firefox imbiat datos de diagnòsticu e de interatziones cun Mozilla. %1$s</string>
+  <string name="onboarding_term_of_service_line_three" tools:ignore="BrandUsage">Pro agiudare a megiorare su navigadore, Clarus imbiat datos de diagnòsticu e de interatziones cun Mozilla. %1$s</string>
   <!-- Used as text for the link in onboarding_term_of_service_line_three. -->
   <string name="onboarding_term_of_service_line_three_link_text">Gesti</string>
   <!-- Terms of use (ToU) onboarding redesign title. -->
@@ -476,19 +476,19 @@
   -->
   <string name="onboarding_redesign_tou_body_one" tools:ignore="UnusedResources">Si sighis, atzetas is %1$s.</string>
   <!-- Used as text for the link in onboarding_redesign_tou_body_one. -->
-  <string name="onboarding_redesign_tou_body_one_link_text" tools:ignore="BrandUsage,UnusedResources">cunditziones de su servìtziu de Firefox</string>
+  <string name="onboarding_redesign_tou_body_one_link_text" tools:ignore="BrandUsage,UnusedResources">cunditziones de su servìtziu de Clarus</string>
   <!--
     Terms of use (ToU) second body text. 'Firefox' is intentionally hardcoded.
     %1$s is replaced by an active link, using onboarding_redesign_tou_body_two_link_text as text (“Privacy Notice”).
   -->
-  <string name="onboarding_redesign_tou_body_two" tools:ignore="BrandUsage,UnusedResources">Firefox si òcupat de sa riservadesa tua. Àteras informatziones in s’%1$s nostru.</string>
+  <string name="onboarding_redesign_tou_body_two" tools:ignore="BrandUsage,UnusedResources">Clarus si òcupat de sa riservadesa tua. Àteras informatziones in s’%1$s nostru.</string>
   <!-- Used as text for the link in onboarding_redesign_tou_body_two. -->
   <string name="onboarding_redesign_tou_body_two_link_text" tools:ignore="UnusedResources">avisu de riservadesa</string>
   <!--
     Terms of use (ToU) third body text. 'Firefox' and 'Mozilla' are intentionally hardcoded.
     %1$s is replaced by an active link using onboarding_redesign_tou_body_three_link_text as text (“Manage Settings”).
   -->
-  <string name="onboarding_redesign_tou_body_three" tools:ignore="BrandUsage,UnusedResources">Pro agiudare a megiorare su navigadore, Firefox imbiat datos de diagnòsticu e de interatziones cun Mozilla. %1$s</string>
+  <string name="onboarding_redesign_tou_body_three" tools:ignore="BrandUsage,UnusedResources">Pro agiudare a megiorare su navigadore, Clarus imbiat datos de diagnòsticu e de interatziones cun Mozilla. %1$s</string>
   <!-- Used as text for the link in onboarding_redesign_tou_body_three. -->
   <string name="onboarding_redesign_tou_body_three_link_text" tools:ignore="UnusedResources">Gesti sa cunfiguratzione</string>
   <!-- Terms of use (ToU) onboarding page continue button label. -->
@@ -498,7 +498,7 @@
   <!-- Onboarding label for 'Continue' button. -->
   <string name="onboarding_redesign_continue_button" tools:ignore="UnusedResources">Sighi</string>
   <!-- Marketing onboarding page title. 'Firefox' is intentionally hardcoded. -->
-  <string name="onboarding_marketing_redesign_title" tools:ignore="BrandUsage">Agiuda·nos a fàghere crèschere Firefox</string>
+  <string name="onboarding_marketing_redesign_title" tools:ignore="BrandUsage">Agiuda·nos a fàghere crèschere Clarus</string>
   <!-- Marketing onboarding page clickable link text to "learn more" on how data is used. -->
   <string name="onboarding_marketing_redesign_learn_more" tools:ignore="UnusedResources">Comente impreamus is datos</string>
   <!-- Marketing onboarding page button label. Button to confirm choice and start browsing. -->
@@ -508,7 +508,7 @@
   <!-- Set to default browser onboarding redesign body. -->
   <string name="onboarding_redesign_set_default_browser_body" tools:ignore="UnusedResources">Cun unu tocu ebbia podes impedire a is aziendas chi ispient in ue incarcas.</string>
   <!-- Sync onboarding redesign title. 'Firefox' is intentionally hardcoded. -->
-  <string name="onboarding_redesign_sync_title" tools:ignore="BrandUsage,UnusedResources">Sincroniza dae onni logu cun Firefox</string>
+  <string name="onboarding_redesign_sync_title" tools:ignore="BrandUsage,UnusedResources">Sincroniza dae onni logu cun Clarus</string>
   <!-- Sync onboarding redesign body. -->
   <string name="onboarding_redesign_sync_body" tools:ignore="UnusedResources">Atzede a is ischedas, craes e sinnalibros tuos dae cale si siat dispositivu. Totu est amparadu cun tzifradu.</string>
   <!-- Sync onboarding redesign positive button text. -->
@@ -535,19 +535,19 @@
   -->
   <string name="nova_onboarding_tou_body_line_1">Si sighis, atzetas is %1$s.</string>
   <!-- Terms of use (ToU) onboarding body line one link text for nova_onboarding_tou_body_line_1. 'Firefox' is intentionally hardcoded. -->
-  <string name="nova_onboarding_tou_body_line_1_link_text" tools:ignore="BrandUsage">Cunditziones de su servìtziu de Firefox</string>
+  <string name="nova_onboarding_tou_body_line_1_link_text" tools:ignore="BrandUsage">Cunditziones de su servìtziu de Clarus</string>
   <!--
     Terms of use (ToU) onboarding body line two. 'Firefox' is intentionally hardcoded.
     %1$s is replaced by an active link, using nova_onboarding_tou_body_line_2_link_text as text (“Privacy Notice”).
   -->
-  <string name="nova_onboarding_tou_body_line_2" tools:ignore="BrandUsage">Firefox si òcupat de sa riservadesa tua. Àteras informatziones in s’%1$s nostru.</string>
+  <string name="nova_onboarding_tou_body_line_2" tools:ignore="BrandUsage">Clarus si òcupat de sa riservadesa tua. Àteras informatziones in s’%1$s nostru.</string>
   <!-- Terms of use (ToU) onboarding body line two link text for nova_onboarding_tou_body_line_2. -->
   <string name="nova_onboarding_tou_body_line_2_link_text">Avisu de riservadesa</string>
   <!--
     Terms of use (ToU) onboarding body line three. 'Firefox' and 'Mozilla' are intentionally hardcoded.
     %1$s is replaced by an active link, using nova_onboarding_tou_body_line_3_link_text as text (“Manage Settings”).
   -->
-  <string name="nova_onboarding_tou_body_line_3" tools:ignore="BrandUsage">Pro agiudare a megiorare su navigadore, Firefox imbiat datos de diagnòsticu e de interatziones cun Mozilla. %1$s</string>
+  <string name="nova_onboarding_tou_body_line_3" tools:ignore="BrandUsage">Pro agiudare a megiorare su navigadore, Clarus imbiat datos de diagnòsticu e de interatziones cun Mozilla. %1$s</string>
   <!-- Terms of use (ToU) onboarding body line three link text for nova_onboarding_tou_body_line_3. -->
   <string name="nova_onboarding_tou_body_line_3_link_text">Gesti sa cunfiguratzione</string>
   <!-- "Set to default" onboarding title. -->
@@ -575,11 +575,11 @@
   <!-- Marketing onboarding body link text. -->
   <string name="nova_onboarding_marketing_body_link_text">Comente impreamus is datos</string>
   <!-- Notifications onboarding title. 'Firefox' is intentionally hardcoded. -->
-  <string name="nova_onboarding_notifications_title" tools:ignore="BrandUsage,UnusedResources">Is notìficas t’agiudant a èssere prus amparadu cun Firefox</string>
+  <string name="nova_onboarding_notifications_title" tools:ignore="BrandUsage,UnusedResources">Is notìficas t’agiudant a èssere prus amparadu cun Clarus</string>
   <!-- Notifications onboarding button. -->
   <string name="nova_onboarding_notifications_button">Ativa is notìficas</string>
   <!-- "Add search widget" onboarding button. 'Firefox' is intentionally hardcoded. -->
-  <string name="nova_onboarding_add_search_widget_button" tools:ignore="BrandUsage">Agiunghe su widget de Firefox</string>
+  <string name="nova_onboarding_add_search_widget_button" tools:ignore="BrandUsage">Agiunghe su widget de Clarus</string>
   <!-- Customize prompt onboarding positive button. -->
   <string name="nova_onboarding_customize_prompt_positive_button" tools:ignore="UnusedResources">Cumintza a personalizare</string>
   <!-- App icon onboarding title. -->
@@ -641,9 +641,9 @@
   <!-- Preference Category for settings related to Search address bar -->
   <string name="preferences_settings_address_bar">Preferèntzias de sa barra de indiritzos</string>
   <!-- Preference Category for settings to Firefox Suggest -->
-  <string name="preference_search_address_bar_fx_suggest" tools:ignore="BrandUsage">Barra de indiritzos - Cussìgios de Firefox</string>
+  <string name="preference_search_address_bar_fx_suggest" tools:ignore="BrandUsage">Barra de indiritzos - Cussìgios de Clarus</string>
   <!-- Preference link to Learn more about Firefox Suggest -->
-  <string name="preference_search_learn_about_fx_suggest" tools:ignore="BrandUsage">Àteras informatziones in pitzus de is cussìgios de Firefox</string>
+  <string name="preference_search_learn_about_fx_suggest" tools:ignore="BrandUsage">Àteras informatziones in pitzus de is cussìgios de Clarus</string>
   <!-- Preference link to rating Fenix on the Play Store -->
   <string name="preferences_rate">Avalora in Google Play</string>
   <!--
@@ -968,7 +968,7 @@
   -->
   <string name="addon_ga_message_title_2" tools:ignore="UnusedResources">Estensiones noas a disponimentu</string>
   <!-- Body of the Nimbus message for add-ons general availability. 'Firefox' intentionally hardcoded here -->
-  <string name="addon_ga_message_body" tools:ignore="BrandUsage,UnusedResources">Controlla is prus de chentu estensiones noas chi ti permitint de personalizare Firefox.</string>
+  <string name="addon_ga_message_body" tools:ignore="BrandUsage,UnusedResources">Controlla is prus de chentu estensiones noas chi ti permitint de personalizare Clarus.</string>
   <!-- Button text of the Nimbus message for extensions general availability. -->
   <string name="addon_ga_message_button_2" tools:ignore="UnusedResources">Esplora is estensiones</string>
   <!--
@@ -1034,7 +1034,7 @@
   -->
   <string name="fxa_received_tab_channel_name">Ischedas retzidas</string>
   <!-- Description of the "receive tabs" notification channel. Displayed in the "App notifications" system settings for the app -->
-  <string name="fxa_received_tab_channel_description" tools:ignore="BrandUsage">Notìficas pro ischedas retzidas dae àteros dispositivos Firefox.</string>
+  <string name="fxa_received_tab_channel_description" tools:ignore="BrandUsage">Notìficas pro ischedas retzidas dae àteros dispositivos Clarus.</string>
   <!-- The body for these is the URL of the tab received -->
   <string name="fxa_tab_received_notification_name">Ischeda retzida</string>
   <!-- %s is the device name -->
@@ -2048,7 +2048,7 @@
   <!-- An option to connect additional devices -->
   <string name="sync_connect_device">Connete un’àteru dispositivu</string>
   <!-- The dialog text shown when additional devices are not available -->
-  <string name="sync_connect_device_dialog" tools:ignore="BrandUsage">Pro imbiare un’ischeda, identìfica·ti in Firefox in un’àteru dispositivu, a su mancu.</string>
+  <string name="sync_connect_device_dialog" tools:ignore="BrandUsage">Pro imbiare un’ischeda, identìfica·ti in Clarus in un’àteru dispositivu, a su mancu.</string>
   <!-- Confirmation dialog button -->
   <string name="sync_confirmation_button">Apo cumprèndidu</string>
   <!-- Share error message -->
@@ -2078,12 +2078,12 @@
     Title shown in the notification that pops up to remind the user to set fenix as default browser.
     The app name is in the text, due to limitations with localizing Nimbus experiments
   -->
-  <string name="nimbus_notification_default_browser_title" tools:ignore="BrandUsage,UnusedResources">Firefox est lestru e privadu</string>
+  <string name="nimbus_notification_default_browser_title" tools:ignore="BrandUsage,UnusedResources">Clarus est lestru e privadu</string>
   <!--
     Text shown in the notification that pops up to remind the user to set fenix as default browser.
     The app name is in the text, due to limitations with localizing Nimbus experiments
   -->
-  <string name="nimbus_notification_default_browser_text" tools:ignore="BrandUsage,UnusedResources">Imprea Firefox comente navigadore predefinidu</string>
+  <string name="nimbus_notification_default_browser_text" tools:ignore="BrandUsage,UnusedResources">Imprea Clarus comente navigadore predefinidu</string>
   <!-- Preference for taking the short survey. -->
   <string name="preferences_take_survey">Piga parte a su sondàgiu</string>
   <!-- Preference for not taking the short survey. -->
@@ -2213,7 +2213,7 @@
   <!-- Title of QR Pairing Fragment -->
   <string name="sync_scan_code">Iscansiona su còdighe</string>
   <!-- Instructions on how to access pairing -->
-  <string name="sign_in_instructions" tools:ignore="BrandUsage"><![CDATA[In s’elaboradore tuo, aberi Firefox e bae a <b>https://firefox.com/pair</b>]]></string>
+  <string name="sign_in_instructions" tools:ignore="BrandUsage"><![CDATA[In s’elaboradore tuo, aberi Clarus e bae a <b>https://firefox.com/pair</b>]]></string>
   <!-- Text shown for sign in pairing when ready -->
   <string name="sign_in_ready_for_scan">Iscansiona</string>
   <!-- Text shown for settings option for sign with pairing -->
@@ -2221,7 +2221,7 @@
   <!-- Text shown for settings option for sign with email -->
   <string name="sign_in_with_email">Imprea sa posta eletrònica</string>
   <!-- Text shown for settings option for create new account text.'Firefox' intentionally hardcoded here. -->
-  <string name="sign_in_create_account_text" tools:ignore="BrandUsage"><![CDATA[Non tenes unu contu? <u>Crea·nde unu</u> pro sincronizare Firefox intre dispositivos.]]></string>
+  <string name="sign_in_create_account_text" tools:ignore="BrandUsage"><![CDATA[Non tenes unu contu? <u>Crea·nde unu</u> pro sincronizare Clarus intre dispositivos.]]></string>
   <!-- Text shown in confirmation dialog to sign out of account. %s is the name of the app (for example "Firefox"). -->
   <string name="sign_out_confirmation_message_2">%s at a firmare sa sincronizatzione de su contu tuo ma non s’ant a cantzellare is datos de navigatzione de custu dispositivu.</string>
   <!-- Option to continue signing out of account shown in confirmation dialog to sign out of account -->
@@ -2610,7 +2610,7 @@
   <!-- Title for the browser VPN location picker screen. -->
   <string name="ip_protection_location_picker_title" tools:ignore="UnusedResources">Sèbera sa positzione de sa VPN</string>
   <!-- Description for what it means to use the Recommended setting and let the app automatically pick the best server location. -->
-  <string name="ip_protection_location_fastest_description" tools:ignore="BrandUsage">Firefox sèberat sa positzione prus lestra</string>
+  <string name="ip_protection_location_fastest_description" tools:ignore="BrandUsage">Clarus sèberat sa positzione prus lestra</string>
   <!-- Error message shown when the selected browser VPN location is unavailable. -->
   <string name="ip_protection_location_unavailable" tools:ignore="UnusedResources">Custa positzione no est a disponimentu. Sèbera·nde un’àtera.</string>
   <!-- Snackbar (in-app pop-up notification) text shown when the previously selected browser VPN location is unavailable and the recommended location was used instead. -->
@@ -2888,7 +2888,7 @@
   <!-- Text displayed when user has disabled tab syncing in Firefox Sync Account -->
   <string name="synced_tabs_enable_tab_syncing">Ativa sa sincronizatzione de ischedas.</string>
   <!-- Text displayed when user has no tabs that have been synced -->
-  <string name="synced_tabs_no_tabs" tools:ignore="BrandUsage">Nissuna ischeda aberta in su Firefox de is àteros dispositivos.</string>
+  <string name="synced_tabs_no_tabs" tools:ignore="BrandUsage">Nissuna ischeda aberta in su Clarus de is àteros dispositivos.</string>
   <!-- Text displayed in the synced tabs screen when a user is not signed in to Firefox Sync describing Synced Tabs -->
   <string name="synced_tabs_sign_in_message">Ammustra una lista de ischedas abertas in àteros dispositivos tuos.</string>
   <!-- Text displayed on a button in the synced tabs screen to link users to sign in when a user is not signed in to Firefox Sync -->
@@ -2986,7 +2986,7 @@
   -->
   <string name="inactive_tabs_auto_close_message_header" tools:ignore="UnusedResources">Boles serrare in automàticu a pustis de unu mese?</string>
   <!-- A description below the header to notify the user what the inactive tabs auto-close feature is. -->
-  <string name="inactive_tabs_auto_close_message_description" tools:ignore="BrandUsage,UnusedResources">Firefox podet serrare is ischedas chi no apas visualizadu in s’ùrtimu mese.</string>
+  <string name="inactive_tabs_auto_close_message_description" tools:ignore="BrandUsage,UnusedResources">Clarus podet serrare is ischedas chi no apas visualizadu in s’ùrtimu mese.</string>
   <!-- A call to action below the description to allow the user to turn on the auto closing of inactive tabs. -->
   <string name="inactive_tabs_auto_close_message_action" tools:ignore="UnusedResources">ATIVA SA SERRADA AUTOMÀTICA</string>
   <!-- Text for the snackbar to confirm auto-close is enabled for inactive tabs -->
@@ -2996,7 +2996,7 @@
 
     Search suggestions title for Firefox Suggest.
   -->
-  <string name="firefox_suggest_header" tools:ignore="BrandUsage">Firefox cussìgiat</string>
+  <string name="firefox_suggest_header" tools:ignore="BrandUsage">Clarus cussìgiat</string>
   <!--
     Search suggestions title for trending search suggestions.
     %s is a placeholder for the name of the search engine providing the trending search suggestions.
@@ -3015,7 +3015,7 @@
   -->
   <string name="default_browser_experiment_card_title">Passa a su navigadore predeterminadu tuo</string>
   <!-- Default browser card text -->
-  <string name="default_browser_experiment_card_text" tools:ignore="BrandUsage">Aberi in Firefox in manera automàtica is ligòngios de sitos web, de posta eletrònica e de messàgios.</string>
+  <string name="default_browser_experiment_card_text" tools:ignore="BrandUsage">Aberi in Clarus in manera automàtica is ligòngios de sitos web, de posta eletrònica e de messàgios.</string>
   <!-- Content description radio buttons with a link to more information -->
   <string name="radio_preference_info_content_description">Incarca inoghe pro àteros detàllios</string>
   <!-- Content description for the action bar "up" button -->
@@ -3394,7 +3394,7 @@
 
     The microsurvey prompt title. Note: The word "Firefox" should NOT be translated
   -->
-  <string name="micro_survey_prompt_title" tools:ignore="BrandUsage,UnusedResources">Agiuda·nos a megiorare Firefox. At a èssere unu minutu isceti.</string>
+  <string name="micro_survey_prompt_title" tools:ignore="BrandUsage,UnusedResources">Agiuda·nos a megiorare Clarus. At a èssere unu minutu isceti.</string>
   <!-- The continue button label -->
   <string name="micro_survey_continue_button_label" tools:ignore="UnusedResources">Sighi</string>
   <!--
@@ -3424,29 +3424,29 @@
   <!-- Option for likert scale -->
   <string name="likert_scale_option_6" tools:ignore="UnusedResources">No ddu impreo</string>
   <!-- Option for likert scale. Note: The word "Firefox" should NOT be translated. -->
-  <string name="likert_scale_option_7" tools:ignore="BrandUsage,UnusedResources">No impreo sa chirca in Firefox</string>
+  <string name="likert_scale_option_7" tools:ignore="BrandUsage,UnusedResources">No impreo sa chirca in Clarus</string>
   <!-- Option for likert scale -->
   <string name="likert_scale_option_8" tools:ignore="UnusedResources">No impreo sa sincronizatzione</string>
   <!-- Text shown in prompt for printing microsurvey. "sec" It's an abbreviation for "second". Note: The word "Firefox" should NOT be translated. -->
-  <string name="microsurvey_prompt_printing_title" tools:ignore="BrandUsage,UnusedResources">Agiuda·nos a megiorare s’imprenta in Firefox. At a èssere unu minutu isceti</string>
+  <string name="microsurvey_prompt_printing_title" tools:ignore="BrandUsage,UnusedResources">Agiuda·nos a megiorare s’imprenta in Clarus. At a èssere unu minutu isceti</string>
   <!-- Text shown in prompt for search microsurvey. Note: The word "Firefox" should NOT be translated. -->
-  <string name="microsurvey_prompt_search_title" tools:ignore="BrandUsage,UnusedResources">Agiuda·nos a megiorare sa chirca in Firefox. At a èssere unu minutu isceti</string>
+  <string name="microsurvey_prompt_search_title" tools:ignore="BrandUsage,UnusedResources">Agiuda·nos a megiorare sa chirca in Clarus. At a èssere unu minutu isceti</string>
   <!-- Text shown in prompt for sync microsurvey. Note: The word "Firefox" should NOT be translated. -->
-  <string name="microsurvey_prompt_sync_title" tools:ignore="BrandUsage,UnusedResources">Agiuda·nos a megiorare sa sincronizatzione in Firefox. At a èssere unu minutu isceti</string>
+  <string name="microsurvey_prompt_sync_title" tools:ignore="BrandUsage,UnusedResources">Agiuda·nos a megiorare sa sincronizatzione in Clarus. At a èssere unu minutu isceti</string>
   <!-- Text shown in the survey title for printing microsurvey. Note: The word "Firefox" should NOT be translated. -->
-  <string name="microsurvey_survey_printing_title" tools:ignore="BrandUsage,UnusedResources">Cale est su livellu de satisfatzione tuo cun s’imprenta in Firefox?</string>
+  <string name="microsurvey_survey_printing_title" tools:ignore="BrandUsage,UnusedResources">Cale est su livellu de satisfatzione tuo cun s’imprenta in Clarus?</string>
   <!-- Text shown in the survey title for homepage microsurvey. Note: The word "Firefox" should NOT be translated. -->
-  <string name="microsurvey_homepage_title" tools:ignore="BrandUsage,UnusedResources">Cale est su livellu de satisfatzione tuo cun sa pàgina printzipale de Firefox?</string>
+  <string name="microsurvey_homepage_title" tools:ignore="BrandUsage,UnusedResources">Cale est su livellu de satisfatzione tuo cun sa pàgina printzipale de Clarus?</string>
   <!-- Text shown in the survey title for search experience microsurvey. Note: The word "Firefox" should NOT be translated. -->
-  <string name="microsurvey_search_title" tools:ignore="BrandUsage,UnusedResources">Cale est su livellu de satisfatzione tuo cun s’esperièntzia de chirca in Firefox?</string>
+  <string name="microsurvey_search_title" tools:ignore="BrandUsage,UnusedResources">Cale est su livellu de satisfatzione tuo cun s’esperièntzia de chirca in Clarus?</string>
   <!-- Text shown in the survey title for sync experience microsurvey. Note: The word "Firefox" should NOT be translated. -->
-  <string name="microsurvey_sync_title" tools:ignore="BrandUsage,UnusedResources">Cale est su livellu de satisfatzione tuo cun s’esperièntzia de sincronizatzione in Firefox?</string>
+  <string name="microsurvey_sync_title" tools:ignore="BrandUsage,UnusedResources">Cale est su livellu de satisfatzione tuo cun s’esperièntzia de sincronizatzione in Clarus?</string>
   <!--
     Accessibility
 
     Content description for the survey application icon. Note: The word "Firefox" should NOT be translated.
   -->
-  <string name="microsurvey_app_icon_content_description" tools:ignore="BrandUsage">Logo de Firefox</string>
+  <string name="microsurvey_app_icon_content_description" tools:ignore="BrandUsage">Logo de Clarus</string>
   <!-- Content description for the survey feature icon. -->
   <string name="microsurvey_feature_icon_content_description">Icona de sa funtzionalidade de sondàgiu</string>
   <!-- Content description (not visible, for screen readers etc.) for closing microsurvey bottom sheet. -->
@@ -3550,27 +3550,27 @@
   -->
   <string name="certificate_warning_homepage_card_update_now_button" tools:ignore="UnusedResources">Atualiza immoe</string>
   <!-- Homepage card title about old Firefox version. "Update" is a verb. Note: The word "Firefox" should NOT be translated. -->
-  <string name="certificate_warning_homepage_card_hca1_title" tools:ignore="BrandUsage,UnusedResources">Atualiza su navigadore Firefox tuo</string>
+  <string name="certificate_warning_homepage_card_hca1_title" tools:ignore="BrandUsage,UnusedResources">Atualiza su navigadore Clarus tuo</string>
   <!-- Homepage card message about old Firefox version -->
   <string name="certificate_warning_homepage_card_hca1_message" tools:ignore="UnusedResources">Unu tzertificadu printzipale at a iscadire luego, e tzertas caraterìsticas no ant a funtzionare dae su 14 de martzu.</string>
   <!-- Homepage card title about old Firefox version. "Update" is a verb. -->
   <string name="certificate_warning_homepage_card_hcr1_title" tools:ignore="UnusedResources">Atualiza in antis de su 14 de martzu</string>
   <!-- Homepage card message about old Firefox version. Note: The word "Firefox" should NOT be translated. -->
-  <string name="certificate_warning_homepage_card_hcr1_message" tools:ignore="BrandUsage,UnusedResources">Unu tzertificadu printzipale at a iscadire luego, e sa versione de Firefox tua no ant a funtzionare bene.</string>
+  <string name="certificate_warning_homepage_card_hcr1_message" tools:ignore="BrandUsage,UnusedResources">Unu tzertificadu printzipale at a iscadire luego, e sa versione de Clarus tua no ant a funtzionare bene.</string>
   <!-- Homepage card title about old Firefox version -->
   <string name="certificate_warning_homepage_card_hcw2_title" tools:ignore="UnusedResources">Abarrant prus pagu de 7 dies pro atualizare</string>
   <!-- Homepage card message about old Firefox version. Note: The word "Firefox" should NOT be translated. -->
-  <string name="certificate_warning_homepage_card_hcw2_message" tools:ignore="BrandUsage,UnusedResources">Dae su 14 de martzu, is cumplementos e àteras caraterìsticas de Firefox no ant a funtzionare prus, ca unu tzertificadu printzipale at a iscadire.</string>
+  <string name="certificate_warning_homepage_card_hcw2_message" tools:ignore="BrandUsage,UnusedResources">Dae su 14 de martzu, is cumplementos e àteras caraterìsticas de Clarus no ant a funtzionare prus, ca unu tzertificadu printzipale at a iscadire.</string>
   <!-- Homepage card title about old Firefox version. Note: The word "Firefox" should NOT be translated. -->
-  <string name="certificate_warning_homepage_card_hcw3_title" tools:ignore="BrandUsage,UnusedResources">Ùrtima ocasione pro mantènnere Firefox</string>
+  <string name="certificate_warning_homepage_card_hcw3_title" tools:ignore="BrandUsage,UnusedResources">Ùrtima ocasione pro mantènnere Clarus</string>
   <!-- Homepage card message about old Firefox version. Note: The word "Firefox" should NOT be translated. -->
-  <string name="certificate_warning_homepage_card_hcw3_message" tools:ignore="BrandUsage,UnusedResources">Sa versione tua de Firefox no at a funtzionare prus in manera curreta dae su 14 de martzu, dae chi tenes unu tzertificadu raighina acanta de iscadire.</string>
+  <string name="certificate_warning_homepage_card_hcw3_message" tools:ignore="BrandUsage,UnusedResources">Sa versione tua de Clarus no at a funtzionare prus in manera curreta dae su 14 de martzu, dae chi tenes unu tzertificadu raighina acanta de iscadire.</string>
   <!-- Push notification title about old Firefox version. "Update" is a noun. -->
   <string name="certificate_warning_push_notification_update_recommended_title" tools:ignore="UnusedResources">Atualizatzione cussigiada</string>
   <!-- Push notification message about old Firefox version -->
   <string name="certificate_warning_push_notification_pnr1_message" tools:ignore="UnusedResources">Is cumplementos e àteras funtzionalidades no ant a funtzionare prus su 14 de martzu.</string>
   <!-- Push notification title about old Firefox version. Note: The word "Firefox" should NOT be translated. -->
-  <string name="certificate_warning_push_notification_pnw2_title" tools:ignore="BrandUsage,UnusedResources">Ses impreende una versione betza de Firefox</string>
+  <string name="certificate_warning_push_notification_pnw2_title" tools:ignore="BrandUsage,UnusedResources">Ses impreende una versione betza de Clarus</string>
   <!-- Push notification message about old Firefox version. "Update" is a verb. -->
   <string name="certificate_warning_push_notification_pnw2_message" tools:ignore="UnusedResources">Atualiza in antis de su 14 de martzu pro sighire a impreare is cumplementos e àteras funtzionalidades.</string>
   <!-- Push notification message about old Firefox version -->

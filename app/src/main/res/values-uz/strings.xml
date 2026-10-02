@@ -38,7 +38,7 @@
   <!-- Content description for close button while in multiselect mode in tab tray -->
   <string name="tab_tray_close_multiselect_content_description">Koʻp tanlov rejimidan chiqish</string>
   <!-- About content. %1$s is the name of the app (for example "Firefox"). -->
-  <string name="about_content" tools:ignore="BrandUsage">%1$s brauzerini Mozilla ishlab chiqqan.</string>
+  <string name="about_content" tools:ignore="BrandUsage">%1$s brauzerini Clarus ishlab chiqqan.</string>
   <!-- Private Browsing -->
   <string name="private_browsing_common_myths">Maxfiy koʻrish haqidagi umumiy afsonalar</string>
   <!--
@@ -404,7 +404,7 @@
   -->
   <string name="fxa_received_tab_channel_name">Qabul qilingan varaqlar</string>
   <!-- Description of the "receive tabs" notification channel. Displayed in the "App notifications" system settings for the app -->
-  <string name="fxa_received_tab_channel_description" tools:ignore="BrandUsage">Boshqa Firefox qurilmalaridan olingan varaqlar uchun bildirishnomalar.</string>
+  <string name="fxa_received_tab_channel_description" tools:ignore="BrandUsage">Boshqa Clarus qurilmalaridan olingan varaqlar uchun bildirishnomalar.</string>
   <!-- The body for these is the URL of the tab received -->
   <string name="fxa_tab_received_notification_name">Olingan varaq</string>
   <!-- %s is the device name -->
@@ -857,7 +857,7 @@
   <!-- An option to connect additional devices -->
   <string name="sync_connect_device">Boshqa qurilmani ulash</string>
   <!-- The dialog text shown when additional devices are not available -->
-  <string name="sync_connect_device_dialog" tools:ignore="BrandUsage">Varaqni yuborish uchun kamida bitta boshqa qurilmada Firefox hisobiga kirishingiz kerak.</string>
+  <string name="sync_connect_device_dialog" tools:ignore="BrandUsage">Varaqni yuborish uchun kamida bitta boshqa qurilmada Clarus hisobiga kirishingiz kerak.</string>
   <!-- Confirmation dialog button -->
   <string name="sync_confirmation_button">Tushundim!</string>
   <!-- Share error message -->
@@ -1385,7 +1385,7 @@
   -->
   <string name="inactive_tabs_auto_close_message_header" tools:ignore="UnusedResources">Bir oydan keyin avtomatik yopilsinmi?</string>
   <!-- A description below the header to notify the user what the inactive tabs auto-close feature is. -->
-  <string name="inactive_tabs_auto_close_message_description" tools:ignore="BrandUsage,UnusedResources">Oʻtgan oy ochilmagan varaqlarni Firefox yopishi mumkin.</string>
+  <string name="inactive_tabs_auto_close_message_description" tools:ignore="BrandUsage,UnusedResources">Oʻtgan oy ochilmagan varaqlarni Clarus yopishi mumkin.</string>
   <!-- A call to action below the description to allow the user to turn on the auto closing of inactive tabs. -->
   <string name="inactive_tabs_auto_close_message_action" tools:ignore="UnusedResources">AVTOMATIK YOPISHNI YOQISH</string>
   <!-- Text for the snackbar to confirm auto-close is enabled for inactive tabs -->
@@ -1395,7 +1395,7 @@
 
     Search suggestions title for Firefox Suggest.
   -->
-  <string name="firefox_suggest_header" tools:ignore="BrandUsage">Firefox Suggest</string>
+  <string name="firefox_suggest_header" tools:ignore="BrandUsage">Clarus Suggest</string>
   <!-- Default browser card text -->
   <string name="default_browser_experiment_card_text" tools:ignore="BrandUsage">Saytlar, elektron pochta va xabarlar havolalarini Firefoxda avtomatik ravishda ochiladigan qilib sozlang.</string>
   <!-- Content description radio buttons with a link to more information -->

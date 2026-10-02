@@ -40,7 +40,7 @@
   <!-- Content description for close button while in multiselect mode in tab tray -->
   <string name="tab_tray_close_multiselect_content_description">Kóp tańlaw rejiminen shıǵıw</string>
   <!-- About content. %1$s is the name of the app (for example "Firefox"). -->
-  <string name="about_content" tools:ignore="BrandUsage">%1$s Mozilla tárepinen islep shıǵılǵan.</string>
+  <string name="about_content" tools:ignore="BrandUsage">%1$s Clarus tárepinen islep shıǵılǵan.</string>
   <!-- Private Browsing -->
   <string name="private_browsing_common_myths">Jeke kóriw haqqında tarqalǵan jalǵanlar</string>
   <!--
@@ -922,7 +922,7 @@
     Title shown in the notification that pops up to remind the user to set fenix as default browser.
     The app name is in the text, due to limitations with localizing Nimbus experiments
   -->
-  <string name="nimbus_notification_default_browser_title" tools:ignore="BrandUsage,UnusedResources">Firefox — tez hám jeke</string>
+  <string name="nimbus_notification_default_browser_title" tools:ignore="BrandUsage,UnusedResources">Clarus — tez hám jeke</string>
   <!-- Preference for not taking the short survey. -->
   <string name="preferences_not_take_survey">Yaq, raxmet</string>
   <!--
@@ -1440,7 +1440,7 @@
   -->
   <string name="inactive_tabs_auto_close_message_header" tools:ignore="UnusedResources">Bir aydan soń avtomat tárizde jabılsın ba?</string>
   <!-- A description below the header to notify the user what the inactive tabs auto-close feature is. -->
-  <string name="inactive_tabs_auto_close_message_description" tools:ignore="BrandUsage,UnusedResources">Firefox ótken ayda kórilmegen betlerdi jabıwı múmkin.</string>
+  <string name="inactive_tabs_auto_close_message_description" tools:ignore="BrandUsage,UnusedResources">Clarus ótken ayda kórilmegen betlerdi jabıwı múmkin.</string>
   <!-- A call to action below the description to allow the user to turn on the auto closing of inactive tabs. -->
   <string name="inactive_tabs_auto_close_message_action" tools:ignore="UnusedResources">AVTOMAT TÁRIZDE JABÍWDÍ QOSÍW</string>
   <!-- Text for the snackbar to confirm auto-close is enabled for inactive tabs -->
@@ -1450,7 +1450,7 @@
 
     Search suggestions title for Firefox Suggest.
   -->
-  <string name="firefox_suggest_header" tools:ignore="BrandUsage">Firefox usınıs etedi</string>
+  <string name="firefox_suggest_header" tools:ignore="BrandUsage">Clarus usınıs etedi</string>
   <!-- Title for search suggestions when Google is the default search suggestion engine. -->
   <string name="google_search_engine_suggestion_header">Googlede izlew</string>
   <!-- Title for search suggestions when the default search suggestion engine is anything other than Google. %s is default search engine name. -->

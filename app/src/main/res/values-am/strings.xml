@@ -340,7 +340,7 @@
   <!-- Positive button label for the privacy preferences dialog shown during onboarding. -->
   <string name="onboarding_preferences_dialog_positive_button">ተከናውኗል</string>
   <!-- Terms of service onboarding title card label. 'Firefox' intentionally hardcoded here -->
-  <string name="onboarding_welcome_to_firefox" tools:ignore="BrandUsage">ወደ Firefox እንኳን በደህና መጡ</string>
+  <string name="onboarding_welcome_to_firefox" tools:ignore="BrandUsage">ወደ Clarus እንኳን በደህና መጡ</string>
   <!-- Line one of the terms of service onboarding page. %1$s is replaced by an active link, using onboarding_term_of_service_line_one_link_text_2 as text (“Firefox Terms of Use”). -->
   <string name="onboarding_term_of_service_line_one_2">በመቀጠል፣ በ%1$s ተስማምተዋል።</string>
   <!-- Used as text for the link in onboarding_term_of_service_line_one_2. -->
@@ -350,7 +350,7 @@
   <!-- Used as text for the link in onboarding_term_of_service_line_two. -->
   <string name="onboarding_term_of_service_line_two_link_text">የግላዊነት ማስታወቂያ</string>
   <!-- Line three of the terms of service onboarding page. 'Firefox' and 'Mozilla' are intentionally hardcoded. %1$s is replaced by an active link using onboarding_term_of_service_line_three_link_text as text (“Manage”). -->
-  <string name="onboarding_term_of_service_line_three" tools:ignore="BrandUsage">አሳሹን ለማሻሻል እንዲረዳ Firefox የምርመራ እና የመስተጋብር ውሂብ ወደ ሞዚላ ይልካል። %1$s</string>
+  <string name="onboarding_term_of_service_line_three" tools:ignore="BrandUsage">አሳሹን ለማሻሻል እንዲረዳ Clarus የምርመራ እና የመስተጋብር ውሂብ ወደ ሞዚላ ይልካል። %1$s</string>
   <!-- Used as text for the link in onboarding_term_of_service_line_three. -->
   <string name="onboarding_term_of_service_line_three_link_text">አስተዳድር</string>
   <!-- Marketing onboarding page title variant. “One last thing” refers to the final step or action in the onboarding process that we’re asking users to take before they can start using the browser. -->
@@ -408,7 +408,7 @@
   <!-- Preference Category for settings related to Search address bar -->
   <string name="preferences_settings_address_bar">የአድራሻ አሞሌ ምርጫዎች</string>
   <!-- Preference Category for settings to Firefox Suggest -->
-  <string name="preference_search_address_bar_fx_suggest" tools:ignore="BrandUsage">የአድራሻ አሞሌ - Firefox Suggest</string>
+  <string name="preference_search_address_bar_fx_suggest" tools:ignore="BrandUsage">የአድራሻ አሞሌ - Clarus Suggest</string>
   <!-- Preference link to Learn more about Firefox Suggest -->
   <string name="preference_search_learn_about_fx_suggest" tools:ignore="BrandUsage">ስለFirefox Suggest የበለጠ ይወቁ</string>
   <!-- Preference link to rating Fenix on the Play Store -->
@@ -1560,7 +1560,7 @@
   <!-- An option to connect additional devices -->
   <string name="sync_connect_device">ሌላ መሳሪያ ያገናኙ</string>
   <!-- The dialog text shown when additional devices are not available -->
-  <string name="sync_connect_device_dialog" tools:ignore="BrandUsage">ትር ለመላክ ቢያንስ በአንድ ሌላ መሳሪያ ወደ Firefox ይግቡ።</string>
+  <string name="sync_connect_device_dialog" tools:ignore="BrandUsage">ትር ለመላክ ቢያንስ በአንድ ሌላ መሳሪያ ወደ Clarus ይግቡ።</string>
   <!-- Confirmation dialog button -->
   <string name="sync_confirmation_button">ገባኝ</string>
   <!-- Share error message -->
@@ -1592,7 +1592,7 @@
     Title shown in the notification that pops up to remind the user to set fenix as default browser.
     The app name is in the text, due to limitations with localizing Nimbus experiments
   -->
-  <string name="nimbus_notification_default_browser_title" tools:ignore="BrandUsage,UnusedResources">Firefox ፈጣን እና ግላዊ ነው</string>
+  <string name="nimbus_notification_default_browser_title" tools:ignore="BrandUsage,UnusedResources">Clarus ፈጣን እና ግላዊ ነው</string>
   <!--
     Text shown in the notification that pops up to remind the user to set fenix as default browser.
     The app name is in the text, due to limitations with localizing Nimbus experiments
@@ -1724,7 +1724,7 @@
   <!-- Title of QR Pairing Fragment -->
   <string name="sync_scan_code">ኮዱን ይቃኙ</string>
   <!-- Instructions on how to access pairing -->
-  <string name="sign_in_instructions" tools:ignore="BrandUsage"><![CDATA[በኮምፒተርዎ ላይ Firefox ን ይክፈቱ እና ወደ <b>https://firefox.com/pair</b> ይሂዱ]]></string>
+  <string name="sign_in_instructions" tools:ignore="BrandUsage"><![CDATA[በኮምፒተርዎ ላይ Clarus ን ይክፈቱ እና ወደ <b>https://firefox.com/pair</b> ይሂዱ]]></string>
   <!-- Text shown for sign in pairing when ready -->
   <string name="sign_in_ready_for_scan">ለመቃኘት ዝግጁ</string>
   <!-- Text shown for settings option for sign with pairing -->
@@ -2351,7 +2351,7 @@
   -->
   <string name="inactive_tabs_auto_close_message_header" tools:ignore="UnusedResources">ከአንድ ወር በኋላ በራስ-ሰር ይዘጋ?</string>
   <!-- A description below the header to notify the user what the inactive tabs auto-close feature is. -->
-  <string name="inactive_tabs_auto_close_message_description" tools:ignore="BrandUsage,UnusedResources">Firefox ባለፈው ወር ውስጥ ያላዩዋቸውን ትሮች ሊዘጋ ይችላል።</string>
+  <string name="inactive_tabs_auto_close_message_description" tools:ignore="BrandUsage,UnusedResources">Clarus ባለፈው ወር ውስጥ ያላዩዋቸውን ትሮች ሊዘጋ ይችላል።</string>
   <!-- A call to action below the description to allow the user to turn on the auto closing of inactive tabs. -->
   <string name="inactive_tabs_auto_close_message_action" tools:ignore="UnusedResources">ራስ-ሰር ዝጋን ያብሩ</string>
   <!-- Text for the snackbar to confirm auto-close is enabled for inactive tabs -->
@@ -2893,7 +2893,7 @@
   <!-- Homepage card title about old Firefox version. "Update" is a verb. -->
   <string name="certificate_warning_homepage_card_hcr1_title" tools:ignore="UnusedResources">ከማርች 14 በፊት ያዘምኑ</string>
   <!-- Homepage card title about old Firefox version. Note: The word "Firefox" should NOT be translated. -->
-  <string name="certificate_warning_homepage_card_hcw3_title" tools:ignore="BrandUsage,UnusedResources">የእርስዎን Firefox ለማቆየት የመጨረሻው ዕድል</string>
+  <string name="certificate_warning_homepage_card_hcw3_title" tools:ignore="BrandUsage,UnusedResources">የእርስዎን Clarus ለማቆየት የመጨረሻው ዕድል</string>
   <!-- Push notification title about old Firefox version. "Update" is a noun. -->
   <string name="certificate_warning_push_notification_update_recommended_title" tools:ignore="UnusedResources">ማዘመን ይመከራል</string>
   <!-- Push notification title about old Firefox version. Note: The word "Firefox" should NOT be translated. -->

@@ -74,7 +74,7 @@
   <!-- Text for the menu button to remove a recently saved bookmark from the user's home screen -->
   <string name="home_bookmarks_menu_item_remove">Smazat</string>
   <!-- About content. %1$s is the name of the app (for example "Firefox"). -->
-  <string name="about_content" tools:ignore="BrandUsage">Autorem aplikace %1$s je Mozilla.</string>
+  <string name="about_content" tools:ignore="BrandUsage">Autorem aplikace %1$s je Clarus.</string>
   <!-- Private Browsing -->
   <string name="private_browsing_common_myths">Časté omyly o fungování anonymního prohlížení</string>
   <!-- Text to be announced by the accessibility service to inform the user that the private browsing mode is currently active. -->
@@ -445,7 +445,7 @@
   -->
   <string name="onboarding_home_content_description_close_button">Zavřít</string>
   <!-- Title for the privacy preferences dialog shown during onboarding. Note: The word "Firefox" should NOT be translated. -->
-  <string name="onboarding_preferences_dialog_title" tools:ignore="BrandUsage">Pomozte nám vylepšit Firefox</string>
+  <string name="onboarding_preferences_dialog_title" tools:ignore="BrandUsage">Pomozte nám vylepšit Clarus</string>
   <!-- Title for the crash reporting option in the privacy preferences dialog shown during onboarding. -->
   <string name="onboarding_preferences_dialog_crash_reporting_title">Automaticky odesílat hlášení o pádech</string>
   <!-- Description for the crash reporting option in the privacy preferences dialog shown during onboarding. -->
@@ -464,12 +464,12 @@
   <string name="startup_crash_restart">Znovu otevřít %s</string>
   <!-- Title for the usage data option in the privacy preferences dialog shown during onboarding. Note: The word "Mozilla" should NOT be translated. -->
   <string name="onboarding_preferences_dialog_usage_data_title" tools:ignore="BrandUsage">Odesílat Mozille technické údaje a údaje o interakcích</string>
-  <string name="onboarding_preferences_dialog_usage_data_description_2" tools:ignore="BrandUsage">Data o vašem zařízení, konfiguraci hardwaru a o tom, jak používáte Firefox, pomáhají vylepšovat funkce, výkon a stabilitu pro každého.</string>
+  <string name="onboarding_preferences_dialog_usage_data_description_2" tools:ignore="BrandUsage">Data o vašem zařízení, konfiguraci hardwaru a o tom, jak používáte Clarus, pomáhají vylepšovat funkce, výkon a stabilitu pro každého.</string>
   <string name="onboarding_preferences_dialog_usage_data_learn_more_2">Zjistit více</string>
   <!-- Positive button label for the privacy preferences dialog shown during onboarding. -->
   <string name="onboarding_preferences_dialog_positive_button">Hotovo</string>
   <!-- Terms of service onboarding title card label. 'Firefox' intentionally hardcoded here -->
-  <string name="onboarding_welcome_to_firefox" tools:ignore="BrandUsage">Vítá vás Firefox</string>
+  <string name="onboarding_welcome_to_firefox" tools:ignore="BrandUsage">Vítá vás Clarus</string>
   <!-- Line one of the terms of service onboarding page. %1$s is replaced by an active link, using onboarding_term_of_service_line_one_link_text_2 as text (“Firefox Terms of Use”). -->
   <string name="onboarding_term_of_service_line_one_2">Pokračováním souhlasíte s dokumentem %1$s.</string>
   <!-- Used as text for the link in onboarding_term_of_service_line_one_2. -->
@@ -479,7 +479,7 @@
   <!-- Used as text for the link in onboarding_term_of_service_line_two. -->
   <string name="onboarding_term_of_service_line_two_link_text">Zásady ochrany osobních údajů</string>
   <!-- Line three of the terms of service onboarding page. 'Firefox' and 'Mozilla' are intentionally hardcoded. %1$s is replaced by an active link using onboarding_term_of_service_line_three_link_text as text (“Manage”). -->
-  <string name="onboarding_term_of_service_line_three" tools:ignore="BrandUsage">Firefox odesílá Mozille diagnostické údaje a údaje o interakcích, které pomáhají prohlížeč vylepšovat. %1$s</string>
+  <string name="onboarding_term_of_service_line_three" tools:ignore="BrandUsage">Clarus odesílá Mozille diagnostické údaje a údaje o interakcích, které pomáhají prohlížeč vylepšovat. %1$s</string>
   <!-- Used as text for the link in onboarding_term_of_service_line_three. -->
   <string name="onboarding_term_of_service_line_three_link_text">Správa</string>
   <!-- Terms of use (ToU) onboarding redesign title. -->
@@ -508,7 +508,7 @@
     Terms of use (ToU) third body text. 'Firefox' and 'Mozilla' are intentionally hardcoded.
     %1$s is replaced by an active link using onboarding_redesign_tou_body_three_link_text as text (“Manage Settings”).
   -->
-  <string name="onboarding_redesign_tou_body_three" tools:ignore="BrandUsage,UnusedResources">Firefox odesílá organizaci Mozilla diagnostické údaje a údaje o interakcích, které pomáhají prohlížeč vylepšovat. %1$s</string>
+  <string name="onboarding_redesign_tou_body_three" tools:ignore="BrandUsage,UnusedResources">Clarus odesílá organizaci Mozilla diagnostické údaje a údaje o interakcích, které pomáhají prohlížeč vylepšovat. %1$s</string>
   <!-- Used as text for the link in onboarding_redesign_tou_body_three. -->
   <string name="onboarding_redesign_tou_body_three_link_text" tools:ignore="UnusedResources">Nastavení</string>
   <!-- Terms of use (ToU) onboarding page continue button label. -->
@@ -518,9 +518,9 @@
   <!-- Onboarding label for 'Continue' button. -->
   <string name="onboarding_redesign_continue_button" tools:ignore="UnusedResources">Pokračovat</string>
   <!-- Marketing onboarding page title. 'Firefox' is intentionally hardcoded. -->
-  <string name="onboarding_marketing_redesign_title" tools:ignore="BrandUsage">Pomozte nám rozvíjet Firefox</string>
+  <string name="onboarding_marketing_redesign_title" tools:ignore="BrandUsage">Pomozte nám rozvíjet Clarus</string>
   <!-- Marketing onboarding page opt-out checkbox. Unchecking the box does not increase data collection. Our data practices remain the same. 'Mozilla' is intentionally hardcoded. -->
-  <string name="onboarding_marketing_redesign_opt_out_checkbox" tools:ignore="BrandUsage,UnusedResources">Podělte se s marketingovými partnery Mozilly o to, jak jste Firefox objevili a že ho používáte. Tyto údaje nejsou nikdy prodávány.</string>
+  <string name="onboarding_marketing_redesign_opt_out_checkbox" tools:ignore="BrandUsage,UnusedResources">Podělte se s marketingovými partnery Mozilly o to, jak jste Clarus objevili a že ho používáte. Tyto údaje nejsou nikdy prodávány.</string>
   <!-- Marketing onboarding page clickable link text to "learn more" on how data is used. -->
   <string name="onboarding_marketing_redesign_learn_more" tools:ignore="UnusedResources">Jak data používáme</string>
   <!-- Marketing onboarding page button label. Button to confirm choice and start browsing. -->
@@ -530,7 +530,7 @@
   <!-- Set to default browser onboarding redesign body. -->
   <string name="onboarding_redesign_set_default_browser_body" tools:ignore="UnusedResources">Jedním klepnutím zastavíte společnosti, aby špehovaly vaše kliky.</string>
   <!-- Sync onboarding redesign title. 'Firefox' is intentionally hardcoded. -->
-  <string name="onboarding_redesign_sync_title" tools:ignore="BrandUsage,UnusedResources">Synchronizujte data všude, kde používáte Firefox</string>
+  <string name="onboarding_redesign_sync_title" tools:ignore="BrandUsage,UnusedResources">Synchronizujte data všude, kde používáte Clarus</string>
   <!-- Sync onboarding redesign body. -->
   <string name="onboarding_redesign_sync_body" tools:ignore="UnusedResources">Získejte záložky, panely a hesla na jakémkoli zařízení. Vše chráněno šifrováním.</string>
   <!-- Sync onboarding redesign positive button text. -->
@@ -540,7 +540,7 @@
   <!-- Marketing onboarding page title variant. “One last thing” refers to the final step or action in the onboarding process that we’re asking users to take before they can start using the browser. -->
   <string name="onboarding_marketing_title_1" tools:ignore="UnusedResources">Jen jedna poslední věc</string>
   <!-- Marketing onboarding page body variant. 'Firefox' is intentionally hardcoded. -->
-  <string name="onboarding_marketing_body_1" tools:ignore="BrandUsage,UnusedResources">Podělte se s marketingovými partnery Mozilly o to, jak jste Firefox objevili a že ho používáte. Tyto údaje nejsou nikdy prodávány.</string>
+  <string name="onboarding_marketing_body_1" tools:ignore="BrandUsage,UnusedResources">Podělte se s marketingovými partnery Mozilly o to, jak jste Clarus objevili a že ho používáte. Tyto údaje nejsou nikdy prodávány.</string>
   <!-- Marketing onboarding page button label variant. Button to confirm choice and start browsing. -->
   <string name="onboarding_marketing_positive_button_1" tools:ignore="UnusedResources">Souhlasit a začít prohlížet</string>
   <!-- ==== Project "Nova" onboarding strings ==== -->
@@ -575,7 +575,7 @@
     Terms of use (ToU) onboarding body line three. 'Firefox' and 'Mozilla' are intentionally hardcoded.
     %1$s is replaced by an active link, using nova_onboarding_tou_body_line_3_link_text as text (“Manage Settings”).
   -->
-  <string name="nova_onboarding_tou_body_line_3" tools:ignore="BrandUsage">Firefox odesílá Mozille diagnostické údaje a údaje o interakcích, které pomáhají prohlížeč vylepšovat. %1$s</string>
+  <string name="nova_onboarding_tou_body_line_3" tools:ignore="BrandUsage">Clarus odesílá Mozille diagnostické údaje a údaje o interakcích, které pomáhají prohlížeč vylepšovat. %1$s</string>
   <!-- Terms of use (ToU) onboarding body line three link text for nova_onboarding_tou_body_line_3. -->
   <string name="nova_onboarding_tou_body_line_3_link_text">Spravovat nastavení</string>
   <!-- "Set to default" onboarding title. -->
@@ -612,35 +612,35 @@
     Marketing onboarding body. 'Firefox' and 'Mozilla' are intentionally hardcoded.
     %1$s is replaced by an active link, using nova_onboarding_marketing_body_link_text as text (“How we use the data”).
   -->
-  <string name="nova_onboarding_marketing_body" tools:ignore="BrandUsage,UnusedResources">Podělte se s marketingovými partnery Mozilly o tom, jak jste objevili Firefox a že jej používáte. Tato data nejsou nikdy prodávána. %1$s</string>
+  <string name="nova_onboarding_marketing_body" tools:ignore="BrandUsage,UnusedResources">Podělte se s marketingovými partnery Mozilly o tom, jak jste objevili Clarus a že jej používáte. Tato data nejsou nikdy prodávána. %1$s</string>
   <!-- Marketing onboarding body. 'Firefox' and 'Mozilla' are intentionally hardcoded. -->
-  <string name="nova_onboarding_marketing_body_2" tools:ignore="BrandUsage">Podělte se s marketingovými partnery Mozilly o to, jak jste Firefox objevili a že ho používáte. Tyto údaje nejsou nikdy prodávány.</string>
+  <string name="nova_onboarding_marketing_body_2" tools:ignore="BrandUsage">Podělte se s marketingovými partnery Mozilly o to, jak jste Clarus objevili a že ho používáte. Tyto údaje nejsou nikdy prodávány.</string>
   <!-- Marketing onboarding body. 'Firefox' and 'Mozilla' are intentionally hardcoded. -->
-  <string name="nova_onboarding_marketing_body_3" tools:ignore="BrandUsage,UnusedResources">Můžete nám pomoci oslovit více uživatelů tím, že umožníte Mozille informovat kanály, kde propagujeme Firefox, že jste jeho uživatelem.</string>
+  <string name="nova_onboarding_marketing_body_3" tools:ignore="BrandUsage,UnusedResources">Můžete nám pomoci oslovit více uživatelů tím, že umožníte Mozille informovat kanály, kde propagujeme Clarus, že jste jeho uživatelem.</string>
   <!--
     Marketing onboarding body. 'Firefox' and 'Mozilla' are intentionally hardcoded.
     “Platform you came from” refers to the external app, website, store, campaign, or other source that directed the user to Firefox.
   -->
-  <string name="nova_onboarding_marketing_body_4" tools:ignore="BrandUsage,UnusedResources">Pomůžete nám oslovit více lidí tím, že povolíte Mozille sdělovat platformě, odkud jste přišli, že používáte Firefox.</string>
+  <string name="nova_onboarding_marketing_body_4" tools:ignore="BrandUsage,UnusedResources">Pomůžete nám oslovit více lidí tím, že povolíte Mozille sdělovat platformě, odkud jste přišli, že používáte Clarus.</string>
   <!--
     Marketing onboarding body. 'Firefox' and 'Mozilla' are intentionally hardcoded.
     “Platform you came from” refers to the external app, website, store, campaign, or other source that directed the user to Firefox.
   -->
-  <string name="nova_onboarding_marketing_body_5" tools:ignore="BrandUsage,UnusedResources">Pomozte nám oslovit více lidí. Dovolte Mozille informovat platformu, odkud jste přišli, že používáte Firefox.</string>
+  <string name="nova_onboarding_marketing_body_5" tools:ignore="BrandUsage,UnusedResources">Pomozte nám oslovit více lidí. Dovolte Mozille informovat platformu, odkud jste přišli, že používáte Clarus.</string>
   <!--
     Marketing onboarding body. 'Firefox' and 'Mozilla' are intentionally hardcoded.
     “Platform you came from” refers to the external app, website, store, campaign, or other source that directed the user to Firefox.
     %1$s is replaced by an active link, using nova_onboarding_marketing_body_link_text as text (“How we use the data”).
   -->
-  <string name="nova_onboarding_marketing_body_6" tools:ignore="BrandUsage,UnusedResources">Pomozte nám oslovit více lidí. Dovolte Mozille informovat platformu, odkud jste přišli, že používáte Firefox. %1$s</string>
+  <string name="nova_onboarding_marketing_body_6" tools:ignore="BrandUsage,UnusedResources">Pomozte nám oslovit více lidí. Dovolte Mozille informovat platformu, odkud jste přišli, že používáte Clarus. %1$s</string>
   <!--
     Marketing onboarding body. 'Firefox' and 'Mozilla' are intentionally hardcoded.
     “Platform you came from” refers to the external app, website, store, campaign, or other source that directed the user to Firefox.
     %1$s is replaced by an active link, using nova_onboarding_marketing_body_link_text_1 as text (“Learn More”).
   -->
-  <string name="nova_onboarding_marketing_body_7" tools:ignore="BrandUsage">Můžete nám pomoci oslovit více lidí tím, že povolíte Mozille, aby platformě, ze které jste přišli, sdělila, že používáte Firefox. %1$s</string>
+  <string name="nova_onboarding_marketing_body_7" tools:ignore="BrandUsage">Můžete nám pomoci oslovit více lidí tím, že povolíte Mozille, aby platformě, ze které jste přišli, sdělila, že používáte Clarus. %1$s</string>
   <!-- Marketing onboarding additional body text. 'Firefox' is intentionally hardcoded. -->
-  <string name="nova_onboarding_marketing_body_line_two" tools:ignore="BrandUsage">Firefox je hrdě nezávislý a zasazuje se o ochranu otevřeného webu před technologickými monopoly.</string>
+  <string name="nova_onboarding_marketing_body_line_two" tools:ignore="BrandUsage">Clarus je hrdě nezávislý a zasazuje se o ochranu otevřeného webu před technologickými monopoly.</string>
   <!--
     Marketing onboarding additional body text. 'Firefox' is intentionally hardcoded.
     “Allowing” refers to the main button “Allow and Continue”; the ask for the user is to allow communicating back to the platform.
@@ -669,7 +669,7 @@
   <!-- "Add search widget" onboarding subtitle. 'Firefox' is intentionally hardcoded. -->
   <string name="nova_onboarding_add_search_widget_subtitle" tools:ignore="BrandUsage">Každé vyhledávání můžete začít z domovské obrazovky telefonu a vědět, že vám automatická ochrana Firefoxu kryje záda.</string>
   <!-- "Add search widget" onboarding button. 'Firefox' is intentionally hardcoded. -->
-  <string name="nova_onboarding_add_search_widget_button" tools:ignore="BrandUsage">Přidat miniaplikaci Firefox</string>
+  <string name="nova_onboarding_add_search_widget_button" tools:ignore="BrandUsage">Přidat miniaplikaci Clarus</string>
   <!-- Customize prompt onboarding title. -->
   <string name="nova_onboarding_customize_prompt_title" tools:ignore="UnusedResources">Snadné přizpůsobení a větší soukromí s každým klepnutím</string>
   <plurals name="nova_onboarding_customize_prompt_body" tools:ignore="UnusedResources">
@@ -1114,7 +1114,7 @@
   -->
   <string name="addon_ga_message_title_2" tools:ignore="UnusedResources">Nové rozšíření jsou nyní k dispozici</string>
   <!-- Body of the Nimbus message for add-ons general availability. 'Firefox' intentionally hardcoded here -->
-  <string name="addon_ga_message_body" tools:ignore="BrandUsage,UnusedResources">Podívejte se na více než 100 nových rozšíření, která vám umožní přizpůsobit Firefox svým představám.</string>
+  <string name="addon_ga_message_body" tools:ignore="BrandUsage,UnusedResources">Podívejte se na více než 100 nových rozšíření, která vám umožní přizpůsobit Clarus svým představám.</string>
   <!-- Button text of the Nimbus message for extensions general availability. -->
   <string name="addon_ga_message_button_2" tools:ignore="UnusedResources">Prozkoumat rozšíření</string>
   <!--
@@ -1243,7 +1243,7 @@
     Preference description for marketing data collection.
     Note: The words "Firefox" and "Mozilla" should NOT be translated. “That you use it” is to mean that the user is opting in to sharing that they are continuing to use Firefox after installing it; not that Firefox is tracking their “usage” or what they’re using it for.
   -->
-  <string name="preferences_marketing_data_description_4" tools:ignore="BrandUsage">Podělte se o to, jak jste Firefox objevili a že ho používáte, s partnery Mozilly v oblasti marketingových technologií.</string>
+  <string name="preferences_marketing_data_description_4" tools:ignore="BrandUsage">Podělte se o to, jak jste Clarus objevili a že ho používáte, s partnery Mozilly v oblasti marketingových technologií.</string>
   <!-- Learn more link for marketing data preference -->
   <string name="preferences_marketing_data_learn_more">Další informace o marketingových datech</string>
   <!-- Title for studies preferences -->
@@ -1478,7 +1478,7 @@
   <!-- Title of the active section on the studies list -->
   <string name="studies_active">Aktivní</string>
   <!-- Description for studies. Note: The word "Firefox" should NOT be translated -->
-  <string name="studies_description_4" tools:ignore="BrandUsage">Firefox náhodně vybírá uživatele k testování funkcí, což zlepšuje kvalitu pro všechny.</string>
+  <string name="studies_description_4" tools:ignore="BrandUsage">Clarus náhodně vybírá uživatele k testování funkcí, což zlepšuje kvalitu pro všechny.</string>
   <!-- Title of the Studies data preference -->
   <string name="studies_title_2">Povolit studie funkcí</string>
   <!-- Learn more link for studies, links to an article for more information about studies. -->
@@ -1490,7 +1490,7 @@
   -->
   <string name="remote_improvements_title">Povolit vzdálená vylepšení</string>
   <!-- Description for remote improvements. Note: The word "Firefox" should NOT be translated -->
-  <string name="remote_improvements_description" tools:ignore="BrandUsage">Firefox vylepší funkce, výkon a stabilitu mezi aktualizacemi. Změny se aplikují vzdáleně.</string>
+  <string name="remote_improvements_description" tools:ignore="BrandUsage">Clarus vylepší funkce, výkon a stabilitu mezi aktualizacemi. Změny se aplikují vzdáleně.</string>
   <!-- Learn more link for remote improvements, links to an article for more information about rollouts. -->
   <string name="remote_improvements_learn_more">Zjistit více</string>
   <!-- Title for remote improvements preference in Advanced settings -->
@@ -2415,7 +2415,7 @@
   <!-- An option to connect additional devices -->
   <string name="sync_connect_device">Připojit další zařízení</string>
   <!-- The dialog text shown when additional devices are not available -->
-  <string name="sync_connect_device_dialog" tools:ignore="BrandUsage">Pro poslání panelu se prosím přihlaste účtem Firefox na dalším zařízení.</string>
+  <string name="sync_connect_device_dialog" tools:ignore="BrandUsage">Pro poslání panelu se prosím přihlaste účtem Clarus na dalším zařízení.</string>
   <!-- Confirmation dialog button -->
   <string name="sync_confirmation_button">Rozumím</string>
   <!-- Share error message -->
@@ -2447,19 +2447,19 @@
     Title shown in the notification that pops up to remind the user to set fenix as default browser.
     The app name is in the text, due to limitations with localizing Nimbus experiments
   -->
-  <string name="nimbus_notification_default_browser_title" tools:ignore="BrandUsage,UnusedResources">Firefox je rychlý a soukromý</string>
+  <string name="nimbus_notification_default_browser_title" tools:ignore="BrandUsage,UnusedResources">Clarus je rychlý a soukromý</string>
   <!--
     Text shown in the notification that pops up to remind the user to set fenix as default browser.
     The app name is in the text, due to limitations with localizing Nimbus experiments
   -->
-  <string name="nimbus_notification_default_browser_text" tools:ignore="BrandUsage,UnusedResources">Nastavit Firefox jako můj výchozí prohlížeč</string>
+  <string name="nimbus_notification_default_browser_text" tools:ignore="BrandUsage,UnusedResources">Nastavit Clarus jako můj výchozí prohlížeč</string>
   <!--
     Survey
 
     Text shown in the fullscreen message that pops up to ask user to take a short survey.
     The app name is in the text, due to limitations with localizing Nimbus experiments
   -->
-  <string name="nimbus_survey_message_text" tools:ignore="BrandUsage">Pomozte nám, prosím, zlepšit Firefox vyplněním krátkého dotazníku.</string>
+  <string name="nimbus_survey_message_text" tools:ignore="BrandUsage">Pomozte nám, prosím, zlepšit Clarus vyplněním krátkého dotazníku.</string>
   <!-- Preference for taking the short survey. -->
   <string name="preferences_take_survey">Vyplnit průzkum</string>
   <!-- Preference for not taking the short survey. -->
@@ -2591,7 +2591,7 @@
   <!-- Title of QR Pairing Fragment -->
   <string name="sync_scan_code">Naskenovat kód</string>
   <!-- Instructions on how to access pairing -->
-  <string name="sign_in_instructions" tools:ignore="BrandUsage"><![CDATA[Otevřete Firefox na svém počítači a navštivte stránku <b>https://firefox.com/pair</b>]]></string>
+  <string name="sign_in_instructions" tools:ignore="BrandUsage"><![CDATA[Otevřete Clarus na svém počítači a navštivte stránku <b>https://firefox.com/pair</b>]]></string>
   <!-- Text shown for sign in pairing when ready -->
   <string name="sign_in_ready_for_scan">Připraveno na skenování</string>
   <!-- Text shown for settings option for sign with pairing -->
@@ -2599,7 +2599,7 @@
   <!-- Text shown for settings option for sign with email -->
   <string name="sign_in_with_email">Použít raději e-mail</string>
   <!-- Text shown for settings option for create new account text.'Firefox' intentionally hardcoded here. -->
-  <string name="sign_in_create_account_text" tools:ignore="BrandUsage"><![CDATA[Ještě nemáte účet? <u>Vytvořte si ho</u> a synchronizujte svůj Firefox mezi zařízeními.]]></string>
+  <string name="sign_in_create_account_text" tools:ignore="BrandUsage"><![CDATA[Ještě nemáte účet? <u>Vytvořte si ho</u> a synchronizujte svůj Clarus mezi zařízeními.]]></string>
   <!-- Text shown in confirmation dialog to sign out of account. %s is the name of the app (for example "Firefox"). -->
   <string name="sign_out_confirmation_message_2">%s ukončí synchronizaci s vaším účtem, ale nesmaže z tohoto zařízení žádná vaše data.</string>
   <!-- Option to continue signing out of account shown in confirmation dialog to sign out of account -->
@@ -3137,7 +3137,7 @@
   <!-- Title for the browser VPN location picker screen. -->
   <string name="ip_protection_location_picker_title" tools:ignore="UnusedResources">Vyberte umístění VPN</string>
   <!-- Description for what it means to use the Recommended setting and let the app automatically pick the best server location. -->
-  <string name="ip_protection_location_fastest_description" tools:ignore="BrandUsage">Firefox najde nejrychlejší umístění</string>
+  <string name="ip_protection_location_fastest_description" tools:ignore="BrandUsage">Clarus najde nejrychlejší umístění</string>
   <!-- Description for an unavailable VPN location in the location list. -->
   <string name="ip_protection_location_unavailable_description">Nedostupná</string>
   <!-- Error message shown when the selected browser VPN location is unavailable. -->
@@ -3515,7 +3515,7 @@
   -->
   <string name="inactive_tabs_auto_close_message_header" tools:ignore="UnusedResources">Chcete automaticky zavírat měsíc staré neaktivní panely?</string>
   <!-- A description below the header to notify the user what the inactive tabs auto-close feature is. -->
-  <string name="inactive_tabs_auto_close_message_description" tools:ignore="BrandUsage,UnusedResources">Firefox může zavřít panely, které jste během posledního měsíce nepoužili.</string>
+  <string name="inactive_tabs_auto_close_message_description" tools:ignore="BrandUsage,UnusedResources">Clarus může zavřít panely, které jste během posledního měsíce nepoužili.</string>
   <!-- A call to action below the description to allow the user to turn on the auto closing of inactive tabs. -->
   <string name="inactive_tabs_auto_close_message_action" tools:ignore="UnusedResources">ZAPNOUT AUTOMATICKÉ ZAVÍRÁNÍ</string>
   <!-- Text for the snackbar to confirm auto-close is enabled for inactive tabs -->
@@ -4038,7 +4038,7 @@
 
     The microsurvey prompt title. Note: The word "Firefox" should NOT be translated
   -->
-  <string name="micro_survey_prompt_title" tools:ignore="BrandUsage,UnusedResources">Pomozte nám vylepšit Firefox. Zabere to jen minutku.</string>
+  <string name="micro_survey_prompt_title" tools:ignore="BrandUsage,UnusedResources">Pomozte nám vylepšit Clarus. Zabere to jen minutku.</string>
   <!-- The continue button label -->
   <string name="micro_survey_continue_button_label" tools:ignore="UnusedResources">Pokračovat</string>
   <!--
@@ -4096,7 +4096,7 @@
   <!-- Text shown in the survey title for sync experience microsurvey. Note: The word "Firefox" should NOT be translated. -->
   <string name="microsurvey_sync_title" tools:ignore="BrandUsage,UnusedResources">Jak jste spokojeni se synchronizací ve Firefoxu?</string>
   <!-- Text shown in the survey title for 'describe your experience so far' microsurvey. Note: The word "Firefox" should NOT be translated. -->
-  <string name="microsurvey_describe_your_experience_title" tools:ignore="BrandUsage,UnusedResources">Pomozte nám vylepšit Firefox. Co nejlépe vystihuje vaše dosavadní zkušenosti?</string>
+  <string name="microsurvey_describe_your_experience_title" tools:ignore="BrandUsage,UnusedResources">Pomozte nám vylepšit Clarus. Co nejlépe vystihuje vaše dosavadní zkušenosti?</string>
   <!--
     Uninstall Survey
 
@@ -4240,27 +4240,27 @@
   -->
   <string name="certificate_warning_homepage_card_update_now_button" tools:ignore="UnusedResources">Aktualizovat</string>
   <!-- Homepage card title about old Firefox version. "Update" is a verb. Note: The word "Firefox" should NOT be translated. -->
-  <string name="certificate_warning_homepage_card_hca1_title" tools:ignore="BrandUsage,UnusedResources">Aktualizujte svůj Firefox</string>
+  <string name="certificate_warning_homepage_card_hca1_title" tools:ignore="BrandUsage,UnusedResources">Aktualizujte svůj Clarus</string>
   <!-- Homepage card message about old Firefox version -->
   <string name="certificate_warning_homepage_card_hca1_message" tools:ignore="UnusedResources">Dne 14. března vyprší platnost kořenového certifikátu, což způsobí, že některé funkce přestanou fungovat.</string>
   <!-- Homepage card title about old Firefox version. "Update" is a verb. -->
   <string name="certificate_warning_homepage_card_hcr1_title" tools:ignore="UnusedResources">Aktualizujte před 14. březnem</string>
   <!-- Homepage card message about old Firefox version. Note: The word "Firefox" should NOT be translated. -->
-  <string name="certificate_warning_homepage_card_hcr1_message" tools:ignore="BrandUsage,UnusedResources">Platnost kořenového certifikátu vyprší, což způsobí, že vaše verze prohlížeče Firefox přestane správně fungovat.</string>
+  <string name="certificate_warning_homepage_card_hcr1_message" tools:ignore="BrandUsage,UnusedResources">Platnost kořenového certifikátu vyprší, což způsobí, že vaše verze prohlížeče Clarus přestane správně fungovat.</string>
   <!-- Homepage card title about old Firefox version -->
   <string name="certificate_warning_homepage_card_hcw2_title" tools:ignore="UnusedResources">Zbývá méně než 7 dní na aktualizaci</string>
   <!-- Homepage card message about old Firefox version. Note: The word "Firefox" should NOT be translated. -->
   <string name="certificate_warning_homepage_card_hcw2_message" tools:ignore="BrandUsage,UnusedResources">14. března přestanou fungovat doplňky a další funkce Firefoxu, protože vyprší platnost kořenového certifikátu.</string>
   <!-- Homepage card title about old Firefox version. Note: The word "Firefox" should NOT be translated. -->
-  <string name="certificate_warning_homepage_card_hcw3_title" tools:ignore="BrandUsage,UnusedResources">Poslední šance ponechat si Firefox</string>
+  <string name="certificate_warning_homepage_card_hcw3_title" tools:ignore="BrandUsage,UnusedResources">Poslední šance ponechat si Clarus</string>
   <!-- Homepage card message about old Firefox version. Note: The word "Firefox" should NOT be translated. -->
-  <string name="certificate_warning_homepage_card_hcw3_message" tools:ignore="BrandUsage,UnusedResources">Vaše verze prohlížeče Firefox přestane 14. března správně fungovat, protože vyprší platnost kořenového certifikátu.</string>
+  <string name="certificate_warning_homepage_card_hcw3_message" tools:ignore="BrandUsage,UnusedResources">Vaše verze prohlížeče Clarus přestane 14. března správně fungovat, protože vyprší platnost kořenového certifikátu.</string>
   <!-- Push notification title about old Firefox version. "Update" is a noun. -->
   <string name="certificate_warning_push_notification_update_recommended_title" tools:ignore="UnusedResources">Aktualizace doporučena</string>
   <!-- Push notification message about old Firefox version -->
   <string name="certificate_warning_push_notification_pnr1_message" tools:ignore="UnusedResources">Doplňky a některé funkce přestanou fungovat 14. března.</string>
   <!-- Push notification title about old Firefox version. Note: The word "Firefox" should NOT be translated. -->
-  <string name="certificate_warning_push_notification_pnw2_title" tools:ignore="BrandUsage,UnusedResources">Používáte starší verzi prohlížeče Firefox</string>
+  <string name="certificate_warning_push_notification_pnw2_title" tools:ignore="BrandUsage,UnusedResources">Používáte starší verzi prohlížeče Clarus</string>
   <!-- Push notification message about old Firefox version. "Update" is a verb. -->
   <string name="certificate_warning_push_notification_pnw2_message" tools:ignore="UnusedResources">Chcete-li nadále používat doplňky a další funkce, aktualizujte před 14. březnem.</string>
   <!-- Push notification message about old Firefox version -->
@@ -4758,7 +4758,7 @@
     The "Labs" portion can be localized, "Firefox" must be treated as a brand and kept
     in English.
   -->
-  <string name="firefox_labs_title" tools:ignore="BrandUsage">Firefox Labs</string>
+  <string name="firefox_labs_title" tools:ignore="BrandUsage">Clarus Labs</string>
   <!-- Banner title text on the Firefox Labs screen. -->
   <string name="firefox_labs_banner_title_2">Vyzkoušejte naše experimentální funkce!</string>
   <!--

@@ -56,7 +56,7 @@
   <!-- Text for the menu button to remove a recently saved bookmark from the user's home screen -->
   <string name="home_bookmarks_menu_item_remove">Eemalda</string>
   <!-- About content. %1$s is the name of the app (for example "Firefox"). -->
-  <string name="about_content" tools:ignore="BrandUsage">%1$s on Mozilla poolt toodetud.</string>
+  <string name="about_content" tools:ignore="BrandUsage">%1$s on Clarus poolt toodetud.</string>
   <!-- Private Browsing -->
   <string name="private_browsing_common_myths">Levinumad müüdid privaatse veebilehitsemise kohta</string>
   <!-- Text to be announced by the accessibility service to inform the user that the private browsing mode is currently active. -->
@@ -331,7 +331,7 @@
   <!-- Preference Category for settings related to Search address bar -->
   <string name="preferences_settings_address_bar">Aadressiriba eelistused</string>
   <!-- Preference Category for settings to Firefox Suggest -->
-  <string name="preference_search_address_bar_fx_suggest" tools:ignore="BrandUsage">Aadressiriba - Firefox Suggest</string>
+  <string name="preference_search_address_bar_fx_suggest" tools:ignore="BrandUsage">Aadressiriba - Clarus Suggest</string>
   <!-- Preference link to rating Fenix on the Play Store -->
   <string name="preferences_rate">Hinda Google Plays</string>
   <!--
@@ -1206,7 +1206,7 @@
   <!-- Title of QR Pairing Fragment -->
   <string name="sync_scan_code">Koodi skannimine</string>
   <!-- Instructions on how to access pairing -->
-  <string name="sign_in_instructions" tools:ignore="BrandUsage"><![CDATA[Ava Firefox oma arvutis ja mine aadressile <b>https://firefox.com/pair</b>]]></string>
+  <string name="sign_in_instructions" tools:ignore="BrandUsage"><![CDATA[Ava Clarus oma arvutis ja mine aadressile <b>https://firefox.com/pair</b>]]></string>
   <!-- Text shown for sign in pairing when ready -->
   <string name="sign_in_ready_for_scan">Skannimiseks valmis</string>
   <!-- Text shown for settings option for sign with pairing -->
@@ -1755,7 +1755,7 @@
   -->
   <string name="inactive_tabs_auto_close_message_header" tools:ignore="UnusedResources">Kas sulgeda automaatselt kuu aja pärast?</string>
   <!-- A description below the header to notify the user what the inactive tabs auto-close feature is. -->
-  <string name="inactive_tabs_auto_close_message_description" tools:ignore="BrandUsage,UnusedResources">Firefox saab sulgeda kaardid, mida sa pole viimase kuu jooksul vaadanud.</string>
+  <string name="inactive_tabs_auto_close_message_description" tools:ignore="BrandUsage,UnusedResources">Clarus saab sulgeda kaardid, mida sa pole viimase kuu jooksul vaadanud.</string>
   <!-- A call to action below the description to allow the user to turn on the auto closing of inactive tabs. -->
   <string name="inactive_tabs_auto_close_message_action" tools:ignore="UnusedResources">LÜLITA SISSE AUTOMAATNE SULGEMINE</string>
   <!-- Text for the snackbar to confirm auto-close is enabled for inactive tabs -->
@@ -1763,7 +1763,7 @@
   <!-- Title for search suggestions when Google is the default search suggestion engine. -->
   <string name="google_search_engine_suggestion_header">Google\'i otsing</string>
   <!-- Default browser card text -->
-  <string name="default_browser_experiment_card_text" tools:ignore="BrandUsage">Määra Firefox automaatselt avama linke, e-posti ja sõnumeid.</string>
+  <string name="default_browser_experiment_card_text" tools:ignore="BrandUsage">Määra Clarus automaatselt avama linke, e-posti ja sõnumeid.</string>
   <!-- Content description radio buttons with a link to more information -->
   <string name="radio_preference_info_content_description">Rohkema teabe jaoks puuduta</string>
   <!-- Content description for the action bar "up" button -->

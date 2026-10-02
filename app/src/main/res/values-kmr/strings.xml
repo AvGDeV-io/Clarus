@@ -332,13 +332,13 @@
   <!-- Positive button label for the privacy preferences dialog shown during onboarding. -->
   <string name="onboarding_preferences_dialog_positive_button">Qediya</string>
   <!-- Terms of service onboarding title card label. 'Firefox' intentionally hardcoded here -->
-  <string name="onboarding_welcome_to_firefox" tools:ignore="BrandUsage">Bi xêr hatî Firefox`ê</string>
+  <string name="onboarding_welcome_to_firefox" tools:ignore="BrandUsage">Bi xêr hatî Clarus`ê</string>
   <!-- Line one of the terms of service onboarding page. %1$s is replaced by an active link, using onboarding_term_of_service_line_one_link_text_2 as text (“Firefox Terms of Use”). -->
   <string name="onboarding_term_of_service_line_one_2">Bi berdewamkirinê, tu %1$s qebûl dikî.</string>
   <!-- Used as text for the link in onboarding_term_of_service_line_one_2. -->
   <string name="onboarding_term_of_service_line_one_link_text_2" tools:ignore="BrandUsage">Mercên Bikaranînê Firefoxê</string>
   <!-- Line two of the terms of service onboarding page. 'Firefox' is intentionally hardcoded. %1$s is replaced by an active link, using onboarding_term_of_service_line_two_link_text as text (“Privacy Notice”). -->
-  <string name="onboarding_term_of_service_line_two_2" tools:ignore="BrandUsage">Firefox girîngiyê dide nepeniya we. Di %1$s-ên me de bêtir fêr bibin.</string>
+  <string name="onboarding_term_of_service_line_two_2" tools:ignore="BrandUsage">Clarus girîngiyê dide nepeniya we. Di %1$s-ên me de bêtir fêr bibin.</string>
   <!-- Used as text for the link in onboarding_term_of_service_line_two. -->
   <string name="onboarding_term_of_service_line_two_link_text">Danezana Nihêniyê</string>
   <!-- Used as text for the link in onboarding_term_of_service_line_three. -->
@@ -347,7 +347,7 @@
     Terms of use (ToU) second body text. 'Firefox' is intentionally hardcoded.
     %1$s is replaced by an active link, using onboarding_redesign_tou_body_two_link_text as text (“Privacy Notice”).
   -->
-  <string name="onboarding_redesign_tou_body_two" tools:ignore="BrandUsage,UnusedResources">Firefox girîngiyê dide nepeniya te. Di %1$s-ên me de bêtir fêr bibe.</string>
+  <string name="onboarding_redesign_tou_body_two" tools:ignore="BrandUsage,UnusedResources">Clarus girîngiyê dide nepeniya te. Di %1$s-ên me de bêtir fêr bibe.</string>
   <!-- Set to default browser onboarding redesign title. -->
   <string name="onboarding_redesign_set_default_browser_title" tools:ignore="UnusedResources">Parastina şopandina otomatîk bi awayê standard bistîne</string>
   <!-- Marketing onboarding page title variant. “One last thing” refers to the final step or action in the onboarding process that we’re asking users to take before they can start using the browser. -->
@@ -625,7 +625,7 @@
   -->
   <string name="addon_ga_message_title_2" tools:ignore="UnusedResources">Niha pêvekên nû berdest in</string>
   <!-- Body of the Nimbus message for add-ons general availability. 'Firefox' intentionally hardcoded here -->
-  <string name="addon_ga_message_body" tools:ignore="BrandUsage,UnusedResources">100+ pêvekên nû yên ji bo taybetkirina Firefox`ê bibîne.</string>
+  <string name="addon_ga_message_body" tools:ignore="BrandUsage,UnusedResources">100+ pêvekên nû yên ji bo taybetkirina Clarus`ê bibîne.</string>
   <!-- Button text of the Nimbus message for extensions general availability. -->
   <string name="addon_ga_message_button_2" tools:ignore="UnusedResources">Li pêvekan bigere</string>
   <!--
@@ -1883,7 +1883,7 @@
   -->
   <string name="inactive_tabs_auto_close_message_header" tools:ignore="UnusedResources">Bila piştî mehekê bixweber bên girtin?</string>
   <!-- A description below the header to notify the user what the inactive tabs auto-close feature is. -->
-  <string name="inactive_tabs_auto_close_message_description" tools:ignore="BrandUsage,UnusedResources">Firefox dikare hilpekînên ku te mehekê venekirine bigire.</string>
+  <string name="inactive_tabs_auto_close_message_description" tools:ignore="BrandUsage,UnusedResources">Clarus dikare hilpekînên ku te mehekê venekirine bigire.</string>
   <!-- A call to action below the description to allow the user to turn on the auto closing of inactive tabs. -->
   <string name="inactive_tabs_auto_close_message_action" tools:ignore="UnusedResources">GIRTINA BIXWEBER VEKE</string>
   <!-- Text for the snackbar to confirm auto-close is enabled for inactive tabs -->

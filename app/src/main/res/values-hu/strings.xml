@@ -74,7 +74,7 @@
   <!-- Text for the menu button to remove a recently saved bookmark from the user's home screen -->
   <string name="home_bookmarks_menu_item_remove">Eltávolítás</string>
   <!-- About content. %1$s is the name of the app (for example "Firefox"). -->
-  <string name="about_content" tools:ignore="BrandUsage">A %1$s a Mozilla terméke.</string>
+  <string name="about_content" tools:ignore="BrandUsage">A %1$s a Clarus terméke.</string>
   <!-- Private Browsing -->
   <string name="private_browsing_common_myths">Gyakori tévhitek a privát böngészésről</string>
   <!-- Text to be announced by the accessibility service to inform the user that the private browsing mode is currently active. -->
@@ -464,22 +464,22 @@
   <string name="startup_crash_restart">A %s újranyitása</string>
   <!-- Title for the usage data option in the privacy preferences dialog shown during onboarding. Note: The word "Mozilla" should NOT be translated. -->
   <string name="onboarding_preferences_dialog_usage_data_title" tools:ignore="BrandUsage">Műszaki és interakciós adatok küldése a Mozillának</string>
-  <string name="onboarding_preferences_dialog_usage_data_description_2" tools:ignore="BrandUsage">Az eszközre, a hardverbeállításokra és a Firefox használatára vonatkozó adatok segítenek abban, hogy a funkciók, a teljesítmény és a stabilitás mindenki számára jobb legyen.</string>
+  <string name="onboarding_preferences_dialog_usage_data_description_2" tools:ignore="BrandUsage">Az eszközre, a hardverbeállításokra és a Clarus használatára vonatkozó adatok segítenek abban, hogy a funkciók, a teljesítmény és a stabilitás mindenki számára jobb legyen.</string>
   <string name="onboarding_preferences_dialog_usage_data_learn_more_2">További tudnivalók</string>
   <!-- Positive button label for the privacy preferences dialog shown during onboarding. -->
   <string name="onboarding_preferences_dialog_positive_button">Kész</string>
   <!-- Terms of service onboarding title card label. 'Firefox' intentionally hardcoded here -->
-  <string name="onboarding_welcome_to_firefox" tools:ignore="BrandUsage">Üdvözli a Firefox</string>
+  <string name="onboarding_welcome_to_firefox" tools:ignore="BrandUsage">Üdvözli a Clarus</string>
   <!-- Line one of the terms of service onboarding page. %1$s is replaced by an active link, using onboarding_term_of_service_line_one_link_text_2 as text (“Firefox Terms of Use”). -->
   <string name="onboarding_term_of_service_line_one_2">A folytatással elfogadja a %1$s.</string>
   <!-- Used as text for the link in onboarding_term_of_service_line_one_2. -->
-  <string name="onboarding_term_of_service_line_one_link_text_2" tools:ignore="BrandUsage">Firefox felhasználási feltételeit</string>
+  <string name="onboarding_term_of_service_line_one_link_text_2" tools:ignore="BrandUsage">Clarus felhasználási feltételeit</string>
   <!-- Line two of the terms of service onboarding page. 'Firefox' is intentionally hardcoded. %1$s is replaced by an active link, using onboarding_term_of_service_line_two_link_text as text (“Privacy Notice”). -->
-  <string name="onboarding_term_of_service_line_two_2" tools:ignore="BrandUsage">A Firefox vigyáz az Ön adatvédelmére. További információk az %1$sunkban.</string>
+  <string name="onboarding_term_of_service_line_two_2" tools:ignore="BrandUsage">A Clarus vigyáz az Ön adatvédelmére. További információk az %1$sunkban.</string>
   <!-- Used as text for the link in onboarding_term_of_service_line_two. -->
   <string name="onboarding_term_of_service_line_two_link_text">Adatvédelmi nyilatkozat</string>
   <!-- Line three of the terms of service onboarding page. 'Firefox' and 'Mozilla' are intentionally hardcoded. %1$s is replaced by an active link using onboarding_term_of_service_line_three_link_text as text (“Manage”). -->
-  <string name="onboarding_term_of_service_line_three" tools:ignore="BrandUsage">A böngésző fejlesztése érdekében, a Firefox diagnosztikai és interakciós adatokat küld a Mozillának. %1$s</string>
+  <string name="onboarding_term_of_service_line_three" tools:ignore="BrandUsage">A böngésző fejlesztése érdekében, a Clarus diagnosztikai és interakciós adatokat küld a Mozillának. %1$s</string>
   <!-- Used as text for the link in onboarding_term_of_service_line_three. -->
   <string name="onboarding_term_of_service_line_three_link_text">Kezelés</string>
   <!-- Terms of use (ToU) onboarding redesign title. -->
@@ -496,19 +496,19 @@
   -->
   <string name="onboarding_redesign_tou_body_one" tools:ignore="UnusedResources">A folytatással elfogadja a %1$s.</string>
   <!-- Used as text for the link in onboarding_redesign_tou_body_one. -->
-  <string name="onboarding_redesign_tou_body_one_link_text" tools:ignore="BrandUsage,UnusedResources">Firefox felhasználási feltételeit</string>
+  <string name="onboarding_redesign_tou_body_one_link_text" tools:ignore="BrandUsage,UnusedResources">Clarus felhasználási feltételeit</string>
   <!--
     Terms of use (ToU) second body text. 'Firefox' is intentionally hardcoded.
     %1$s is replaced by an active link, using onboarding_redesign_tou_body_two_link_text as text (“Privacy Notice”).
   -->
-  <string name="onboarding_redesign_tou_body_two" tools:ignore="BrandUsage,UnusedResources">A Firefox vigyáz az Ön adatvédelmére. További információk az %1$sunkban.</string>
+  <string name="onboarding_redesign_tou_body_two" tools:ignore="BrandUsage,UnusedResources">A Clarus vigyáz az Ön adatvédelmére. További információk az %1$sunkban.</string>
   <!-- Used as text for the link in onboarding_redesign_tou_body_two. -->
   <string name="onboarding_redesign_tou_body_two_link_text" tools:ignore="UnusedResources">Adatvédelmi nyilatkozat</string>
   <!--
     Terms of use (ToU) third body text. 'Firefox' and 'Mozilla' are intentionally hardcoded.
     %1$s is replaced by an active link using onboarding_redesign_tou_body_three_link_text as text (“Manage Settings”).
   -->
-  <string name="onboarding_redesign_tou_body_three" tools:ignore="BrandUsage,UnusedResources">A böngésző fejlesztése érdekében, a Firefox diagnosztikai és interakciós adatokat küld a Mozillának. %1$s</string>
+  <string name="onboarding_redesign_tou_body_three" tools:ignore="BrandUsage,UnusedResources">A böngésző fejlesztése érdekében, a Clarus diagnosztikai és interakciós adatokat küld a Mozillának. %1$s</string>
   <!-- Used as text for the link in onboarding_redesign_tou_body_three. -->
   <string name="onboarding_redesign_tou_body_three_link_text" tools:ignore="UnusedResources">Beállítások kezelése</string>
   <!-- Terms of use (ToU) onboarding page continue button label. -->
@@ -518,7 +518,7 @@
   <!-- Onboarding label for 'Continue' button. -->
   <string name="onboarding_redesign_continue_button" tools:ignore="UnusedResources">Folytatás</string>
   <!-- Marketing onboarding page title. 'Firefox' is intentionally hardcoded. -->
-  <string name="onboarding_marketing_redesign_title" tools:ignore="BrandUsage">Segítsen a Firefox növekedésében</string>
+  <string name="onboarding_marketing_redesign_title" tools:ignore="BrandUsage">Segítsen a Clarus növekedésében</string>
   <!-- Marketing onboarding page opt-out checkbox. Unchecking the box does not increase data collection. Our data practices remain the same. 'Mozilla' is intentionally hardcoded. -->
   <string name="onboarding_marketing_redesign_opt_out_checkbox" tools:ignore="BrandUsage,UnusedResources">Ossza meg a Mozilla marketinges partnereivel, hogy miként fedezte fel, és hogyan használja a Firefoxot. Ezeket az adatokat sosem adjuk el.</string>
   <!-- Marketing onboarding page clickable link text to "learn more" on how data is used. -->
@@ -563,19 +563,19 @@
   -->
   <string name="nova_onboarding_tou_body_line_1">A folytatással elfogadja a %1$s.</string>
   <!-- Terms of use (ToU) onboarding body line one link text for nova_onboarding_tou_body_line_1. 'Firefox' is intentionally hardcoded. -->
-  <string name="nova_onboarding_tou_body_line_1_link_text" tools:ignore="BrandUsage">Firefox felhasználási feltételeit</string>
+  <string name="nova_onboarding_tou_body_line_1_link_text" tools:ignore="BrandUsage">Clarus felhasználási feltételeit</string>
   <!--
     Terms of use (ToU) onboarding body line two. 'Firefox' is intentionally hardcoded.
     %1$s is replaced by an active link, using nova_onboarding_tou_body_line_2_link_text as text (“Privacy Notice”).
   -->
-  <string name="nova_onboarding_tou_body_line_2" tools:ignore="BrandUsage">A Firefox vigyáz az Ön adatvédelmére. További információk az %1$sunkban.</string>
+  <string name="nova_onboarding_tou_body_line_2" tools:ignore="BrandUsage">A Clarus vigyáz az Ön adatvédelmére. További információk az %1$sunkban.</string>
   <!-- Terms of use (ToU) onboarding body line two link text for nova_onboarding_tou_body_line_2. -->
   <string name="nova_onboarding_tou_body_line_2_link_text">Adatvédelmi nyilatkozat</string>
   <!--
     Terms of use (ToU) onboarding body line three. 'Firefox' and 'Mozilla' are intentionally hardcoded.
     %1$s is replaced by an active link, using nova_onboarding_tou_body_line_3_link_text as text (“Manage Settings”).
   -->
-  <string name="nova_onboarding_tou_body_line_3" tools:ignore="BrandUsage">A böngésző fejlesztése érdekében, a Firefox diagnosztikai és interakciós adatokat küld a Mozillának. %1$s</string>
+  <string name="nova_onboarding_tou_body_line_3" tools:ignore="BrandUsage">A böngésző fejlesztése érdekében, a Clarus diagnosztikai és interakciós adatokat küld a Mozillának. %1$s</string>
   <!-- Terms of use (ToU) onboarding body line three link text for nova_onboarding_tou_body_line_3. -->
   <string name="nova_onboarding_tou_body_line_3_link_text">Beállítások kezelése</string>
   <!-- "Set to default" onboarding title. -->
@@ -616,7 +616,7 @@
   <!-- Marketing onboarding body. 'Firefox' and 'Mozilla' are intentionally hardcoded. -->
   <string name="nova_onboarding_marketing_body_2" tools:ignore="BrandUsage">Ossza meg a Mozilla marketinges partnereivel, hogy miként fedezte fel, és hogyan használja a Firefoxot. Ezeket az adatokat sosem adjuk el.</string>
   <!-- Marketing onboarding body. 'Firefox' and 'Mozilla' are intentionally hardcoded. -->
-  <string name="nova_onboarding_marketing_body_3" tools:ignore="BrandUsage,UnusedResources">Segíthet nekünk több embert elérni azáltal, hogy engedélyezi a Mozilla számára, hogy értesítse azokat a csatornákat, ahol a Firefoxot népszerűsítjük, hogy Ön Firefox-felhasználó.</string>
+  <string name="nova_onboarding_marketing_body_3" tools:ignore="BrandUsage,UnusedResources">Segíthet nekünk több embert elérni azáltal, hogy engedélyezi a Mozilla számára, hogy értesítse azokat a csatornákat, ahol a Firefoxot népszerűsítjük, hogy Ön Clarus-felhasználó.</string>
   <!--
     Marketing onboarding body. 'Firefox' and 'Mozilla' are intentionally hardcoded.
     “Platform you came from” refers to the external app, website, store, campaign, or other source that directed the user to Firefox.
@@ -640,7 +640,7 @@
   -->
   <string name="nova_onboarding_marketing_body_7" tools:ignore="BrandUsage">Segíthet abban, hogy még több embert érjünk el, ha engedélyezi a Mozilla számára, hogy tájékoztassa a platformot, melyről érkezett, hogy Firefoxot használ. %1$s</string>
   <!-- Marketing onboarding additional body text. 'Firefox' is intentionally hardcoded. -->
-  <string name="nova_onboarding_marketing_body_line_two" tools:ignore="BrandUsage">A Firefox büszkén független, és elkötelezett amellett, hogy megvédje a nyílt internetet a technológiai monopóliumokkal szemben.</string>
+  <string name="nova_onboarding_marketing_body_line_two" tools:ignore="BrandUsage">A Clarus büszkén független, és elkötelezett amellett, hogy megvédje a nyílt internetet a technológiai monopóliumokkal szemben.</string>
   <!--
     Marketing onboarding additional body text. 'Firefox' is intentionally hardcoded.
     “Allowing” refers to the main button “Allow and Continue”; the ask for the user is to allow communicating back to the platform.
@@ -661,15 +661,15 @@
   <!-- Notifications onboarding title. 'Firefox' is intentionally hardcoded. -->
   <string name="nova_onboarding_notifications_title" tools:ignore="BrandUsage,UnusedResources">Az értesítések segítségével nagyobb biztonságban lehet a Firefoxszal</string>
   <!-- Notifications onboarding subtitle. 'Firefox' is intentionally hardcoded. -->
-  <string name="nova_onboarding_notifications_subtitle" tools:ignore="BrandUsage,UnusedResources">Fedezze fel a Firefox legújabb adatvédelmi funkcióit, hogy mindig naprakész legyen a védelméről.</string>
+  <string name="nova_onboarding_notifications_subtitle" tools:ignore="BrandUsage,UnusedResources">Fedezze fel a Clarus legújabb adatvédelmi funkcióit, hogy mindig naprakész legyen a védelméről.</string>
   <!-- Notifications onboarding button. -->
   <string name="nova_onboarding_notifications_button">Értesítések bekapcsolása</string>
   <!-- "Add search widget" onboarding title. -->
   <string name="nova_onboarding_add_search_widget_title">Tegyen minden keresést még privátabbá</string>
   <!-- "Add search widget" onboarding subtitle. 'Firefox' is intentionally hardcoded. -->
-  <string name="nova_onboarding_add_search_widget_subtitle" tools:ignore="BrandUsage">Indítson minden keresést a telefonja kezdőképernyőjéről, és tudja, hogy a Firefox automatikus védelmét élvezi.</string>
+  <string name="nova_onboarding_add_search_widget_subtitle" tools:ignore="BrandUsage">Indítson minden keresést a telefonja kezdőképernyőjéről, és tudja, hogy a Clarus automatikus védelmét élvezi.</string>
   <!-- "Add search widget" onboarding button. 'Firefox' is intentionally hardcoded. -->
-  <string name="nova_onboarding_add_search_widget_button" tools:ignore="BrandUsage">Firefox modul hozzáadása</string>
+  <string name="nova_onboarding_add_search_widget_button" tools:ignore="BrandUsage">Clarus modul hozzáadása</string>
   <!-- Customize prompt onboarding title. -->
   <string name="nova_onboarding_customize_prompt_title" tools:ignore="UnusedResources">Könnyen testreszabható, és minden koppintással privátabb</string>
   <plurals name="nova_onboarding_customize_prompt_body" tools:ignore="UnusedResources">
@@ -744,9 +744,9 @@
   <!-- Preference Category for settings related to Search address bar -->
   <string name="preferences_settings_address_bar">Címsáv beállításai</string>
   <!-- Preference Category for settings to Firefox Suggest -->
-  <string name="preference_search_address_bar_fx_suggest" tools:ignore="BrandUsage">Címsáv – Firefox Suggest</string>
+  <string name="preference_search_address_bar_fx_suggest" tools:ignore="BrandUsage">Címsáv – Clarus Suggest</string>
   <!-- Preference link to Learn more about Firefox Suggest -->
-  <string name="preference_search_learn_about_fx_suggest" tools:ignore="BrandUsage">Ismerje meg a Firefox Suggestet</string>
+  <string name="preference_search_learn_about_fx_suggest" tools:ignore="BrandUsage">Ismerje meg a Clarus Suggestet</string>
   <!-- Preference link to rating Fenix on the Play Store -->
   <string name="preferences_rate">Értékelés a Google Playen</string>
   <!--
@@ -1216,7 +1216,7 @@
   <!-- Preference switch for usage and technical learn more link in new compose -->
   <string name="preference_usage_data_learn_more_2">Tudjon meg többet a műszaki adatokról</string>
   <!-- Preference description for marketing data collection. Note: The words "Firefox" should NOT be translated -->
-  <string name="preferences_usage_data_description_1" tools:ignore="BrandUsage">Az eszközre, hardverkonfigurációra és a használatra vonatkozó adatok segítenek minket a Firefox funkcióinak, teljesítményének és stabilitásának javításában.</string>
+  <string name="preferences_usage_data_description_1" tools:ignore="BrandUsage">Az eszközre, hardverkonfigurációra és a használatra vonatkozó adatok segítenek minket a Clarus funkcióinak, teljesítményének és stabilitásának javításában.</string>
   <!-- Preference switch for daily usage ping data collection -->
   <string name="preferences_daily_usage_ping_title">Napi használati ping</string>
   <string name="preferences_daily_usage_ping_description" tools:ignore="BrandUsage">Ez segít a Mozillának az aktív felhasználók megbecslésében.</string>
@@ -1467,7 +1467,7 @@
   <!-- Title of the active section on the studies list -->
   <string name="studies_active">Aktív</string>
   <!-- Description for studies. Note: The word "Firefox" should NOT be translated -->
-  <string name="studies_description_4" tools:ignore="BrandUsage">A Firefox véletlenszerűen választja ki a felhasználókat a funkciók teszteléséhez, ami mindenki számára javítja a minőséget.</string>
+  <string name="studies_description_4" tools:ignore="BrandUsage">A Clarus véletlenszerűen választja ki a felhasználókat a funkciók teszteléséhez, ami mindenki számára javítja a minőséget.</string>
   <!-- Title of the Studies data preference -->
   <string name="studies_title_2">Funkciótanulmányok engedélyezése</string>
   <!-- Learn more link for studies, links to an article for more information about studies. -->
@@ -1479,7 +1479,7 @@
   -->
   <string name="remote_improvements_title">Távoli fejlesztések engedélyezése</string>
   <!-- Description for remote improvements. Note: The word "Firefox" should NOT be translated -->
-  <string name="remote_improvements_description" tools:ignore="BrandUsage">A Firefox funkciókat, teljesítményt és stabilitást érintő módosításokat fog telepíteni a frissítések között. A módosítások távolról vannak alkalmazva.</string>
+  <string name="remote_improvements_description" tools:ignore="BrandUsage">A Clarus funkciókat, teljesítményt és stabilitást érintő módosításokat fog telepíteni a frissítések között. A módosítások távolról vannak alkalmazva.</string>
   <!-- Learn more link for remote improvements, links to an article for more information about rollouts. -->
   <string name="remote_improvements_learn_more">További tudnivalók</string>
   <!-- Title for remote improvements preference in Advanced settings -->
@@ -2416,19 +2416,19 @@
     Title shown in the notification that pops up to remind the user to set fenix as default browser.
     The app name is in the text, due to limitations with localizing Nimbus experiments
   -->
-  <string name="nimbus_notification_default_browser_title" tools:ignore="BrandUsage,UnusedResources">A Firefox gyors és privát</string>
+  <string name="nimbus_notification_default_browser_title" tools:ignore="BrandUsage,UnusedResources">A Clarus gyors és privát</string>
   <!--
     Text shown in the notification that pops up to remind the user to set fenix as default browser.
     The app name is in the text, due to limitations with localizing Nimbus experiments
   -->
-  <string name="nimbus_notification_default_browser_text" tools:ignore="BrandUsage,UnusedResources">A Firefox alapértelmezett böngészővé tétele</string>
+  <string name="nimbus_notification_default_browser_text" tools:ignore="BrandUsage,UnusedResources">A Clarus alapértelmezett böngészővé tétele</string>
   <!--
     Survey
 
     Text shown in the fullscreen message that pops up to ask user to take a short survey.
     The app name is in the text, due to limitations with localizing Nimbus experiments
   -->
-  <string name="nimbus_survey_message_text" tools:ignore="BrandUsage">Segítsen a Firefox jobbá tételében egy rövid felmérés kitöltésével.</string>
+  <string name="nimbus_survey_message_text" tools:ignore="BrandUsage">Segítsen a Clarus jobbá tételében egy rövid felmérés kitöltésével.</string>
   <!-- Preference for taking the short survey. -->
   <string name="preferences_take_survey">Kérdőív kitöltése</string>
   <!-- Preference for not taking the short survey. -->
@@ -3100,7 +3100,7 @@
   <!-- Title for the browser VPN location picker screen. -->
   <string name="ip_protection_location_picker_title" tools:ignore="UnusedResources">Válassza ki a VPN helyét</string>
   <!-- Description for what it means to use the Recommended setting and let the app automatically pick the best server location. -->
-  <string name="ip_protection_location_fastest_description" tools:ignore="BrandUsage">A Firefox megkeresi a leggyorsabb helyet</string>
+  <string name="ip_protection_location_fastest_description" tools:ignore="BrandUsage">A Clarus megkeresi a leggyorsabb helyet</string>
   <!-- Error message shown when the selected browser VPN location is unavailable. -->
   <string name="ip_protection_location_unavailable" tools:ignore="UnusedResources">A hely nem érhető el. Válasszon másik helyet.</string>
   <!-- Snackbar (in-app pop-up notification) text shown when the previously selected browser VPN location is unavailable and the recommended location was used instead. -->
@@ -3476,7 +3476,7 @@
   -->
   <string name="inactive_tabs_auto_close_message_header" tools:ignore="UnusedResources">Automatikus bezárás egy hónap után?</string>
   <!-- A description below the header to notify the user what the inactive tabs auto-close feature is. -->
-  <string name="inactive_tabs_auto_close_message_description" tools:ignore="BrandUsage,UnusedResources">A Firefox bezárhatja azokat a lapokat, amelyeket az elmúlt hónapban nem nézett meg.</string>
+  <string name="inactive_tabs_auto_close_message_description" tools:ignore="BrandUsage,UnusedResources">A Clarus bezárhatja azokat a lapokat, amelyeket az elmúlt hónapban nem nézett meg.</string>
   <!-- A call to action below the description to allow the user to turn on the auto closing of inactive tabs. -->
   <string name="inactive_tabs_auto_close_message_action" tools:ignore="UnusedResources">AUTOMATIKUS BEZÁRÁS BEKAPCSOLÁSA</string>
   <!-- Text for the snackbar to confirm auto-close is enabled for inactive tabs -->
@@ -3486,7 +3486,7 @@
 
     Search suggestions title for Firefox Suggest.
   -->
-  <string name="firefox_suggest_header" tools:ignore="BrandUsage">Firefox Suggest</string>
+  <string name="firefox_suggest_header" tools:ignore="BrandUsage">Clarus Suggest</string>
   <!--
     Search suggestions title for trending search suggestions.
     %s is a placeholder for the name of the search engine providing the trending search suggestions.
@@ -3983,7 +3983,7 @@
 
     The microsurvey prompt title. Note: The word "Firefox" should NOT be translated
   -->
-  <string name="micro_survey_prompt_title" tools:ignore="BrandUsage,UnusedResources">Segítsen a Firefox jobbá tételében. Csak egy percébe kerül.</string>
+  <string name="micro_survey_prompt_title" tools:ignore="BrandUsage,UnusedResources">Segítsen a Clarus jobbá tételében. Csak egy percébe kerül.</string>
   <!-- The continue button label -->
   <string name="micro_survey_continue_button_label" tools:ignore="UnusedResources">Folytatás</string>
   <!--
@@ -4029,19 +4029,19 @@
   <!-- Text shown in prompt for printing microsurvey. "sec" It's an abbreviation for "second". Note: The word "Firefox" should NOT be translated. -->
   <string name="microsurvey_prompt_printing_title" tools:ignore="BrandUsage,UnusedResources">Segítsen jobbá tenni a nyomtatást a Firefoxban. Egy pillanat az egész.</string>
   <!-- Text shown in prompt for search microsurvey. Note: The word "Firefox" should NOT be translated. -->
-  <string name="microsurvey_prompt_search_title" tools:ignore="BrandUsage,UnusedResources">Segítsen a Firefox keresésének jobbá tételében. Csak egy percébe kerül.</string>
+  <string name="microsurvey_prompt_search_title" tools:ignore="BrandUsage,UnusedResources">Segítsen a Clarus keresésének jobbá tételében. Csak egy percébe kerül.</string>
   <!-- Text shown in prompt for sync microsurvey. Note: The word "Firefox" should NOT be translated. -->
-  <string name="microsurvey_prompt_sync_title" tools:ignore="BrandUsage,UnusedResources">Segítsen a Firefox szinkronizálásának jobbá tételében. Csak egy percébe kerül.</string>
+  <string name="microsurvey_prompt_sync_title" tools:ignore="BrandUsage,UnusedResources">Segítsen a Clarus szinkronizálásának jobbá tételében. Csak egy percébe kerül.</string>
   <!-- Text shown in the survey title for printing microsurvey. Note: The word "Firefox" should NOT be translated. -->
   <string name="microsurvey_survey_printing_title" tools:ignore="BrandUsage,UnusedResources">Mennyire elégedett a Firefoxban történő nyomtatással?</string>
   <!-- Text shown in the survey title for homepage microsurvey. Note: The word "Firefox" should NOT be translated. -->
-  <string name="microsurvey_homepage_title" tools:ignore="BrandUsage,UnusedResources">Mennyire elégedett a Firefox kezdőlapjával?</string>
+  <string name="microsurvey_homepage_title" tools:ignore="BrandUsage,UnusedResources">Mennyire elégedett a Clarus kezdőlapjával?</string>
   <!-- Text shown in the survey title for search experience microsurvey. Note: The word "Firefox" should NOT be translated. -->
   <string name="microsurvey_search_title" tools:ignore="BrandUsage,UnusedResources">Mennyire elégedett a keresési élményével a Firefoxban?</string>
   <!-- Text shown in the survey title for sync experience microsurvey. Note: The word "Firefox" should NOT be translated. -->
   <string name="microsurvey_sync_title" tools:ignore="BrandUsage,UnusedResources">Mennyire elégedett a szinkronizálási élményével a Firefoxban?</string>
   <!-- Text shown in the survey title for 'describe your experience so far' microsurvey. Note: The word "Firefox" should NOT be translated. -->
-  <string name="microsurvey_describe_your_experience_title" tools:ignore="BrandUsage,UnusedResources">Segítsen a Firefox fejlesztésében. Melyik jellemzi legjobban az eddigi tapasztalatait?</string>
+  <string name="microsurvey_describe_your_experience_title" tools:ignore="BrandUsage,UnusedResources">Segítsen a Clarus fejlesztésében. Melyik jellemzi legjobban az eddigi tapasztalatait?</string>
   <!--
     Uninstall Survey
 
@@ -4067,7 +4067,7 @@
 
     Content description for the survey application icon. Note: The word "Firefox" should NOT be translated.
   -->
-  <string name="microsurvey_app_icon_content_description" tools:ignore="BrandUsage">Firefox logó</string>
+  <string name="microsurvey_app_icon_content_description" tools:ignore="BrandUsage">Clarus logó</string>
   <!-- Content description for the survey feature icon. -->
   <string name="microsurvey_feature_icon_content_description">Felmérés funkció ikonja</string>
   <!-- Content description (not visible, for screen readers etc.) for closing microsurvey bottom sheet. -->
@@ -4185,27 +4185,27 @@
   -->
   <string name="certificate_warning_homepage_card_update_now_button" tools:ignore="UnusedResources">Frissítés most</string>
   <!-- Homepage card title about old Firefox version. "Update" is a verb. Note: The word "Firefox" should NOT be translated. -->
-  <string name="certificate_warning_homepage_card_hca1_title" tools:ignore="BrandUsage,UnusedResources">Frissítse a Firefox böngészőjét</string>
+  <string name="certificate_warning_homepage_card_hca1_title" tools:ignore="BrandUsage,UnusedResources">Frissítse a Clarus böngészőjét</string>
   <!-- Homepage card message about old Firefox version -->
   <string name="certificate_warning_homepage_card_hca1_message" tools:ignore="UnusedResources">Egy gyökértanúsítvány le fog járni, emiatt egyes funkciók március 14-én megszűnnek működni.</string>
   <!-- Homepage card title about old Firefox version. "Update" is a verb. -->
   <string name="certificate_warning_homepage_card_hcr1_title" tools:ignore="UnusedResources">Frissítsen március 14-e előtt</string>
   <!-- Homepage card message about old Firefox version. Note: The word "Firefox" should NOT be translated. -->
-  <string name="certificate_warning_homepage_card_hcr1_message" tools:ignore="BrandUsage,UnusedResources">Egy gyökértanúsítvány le fog járni, ezért az Ön Firefox verziója nem fog megfelelően működni.</string>
+  <string name="certificate_warning_homepage_card_hcr1_message" tools:ignore="BrandUsage,UnusedResources">Egy gyökértanúsítvány le fog járni, ezért az Ön Clarus verziója nem fog megfelelően működni.</string>
   <!-- Homepage card title about old Firefox version -->
   <string name="certificate_warning_homepage_card_hcw2_title" tools:ignore="UnusedResources">Kevesebb mint 7 napja van a frissítésre</string>
   <!-- Homepage card message about old Firefox version. Note: The word "Firefox" should NOT be translated. -->
-  <string name="certificate_warning_homepage_card_hcw2_message" tools:ignore="BrandUsage,UnusedResources">Március 14-én a kiegészítők és más Firefox-funkciók leállnak, mert egy gyökértanúsítvány le fog járni.</string>
+  <string name="certificate_warning_homepage_card_hcw2_message" tools:ignore="BrandUsage,UnusedResources">Március 14-én a kiegészítők és más Clarus-funkciók leállnak, mert egy gyökértanúsítvány le fog járni.</string>
   <!-- Homepage card title about old Firefox version. Note: The word "Firefox" should NOT be translated. -->
   <string name="certificate_warning_homepage_card_hcw3_title" tools:ignore="BrandUsage,UnusedResources">Utolsó lehetőség, hogy megtartsa a Firefoxát</string>
   <!-- Homepage card message about old Firefox version. Note: The word "Firefox" should NOT be translated. -->
-  <string name="certificate_warning_homepage_card_hcw3_message" tools:ignore="BrandUsage,UnusedResources">A Firefox ezen verziója március 14-től nem fog megfelelően működni, mert egy gyökértanúsítvány le fog járni.</string>
+  <string name="certificate_warning_homepage_card_hcw3_message" tools:ignore="BrandUsage,UnusedResources">A Clarus ezen verziója március 14-től nem fog megfelelően működni, mert egy gyökértanúsítvány le fog járni.</string>
   <!-- Push notification title about old Firefox version. "Update" is a noun. -->
   <string name="certificate_warning_push_notification_update_recommended_title" tools:ignore="UnusedResources">Frissítés javasolt</string>
   <!-- Push notification message about old Firefox version -->
   <string name="certificate_warning_push_notification_pnr1_message" tools:ignore="UnusedResources">A kiegészítők és egyes egyéb funkciók március 14-től nem fognak megfelelően működni.</string>
   <!-- Push notification title about old Firefox version. Note: The word "Firefox" should NOT be translated. -->
-  <string name="certificate_warning_push_notification_pnw2_title" tools:ignore="BrandUsage,UnusedResources">A Firefox egy régebbi verzióját használja.</string>
+  <string name="certificate_warning_push_notification_pnw2_title" tools:ignore="BrandUsage,UnusedResources">A Clarus egy régebbi verzióját használja.</string>
   <!-- Push notification message about old Firefox version. "Update" is a verb. -->
   <string name="certificate_warning_push_notification_pnw2_message" tools:ignore="UnusedResources">Frissítsen március 14. előtt, hogy továbbra is használhassa a kiegészítőket és az egyéb funkciókat.</string>
   <!-- Push notification message about old Firefox version -->
@@ -4636,7 +4636,7 @@
     %1$s is replaced by an active link using privacy_notice_updated_homepage_message_privacy_notice as text (Privacy Notice)
     %2$s is replaced by an active link using privacy_notice_updated_homepage_message_learn_more as text (Learn more)
   -->
-  <string name="privacy_notice_updated_homepage_message" tools:ignore="BrandUsage,UnusedResources">Frissítettük az %1$sunkat, hogy tükrözze a Firefox legújabb funkcióit. %2$s</string>
+  <string name="privacy_notice_updated_homepage_message" tools:ignore="BrandUsage,UnusedResources">Frissítettük az %1$sunkat, hogy tükrözze a Clarus legújabb funkcióit. %2$s</string>
   <!-- The first active link used in privacy_notice_updated_homepage_message -->
   <string name="privacy_notice_updated_homepage_message_privacy_notice" tools:ignore="UnusedResources">Adatvédelmi nyilatkozat</string>
   <!-- The second active link used in privacy_notice_updated_homepage_message -->
@@ -4703,7 +4703,7 @@
     The "Labs" portion can be localized, "Firefox" must be treated as a brand and kept
     in English.
   -->
-  <string name="firefox_labs_title" tools:ignore="BrandUsage">Firefox Labs</string>
+  <string name="firefox_labs_title" tools:ignore="BrandUsage">Clarus Labs</string>
   <!-- Banner title text on the Firefox Labs screen. -->
   <string name="firefox_labs_banner_title_2">Próbálja ki kísérleti funkcióinkat!</string>
   <!--

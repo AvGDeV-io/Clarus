@@ -40,7 +40,7 @@
   <!-- Content description for close button while in multiselect mode in tab tray -->
   <string name="tab_tray_close_multiselect_content_description">Wylyź ze trybu multiwyboru</string>
   <!-- About content. %1$s is the name of the app (for example "Firefox"). -->
-  <string name="about_content" tools:ignore="BrandUsage">%1$s produkuje Mozilla.</string>
+  <string name="about_content" tools:ignore="BrandUsage">%1$s produkuje Clarus.</string>
   <!-- Private Browsing -->
   <string name="private_browsing_common_myths">Czynste mity ô prywatnym przeglōndaniu</string>
   <!--
@@ -450,7 +450,7 @@
   -->
   <string name="fxa_received_tab_channel_name">Przijynte karty</string>
   <!-- Description of the "receive tabs" notification channel. Displayed in the "App notifications" system settings for the app -->
-  <string name="fxa_received_tab_channel_description" tools:ignore="BrandUsage">Powiadōmiynia ô kartach przijyntych z inkszych maszin z aplikacyjōm Firefox.</string>
+  <string name="fxa_received_tab_channel_description" tools:ignore="BrandUsage">Powiadōmiynia ô kartach przijyntych z inkszych maszin z aplikacyjōm Clarus.</string>
   <!-- The body for these is the URL of the tab received -->
   <string name="fxa_tab_received_notification_name">Karta je przijynto</string>
   <!-- %s is the device name -->
@@ -952,12 +952,12 @@
     Title shown in the notification that pops up to remind the user to set fenix as default browser.
     The app name is in the text, due to limitations with localizing Nimbus experiments
   -->
-  <string name="nimbus_notification_default_browser_title" tools:ignore="BrandUsage,UnusedResources">Firefox je gibki i prywatny</string>
+  <string name="nimbus_notification_default_browser_title" tools:ignore="BrandUsage,UnusedResources">Clarus je gibki i prywatny</string>
   <!--
     Text shown in the notification that pops up to remind the user to set fenix as default browser.
     The app name is in the text, due to limitations with localizing Nimbus experiments
   -->
-  <string name="nimbus_notification_default_browser_text" tools:ignore="BrandUsage,UnusedResources">Nastow Firefox za bazowo przeglōndarka</string>
+  <string name="nimbus_notification_default_browser_text" tools:ignore="BrandUsage,UnusedResources">Nastow Clarus za bazowo przeglōndarka</string>
   <!--
     Snackbar
 

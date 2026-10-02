@@ -74,7 +74,7 @@
   <!-- Text for the menu button to remove a recently saved bookmark from the user's home screen -->
   <string name="home_bookmarks_menu_item_remove">Tiyuj</string>
   <!-- About content. %1$s is the name of the app (for example "Firefox"). -->
-  <string name="about_content" tools:ignore="BrandUsage">%1$s b\'anon ruma Mozilla.</string>
+  <string name="about_content" tools:ignore="BrandUsage">%1$s b\'anon ruma Clarus.</string>
   <!-- Private Browsing -->
   <string name="private_browsing_common_myths">Ch\'ob\'on taq tzij chi rij ri ichinan okem pa k\'amaya\'l</string>
   <!-- Text to be announced by the accessibility service to inform the user that the private browsing mode is currently active. -->
@@ -451,7 +451,7 @@
   -->
   <string name="onboarding_home_content_description_close_button">Titz\'apïx</string>
   <!-- Title for the privacy preferences dialog shown during onboarding. Note: The word "Firefox" should NOT be translated. -->
-  <string name="onboarding_preferences_dialog_title" tools:ignore="BrandUsage">Kato\'on richin nutziläx ri Firefox</string>
+  <string name="onboarding_preferences_dialog_title" tools:ignore="BrandUsage">Kato\'on richin nutziläx ri Clarus</string>
   <!-- Title for the crash reporting option in the privacy preferences dialog shown during onboarding. -->
   <string name="onboarding_preferences_dialog_crash_reporting_title">Ketaq pa ruyonil kitzijol sachoj</string>
   <!-- Description for the crash reporting option in the privacy preferences dialog shown during onboarding. -->
@@ -470,22 +470,22 @@
   <string name="startup_crash_restart">Tijaq chik %s</string>
   <!-- Title for the usage data option in the privacy preferences dialog shown during onboarding. Note: The word "Mozilla" should NOT be translated. -->
   <string name="onboarding_preferences_dialog_usage_data_title" tools:ignore="BrandUsage">Ketaq samajel taq tzij chuqa\' samaj chi re ri Mozilla</string>
-  <string name="onboarding_preferences_dialog_usage_data_description_2" tools:ignore="BrandUsage">Ri taq rutzij awokisaxel, ri runuk\'ulem hardware chuqa\' achike rub\'eyal nokisäx Firefox yeto\'on chi ye\'utziläx taq samaj, ri rub\'eyal nisamäj chuqa\' ri rujikonem chi ruwäch ri ruwach\'ulew.</string>
+  <string name="onboarding_preferences_dialog_usage_data_description_2" tools:ignore="BrandUsage">Ri taq rutzij awokisaxel, ri runuk\'ulem hardware chuqa\' achike rub\'eyal nokisäx Clarus yeto\'on chi ye\'utziläx taq samaj, ri rub\'eyal nisamäj chuqa\' ri rujikonem chi ruwäch ri ruwach\'ulew.</string>
   <string name="onboarding_preferences_dialog_usage_data_learn_more_2">Tetamäx ch\'aqa\' chik</string>
   <!-- Positive button label for the privacy preferences dialog shown during onboarding. -->
   <string name="onboarding_preferences_dialog_positive_button">Xk\'is</string>
   <!-- Terms of service onboarding title card label. 'Firefox' intentionally hardcoded here -->
-  <string name="onboarding_welcome_to_firefox" tools:ignore="BrandUsage">Ütz apetik pa Firefox</string>
+  <string name="onboarding_welcome_to_firefox" tools:ignore="BrandUsage">Ütz apetik pa Clarus</string>
   <!-- Line one of the terms of service onboarding page. %1$s is replaced by an active link, using onboarding_term_of_service_line_one_link_text_2 as text (“Firefox Terms of Use”). -->
   <string name="onboarding_term_of_service_line_one_2">Toq nasamajij chik el, naya\' atzij chi ke ri %1$s.</string>
   <!-- Used as text for the link in onboarding_term_of_service_line_one_2. -->
-  <string name="onboarding_term_of_service_line_one_link_text_2" tools:ignore="BrandUsage">Rojqanem rokisaxik Firefox</string>
+  <string name="onboarding_term_of_service_line_one_link_text_2" tools:ignore="BrandUsage">Rojqanem rokisaxik Clarus</string>
   <!-- Line two of the terms of service onboarding page. 'Firefox' is intentionally hardcoded. %1$s is replaced by an active link, using onboarding_term_of_service_line_two_link_text as text (“Privacy Notice”). -->
-  <string name="onboarding_term_of_service_line_two_2" tools:ignore="BrandUsage">Firefox numäy ri awichinanem. Tawetamaj ch\'aqa\' chik pa %1$s.</string>
+  <string name="onboarding_term_of_service_line_two_2" tools:ignore="BrandUsage">Clarus numäy ri awichinanem. Tawetamaj ch\'aqa\' chik pa %1$s.</string>
   <!-- Used as text for the link in onboarding_term_of_service_line_two. -->
   <string name="onboarding_term_of_service_line_two_link_text">Ichinan na\'oj</string>
   <!-- Line three of the terms of service onboarding page. 'Firefox' and 'Mozilla' are intentionally hardcoded. %1$s is replaced by an active link using onboarding_term_of_service_line_three_link_text as text (“Manage”). -->
-  <string name="onboarding_term_of_service_line_three" tools:ignore="BrandUsage">Richin yato\'on richin nutziläx ri okik\'amaya\'l, ri Firefox yerutäq taq rutzij nik\'oxik chuqa\' samaj rik\'in Mozilla. %1$s</string>
+  <string name="onboarding_term_of_service_line_three" tools:ignore="BrandUsage">Richin yato\'on richin nutziläx ri okik\'amaya\'l, ri Clarus yerutäq taq rutzij nik\'oxik chuqa\' samaj rik\'in Mozilla. %1$s</string>
   <!-- Used as text for the link in onboarding_term_of_service_line_three. -->
   <string name="onboarding_term_of_service_line_three_link_text">Tinuk\'samajïx</string>
   <!-- Terms of use (ToU) onboarding redesign title. -->
@@ -502,19 +502,19 @@
   -->
   <string name="onboarding_redesign_tou_body_one" tools:ignore="UnusedResources">Toq nasamajij chik el, naya\' atzij chi ke ri %1$s.</string>
   <!-- Used as text for the link in onboarding_redesign_tou_body_one. -->
-  <string name="onboarding_redesign_tou_body_one_link_text" tools:ignore="BrandUsage,UnusedResources">Rojqanem rokisaxik Firefox</string>
+  <string name="onboarding_redesign_tou_body_one_link_text" tools:ignore="BrandUsage,UnusedResources">Rojqanem rokisaxik Clarus</string>
   <!--
     Terms of use (ToU) second body text. 'Firefox' is intentionally hardcoded.
     %1$s is replaced by an active link, using onboarding_redesign_tou_body_two_link_text as text (“Privacy Notice”).
   -->
-  <string name="onboarding_redesign_tou_body_two" tools:ignore="BrandUsage,UnusedResources">Firefox numäy ri awichinanem. Tawetamaj ch\'aqa\' chik pa %1$s.</string>
+  <string name="onboarding_redesign_tou_body_two" tools:ignore="BrandUsage,UnusedResources">Clarus numäy ri awichinanem. Tawetamaj ch\'aqa\' chik pa %1$s.</string>
   <!-- Used as text for the link in onboarding_redesign_tou_body_two. -->
   <string name="onboarding_redesign_tou_body_two_link_text" tools:ignore="UnusedResources">Ichinan na\'oj</string>
   <!--
     Terms of use (ToU) third body text. 'Firefox' and 'Mozilla' are intentionally hardcoded.
     %1$s is replaced by an active link using onboarding_redesign_tou_body_three_link_text as text (“Manage Settings”).
   -->
-  <string name="onboarding_redesign_tou_body_three" tools:ignore="BrandUsage,UnusedResources">Richin yato\'on richin nutziläx ri okik\'amaya\'l, ri Firefox yerutäq taq rutzij nik\'oxik chuqa\' samaj rik\'in Mozilla. %1$s</string>
+  <string name="onboarding_redesign_tou_body_three" tools:ignore="BrandUsage,UnusedResources">Richin yato\'on richin nutziläx ri okik\'amaya\'l, ri Clarus yerutäq taq rutzij nik\'oxik chuqa\' samaj rik\'in Mozilla. %1$s</string>
   <!-- Used as text for the link in onboarding_redesign_tou_body_three. -->
   <string name="onboarding_redesign_tou_body_three_link_text" tools:ignore="UnusedResources">Kenuk\'samajïx taq runuk\'ulem</string>
   <!-- Terms of use (ToU) onboarding page continue button label. -->
@@ -524,9 +524,9 @@
   <!-- Onboarding label for 'Continue' button. -->
   <string name="onboarding_redesign_continue_button" tools:ignore="UnusedResources">Titikïr chik el</string>
   <!-- Marketing onboarding page title. 'Firefox' is intentionally hardcoded. -->
-  <string name="onboarding_marketing_redesign_title" tools:ignore="BrandUsage">Kojato\' chi niqanimirisaj Firefox</string>
+  <string name="onboarding_marketing_redesign_title" tools:ignore="BrandUsage">Kojato\' chi niqanimirisaj Clarus</string>
   <!-- Marketing onboarding page opt-out checkbox. Unchecking the box does not increase data collection. Our data practices remain the same. 'Mozilla' is intentionally hardcoded. -->
-  <string name="onboarding_marketing_redesign_opt_out_checkbox" tools:ignore="BrandUsage,UnusedResources">Kakomonin kik\'in rachsamajel rumarkentin Mozilla achike rub\'eyal xawïl Firefox chuqa\' achi\'el rub\'eyal nawokisaj. Re taq tzij re\' majub\'ey xkek\'ayïx.</string>
+  <string name="onboarding_marketing_redesign_opt_out_checkbox" tools:ignore="BrandUsage,UnusedResources">Kakomonin kik\'in rachsamajel rumarkentin Mozilla achike rub\'eyal xawïl Clarus chuqa\' achi\'el rub\'eyal nawokisaj. Re taq tzij re\' majub\'ey xkek\'ayïx.</string>
   <!-- Marketing onboarding page clickable link text to "learn more" on how data is used. -->
   <string name="onboarding_marketing_redesign_learn_more" tools:ignore="UnusedResources">Atux rub\'eyal yeqokisaj ri taq tzij</string>
   <!-- Marketing onboarding page button label. Button to confirm choice and start browsing. -->
@@ -536,7 +536,7 @@
   <!-- Set to default browser onboarding redesign body. -->
   <string name="onboarding_redesign_set_default_browser_body" tools:ignore="UnusedResources">Jun chapoj nito\'on chi nuq\'ät jun moloj chi yatq\'eleb\'ej ri nab\'än.</string>
   <!-- Sync onboarding redesign title. 'Firefox' is intentionally hardcoded. -->
-  <string name="onboarding_redesign_sync_title" tools:ignore="BrandUsage,UnusedResources">Tixim pa xab\'akuchi\' akuchi\' nokisäx Firefox</string>
+  <string name="onboarding_redesign_sync_title" tools:ignore="BrandUsage,UnusedResources">Tixim pa xab\'akuchi\' akuchi\' nokisäx Clarus</string>
   <!-- Sync onboarding redesign body. -->
   <string name="onboarding_redesign_sync_body" tools:ignore="UnusedResources">Ke\'ak\'ulu\' taq yaketal, taq ruwi\' chuqa\' ewan taq tzij pa xab\'achike okisaxel. Ronojel chajin rik\'in ewan rusik\'ixik.</string>
   <!-- Sync onboarding redesign positive button text. -->
@@ -546,7 +546,7 @@
   <!-- Marketing onboarding page title variant. “One last thing” refers to the final step or action in the onboarding process that we’re asking users to take before they can start using the browser. -->
   <string name="onboarding_marketing_title_1" tools:ignore="UnusedResources">Jun chik wachinäq</string>
   <!-- Marketing onboarding page body variant. 'Firefox' is intentionally hardcoded. -->
-  <string name="onboarding_marketing_body_1" tools:ignore="BrandUsage,UnusedResources">Kakomonin kik\'in rachsamajel rumarkentin Mozilla achike rub\'eyal xawïl Firefox chuqa\' achi\'el rub\'eyal nawokisaj. Re taq tzij re\' majub\'ey xkek\'ayïx.</string>
+  <string name="onboarding_marketing_body_1" tools:ignore="BrandUsage,UnusedResources">Kakomonin kik\'in rachsamajel rumarkentin Mozilla achike rub\'eyal xawïl Clarus chuqa\' achi\'el rub\'eyal nawokisaj. Re taq tzij re\' majub\'ey xkek\'ayïx.</string>
   <!-- Marketing onboarding page button label variant. Button to confirm choice and start browsing. -->
   <string name="onboarding_marketing_positive_button_1" tools:ignore="UnusedResources">Tak\'ulu\' chuqa\' tachapa\' okem</string>
   <!-- ==== Project "Nova" onboarding strings ==== -->
@@ -569,19 +569,19 @@
   -->
   <string name="nova_onboarding_tou_body_line_1">Toq nasamajij chik el, naya\' atzij chi ke ri %1$s.</string>
   <!-- Terms of use (ToU) onboarding body line one link text for nova_onboarding_tou_body_line_1. 'Firefox' is intentionally hardcoded. -->
-  <string name="nova_onboarding_tou_body_line_1_link_text" tools:ignore="BrandUsage">Rojqanem rokisaxik Firefox</string>
+  <string name="nova_onboarding_tou_body_line_1_link_text" tools:ignore="BrandUsage">Rojqanem rokisaxik Clarus</string>
   <!--
     Terms of use (ToU) onboarding body line two. 'Firefox' is intentionally hardcoded.
     %1$s is replaced by an active link, using nova_onboarding_tou_body_line_2_link_text as text (“Privacy Notice”).
   -->
-  <string name="nova_onboarding_tou_body_line_2" tools:ignore="BrandUsage">Firefox numäy ri awichinanem. Tawetamaj ch\'aqa\' chik pa %1$s.</string>
+  <string name="nova_onboarding_tou_body_line_2" tools:ignore="BrandUsage">Clarus numäy ri awichinanem. Tawetamaj ch\'aqa\' chik pa %1$s.</string>
   <!-- Terms of use (ToU) onboarding body line two link text for nova_onboarding_tou_body_line_2. -->
   <string name="nova_onboarding_tou_body_line_2_link_text">Ichinan na\'oj</string>
   <!--
     Terms of use (ToU) onboarding body line three. 'Firefox' and 'Mozilla' are intentionally hardcoded.
     %1$s is replaced by an active link, using nova_onboarding_tou_body_line_3_link_text as text (“Manage Settings”).
   -->
-  <string name="nova_onboarding_tou_body_line_3" tools:ignore="BrandUsage">Richin yato\'on richin nutziläx ri okik\'amaya\'l, ri Firefox yerutäq taq rutzij nik\'oxik chuqa\' samaj rik\'in Mozilla. %1$s</string>
+  <string name="nova_onboarding_tou_body_line_3" tools:ignore="BrandUsage">Richin yato\'on richin nutziläx ri okik\'amaya\'l, ri Clarus yerutäq taq rutzij nik\'oxik chuqa\' samaj rik\'in Mozilla. %1$s</string>
   <!-- Terms of use (ToU) onboarding body line three link text for nova_onboarding_tou_body_line_3. -->
   <string name="nova_onboarding_tou_body_line_3_link_text">Tinuk\'samajïx runuk\'ulem</string>
   <!-- "Set to default" onboarding title. -->
@@ -618,46 +618,46 @@
     Marketing onboarding body. 'Firefox' and 'Mozilla' are intentionally hardcoded.
     %1$s is replaced by an active link, using nova_onboarding_marketing_body_link_text as text (“How we use the data”).
   -->
-  <string name="nova_onboarding_marketing_body" tools:ignore="BrandUsage,UnusedResources">Kakomonin kik\'in rachsamajel rumarkentin Mozilla achike rub\'eyal xawïl Firefox chuqa\' achi\'el rub\'eyal nawokisaj. Re taq tzij re\' majub\'ey xkek\'ayïx. %1$s</string>
+  <string name="nova_onboarding_marketing_body" tools:ignore="BrandUsage,UnusedResources">Kakomonin kik\'in rachsamajel rumarkentin Mozilla achike rub\'eyal xawïl Clarus chuqa\' achi\'el rub\'eyal nawokisaj. Re taq tzij re\' majub\'ey xkek\'ayïx. %1$s</string>
   <!-- Marketing onboarding body. 'Firefox' and 'Mozilla' are intentionally hardcoded. -->
-  <string name="nova_onboarding_marketing_body_2" tools:ignore="BrandUsage">Kakomonin kik\'in rachsamajel rumarkentin Mozilla achike rub\'eyal xawïl Firefox chuqa\' achi\'el rub\'eyal nawokisaj. Re taq tzij re\' majub\'ey xkek\'ayïx.</string>
+  <string name="nova_onboarding_marketing_body_2" tools:ignore="BrandUsage">Kakomonin kik\'in rachsamajel rumarkentin Mozilla achike rub\'eyal xawïl Clarus chuqa\' achi\'el rub\'eyal nawokisaj. Re taq tzij re\' majub\'ey xkek\'ayïx.</string>
   <!-- Marketing onboarding body. 'Firefox' and 'Mozilla' are intentionally hardcoded. -->
-  <string name="nova_onboarding_marketing_body_3" tools:ignore="BrandUsage,UnusedResources">Yatikïr yojato\' richin yojapon kik\'in ch\'aqa\' chik winaqi\', akuchi\' naya\' q\'ij chi re ri Mozilla chi tuya\' rutzijol chi ke ri k\'amab\'ey akuchi\' niya\' rutzijol chi ri Firefox awokisaxel.</string>
+  <string name="nova_onboarding_marketing_body_3" tools:ignore="BrandUsage,UnusedResources">Yatikïr yojato\' richin yojapon kik\'in ch\'aqa\' chik winaqi\', akuchi\' naya\' q\'ij chi re ri Mozilla chi tuya\' rutzijol chi ke ri k\'amab\'ey akuchi\' niya\' rutzijol chi ri Clarus awokisaxel.</string>
   <!--
     Marketing onboarding body. 'Firefox' and 'Mozilla' are intentionally hardcoded.
     “Platform you came from” refers to the external app, website, store, campaign, or other source that directed the user to Firefox.
   -->
-  <string name="nova_onboarding_marketing_body_4" tools:ignore="BrandUsage,UnusedResources">Yatikïr yojato\' richin yojapon kik\'in ch\'aqa\' chik winaqi\', akuchi\' naya\' q\'ij chi re ri Mozilla chi tuya\' rutzijol chi ke ri k\'amab\'ey akuchi\' atpetenäq chi nawokisaj Firefox.</string>
+  <string name="nova_onboarding_marketing_body_4" tools:ignore="BrandUsage,UnusedResources">Yatikïr yojato\' richin yojapon kik\'in ch\'aqa\' chik winaqi\', akuchi\' naya\' q\'ij chi re ri Mozilla chi tuya\' rutzijol chi ke ri k\'amab\'ey akuchi\' atpetenäq chi nawokisaj Clarus.</string>
   <!--
     Marketing onboarding body. 'Firefox' and 'Mozilla' are intentionally hardcoded.
     “Platform you came from” refers to the external app, website, store, campaign, or other source that directed the user to Firefox.
   -->
-  <string name="nova_onboarding_marketing_body_5" tools:ignore="BrandUsage,UnusedResources">Kojato\' richin yojapon kik\'in ch\'aqa\' chik winaqi\', akuchi\' naya\' q\'ij chi re ri Mozilla chi tuya\' rutzijol chi ke ri k\'amab\'ey akuchi\' atpetenäq chi nawokisaj Firefox.</string>
+  <string name="nova_onboarding_marketing_body_5" tools:ignore="BrandUsage,UnusedResources">Kojato\' richin yojapon kik\'in ch\'aqa\' chik winaqi\', akuchi\' naya\' q\'ij chi re ri Mozilla chi tuya\' rutzijol chi ke ri k\'amab\'ey akuchi\' atpetenäq chi nawokisaj Clarus.</string>
   <!--
     Marketing onboarding body. 'Firefox' and 'Mozilla' are intentionally hardcoded.
     “Platform you came from” refers to the external app, website, store, campaign, or other source that directed the user to Firefox.
     %1$s is replaced by an active link, using nova_onboarding_marketing_body_link_text as text (“How we use the data”).
   -->
-  <string name="nova_onboarding_marketing_body_6" tools:ignore="BrandUsage,UnusedResources">Kojato\' richin yojapon kik\'in ch\'aqa\' chik winaqi\', akuchi\' naya\' q\'ij chi re ri Mozilla chi tuya\' rutzijol chi ke ri k\'amab\'ey akuchi\' atpetenäq chi nawokisaj Firefox. %1$s</string>
+  <string name="nova_onboarding_marketing_body_6" tools:ignore="BrandUsage,UnusedResources">Kojato\' richin yojapon kik\'in ch\'aqa\' chik winaqi\', akuchi\' naya\' q\'ij chi re ri Mozilla chi tuya\' rutzijol chi ke ri k\'amab\'ey akuchi\' atpetenäq chi nawokisaj Clarus. %1$s</string>
   <!--
     Marketing onboarding body. 'Firefox' and 'Mozilla' are intentionally hardcoded.
     “Platform you came from” refers to the external app, website, store, campaign, or other source that directed the user to Firefox.
     %1$s is replaced by an active link, using nova_onboarding_marketing_body_link_text_1 as text (“Learn More”).
   -->
-  <string name="nova_onboarding_marketing_body_7" tools:ignore="BrandUsage">Yatikïr yojato\' richin yojapon kik\'in ch\'aqa\' chik winaqi\', akuchi\' naya\' q\'ij chi re ri Mozilla chi tuya\' rutzijol chi ke ri k\'amab\'ey akuchi\' atpetenäq chi nawokisaj Firefox. %1$s</string>
+  <string name="nova_onboarding_marketing_body_7" tools:ignore="BrandUsage">Yatikïr yojato\' richin yojapon kik\'in ch\'aqa\' chik winaqi\', akuchi\' naya\' q\'ij chi re ri Mozilla chi tuya\' rutzijol chi ke ri k\'amab\'ey akuchi\' atpetenäq chi nawokisaj Clarus. %1$s</string>
   <!-- Marketing onboarding additional body text. 'Firefox' is intentionally hardcoded. -->
-  <string name="nova_onboarding_marketing_body_line_two" tools:ignore="BrandUsage">Firefox nuna\' ri\' chi jun ajyonil chuqa\' nito\'on chi jantape\' jaqäl ri ajk\'am chi kiwäch ri taq ajteknolojiy monopolyo.</string>
+  <string name="nova_onboarding_marketing_body_line_two" tools:ignore="BrandUsage">Clarus nuna\' ri\' chi jun ajyonil chuqa\' nito\'on chi jantape\' jaqäl ri ajk\'am chi kiwäch ri taq ajteknolojiy monopolyo.</string>
   <!--
     Marketing onboarding additional body text. 'Firefox' is intentionally hardcoded.
     “Allowing” refers to the main button “Allow and Continue”; the ask for the user is to allow communicating back to the platform.
   -->
-  <string name="nova_onboarding_marketing_body_line_three" tools:ignore="BrandUsage">Tab\'ana\' utzil taqu\' richin yojato\' chi ri Firefox nich\'akon.</string>
+  <string name="nova_onboarding_marketing_body_line_three" tools:ignore="BrandUsage">Tab\'ana\' utzil taqu\' richin yojato\' chi ri Clarus nich\'akon.</string>
   <!-- Marketing onboarding body link text. -->
   <string name="nova_onboarding_marketing_body_link_text">Atux rub\'eyal yeqokisaj ri taq tzij</string>
   <!-- Marketing onboarding body link text. -->
   <string name="nova_onboarding_marketing_body_link_text_1">Tetamäx ch\'aqa\' chik</string>
   <!-- Marketing onboarding primary button text. 'Firefox' is intentionally hardcoded. -->
-  <string name="nova_onboarding_marketing_primary_button_text" tools:ignore="BrandUsage,UnusedResources">Ruto\'ik Firefox</string>
+  <string name="nova_onboarding_marketing_primary_button_text" tools:ignore="BrandUsage,UnusedResources">Ruto\'ik Clarus</string>
   <!-- Marketing onboarding primary button text. -->
   <string name="nova_onboarding_marketing_primary_button_text_3">Ja\'</string>
   <!-- Marketing onboarding secondary button text. -->
@@ -665,17 +665,17 @@
   <!-- Marketing onboarding secondary button text. -->
   <string name="nova_onboarding_marketing_secondary_button_text_2">Mani</string>
   <!-- Notifications onboarding title. 'Firefox' is intentionally hardcoded. -->
-  <string name="nova_onboarding_notifications_title" tools:ignore="BrandUsage,UnusedResources">Ri taq rutzijol yatkito\' yalan at jikil pa Firefox</string>
+  <string name="nova_onboarding_notifications_title" tools:ignore="BrandUsage,UnusedResources">Ri taq rutzijol yatkito\' yalan at jikil pa Clarus</string>
   <!-- Notifications onboarding subtitle. 'Firefox' is intentionally hardcoded. -->
-  <string name="nova_onboarding_notifications_subtitle" tools:ignore="BrandUsage,UnusedResources">Tawila\' ri ruk\'isib\'äl ichinan taq rusamajib\'al Firefox richin awetaman rub\'eyal nachajij awi\' ri wakami.</string>
+  <string name="nova_onboarding_notifications_subtitle" tools:ignore="BrandUsage,UnusedResources">Tawila\' ri ruk\'isib\'äl ichinan taq rusamajib\'al Clarus richin awetaman rub\'eyal nachajij awi\' ri wakami.</string>
   <!-- Notifications onboarding button. -->
   <string name="nova_onboarding_notifications_button">Ketzij taq rutzijol</string>
   <!-- "Add search widget" onboarding title. -->
   <string name="nova_onboarding_add_search_widget_title">Tab\'ana\' chi ri jujun taq kanoxïk junelïk e\'ichinan</string>
   <!-- "Add search widget" onboarding subtitle. 'Firefox' is intentionally hardcoded. -->
-  <string name="nova_onboarding_add_search_widget_subtitle" tools:ignore="BrandUsage">Tatikirisaj ri kanoxïk pa ri ruwäch rutikirib\'al awoyonib\'al chuqa\' tijike\' chawäch chi ri yonil taq ruchajinik Firefox nikito\' awij.</string>
+  <string name="nova_onboarding_add_search_widget_subtitle" tools:ignore="BrandUsage">Tatikirisaj ri kanoxïk pa ri ruwäch rutikirib\'al awoyonib\'al chuqa\' tijike\' chawäch chi ri yonil taq ruchajinik Clarus nikito\' awij.</string>
   <!-- "Add search widget" onboarding button. 'Firefox' is intentionally hardcoded. -->
-  <string name="nova_onboarding_add_search_widget_button" tools:ignore="BrandUsage">Titz\'aqatisäx ruwidget Firefox</string>
+  <string name="nova_onboarding_add_search_widget_button" tools:ignore="BrandUsage">Titz\'aqatisäx ruwidget Clarus</string>
   <!-- Customize prompt onboarding title. -->
   <string name="nova_onboarding_customize_prompt_title" tools:ignore="UnusedResources">Man k\'ayew ta richin nichinäx chuqa\' yalan ichinan rik\'in jujun taq chapoj</string>
   <plurals name="nova_onboarding_customize_prompt_body" tools:ignore="UnusedResources">
@@ -750,9 +750,9 @@
   <!-- Preference Category for settings related to Search address bar -->
   <string name="preferences_settings_address_bar">Kajowab\'al kikajtz\'ik ochochib\'äl</string>
   <!-- Preference Category for settings to Firefox Suggest -->
-  <string name="preference_search_address_bar_fx_suggest" tools:ignore="BrandUsage">Kikajtz\'ik ochochib\'äl - Ruchilab\'exik Firefox</string>
+  <string name="preference_search_address_bar_fx_suggest" tools:ignore="BrandUsage">Kikajtz\'ik ochochib\'äl - Ruchilab\'exik Clarus</string>
   <!-- Preference link to Learn more about Firefox Suggest -->
-  <string name="preference_search_learn_about_fx_suggest" tools:ignore="BrandUsage">Tawetamaj ch\'aqa\' chik chi rij ri Firefox Suggest</string>
+  <string name="preference_search_learn_about_fx_suggest" tools:ignore="BrandUsage">Tawetamaj ch\'aqa\' chik chi rij ri Clarus Suggest</string>
   <!-- Preference link to rating Fenix on the Play Store -->
   <string name="preferences_rate">Tiya\' rejqalem pa Google Play</string>
   <!--
@@ -1118,7 +1118,7 @@
   -->
   <string name="addon_ga_message_title_2" tools:ignore="UnusedResources">K\'ak\'a\' taq k\'amal e wachel wakami</string>
   <!-- Body of the Nimbus message for add-ons general availability. 'Firefox' intentionally hardcoded here -->
-  <string name="addon_ga_message_body" tools:ignore="BrandUsage,UnusedResources">Ke\'awila\' +100 k\'ak\'a\' taq k\'amal ri nikiya\' q\'ij chawe\' nawichinaj Firefox.</string>
+  <string name="addon_ga_message_body" tools:ignore="BrandUsage,UnusedResources">Ke\'awila\' +100 k\'ak\'a\' taq k\'amal ri nikiya\' q\'ij chawe\' nawichinaj Clarus.</string>
   <!-- Button text of the Nimbus message for extensions general availability. -->
   <string name="addon_ga_message_button_2" tools:ignore="UnusedResources">Kekanöx taq k\'amal</string>
   <!--
@@ -1192,7 +1192,7 @@
   -->
   <string name="fxa_received_tab_channel_name">Taq ruwi\' ek\'ulun</string>
   <!-- Description of the "receive tabs" notification channel. Displayed in the "App notifications" system settings for the app -->
-  <string name="fxa_received_tab_channel_description" tools:ignore="BrandUsage">Taq rutzijol taq ruwi\' ek\'ulun pa ch\'aqa\' chik rokisab\'al Firefox.</string>
+  <string name="fxa_received_tab_channel_description" tools:ignore="BrandUsage">Taq rutzijol taq ruwi\' ek\'ulun pa ch\'aqa\' chik rokisab\'al Clarus.</string>
   <!-- The body for these is the URL of the tab received -->
   <string name="fxa_tab_received_notification_name">Ruwi\' k\'ulun</string>
   <!-- %s is the device name -->
@@ -1247,7 +1247,7 @@
     Preference description for marketing data collection.
     Note: The words "Firefox" and "Mozilla" should NOT be translated. “That you use it” is to mean that the user is opting in to sharing that they are continuing to use Firefox after installing it; not that Firefox is tracking their “usage” or what they’re using it for.
   -->
-  <string name="preferences_marketing_data_description_4" tools:ignore="BrandUsage">Kakomonin kik\'in rachsamajel rumarkentin Mozilla achike rub\'eyal xawïl Firefox chuqa\' achi\'el rub\'eyal nawokisaj.</string>
+  <string name="preferences_marketing_data_description_4" tools:ignore="BrandUsage">Kakomonin kik\'in rachsamajel rumarkentin Mozilla achike rub\'eyal xawïl Clarus chuqa\' achi\'el rub\'eyal nawokisaj.</string>
   <!-- Learn more link for marketing data preference -->
   <string name="preferences_marketing_data_learn_more">Tetamäx ch\'aqa\' chik chi rij ri markenting</string>
   <!-- Title for studies preferences -->
@@ -1482,7 +1482,7 @@
   <!-- Title of the active section on the studies list -->
   <string name="studies_active">Tzijïl</string>
   <!-- Description for studies. Note: The word "Firefox" should NOT be translated -->
-  <string name="studies_description_4" tools:ignore="BrandUsage">Ri Firefox yerucha\' taq okisanela\' choj ke ri\' richin nikitojtob\'ej ri taq samajib\'äl, ri nrutzilaj retal ruwäch chi qe qonojel.</string>
+  <string name="studies_description_4" tools:ignore="BrandUsage">Ri Clarus yerucha\' taq okisanela\' choj ke ri\' richin nikitojtob\'ej ri taq samajib\'äl, ri nrutzilaj retal ruwäch chi qe qonojel.</string>
   <!-- Title of the Studies data preference -->
   <string name="studies_title_2">Tiya\' q\'ij chi ke ri tijonel taq samaj</string>
   <!-- Learn more link for studies, links to an article for more information about studies. -->
@@ -1494,7 +1494,7 @@
   -->
   <string name="remote_improvements_title">Tiya\' q\'ij chi ke ri näj taq rutzil</string>
   <!-- Description for remote improvements. Note: The word "Firefox" should NOT be translated -->
-  <string name="remote_improvements_description" tools:ignore="BrandUsage">Firefox xkerutzilaj ri taq samajib\'äl, ri rub\'eyal nisamäj chuqa\' ri taq kijikomal taq k\'exoj. Ri taq jaloj näj xesamajïx.</string>
+  <string name="remote_improvements_description" tools:ignore="BrandUsage">Clarus xkerutzilaj ri taq samajib\'äl, ri rub\'eyal nisamäj chuqa\' ri taq kijikomal taq k\'exoj. Ri taq jaloj näj xesamajïx.</string>
   <!-- Learn more link for remote improvements, links to an article for more information about rollouts. -->
   <string name="remote_improvements_learn_more">Tetamäx ch\'aqa\' chik</string>
   <!-- Title for remote improvements preference in Advanced settings -->
@@ -2439,19 +2439,19 @@
     Title shown in the notification that pops up to remind the user to set fenix as default browser.
     The app name is in the text, due to limitations with localizing Nimbus experiments
   -->
-  <string name="nimbus_notification_default_browser_title" tools:ignore="BrandUsage,UnusedResources">Firefox aninäq chuqa\' ichinel</string>
+  <string name="nimbus_notification_default_browser_title" tools:ignore="BrandUsage,UnusedResources">Clarus aninäq chuqa\' ichinel</string>
   <!--
     Text shown in the notification that pops up to remind the user to set fenix as default browser.
     The app name is in the text, due to limitations with localizing Nimbus experiments
   -->
-  <string name="nimbus_notification_default_browser_text" tools:ignore="BrandUsage,UnusedResources">Tab\'ana\' chi ri Firefox nok ri nab\'ey awokik\'amaya\'l</string>
+  <string name="nimbus_notification_default_browser_text" tools:ignore="BrandUsage,UnusedResources">Tab\'ana\' chi ri Clarus nok ri nab\'ey awokik\'amaya\'l</string>
   <!--
     Survey
 
     Text shown in the fullscreen message that pops up to ask user to take a short survey.
     The app name is in the text, due to limitations with localizing Nimbus experiments
   -->
-  <string name="nimbus_survey_message_text" tools:ignore="BrandUsage">Kato\'on chi nutziläx ri Firefox rik\'in nanojisaj ri ch\'uti nojwuj.</string>
+  <string name="nimbus_survey_message_text" tools:ignore="BrandUsage">Kato\'on chi nutziläx ri Clarus rik\'in nanojisaj ri ch\'uti nojwuj.</string>
   <!-- Preference for taking the short survey. -->
   <string name="preferences_take_survey">Tinojisäx nojwuj</string>
   <!-- Preference for not taking the short survey. -->
@@ -2583,7 +2583,7 @@
   <!-- Title of QR Pairing Fragment -->
   <string name="sync_scan_code">Titz\'ajwachib\'ëx b\'itz\'ib\'</string>
   <!-- Instructions on how to access pairing -->
-  <string name="sign_in_instructions" tools:ignore="BrandUsage"><![CDATA[Tajaqa\' Firefox pan awoyonib\'al k\'a ri\' jät pa <b>https://firefox.com/pair</b>]]></string>
+  <string name="sign_in_instructions" tools:ignore="BrandUsage"><![CDATA[Tajaqa\' Clarus pan awoyonib\'al k\'a ri\' jät pa <b>https://firefox.com/pair</b>]]></string>
   <!-- Text shown for sign in pairing when ready -->
   <string name="sign_in_ready_for_scan">Ütz chik nitz\'ajwachib\'ëx</string>
   <!-- Text shown for settings option for sign with pairing -->
@@ -2591,7 +2591,7 @@
   <!-- Text shown for settings option for sign with email -->
   <string name="sign_in_with_email">Tawokisaj ri taqoya\'l</string>
   <!-- Text shown for settings option for create new account text.'Firefox' intentionally hardcoded here. -->
-  <string name="sign_in_create_account_text" tools:ignore="BrandUsage"><![CDATA[¿La man k\'o ta rub\'i\' ataqoya\'l? <u>Tatz\'uku\' jun</u> richin naxïm Firefox pa taq okisab\'äl.]]></string>
+  <string name="sign_in_create_account_text" tools:ignore="BrandUsage"><![CDATA[¿La man k\'o ta rub\'i\' ataqoya\'l? <u>Tatz\'uku\' jun</u> richin naxïm Clarus pa taq okisab\'äl.]]></string>
   <!-- Text shown in confirmation dialog to sign out of account. %s is the name of the app (for example "Firefox"). -->
   <string name="sign_out_confirmation_message_2">%s Man xtuxïm ta chik ri rub\'i\' ataqoya\'l, man xkeyuj ta ri taq rutzij awokem pa re oyonib\'äl re\'.</string>
   <!-- Option to continue signing out of account shown in confirmation dialog to sign out of account -->
@@ -3127,7 +3127,7 @@
   <!-- Title for the browser VPN location picker screen. -->
   <string name="ip_protection_location_picker_title" tools:ignore="UnusedResources">Ticha\' VPN k\'ojlib\'äl</string>
   <!-- Description for what it means to use the Recommended setting and let the app automatically pick the best server location. -->
-  <string name="ip_protection_location_fastest_description" tools:ignore="BrandUsage">Firefox anin nrïl ri k\'ojlib\'äl</string>
+  <string name="ip_protection_location_fastest_description" tools:ignore="BrandUsage">Clarus anin nrïl ri k\'ojlib\'äl</string>
   <!-- Description for an unavailable VPN location in the location list. -->
   <string name="ip_protection_location_unavailable_description">Man wachel ta</string>
   <!-- Error message shown when the selected browser VPN location is unavailable. -->
@@ -3407,7 +3407,7 @@
   <!-- Text displayed when user has disabled tab syncing in Firefox Sync Account -->
   <string name="synced_tabs_enable_tab_syncing">Tatzija\' ri kiximik taq ruwi\'.</string>
   <!-- Text displayed when user has no tabs that have been synced -->
-  <string name="synced_tabs_no_tabs" tools:ignore="BrandUsage">Majun ruwi\' ajaqon pa Firefox pa ri ch\'aqa\' chik awokisab\'al.</string>
+  <string name="synced_tabs_no_tabs" tools:ignore="BrandUsage">Majun ruwi\' ajaqon pa Clarus pa ri ch\'aqa\' chik awokisab\'al.</string>
   <!-- Text displayed in the synced tabs screen when a user is not signed in to Firefox Sync describing Synced Tabs -->
   <string name="synced_tabs_sign_in_message">Titz\'et jun kicholb\'al ruwi\' pa juley chik awokisab\'al.</string>
   <!-- Text displayed on a button in the synced tabs screen to link users to sign in when a user is not signed in to Firefox Sync -->
@@ -3505,7 +3505,7 @@
   -->
   <string name="inactive_tabs_auto_close_message_header" tools:ignore="UnusedResources">¿La ruyonil nitz\'apïx chi rij jun ik\'?</string>
   <!-- A description below the header to notify the user what the inactive tabs auto-close feature is. -->
-  <string name="inactive_tabs_auto_close_message_description" tools:ignore="BrandUsage,UnusedResources">Firefox nitikïr yerutz\'apij taq ruxaq man e\'atz\'eton ta pa ri ruk\'isib\'äl ik\'.</string>
+  <string name="inactive_tabs_auto_close_message_description" tools:ignore="BrandUsage,UnusedResources">Clarus nitikïr yerutz\'apij taq ruxaq man e\'atz\'eton ta pa ri ruk\'isib\'äl ik\'.</string>
   <!-- A call to action below the description to allow the user to turn on the auto closing of inactive tabs. -->
   <string name="inactive_tabs_auto_close_message_action" tools:ignore="UnusedResources">TITZIJ RUYON NICHUPUTÄJ</string>
   <!-- Text for the snackbar to confirm auto-close is enabled for inactive tabs -->
@@ -3515,7 +3515,7 @@
 
     Search suggestions title for Firefox Suggest.
   -->
-  <string name="firefox_suggest_header" tools:ignore="BrandUsage">Firefox Suggest</string>
+  <string name="firefox_suggest_header" tools:ignore="BrandUsage">Clarus Suggest</string>
   <!--
     Search suggestions title for trending search suggestions.
     %s is a placeholder for the name of the search engine providing the trending search suggestions.
@@ -3534,7 +3534,7 @@
   -->
   <string name="default_browser_experiment_card_title">Tajala\' ri awokik\'amaya\'l k\'o wi</string>
   <!-- Default browser card text -->
-  <string name="default_browser_experiment_card_text" tools:ignore="BrandUsage">Nub\'än kinuk\'ulem ximonel ajk\'amaya\'l taq ruxaq, taq taqoya\'l chuqa\' taq rutzijol richin yejaq pa ruyonil pa Firefox.</string>
+  <string name="default_browser_experiment_card_text" tools:ignore="BrandUsage">Nub\'än kinuk\'ulem ximonel ajk\'amaya\'l taq ruxaq, taq taqoya\'l chuqa\' taq rutzijol richin yejaq pa ruyonil pa Clarus.</string>
   <!-- Content description radio buttons with a link to more information -->
   <string name="radio_preference_info_content_description">Tipitz\' richin ch\'aqa\' rub\'anikil</string>
   <!-- Content description for the action bar "up" button -->
@@ -4012,7 +4012,7 @@
 
     The microsurvey prompt title. Note: The word "Firefox" should NOT be translated
   -->
-  <string name="micro_survey_prompt_title" tools:ignore="BrandUsage,UnusedResources">Kojato\' richin nikutzilaj Firefox. Xa xe nuk\'waj jun ch\'utiramaj chawäch.</string>
+  <string name="micro_survey_prompt_title" tools:ignore="BrandUsage,UnusedResources">Kojato\' richin nikutzilaj Clarus. Xa xe nuk\'waj jun ch\'utiramaj chawäch.</string>
   <!-- The continue button label -->
   <string name="micro_survey_continue_button_label" tools:ignore="UnusedResources">Titikïr chik el</string>
   <!--
@@ -4042,7 +4042,7 @@
   <!-- Option for likert scale -->
   <string name="likert_scale_option_6" tools:ignore="UnusedResources">Man ninwokisaj ta</string>
   <!-- Option for likert scale. Note: The word "Firefox" should NOT be translated. -->
-  <string name="likert_scale_option_7" tools:ignore="BrandUsage,UnusedResources">Man ninwokisaj ta ri kanoxïk pa Firefox</string>
+  <string name="likert_scale_option_7" tools:ignore="BrandUsage,UnusedResources">Man ninwokisaj ta ri kanoxïk pa Clarus</string>
   <!-- Option for likert scale -->
   <string name="likert_scale_option_8" tools:ignore="UnusedResources">Man ninwokisaj ta ri sync</string>
   <!-- Option for likert scale -->
@@ -4054,23 +4054,23 @@
   <!-- Option for likert scale -->
   <string name="likert_scale_option_its_okay" tools:ignore="UnusedResources">Ütz, po man ütz ta chi kiwäch ch\'aqa\' chik taq kanob\'äl</string>
   <!-- Option for likert scale. Note: The word "Firefox" should NOT be translated. -->
-  <string name="likert_scale_option_i_plan_to_keep_using" tools:ignore="BrandUsage,UnusedResources">Nina\'ojin k\'a ninwokisaj na Firefox</string>
+  <string name="likert_scale_option_i_plan_to_keep_using" tools:ignore="BrandUsage,UnusedResources">Nina\'ojin k\'a ninwokisaj na Clarus</string>
   <!-- Text shown in prompt for printing microsurvey. "sec" It's an abbreviation for "second". Note: The word "Firefox" should NOT be translated. -->
-  <string name="microsurvey_prompt_printing_title" tools:ignore="BrandUsage,UnusedResources">Kato\'on richin ütz nitz\'ajb\'äx pa Firefox. Xa xe nuk\'waj jun ch\'utiramaj.</string>
+  <string name="microsurvey_prompt_printing_title" tools:ignore="BrandUsage,UnusedResources">Kato\'on richin ütz nitz\'ajb\'äx pa Clarus. Xa xe nuk\'waj jun ch\'utiramaj.</string>
   <!-- Text shown in prompt for search microsurvey. Note: The word "Firefox" should NOT be translated. -->
-  <string name="microsurvey_prompt_search_title" tools:ignore="BrandUsage,UnusedResources">Kato\'on richin ye\'utziläx taq kanoxïk pa Firefox. Xa xe nuk\'waj jun ch\'utiramaj.</string>
+  <string name="microsurvey_prompt_search_title" tools:ignore="BrandUsage,UnusedResources">Kato\'on richin ye\'utziläx taq kanoxïk pa Clarus. Xa xe nuk\'waj jun ch\'utiramaj.</string>
   <!-- Text shown in prompt for sync microsurvey. Note: The word "Firefox" should NOT be translated. -->
-  <string name="microsurvey_prompt_sync_title" tools:ignore="BrandUsage,UnusedResources">Kato\'on richin nutziläx taq ximoj pa Firefox. Xa xe nuk\'waj jun ch\'utiramaj.</string>
+  <string name="microsurvey_prompt_sync_title" tools:ignore="BrandUsage,UnusedResources">Kato\'on richin nutziläx taq ximoj pa Clarus. Xa xe nuk\'waj jun ch\'utiramaj.</string>
   <!-- Text shown in the survey title for printing microsurvey. Note: The word "Firefox" should NOT be translated. -->
-  <string name="microsurvey_survey_printing_title" tools:ignore="BrandUsage,UnusedResources">¿Achi\'el ana\'on rik\'in ri tz\'ajb\'anïk pa Firefox?</string>
+  <string name="microsurvey_survey_printing_title" tools:ignore="BrandUsage,UnusedResources">¿Achi\'el ana\'on rik\'in ri tz\'ajb\'anïk pa Clarus?</string>
   <!-- Text shown in the survey title for homepage microsurvey. Note: The word "Firefox" should NOT be translated. -->
-  <string name="microsurvey_homepage_title" tools:ignore="BrandUsage,UnusedResources">¿Achi\'el ana\'on rik\'in ri tikirib\'äl ruxaq Firefox?</string>
+  <string name="microsurvey_homepage_title" tools:ignore="BrandUsage,UnusedResources">¿Achi\'el ana\'on rik\'in ri tikirib\'äl ruxaq Clarus?</string>
   <!-- Text shown in the survey title for search experience microsurvey. Note: The word "Firefox" should NOT be translated. -->
-  <string name="microsurvey_search_title" tools:ignore="BrandUsage,UnusedResources">¿Achi\'el ana\'on rik\'in ri retamaxik kanoxïk pa Firefox?</string>
+  <string name="microsurvey_search_title" tools:ignore="BrandUsage,UnusedResources">¿Achi\'el ana\'on rik\'in ri retamaxik kanoxïk pa Clarus?</string>
   <!-- Text shown in the survey title for sync experience microsurvey. Note: The word "Firefox" should NOT be translated. -->
-  <string name="microsurvey_sync_title" tools:ignore="BrandUsage,UnusedResources">¿Achi\'el ana\'on rik\'in ri retamaxik ximoj pa Firefox?</string>
+  <string name="microsurvey_sync_title" tools:ignore="BrandUsage,UnusedResources">¿Achi\'el ana\'on rik\'in ri retamaxik ximoj pa Clarus?</string>
   <!-- Text shown in the survey title for 'describe your experience so far' microsurvey. Note: The word "Firefox" should NOT be translated. -->
-  <string name="microsurvey_describe_your_experience_title" tools:ignore="BrandUsage,UnusedResources">Kojato\' richin niqutzilaj Firefox. ¿Achike ütz nuq\'alajisaj ri awetamab\'al k\'a wakami?</string>
+  <string name="microsurvey_describe_your_experience_title" tools:ignore="BrandUsage,UnusedResources">Kojato\' richin niqutzilaj Clarus. ¿Achike ütz nuq\'alajisaj ri awetamab\'al k\'a wakami?</string>
   <!--
     Uninstall Survey
 
@@ -4096,7 +4096,7 @@
 
     Content description for the survey application icon. Note: The word "Firefox" should NOT be translated.
   -->
-  <string name="microsurvey_app_icon_content_description" tools:ignore="BrandUsage">Firefox wachib\'äl</string>
+  <string name="microsurvey_app_icon_content_description" tools:ignore="BrandUsage">Clarus wachib\'äl</string>
   <!-- Content description for the survey feature icon. -->
   <string name="microsurvey_feature_icon_content_description">Ruwäch rusamajib\'al enkwesta</string>
   <!-- Content description (not visible, for screen readers etc.) for closing microsurvey bottom sheet. -->
@@ -4214,27 +4214,27 @@
   -->
   <string name="certificate_warning_homepage_card_update_now_button" tools:ignore="UnusedResources">Tak\'exa\' ruwäch wakami</string>
   <!-- Homepage card title about old Firefox version. "Update" is a verb. Note: The word "Firefox" should NOT be translated. -->
-  <string name="certificate_warning_homepage_card_hca1_title" tools:ignore="BrandUsage,UnusedResources">Tak\'exa\' ruwäch ri Firefox okik\'amaya\'l</string>
+  <string name="certificate_warning_homepage_card_hca1_title" tools:ignore="BrandUsage,UnusedResources">Tak\'exa\' ruwäch ri Clarus okik\'amaya\'l</string>
   <!-- Homepage card message about old Firefox version -->
   <string name="certificate_warning_homepage_card_hca1_message" tools:ignore="UnusedResources">Jun ruxe\'el sertipika\'o xtik\'o ruq\'ijul, ri nub\'än chi jujun taq samajib\'äl man xkesamäj ta chik pa ri 14 q\'ij richin marso.</string>
   <!-- Homepage card title about old Firefox version. "Update" is a verb. -->
   <string name="certificate_warning_homepage_card_hcr1_title" tools:ignore="UnusedResources">Tak\'exa\' chuwäch ri 14 q\'ij richin marso</string>
   <!-- Homepage card message about old Firefox version. Note: The word "Firefox" should NOT be translated. -->
-  <string name="certificate_warning_homepage_card_hcr1_message" tools:ignore="BrandUsage,UnusedResources">Jun ruxe\' sertipikawo xtik\'o ruq\'ij ruma ri\' ri ruwäch Firefox man ütz ta xtisamajyaj.</string>
+  <string name="certificate_warning_homepage_card_hcr1_message" tools:ignore="BrandUsage,UnusedResources">Jun ruxe\' sertipikawo xtik\'o ruq\'ij ruma ri\' ri ruwäch Clarus man ütz ta xtisamajyaj.</string>
   <!-- Homepage card title about old Firefox version -->
   <string name="certificate_warning_homepage_card_hcw2_title" tools:ignore="UnusedResources">Xa xe chik jun 7 q\'ij k\'o richin nik\'ex</string>
   <!-- Homepage card message about old Firefox version. Note: The word "Firefox" should NOT be translated. -->
-  <string name="certificate_warning_homepage_card_hcw2_message" tools:ignore="BrandUsage,UnusedResources">Ri 14 q\'ij richin marso, ri taq tz\'aqat chuqa\' ch\'aqa\' chik taq rub\'anikil Firefox man xkesamäj ta chik ruma jun ruxe\' sertipika\'o\' xtik\'o ruq\'ijul.</string>
+  <string name="certificate_warning_homepage_card_hcw2_message" tools:ignore="BrandUsage,UnusedResources">Ri 14 q\'ij richin marso, ri taq tz\'aqat chuqa\' ch\'aqa\' chik taq rub\'anikil Clarus man xkesamäj ta chik ruma jun ruxe\' sertipika\'o\' xtik\'o ruq\'ijul.</string>
   <!-- Homepage card title about old Firefox version. Note: The word "Firefox" should NOT be translated. -->
-  <string name="certificate_warning_homepage_card_hcw3_title" tools:ignore="BrandUsage,UnusedResources">Ruk\'isib\'äl mul richin k\'o ri Firefox awik\'in</string>
+  <string name="certificate_warning_homepage_card_hcw3_title" tools:ignore="BrandUsage,UnusedResources">Ruk\'isib\'äl mul richin k\'o ri Clarus awik\'in</string>
   <!-- Homepage card message about old Firefox version. Note: The word "Firefox" should NOT be translated. -->
-  <string name="certificate_warning_homepage_card_hcw3_message" tools:ignore="BrandUsage,UnusedResources">Ri ruwäch a Firefox man xtisamäj ta chik ütz ri 14 q\'ij richin marso ruma jun sertipika\'o xtik\'o ruq\'ijul.</string>
+  <string name="certificate_warning_homepage_card_hcw3_message" tools:ignore="BrandUsage,UnusedResources">Ri ruwäch a Clarus man xtisamäj ta chik ütz ri 14 q\'ij richin marso ruma jun sertipika\'o xtik\'o ruq\'ijul.</string>
   <!-- Push notification title about old Firefox version. "Update" is a noun. -->
   <string name="certificate_warning_push_notification_update_recommended_title" tools:ignore="UnusedResources">K\'exoj chilab\'en</string>
   <!-- Push notification message about old Firefox version -->
   <string name="certificate_warning_push_notification_pnr1_message" tools:ignore="UnusedResources">Ri taq tz\'aqat chuqa\' jujun taq samajib\'äl man xkesamäj ta chik ri 14 q\'ij richin marso.</string>
   <!-- Push notification title about old Firefox version. Note: The word "Firefox" should NOT be translated. -->
-  <string name="certificate_warning_push_notification_pnw2_title" tools:ignore="BrandUsage,UnusedResources">At k\'o pa jun ojer ruwäch chi Firefox</string>
+  <string name="certificate_warning_push_notification_pnw2_title" tools:ignore="BrandUsage,UnusedResources">At k\'o pa jun ojer ruwäch chi Clarus</string>
   <!-- Push notification message about old Firefox version. "Update" is a verb. -->
   <string name="certificate_warning_push_notification_pnw2_message" tools:ignore="UnusedResources">Tak\'exa\' chuwäch ri 14 q\'ij richin marso richin k\'a ye\'awokisaj na ri taq tz\'aqat chuqa\' ch\'aqa\' chik taq samajib\'äl.</string>
   <!-- Push notification message about old Firefox version -->
@@ -4665,7 +4665,7 @@
     %1$s is replaced by an active link using privacy_notice_updated_homepage_message_privacy_notice as text (Privacy Notice)
     %2$s is replaced by an active link using privacy_notice_updated_homepage_message_learn_more as text (Learn more)
   -->
-  <string name="privacy_notice_updated_homepage_message" tools:ignore="BrandUsage,UnusedResources">Xqak\'ëx ri %1$s qichin richin yeqak\'üt ri ruk\'isib\'äl taq rusamajib\'al Firefox. %2$s</string>
+  <string name="privacy_notice_updated_homepage_message" tools:ignore="BrandUsage,UnusedResources">Xqak\'ëx ri %1$s qichin richin yeqak\'üt ri ruk\'isib\'äl taq rusamajib\'al Clarus. %2$s</string>
   <!-- The first active link used in privacy_notice_updated_homepage_message -->
   <string name="privacy_notice_updated_homepage_message_privacy_notice" tools:ignore="UnusedResources">Ichinan na\'oj</string>
   <!-- The second active link used in privacy_notice_updated_homepage_message -->
@@ -4732,7 +4732,7 @@
     The "Labs" portion can be localized, "Firefox" must be treated as a brand and kept
     in English.
   -->
-  <string name="firefox_labs_title" tools:ignore="BrandUsage">Firefox Labs</string>
+  <string name="firefox_labs_title" tools:ignore="BrandUsage">Clarus Labs</string>
   <!-- Banner title text on the Firefox Labs screen. -->
   <string name="firefox_labs_banner_title_2">¡Ke\'atojtob\'ej ri qasoltojtob\'enel taq rub\'anikil!</string>
   <!--

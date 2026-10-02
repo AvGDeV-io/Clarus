@@ -205,7 +205,7 @@
   -->
   <string name="fxa_received_tab_channel_name">પ્રાપ્ત ટેબ્સ</string>
   <!-- Description of the "receive tabs" notification channel. Displayed in the "App notifications" system settings for the app -->
-  <string name="fxa_received_tab_channel_description" tools:ignore="BrandUsage">અન્ય Firefox ઉપકરણોથી પ્રાપ્ત ટેબ્સ માટેની સૂચનાઓ.</string>
+  <string name="fxa_received_tab_channel_description" tools:ignore="BrandUsage">અન્ય Clarus ઉપકરણોથી પ્રાપ્ત ટેબ્સ માટેની સૂચનાઓ.</string>
   <!-- The body for these is the URL of the tab received -->
   <string name="fxa_tab_received_notification_name">ટેબ પ્રાપ્ત</string>
   <!-- %s is the device name -->
@@ -463,7 +463,7 @@
   <!-- An option to connect additional devices -->
   <string name="sync_connect_device">બીજા ઉપકરણ સાથે જોડાણ કરો</string>
   <!-- The dialog text shown when additional devices are not available -->
-  <string name="sync_connect_device_dialog" tools:ignore="BrandUsage">ટેબ મોકલવા માટે, ઓછામાં ઓછા એક અન્ય ઉપકરણ પર Firefox માં સાઇન ઇન કરો.</string>
+  <string name="sync_connect_device_dialog" tools:ignore="BrandUsage">ટેબ મોકલવા માટે, ઓછામાં ઓછા એક અન્ય ઉપકરણ પર Clarus માં સાઇન ઇન કરો.</string>
   <!-- Confirmation dialog button -->
   <string name="sync_confirmation_button">સમજાઈ ગયું</string>
   <!-- Share error message -->
