@@ -1,0 +1,207 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="180dp"
+    android:height="103dp"
+    android:viewportWidth="180"
+    android:viewportHeight="103">
+
+    <!-- Ambient Lab Glow -->
+    <path
+        android:pathData="M90,51m-75,0a75,45 0,1,1 150,0a75,45 0,1,1 -150,0">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:centerX="90"
+                android:centerY="51"
+                android:gradientRadius="70"
+                android:type="radial">
+                <item android:offset="0.0" android:color="#26D5A24A"/>
+                <item android:offset="0.6" android:color="#0DFF6600"/>
+                <item android:offset="1.0" android:color="#00000000"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Lab Workbench Surface Plinth -->
+    <path
+        android:pathData="M15,88 L165,88 C168,88 170,90 169,92 L165,99 C164,101 161,102 158,102 L22,102 C19,102 16,101 15,99 L11,92 C10,90 12,88 15,88 Z"
+        android:fillColor="#1E293B"/>
+    <path
+        android:pathData="M15,88 L165,88 L167,90 L13,90 Z"
+        android:fillColor="#334155"/>
+
+    <!-- Experimental Alchemical Flask & Stand (Right) -->
+    <!-- Stand / Burner -->
+    <path
+        android:pathData="M130,88 L152,88 L149,84 L133,84 Z"
+        android:fillColor="#334155"/>
+    <path
+        android:pathData="M139,84 L143,84 L143,76 L139,76 Z"
+        android:fillColor="#475569"/>
+    
+    <!-- Glass Beaker Flask Body -->
+    <path
+        android:pathData="M133,76 L149,76 L145,56 L144,44 L138,44 L137,56 Z"
+        android:strokeColor="#64748B"
+        android:strokeWidth="1.5"
+        android:fillColor="#1E293B"
+        android:fillAlpha="0.75"/>
+    
+    <!-- Glowing Fluid inside Flask -->
+    <path
+        android:pathData="M134,74 L148,74 L145,62 C142,60 140,64 137,62 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="134"
+                android:startY="74"
+                android:endX="148"
+                android:endY="60"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#FFD5A24A"/>
+                <item android:offset="0.6" android:color="#FFFF8A15"/>
+                <item android:offset="1.0" android:color="#FFFF6600"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Flask Neck Rim -->
+    <path
+        android:pathData="M136,44 L146,44 L146,41 L136,41 Z"
+        android:fillColor="#64748B"/>
+
+    <!-- Rising Ember Particles from Flask -->
+    <path
+        android:pathData="M141,34m-2,0a2,2 0,1,1 4,0a2,2 0,1,1 -4,0"
+        android:fillColor="#FFD5A24A"/>
+    <path
+        android:pathData="M145,26m-1.5,0a1.5,1.5 0,1,1 3,0a1.5,1.5 0,1,1 -3,0"
+        android:fillColor="#FFFF6600"/>
+    <path
+        android:pathData="M139,18m-1,0a1,1 0,1,1 2,0a1,1 0,1,1 -2,0"
+        android:fillColor="#FFD5A24A"
+        android:fillAlpha="0.8"/>
+
+    <!-- Clockwork Gear behind Flask -->
+    <path
+        android:pathData="M152,48 C152,44 155,41 159,41 C163,41 166,44 166,48 C166,52 163,55 159,55 C155,55 152,52 152,48 Z"
+        android:strokeColor="#475569"
+        android:strokeWidth="2.5"
+        android:fillColor="#00000000"/>
+    <path
+        android:pathData="M159,38 L159,42 M159,54 L159,58 M149,48 L153,48 M165,48 L169,48"
+        android:strokeColor="#475569"
+        android:strokeWidth="2"/>
+
+    <!-- Sleeping Obsidian Dragon (Left) -->
+    <!-- Dragon Tail curled around base -->
+    <path
+        android:pathData="M100,86 C105,86 112,88 116,84 C119,81 117,77 113,76 C108,75 104,78 100,81 Z"
+        android:fillColor="#1E293B"/>
+    <path
+        android:pathData="M115,82 L120,83 L116,86 Z"
+        android:fillColor="#D5A24A"/>
+
+    <!-- Dragon Body & Folded Wing -->
+    <path
+        android:pathData="M38,86 C32,84 28,78 30,70 C33,60 44,52 58,50 C72,48 88,54 94,64 C98,71 96,80 90,85 C82,88 50,88 38,86 Z"
+        android:fillColor="#0F172A"/>
+    <!-- Body underside shade -->
+    <path
+        android:pathData="M38,86 C50,87 80,87 88,85 C83,81 72,78 60,78 C48,78 40,82 38,86 Z"
+        android:fillColor="#1E293B"/>
+
+    <!-- Folded Obsidian Wing with Gold Ridge -->
+    <path
+        android:pathData="M48,72 C54,58 66,52 78,54 C74,62 68,70 58,74 C53,74 50,73 48,72 Z"
+        android:fillColor="#1E293B"/>
+    <path
+        android:pathData="M48,72 C54,58 66,52 78,54 C72,56 64,62 58,74 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="48"
+                android:startY="72"
+                android:endX="78"
+                android:endY="54"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#B8754B"/>
+                <item android:offset="1.0" android:color="#D5A24A"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+    <!-- Wing claw rib -->
+    <path
+        android:pathData="M78,54 L81,52 L79,56 Z"
+        android:fillColor="#D5A24A"/>
+
+    <!-- Dragon Head resting on paws -->
+    <path
+        android:pathData="M44,82 C42,75 36,68 44,60 C50,54 58,56 62,62 C64,66 62,74 58,80 C54,84 48,84 44,82 Z"
+        android:fillColor="#0F172A"/>
+
+    <!-- Dragon Snout / Jaw -->
+    <path
+        android:pathData="M40,78 C34,77 30,79 26,82 C30,85 38,86 44,83 Z"
+        android:fillColor="#1E293B"/>
+
+    <!-- Amber Horns -->
+    <path
+        android:pathData="M54,58 C58,50 66,42 72,39 C70,45 64,52 58,56 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="54"
+                android:startY="58"
+                android:endX="72"
+                android:endY="39"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#B8754B"/>
+                <item android:offset="0.5" android:color="#D5A24A"/>
+                <item android:offset="1.0" android:color="#FFD5A24A"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+    <path
+        android:pathData="M48,60 C50,54 56,48 60,46 C58,51 54,56 50,59 Z"
+        android:fillColor="#8A4E2B"/>
+
+    <!-- Sleeping Closed Eye (Curved peaceful arc) -->
+    <path
+        android:pathData="M43,68 C45,71 49,71 51,68"
+        android:strokeColor="#D5A24A"
+        android:strokeWidth="1.75"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000"/>
+
+    <!-- Gentle Sleeping Exhale Ember from Snout -->
+    <path
+        android:pathData="M24,80 C20,79 17,76 15,74"
+        android:strokeColor="#FF6600"
+        android:strokeWidth="1.2"
+        android:strokeLineCap="round"
+        android:strokeAlpha="0.7"
+        android:fillColor="#00000000"/>
+    <path
+        android:pathData="M14,73m-1,0a1,1 0,1,1 2,0a1,1 0,1,1 -2,0"
+        android:fillColor="#FFD5A24A"
+        android:fillAlpha="0.8"/>
+    <path
+        android:pathData="M10,70m-0.75,0a0.75,0.75 0,1,1 1.5,0a0.75,0.75 0,1,1 -1.5,0"
+        android:fillColor="#FF6600"
+        android:fillAlpha="0.6"/>
+
+    <!-- Peaceful Zzz Floating Embers -->
+    <path
+        android:pathData="M66,34 L72,34 L66,40 L72,40"
+        android:strokeColor="#D5A24A"
+        android:strokeWidth="1.2"
+        android:strokeAlpha="0.4"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:fillColor="#00000000"/>
+    <path
+        android:pathData="M76,26 L81,26 L76,31 L81,31"
+        android:strokeColor="#D5A24A"
+        android:strokeWidth="1.4"
+        android:strokeAlpha="0.6"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:fillColor="#00000000"/>
+</vector>
