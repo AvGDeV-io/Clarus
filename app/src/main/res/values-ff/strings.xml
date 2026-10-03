@@ -34,7 +34,6 @@
   <!-- Label of button in save to collection dialog for selecting a current collection -->
   <string name="tab_tray_select_collection">Danndu to leemannde</string>
   <!-- About content. %1$s is the name of the app (for example "Firefox"). -->
-  <string name="about_content" tools:ignore="BrandUsage">Ko Clarus jibini %1$s</string>
   <!-- Private Browsing -->
   <string name="private_browsing_common_myths">Tinndi goowaaɗi baɗte banngogol suturo</string>
   <!-- Private browsing erase action "contextual feature recommendation" (CFR) -->

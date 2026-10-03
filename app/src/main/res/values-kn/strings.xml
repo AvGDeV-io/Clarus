@@ -20,7 +20,6 @@
   <!-- Placeholder text shown in the search bar before a user enters text for the default engine -->
   <string name="search_hint">ಹುಡುಕಿ ಅಥವಾ ವಿಳಾಸವನ್ನು ನಮೂದಿಸಿ</string>
   <!-- About content. %1$s is the name of the app (for example "Firefox"). -->
-  <string name="about_content" tools:ignore="BrandUsage">%1$s ಅನ್ನು ಮೊಜಿಲ್ಲಾ ಉತ್ಪಾದಿಸುತ್ತದೆ.</string>
   <!-- Private Browsing -->
   <string name="private_browsing_common_myths">ಖಾಸಗಿ ಬ್ರೌಸಿಂಗ್ ಬಗ್ಗೆ ಸಾಮಾನ್ಯ ಪುರಾಣಗಳು</string>
   <!-- Private browsing erase action "contextual feature recommendation" (CFR) -->

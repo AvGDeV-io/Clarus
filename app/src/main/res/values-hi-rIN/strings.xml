@@ -42,7 +42,6 @@
   <!-- Content description for the button which navigates the user to show all of their bookmarks. -->
   <string name="home_bookmarks_show_all_content_description">सभी बुकमार्क दिखाएं</string>
   <!-- About content. %1$s is the name of the app (for example "Firefox"). -->
-  <string name="about_content" tools:ignore="BrandUsage">%1$s को Clarus द्वारा निर्मित किया गया है।</string>
   <!-- Private Browsing -->
   <string name="private_browsing_common_myths">निजी ब्राउज़िंग के बारे में आम कथा</string>
   <!-- Text for the positive action button -->

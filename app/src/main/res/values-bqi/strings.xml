@@ -74,7 +74,6 @@
   <!-- Text for the menu button to remove a recently saved bookmark from the user's home screen -->
   <string name="home_bookmarks_menu_item_remove">پاک کردن</string>
   <!-- About content. %1$s is the name of the app (for example "Firefox"). -->
-  <string name="about_content" tools:ignore="BrandUsage">%1$s و دست مۊزیلا وورکل وابیڌه.</string>
   <!-- Private Browsing -->
   <string name="private_browsing_common_myths">باورا اشتوا من زایار زبار گشتن سیخومی</string>
   <!-- Text to be announced by the accessibility service to inform the user that the private browsing mode is currently active. -->

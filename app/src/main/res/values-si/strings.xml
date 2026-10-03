@@ -52,7 +52,6 @@
   <!-- Text for the menu button to remove a recently saved bookmark from the user's home screen -->
   <string name="home_bookmarks_menu_item_remove">ඉවත් කරන්න</string>
   <!-- About content. %1$s is the name of the app (for example "Firefox"). -->
-  <string name="about_content" tools:ignore="BrandUsage">මොසිල්ලා හරහා %1$s නිෂ්පාදනය කෙරේ.</string>
   <!-- Private Browsing -->
   <string name="private_browsing_common_myths">පෞද්ගලික පිරික්සීම පිළිබඳව සුලබ මිථ්‍යා</string>
   <!--

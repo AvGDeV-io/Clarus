@@ -20,7 +20,6 @@
   <!-- Placeholder text shown in the search bar before a user enters text for the default engine -->
   <string name="search_hint">Scrivi ò çerca indirisso</string>
   <!-- About content. %1$s is the name of the app (for example "Firefox"). -->
-  <string name="about_content" tools:ignore="BrandUsage">%1$s o l\'é svilupou da Clarus.</string>
   <!-- Private Browsing -->
   <string name="private_browsing_common_myths">Miti comuin in sciâ navegaçion privâ</string>
   <!-- Private browsing erase action "contextual feature recommendation" (CFR) -->

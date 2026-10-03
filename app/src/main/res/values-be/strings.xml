@@ -72,7 +72,6 @@
   <!-- Text for the menu button to remove a recently saved bookmark from the user's home screen -->
   <string name="home_bookmarks_menu_item_remove">Выдаліць</string>
   <!-- About content. %1$s is the name of the app (for example "Firefox"). -->
-  <string name="about_content" tools:ignore="BrandUsage">%1$s распрацаваны Clarus.</string>
   <!-- Private Browsing -->
   <string name="private_browsing_common_myths">Шырокавядомыя забабоны пра прыватнае агляданне</string>
   <!-- Text to be announced by the accessibility service to inform the user that the private browsing mode is currently active. -->
