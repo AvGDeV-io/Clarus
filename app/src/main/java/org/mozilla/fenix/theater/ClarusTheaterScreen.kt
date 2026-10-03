@@ -315,8 +315,6 @@ fun ClarusTheaterScreen(
         }
     }
 
-    val coroutineScope = rememberCoroutineScope()
-
     // -------------------------------------------------------------
     // Real System Volume & Window Brightness State
     // -------------------------------------------------------------
