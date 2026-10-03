@@ -178,6 +178,18 @@
     const title = extractTitle(video, container);
     const qualityBadge = extractQualityBadge(video);
 
+    // Synchronously pause inline playback before entering Theater to release socket / decoder resources
+    if (isSupported) {
+      try {
+        video.pause();
+      } catch (e) {}
+      try {
+        document.querySelectorAll("video").forEach((v) => {
+          if (!v.paused) v.pause();
+        });
+      } catch (e) {}
+    }
+
     const payload = {
       action: "FULLSCREEN_ENTER",
       isSupported: isSupported,

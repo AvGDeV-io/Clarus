@@ -62,7 +62,9 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import kotlinx.coroutines.launch
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -206,14 +208,21 @@ fun ClarusTheaterScreen(
             .setSeekParameters(SeekParameters.EXACT)
             .build()
             .apply {
-                // Pass initialPositionMs directly into setMediaItem to avoid abortive byte-0 request
-                setMediaItem(MediaItem.fromUri(videoUrl), initialPositionMs)
+                // Prepare from position 0 first to allow container metadata (ftyp/moov) to parse cleanly without premature Range requests
+                setMediaItem(MediaItem.fromUri(videoUrl))
                 prepare()
-                playWhenReady = !initialPaused
+                if (initialPositionMs <= 0L) {
+                    playWhenReady = !initialPaused
+                } else {
+                    playWhenReady = false
+                }
                 videoScalingMode = C.VIDEO_SCALING_MODE_SCALE_TO_FIT
             }
     }
 
+    val coroutineScope = rememberCoroutineScope()
+    var retryCount by remember { mutableIntStateOf(0) }
+    var hasPerformedInitialSeek by remember(videoUrl) { mutableStateOf(initialPositionMs <= 0L) }
     var isPlaying by remember { mutableStateOf(!initialPaused) }
     var playbackState by remember { mutableIntStateOf(player.playbackState) }
     var playbackError by remember { mutableStateOf<String?>(null) }
@@ -233,14 +242,34 @@ fun ClarusTheaterScreen(
             override fun onPlaybackStateChanged(state: Int) {
                 playbackState = state
                 if (state == Player.STATE_READY) {
+                    retryCount = 0
                     durationMs = player.duration.coerceAtLeast(0L)
                     playbackError = null
                     isContainerUnsupported = false
+                    if (!hasPerformedInitialSeek && initialPositionMs > 0L) {
+                        hasPerformedInitialSeek = true
+                        player.seekTo(initialPositionMs)
+                        player.playWhenReady = !initialPaused
+                    }
                 }
             }
 
             override fun onPlayerError(error: PlaybackException) {
                 Log.e("ClarusTheater", "ExoPlayer playback error: ${error.errorCodeName}", error)
+                if (isConnectionResetError(error) && retryCount < 3) {
+                    retryCount++
+                    val backoffMs = retryCount * 350L
+                    Log.w("ClarusTheater", "Connection reset encountered. Retrying ($retryCount/3) after ${backoffMs}ms backoff...")
+                    coroutineScope.launch {
+                        delay(backoffMs)
+                        playbackError = null
+                        player.prepare()
+                        if (hasPerformedInitialSeek || initialPositionMs <= 0L) {
+                            if (!initialPaused) player.play()
+                        }
+                    }
+                    return
+                }
                 if (error.errorCode == PlaybackException.ERROR_CODE_PARSING_CONTAINER_UNSUPPORTED) {
                     isContainerUnsupported = true
                     playbackError = "This link does not appear to be a direct media stream."
@@ -892,6 +921,7 @@ fun ClarusTheaterScreen(
             TheaterErrorOverlay(
                 errorMessage = playbackError ?: "Playback error",
                 onRetry = {
+                    retryCount = 0
                     playbackError = null
                     isContainerUnsupported = false
                     player.prepare()
@@ -2046,4 +2076,19 @@ fun formatTime(ms: Long): String {
     } else {
         String.format("%02d:%02d", minutes, seconds)
     }
+}
+
+private fun isConnectionResetError(error: androidx.media3.common.PlaybackException): Boolean {
+    var cause: Throwable? = error
+    while (cause != null) {
+        if (cause is java.net.SocketException) {
+            return true
+        }
+        val msg = cause.message?.lowercase() ?: ""
+        if (msg.contains("connection reset") || msg.contains("socketexception") || msg.contains("broken pipe")) {
+            return true
+        }
+        cause = cause.cause
+    }
+    return false
 }
