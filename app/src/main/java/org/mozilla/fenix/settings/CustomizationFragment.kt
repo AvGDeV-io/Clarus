@@ -134,6 +134,12 @@ class CustomizationFragment : PreferenceFragmentCompat(), SystemInsetsPaddedFrag
         setupAddonsCustomizationCategory()
         setupSystemBehaviorCategory()
         setupOtherCustomizationCategory()
+        hideAppIconPreference()
+    }
+
+    private fun hideAppIconPreference() {
+        findPreference<PreferenceCategory>(getString(R.string.pref_key_customization_category_app_icon))?.isVisible = false
+        findPreference<Preference>(getString(R.string.pref_key_app_icon))?.isVisible = false
     }
 
     private fun updateToolbarCategoryBasedOnTabStrip(
