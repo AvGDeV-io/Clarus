@@ -1,0 +1,47 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+package mozilla.components.lib.integrity.googleplay.ext
+
+import com.google.android.play.core.integrity.StandardIntegrityManager
+import com.google.android.play.core.integrity.StandardIntegrityManager.PrepareIntegrityTokenRequest
+import com.google.android.play.core.integrity.StandardIntegrityManager.StandardIntegrityTokenProvider
+import com.google.android.play.core.integrity.StandardIntegrityManager.StandardIntegrityTokenRequest
+import kotlinx.coroutines.suspendCancellableCoroutine
+import mozilla.components.concept.integrity.IntegrityToken
+import mozilla.components.lib.integrity.googleplay.RequestHashProvider
+import mozilla.components.lib.integrity.googleplay.TokenProvider
+import kotlin.coroutines.resume
+
+private val StandardIntegrityTokenProvider.tokenProvider
+    get() = TokenProvider { requestHashProvider ->
+        this.request(requestHashProvider)
+    }
+
+internal suspend fun StandardIntegrityTokenProvider.request(requestHashProvider: RequestHashProvider) =
+    suspendCancellableCoroutine { continuation ->
+        val tokenRequest = StandardIntegrityTokenRequest.builder()
+            .setRequestHash(requestHashProvider.generateHash())
+            .build()
+
+        request(tokenRequest)
+            .addOnSuccessListener { continuation.resume(Result.success(IntegrityToken(it.token()))) }
+            .addOnFailureListener { continuation.resume(Result.failure(it)) }
+        continuation.invokeOnCancellation {
+            // cancel the integrity token request when the Task API exposes a cancellation handle
+        }
+    }
+
+internal suspend fun StandardIntegrityManager.prepare(cloudProjectNumber: Long) =
+    suspendCancellableCoroutine { continuation ->
+        val tokenRequest = PrepareIntegrityTokenRequest.builder()
+            .setCloudProjectNumber(cloudProjectNumber)
+            .build()
+        prepareIntegrityToken(tokenRequest)
+            .addOnSuccessListener { continuation.resume(Result.success(it.tokenProvider)) }
+            .addOnFailureListener { continuation.resume(Result.failure(it)) }
+        continuation.invokeOnCancellation {
+            // cancel the prepare integrity token request when the Task API exposes a cancellation handle
+        }
+    }

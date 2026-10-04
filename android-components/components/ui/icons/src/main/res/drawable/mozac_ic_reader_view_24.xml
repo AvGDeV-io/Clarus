@@ -1,0 +1,21 @@
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:fillColor="@color/mozac_ui_icons_fill"
+        android:pathData="M13.125,15.25C13.608,15.25 14,15.642 14,16.125C14,16.608 13.608,17 13.125,17H9.875C9.392,17 9,16.608 9,16.125C9,15.642 9.392,15.25 9.875,15.25H13.125Z" />
+    <path
+        android:fillColor="@color/mozac_ui_icons_fill"
+        android:pathData="M15.125,11.125C15.608,11.125 16,11.517 16,12C16,12.483 15.608,12.875 15.125,12.875H9.875C9.392,12.875 9,12.483 9,12C9,11.517 9.392,11.125 9.875,11.125H15.125Z" />
+    <path
+        android:fillColor="@color/mozac_ui_icons_fill"
+        android:pathData="M15.125,7C15.608,7 16,7.392 16,7.875C16,8.358 15.608,8.75 15.125,8.75H9.875C9.392,8.75 9,8.358 9,7.875C9,7.392 9.392,7 9.875,7H15.125Z" />
+    <path
+        android:fillColor="@color/mozac_ui_icons_fill"
+        android:pathData="M7.589,2.397C10.804,1.87 14.141,1.868 17.368,2.389C18.894,2.636 20,3.935 20,5.477V18.483C20,20.042 18.893,21.354 17.37,21.604C15.765,21.866 14.126,22 12.5,22C10.857,22 9.203,21.865 7.587,21.597C6.088,21.35 5,20.042 5,18.486V5.475C5,3.935 6.089,2.64 7.589,2.397ZM17.089,4.117C14.048,3.624 10.902,3.627 7.871,4.123C7.231,4.228 6.75,4.808 6.75,5.475V18.485C6.75,19.169 7.232,19.765 7.872,19.87C10.9,20.371 14.047,20.374 17.087,19.877C17.761,19.766 18.25,19.179 18.25,18.482V5.477C18.25,4.798 17.762,4.225 17.089,4.117Z" />
+</vector>

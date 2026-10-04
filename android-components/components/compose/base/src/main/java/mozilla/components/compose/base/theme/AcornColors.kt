@@ -1,0 +1,498 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+@file:Suppress("MagicNumber")
+
+package mozilla.components.compose.base.theme
+
+import androidx.compose.material3.ColorScheme
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ReadOnlyComposable
+import androidx.compose.runtime.Stable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.Color
+import mozilla.components.ui.colors.NovaColors
+import mozilla.components.ui.colors.PhotonColors
+
+/**
+ * A custom Color Palette for Mozilla Firefox for Android (Fenix).
+ */
+@Suppress("LongParameterList")
+@Stable
+class AcornColors(
+    formDefault: Color,
+    information: Color,
+    onInformation: Color,
+    informationContainer: Color,
+    onInformationContainer: Color,
+    success: Color,
+    onSuccess: Color,
+    warning: Color,
+    onWarning: Color,
+    warningContainer: Color,
+    onWarningContainer: Color,
+    surfaceDimVariant: Color,
+    autofillText: Color,
+    selectedText: Color,
+    iconPrivate: Color,
+) {
+    // Checkbox default, Radio button default
+    var formDefault by mutableStateOf(formDefault)
+        private set
+
+    /*
+     * M3 color scheme extensions that do not have a mapped value from Acorn
+     */
+
+    /**
+     * Attention-grabbing color against surface for fills, icons, and text,
+     * indicating neutral information.
+     */
+    internal var information by mutableStateOf(information)
+        private set
+
+    /**
+     * Text and icons against information.
+     */
+    internal var onInformation by mutableStateOf(onInformation)
+        private set
+
+    /**
+     * Less prominent fill color against surface, for neutral information.
+     */
+    internal var informationContainer by mutableStateOf(informationContainer)
+        private set
+
+    /**
+     * Text and icons against information container.
+     */
+    internal var onInformationContainer by mutableStateOf(onInformationContainer)
+        private set
+
+    /**
+     * Attention-grabbing color against surface for fills, icons, and text,
+     * indicating successful information
+     */
+    internal var success by mutableStateOf(success)
+        private set
+
+    /**
+     * Text and icons against success.
+     */
+    internal var onSuccess by mutableStateOf(onSuccess)
+        private set
+
+    /**
+     * Attention-grabbing color against surface for fills, icons, and text, indicating
+     * warning information.
+     */
+    internal var warning by mutableStateOf(warning)
+        private set
+
+    /**
+     * Text and icons against warning.
+     */
+    internal var onWarning by mutableStateOf(onWarning)
+        private set
+
+    /**
+     * Less prominent fill color against surface, for warning information.
+     */
+    internal var warningContainer by mutableStateOf(warningContainer)
+        private set
+
+    /**
+     * Text and icons against warning container.
+     */
+    internal var onWarningContainer by mutableStateOf(onWarningContainer)
+        private set
+
+    /**
+     * Slightly dimmer surface color in light theme.
+     */
+    internal var surfaceDimVariant by mutableStateOf(surfaceDimVariant)
+        private set
+
+    /**
+     * Highlighted autofill text color.
+     */
+    internal var autofillText by mutableStateOf(autofillText)
+        private set
+
+    /**
+     * Highlighted selected text color.
+     */
+    internal var selectedText by mutableStateOf(selectedText)
+        private set
+
+    /**
+     * Private mode icon.
+     */
+    internal var iconPrivate by mutableStateOf(iconPrivate)
+        private set
+
+    /**
+     * Updates the existing colors with the provided [AcornColors].
+     */
+    fun update(other: AcornColors) {
+        formDefault = other.formDefault
+        information = other.information
+        onInformation = other.onInformation
+        informationContainer = other.informationContainer
+        onInformationContainer = other.onInformationContainer
+        success = other.success
+        onSuccess = other.onSuccess
+        warning = other.warning
+        onWarning = other.onWarning
+        warningContainer = other.warningContainer
+        onWarningContainer = other.onWarningContainer
+        surfaceDimVariant = other.surfaceDimVariant
+        autofillText = other.autofillText
+        selectedText = other.selectedText
+        iconPrivate = other.iconPrivate
+    }
+
+    /**
+     * Return a copy of this [AcornColors] and optionally overriding any of the provided values.
+     */
+    fun copy(
+        formDefault: Color = this.formDefault,
+        information: Color = this.information,
+        onInformation: Color = this.onInformation,
+        informationContainer: Color = this.informationContainer,
+        onInformationContainer: Color = this.onInformationContainer,
+        success: Color = this.success,
+        onSuccess: Color = this.onSuccess,
+        warning: Color = this.warning,
+        onWarning: Color = this.onWarning,
+        warningContainer: Color = this.warningContainer,
+        onWarningContainer: Color = this.onWarningContainer,
+        surfaceDimVariant: Color = this.surfaceDimVariant,
+        autofillText: Color = this.autofillText,
+        selectedText: Color = this.selectedText,
+        iconPrivate: Color = this.iconPrivate,
+    ): AcornColors = AcornColors(
+        formDefault = formDefault,
+        information = information,
+        onInformation = onInformation,
+        informationContainer = informationContainer,
+        onInformationContainer = onInformationContainer,
+        success = success,
+        onSuccess = onSuccess,
+        warning = warning,
+        onWarning = onWarning,
+        warningContainer = warningContainer,
+        onWarningContainer = onWarningContainer,
+        surfaceDimVariant = surfaceDimVariant,
+        autofillText = autofillText,
+        selectedText = selectedText,
+        iconPrivate = iconPrivate,
+    )
+}
+
+val darkColorPalette = AcornColors(
+    formDefault = PhotonColors.LightGrey05,
+    information = NovaColors.Blue30,
+    onInformation = NovaColors.Gray80,
+    informationContainer = NovaColors.Blue70,
+    onInformationContainer = NovaColors.VioletDesaturated0,
+    success = NovaColors.Green30,
+    onSuccess = NovaColors.Gray80,
+    warning = NovaColors.Yellow30,
+    onWarning = NovaColors.Gray80,
+    warningContainer = NovaColors.Yellow70,
+    onWarningContainer = NovaColors.VioletDesaturated0,
+    surfaceDimVariant = NovaColors.Gray80,
+    autofillText = NovaColors.VioletDesaturated30A55,
+    selectedText = NovaColors.Gray45A80,
+    iconPrivate = NovaColors.Violet50,
+)
+
+val lightColorPalette = AcornColors(
+    formDefault = PhotonColors.DarkGrey90,
+    information = NovaColors.Blue50,
+    onInformation = NovaColors.White,
+    informationContainer = NovaColors.Blue10,
+    onInformationContainer = NovaColors.VioletDesaturated90,
+    success = NovaColors.Green50,
+    onSuccess = NovaColors.White,
+    warning = NovaColors.Yellow50,
+    onWarning = NovaColors.White,
+    warningContainer = NovaColors.Yellow10,
+    onWarningContainer = NovaColors.VioletDesaturated90,
+    surfaceDimVariant = NovaColors.Gray10,
+    autofillText = NovaColors.VioletDesaturated30,
+    selectedText = NovaColors.Gray35,
+    iconPrivate = NovaColors.Violet50,
+)
+
+val privateColorPalette = darkColorPalette.copy(
+    surfaceDimVariant = Color(0xFF1C1410),
+    selectedText = NovaColors.Gray45A81,
+    iconPrivate = Color(0xFFF59E0B),
+)
+
+val oledColorPalette = darkColorPalette
+
+/**
+ * Returns a dark Material color scheme mapped from Acorn.
+ */
+fun acornDarkColorScheme(): ColorScheme = darkColorScheme(
+    primary = NovaColors.Violet20,
+    onPrimary = NovaColors.Gray80,
+    primaryContainer = NovaColors.Violet60,
+    onPrimaryContainer = NovaColors.VioletDesaturated0,
+    inversePrimary = NovaColors.Violet70,
+    secondary = NovaColors.Gray20,
+    onSecondary = NovaColors.Gray80,
+    secondaryContainer = NovaColors.VioletDesaturated70,
+    onSecondaryContainer = NovaColors.VioletDesaturated0,
+    tertiary = NovaColors.Violet30,
+    onTertiary = NovaColors.Gray80,
+    tertiaryContainer = NovaColors.VioletDesaturated90,
+    onTertiaryContainer = NovaColors.VioletDesaturated0,
+    background = NovaColors.Gray75,
+    onBackground = NovaColors.VioletDesaturated0,
+    surface = NovaColors.Gray75,
+    onSurface = NovaColors.VioletDesaturated0,
+    surfaceVariant = NovaColors.Gray65,
+    onSurfaceVariant = NovaColors.VioletDesaturated0A70,
+    surfaceTint = NovaColors.Gray50,
+    inverseSurface = NovaColors.Gray30,
+    inverseOnSurface = NovaColors.Gray80,
+    error = NovaColors.Red30,
+    onError = NovaColors.Gray80,
+    errorContainer = NovaColors.Red70,
+    onErrorContainer = NovaColors.VioletDesaturated0,
+    outline = NovaColors.Gray45,
+    outlineVariant = NovaColors.Gray60,
+    scrim = NovaColors.BlackA50,
+    surfaceBright = NovaColors.Gray65,
+    surfaceDim = NovaColors.Gray85,
+    surfaceContainer = NovaColors.Gray75,
+    surfaceContainerHigh = NovaColors.Gray70,
+    surfaceContainerHighest = NovaColors.Gray65,
+    surfaceContainerLow = NovaColors.Gray80,
+    surfaceContainerLowest = NovaColors.Gray85,
+)
+
+/**
+ * Returns a light Material color scheme mapped from Acorn.
+ */
+fun acornLightColorScheme(): ColorScheme = lightColorScheme(
+    primary = NovaColors.Violet70,
+    onPrimary = NovaColors.White,
+    primaryContainer = NovaColors.Violet20,
+    onPrimaryContainer = NovaColors.VioletDesaturated90,
+    inversePrimary = NovaColors.Violet20,
+    secondary = NovaColors.Gray50,
+    onSecondary = NovaColors.White,
+    secondaryContainer = NovaColors.VioletDesaturated10,
+    onSecondaryContainer = NovaColors.VioletDesaturated90,
+    tertiary = NovaColors.Violet50,
+    onTertiary = NovaColors.White,
+    tertiaryContainer = NovaColors.Violet0,
+    onTertiaryContainer = NovaColors.VioletDesaturated90,
+    background = NovaColors.Gray5,
+    onBackground = NovaColors.VioletDesaturated90,
+    surface = NovaColors.Gray5,
+    onSurface = NovaColors.VioletDesaturated90,
+    surfaceVariant = NovaColors.Gray15,
+    onSurfaceVariant = NovaColors.VioletDesaturated90A70,
+    surfaceTint = NovaColors.Gray30,
+    inverseSurface = NovaColors.Gray70,
+    inverseOnSurface = NovaColors.White,
+    error = NovaColors.Red50,
+    onError = NovaColors.White,
+    errorContainer = NovaColors.Red10,
+    onErrorContainer = NovaColors.VioletDesaturated90,
+    outline = NovaColors.Gray45,
+    outlineVariant = NovaColors.Gray15,
+    scrim = NovaColors.BlackA50,
+    surfaceBright = NovaColors.White,
+    surfaceDim = NovaColors.Gray15,
+    surfaceContainer = NovaColors.Gray5,
+    surfaceContainerHigh = NovaColors.Gray10,
+    surfaceContainerHighest = NovaColors.Gray15,
+    surfaceContainerLow = NovaColors.Gray0,
+    surfaceContainerLowest = NovaColors.White,
+)
+
+/**
+ * Returns a private Material color scheme mapped from Acorn.
+ */
+fun acornPrivateColorScheme(): ColorScheme = darkColorScheme(
+    // Clarus Obsidian private: orange/amber accents on warm-dark bases (no Iceraven violet)
+    primary = Color(0xFFF59E0B),
+    onPrimary = Color(0xFF1C1410),
+    primaryContainer = Color(0xFFB45309),
+    onPrimaryContainer = Color(0xFFFEF3C7),
+    inversePrimary = Color(0xFFB8754B),
+    secondary = NovaColors.Gray20,
+    onSecondary = NovaColors.Gray80,
+    secondaryContainer = Color(0xFF2A2218),
+    onSecondaryContainer = Color(0xFFFEF3C7),
+    tertiary = Color(0xFFFBBF24),
+    onTertiary = Color(0xFF1C1410),
+    tertiaryContainer = Color(0xFF78350F),
+    onTertiaryContainer = Color(0xFFFEF3C7),
+    background = Color(0xFF0C0B0E),
+    onBackground = Color(0xFFFEF3C7),
+    surface = Color(0xFF0C0B0E),
+    onSurface = Color(0xFFFEF3C7),
+    surfaceVariant = Color(0xFF2A2218),
+    onSurfaceVariant = Color(0xFFFEF3C7).copy(alpha = 0.70f),
+    surfaceTint = Color(0xFF5C4A3A),
+    inverseSurface = NovaColors.Gray30,
+    inverseOnSurface = NovaColors.Gray80,
+    error = NovaColors.Red30,
+    onError = NovaColors.Gray80,
+    errorContainer = NovaColors.Red70,
+    onErrorContainer = Color(0xFFFEF3C7),
+    outline = NovaColors.Gray45,
+    outlineVariant = Color(0xFF5C4A3A),
+    scrim = NovaColors.BlackA50,
+    surfaceBright = Color(0xFF2A2218),
+    surfaceDim = Color(0xFF0C0B0E),
+    surfaceContainer = Color(0xFF0C0B0E),
+    surfaceContainerHigh = Color(0xFF1C1410),
+    surfaceContainerHighest = Color(0xFF2A2218),
+    surfaceContainerLow = Color(0xFF141210),
+    surfaceContainerLowest = Color(0xFF0C0B0E),
+)
+
+/**
+ * Returns an OLED dark Material color scheme mapped from Acorn.
+ */
+fun acornOledColorScheme(): ColorScheme = acornDarkColorScheme().copy(
+    primaryContainer = NovaColors.Violet70,
+    secondaryContainer = NovaColors.VioletDesaturated80,
+    background = NovaColors.Black,
+    onBackground = NovaColors.Gray20,
+    surface = NovaColors.Black,
+    onSurface = NovaColors.Gray20,
+    onSurfaceVariant = NovaColors.Gray40,
+    errorContainer = NovaColors.Red80,
+    outline = NovaColors.Gray50,
+    outlineVariant = NovaColors.Gray65,
+    surfaceBright = NovaColors.Gray80,
+)
+
+// M3 color scheme extensions
+
+/**
+ * @see AcornColors.information
+ */
+val ColorScheme.information: Color
+    @Composable
+    @ReadOnlyComposable
+    get() = AcornTheme.colors.information
+
+/**
+ * @see AcornColors.onInformation
+ */
+val ColorScheme.onInformation: Color
+    @Composable
+    @ReadOnlyComposable
+    get() = AcornTheme.colors.onInformation
+
+/**
+ * @see AcornColors.informationContainer
+ */
+val ColorScheme.informationContainer: Color
+    @Composable
+    @ReadOnlyComposable
+    get() = AcornTheme.colors.informationContainer
+
+/**
+ * @see AcornColors.onInformationContainer
+ */
+val ColorScheme.onInformationContainer: Color
+    @Composable
+    @ReadOnlyComposable
+    get() = AcornTheme.colors.onInformationContainer
+
+/**
+ * @see AcornColors.success
+ */
+val ColorScheme.success: Color
+    @Composable
+    @ReadOnlyComposable
+    get() = AcornTheme.colors.success
+
+/**
+ * @see AcornColors.onSuccess
+ */
+val ColorScheme.onSuccess: Color
+    @Composable
+    @ReadOnlyComposable
+    get() = AcornTheme.colors.onSuccess
+
+/**
+ * @see AcornColors.warning
+ */
+val ColorScheme.warning: Color
+    @Composable
+    @ReadOnlyComposable
+    get() = AcornTheme.colors.warning
+
+/**
+ * @see AcornColors.onWarning
+ */
+val ColorScheme.onWarning: Color
+    @Composable
+    @ReadOnlyComposable
+    get() = AcornTheme.colors.onWarning
+
+/**
+ * @see AcornColors.warningContainer
+ */
+val ColorScheme.warningContainer: Color
+    @Composable
+    @ReadOnlyComposable
+    get() = AcornTheme.colors.warningContainer
+
+/**
+ * @see AcornColors.onWarningContainer
+ */
+val ColorScheme.onWarningContainer: Color
+    @Composable
+    @ReadOnlyComposable
+    get() = AcornTheme.colors.onWarningContainer
+
+/**
+ * @see AcornColors.surfaceDimVariant
+ */
+val ColorScheme.surfaceDimVariant: Color
+    @Composable
+    @ReadOnlyComposable
+    get() = AcornTheme.colors.surfaceDimVariant
+
+/**
+ * @see AcornColors.autofillText
+ */
+val ColorScheme.autofillText: Color
+    @Composable
+    @ReadOnlyComposable
+    get() = AcornTheme.colors.autofillText
+
+/**
+ * @see AcornColors.selectedText
+ */
+val ColorScheme.selectedText: Color
+    @Composable
+    @ReadOnlyComposable
+    get() = AcornTheme.colors.selectedText
+
+/**
+ * @see AcornColors.iconPrivate
+ */
+val ColorScheme.iconPrivate: Color
+    @Composable
+    @ReadOnlyComposable
+    get() = AcornTheme.colors.iconPrivate

@@ -1,0 +1,182 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        gradle.configureMavenRepositories(delegate)
+    }
+
+    dependencies {
+        classpath libs.android.gradle.plugin
+        classpath libs.kotlin.gradle.plugin
+    }
+}
+
+plugins {
+    alias(libs.plugins.dependency.analysis)
+    alias(libs.plugins.kotlin.compose) apply false
+    alias(libs.plugins.ksp)
+}
+
+mozilla {
+    ktlintSourcePaths = ["components/**/*.kt", "samples/**/*.kt", "buildSrc/**/*.kt", "!**/build/**/*.kt"]
+    detektSourcePaths = [
+        "**/components/**/*.kt", "**/buildSrc/**/*.kt", "**/samples/**/*.kt",
+        "!**/build.gradle.kts", "!**/build/**", "!**/docs/**", "!**/resources/**",
+        "!**/src/androidTest/**", "!**/src/iosTest/**", "!**/src/main/assets/extensions/**",
+        "!**/src/test/**", "!**/test/src/**", "!**/tmp/**", "!**/tooling/fetch-tests/**",
+    ]
+    detektConfig = "$projectDir/config/detekt.yml"
+    detektBaseline = "$projectDir/config/detekt-baseline.xml"
+    detektReports = [
+        "xml": "$projectDir/build/reports/detekt/detekt.xml",
+        "html": "$projectDir/build/reports/detekt.html",
+        "suppression-count": "$projectDir/build/reports/suppressions.txt",
+    ]
+}
+
+allprojects {
+    if (gradle.mozconfig.substs.DOWNLOAD_ALL_GRADLE_DEPENDENCIES) {
+        // Work around https://github.com/google/ksp/issues/1964 by explicitly
+        // declaring dependencies that are dynamically added during Gradle task
+        // execution.
+        pluginManager.withPlugin('com.google.devtools.ksp') {
+            project.configurations {
+                kspDependencies
+            }
+
+            project.dependencies {
+                kspDependencies libs.ksp.symbol.processing.aa
+                kspDependencies libs.ksp.symbol.processing.aa.embeddable
+                kspDependencies libs.ksp.symbol.processing.api
+                kspDependencies libs.ksp.symbol.processing.common.deps
+            }
+        }
+    }
+}
+
+subprojects {
+    apply plugin: 'jacoco'
+
+    // Prevent some dependencies used by Fenix/Focus from being used in AC.
+    project.configurations.all {
+        exclude group: 'com.adjust.sdk', module: 'adjust-android'
+        exclude group: 'io.mockk', module: 'mockk'
+    }
+
+    afterEvaluate {
+        if (it.hasProperty('android')) {
+            dependencies {
+                lintChecks project(':components:tooling-lint')
+            }
+
+            android {
+                testOptions {
+                    testCoverage {
+                        jacocoVersion = libs.versions.jacoco.get()
+                    }
+                    unitTests {
+                        includeAndroidResources = true
+                    }
+                }
+
+                androidResources {
+                    ignoreAssetsPattern = "manifest.template.json"
+                }
+            }
+
+            if (project.name != "support-test") {
+                android.buildTypes.configureEach { buildType ->
+                    tasks.withType(Test).configureEach() {
+                        jacoco {
+                            includeNoLocationClasses = true
+                            excludes = ['jdk.internal.*']
+                        }
+
+                        finalizedBy { "jacoco${buildType.name.capitalize()}TestReport" }
+                    }
+
+                    tasks.register("jacoco${buildType.name.capitalize()}TestReport", JacocoReport) {
+                        reports {
+                            xml.required = true
+                            html.required = true
+                        }
+
+                        def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*',
+                                          '**/*Test*.*', 'android/**/*.*', '**/*$[0-9].*']
+                        def kotlinDebugTree = fileTree(dir: "$project.layout.buildDirectory/tmp/kotlin-classes/${buildType.name}", excludes: fileFilter)
+                        def javaDebugTree = fileTree(dir: "$project.layout.buildDirectory/intermediates/classes/${buildType.name}", excludes: fileFilter)
+                        def mainSrc = "$project.projectDir/src/main/java"
+
+                        sourceDirectories.setFrom(files([mainSrc]))
+                        classDirectories.setFrom(files([kotlinDebugTree, javaDebugTree]))
+                        getExecutionData().setFrom(fileTree(project.layout.buildDirectory).include([
+                                "jacoco/test${buildType.name.capitalize()}UnitTest.exec"
+                        ]))
+                    }
+                }
+
+                android {
+                    buildTypes {
+                        debug {
+                            // Enable test coverage when fetching dependencies: it's an easy way to
+                            // ensure we fetch the Jacoco agent dependency `org.jacoco.agent`, which
+                            // resolves to `org.jacoco.agent-$VERSION-runtime.jar`.
+                            testCoverageEnabled = project.hasProperty("coverage") || gradle.mozconfig.substs.DOWNLOAD_ALL_GRADLE_DEPENDENCIES
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    tasks.withType(AbstractTestTask).configureEach {
+        failOnNoDiscoveredTests = false
+    }
+}
+
+if (findProject(":geckoview") == null) {
+    // Avoid adding this task if it already exists in a different root project.
+    tasks.register("clean", Delete) {
+        delete rootProject.layout.buildDirectory
+    }
+}
+
+tasks.named("detektBaseline").configure {
+    dependsOn(":components:browser-icons:updateBuiltInExtensionVersion")
+    dependsOn(":components:feature-accounts:updateBuiltInExtensionVersion")
+    dependsOn(":components:feature-readerview:updateBuiltInExtensionVersion")
+    dependsOn(":components:feature-search:updateAdsExtensionVersion")
+    dependsOn(":components:feature-search:updateCookiesExtensionVersion")
+    dependsOn(":components:samples-browser:updateBorderifyExtensionVersion")
+    dependsOn(":components:samples-browser:updateTestExtensionVersion")
+    dependsOn(":components:samples-compose-browser:updateBorderifyExtensionVersion")
+    dependsOn(":components:samples-compose-browser:updateTestExtensionVersion")
+}
+
+dependencies {
+    detektPlugins project(":components:tooling-detekt")
+}
+
+tasks.register("lint") {
+    group = "verification"
+    description = "Runs lint on all android-components subprojects."
+
+    // The closure form of `dependsOn` is evaluated lazily at task graph resolution
+    // time, not at configuration time. Each component is required to implement a
+    // `lint` task though it can be empty.
+    dependsOn {
+        findProject(":components").subprojects.collect { "${it.path}:lint" }
+    }
+}
+
+tasks.register("listRepositories") {
+    def reposData = project.provider {
+        project.repositories.collect { repo ->
+            [name: repo.name, url: repo.url.toString()]
+        }
+    }
+    doLast {
+        println "Repositories:"
+        reposData.get().each { println "Name: " + it.name + "; url: " + it.url }
+    }
+}
