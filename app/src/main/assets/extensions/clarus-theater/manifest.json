@@ -1,0 +1,25 @@
+{
+  "manifest_version": 2,
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "theater@clarus.org"
+    }
+  },
+  "name": "Clarus Theater",
+  "version": "1.0",
+  "description": "Clarus Theater fullscreen media detection and handoff",
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["theater.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "permissions": [
+    "geckoViewAddons",
+    "nativeMessaging",
+    "nativeMessagingFromContent",
+    "<all_urls>"
+  ]
+}
