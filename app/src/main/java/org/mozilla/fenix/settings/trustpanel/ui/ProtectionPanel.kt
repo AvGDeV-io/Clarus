@@ -86,6 +86,8 @@ internal fun ProtectionPanel(
     onIPProtectionNavigate: () -> Unit,
 ) {
     val isSiteProtectionEnabled = isTrackingProtectionEnabled && isGlobalTrackingProtectionEnabled
+    val isCertError = !websiteInfoState.isSecured &&
+        (websiteInfoState.certificate != null || websiteInfoState.websiteUrl.startsWith("https://", ignoreCase = true))
     MenuScaffold(
         header = {
             ProtectionPanelHeader(
@@ -96,6 +98,7 @@ internal fun ProtectionPanel(
     ) {
         TrackingProtectionHeader(
             websiteIsSecured = websiteInfoState.isSecured,
+            isCertError = isCertError,
             isLocalPdf = isLocalPdf,
             isTrackingProtectionEnabled = isTrackingProtectionEnabled,
             isGlobalTrackingProtectionEnabled = isGlobalTrackingProtectionEnabled,
@@ -156,12 +159,14 @@ private fun TrackingProtectionHeader(
     isLocalPdf: Boolean,
     isGlobalTrackingProtectionEnabled: Boolean,
     websiteIsSecured: Boolean,
+    isCertError: Boolean = false,
     isTrackingProtectionEnabled: Boolean,
     numberOfTrackersBlocked: Int,
     onTrackerBlockedMenuClick: () -> Unit,
 ) {
     ProtectionPanelBanner(
         isSecured = websiteIsSecured || isLocalPdf,
+        isCertError = isCertError,
         isTrackingProtectionEnabled = isGlobalTrackingProtectionEnabled &&
             (isTrackingProtectionEnabled || isLocalPdf),
         numberOfTrackersBlocked = numberOfTrackersBlocked,

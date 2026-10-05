@@ -65,6 +65,7 @@ private data class ProtectionPanelBannerContent(
 @Composable
 private fun protectionPanelBannerContent(
     isSecured: Boolean,
+    isCertError: Boolean = false,
     isTrackingProtectionEnabled: Boolean,
     numberOfTrackersBlocked: Int,
 ): ProtectionPanelBannerContent {
@@ -72,6 +73,12 @@ private fun protectionPanelBannerContent(
     val appName = stringResource(id = R.string.app_name_firefox)
     val protectedTitle = stringResource(id = R.string.protection_panel_banner_protected_title, appName)
     return when {
+        !isSecured && isCertError -> ProtectionPanelBannerContent(
+            imageId = R.drawable.protection_panel_cert_error,
+            title = stringResource(id = R.string.protection_panel_banner_not_secure_title),
+            description = stringResource(id = R.string.protection_panel_banner_not_secure_description),
+            backgroundColor = defaultBackground,
+        )
         !isSecured -> ProtectionPanelBannerContent(
             imageId = R.drawable.protection_panel_not_secure,
             title = stringResource(id = R.string.protection_panel_banner_not_secure_title),
@@ -108,12 +115,14 @@ private fun protectionPanelBannerContent(
 @Composable
 internal fun ProtectionPanelBanner(
     isSecured: Boolean,
+    isCertError: Boolean = false,
     isTrackingProtectionEnabled: Boolean,
     numberOfTrackersBlocked: Int,
     onClick: (() -> Unit)? = null,
 ) {
     val content = protectionPanelBannerContent(
         isSecured = isSecured,
+        isCertError = isCertError,
         isTrackingProtectionEnabled = isTrackingProtectionEnabled,
         numberOfTrackersBlocked = numberOfTrackersBlocked,
     )
