@@ -45,7 +45,7 @@ android {
             arg("room.schemaLocation", "$projectDir/schemas".toString())
         }
 
-        applicationId "io.github.volursbreath.clarus"
+        applicationId "io.github.avgdevio.clarus"
         minSdk config.minSdkVersion
         targetSdk config.targetSdkVersion
         versionCode 1
