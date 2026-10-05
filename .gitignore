@@ -92,6 +92,8 @@ gen-external-apklibs
 # Python Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
+*.pyd
+venv/
 
 
 # UI test artifacts
