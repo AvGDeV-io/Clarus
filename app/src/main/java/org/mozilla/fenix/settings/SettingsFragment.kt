@@ -553,8 +553,12 @@ class SettingsFragment : PreferenceFragmentCompat(), SystemInsetsPaddedFragment 
             }
 
             resources.getString(R.string.pref_key_firefox_labs) -> {
-                SettingsMetrics.firefoxLabs.record()
-                SettingsFragmentDirections.actionSettingsFragmentToFirefoxLabsFragment()
+                if (!Config.channel.isReleased) {
+                    SettingsMetrics.firefoxLabs.record()
+                    SettingsFragmentDirections.actionSettingsFragmentToFirefoxLabsFragment()
+                } else {
+                    null
+                }
             }
 
             resources.getString(R.string.pref_key_sync_debug) -> {
@@ -640,7 +644,7 @@ class SettingsFragment : PreferenceFragmentCompat(), SystemInsetsPaddedFragment 
             )?.isVisible = showSecretDebugMenuThisSession
             findPreference<Preference>(
                 getPreferenceKey(R.string.pref_key_firefox_labs),
-            )?.isVisible = enableFirefoxLabs
+            )?.isVisible = !Config.channel.isReleased && enableFirefoxLabs
             preferenceStartProfiler?.isVisible = showSecretDebugMenuThisSession &&
                 (components.core.engine.profiler?.isProfilerActive() != null)
         }

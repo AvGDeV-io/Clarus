@@ -38,5 +38,5 @@ object FeatureFlags {
     /**
      * Enables Firefox Labs.
      */
-    const val FIREFOX_LABS = true
+    val FIREFOX_LABS = !Config.channel.isReleased
 }

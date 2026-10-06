@@ -414,7 +414,7 @@ class Components(
                     summarizationFeatureConfiguration = core.summarizeFeatureSettings,
                 ),
                 FirefoxLabsSettingsSearchProvider(
-                    isLabsEnabled = { settings.enableFirefoxLabs },
+                    isLabsEnabled = { !Config.channel.isReleased && settings.enableFirefoxLabs },
                 ),
                 ToolbarShortcutSettingsSearchProvider,
             ),
