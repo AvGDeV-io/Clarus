@@ -211,7 +211,7 @@ class AboutFragment(
             AboutPageItem(
                 AboutItem.ExternalLink(
                     PRIVACY_NOTICE,
-                    SupportUtils.getMozillaPageUrl(SupportUtils.MozillaPage.PRIVACY_NOTICE),
+                    PRIVACY_NOTICE_URL,
                 ),
                 getString(R.string.about_privacy_notice),
             ),
@@ -264,6 +264,8 @@ class AboutFragment(
 
     companion object {
         private const val ABOUT_LICENSE_URL = "about:license"
+        private const val PRIVACY_NOTICE_URL =
+            "https://github.com/AvGDeV-io/Clarus/blob/main/PRIVACY.md"
     }
 
     /**
