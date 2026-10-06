@@ -393,7 +393,7 @@ private fun OnboardingContent(
                     .run {
                         if (layout.isSmall) fillMaxSize() else height(layout.pagerHeight)
                     },
-                userScrollEnabled = pagerState.currentPage != 0, // Disable scroll for the Terms of Use card.
+                userScrollEnabled = pagesToDisplay.getOrNull(pagerState.currentPage)?.type != OnboardingPageUiData.Type.TERMS_OF_SERVICE, // Disable scroll for the Terms of Use card.
                 contentPadding = layout.contentPadding,
                 pageSize = PageSize.Fill,
                 beyondViewportPageCount = 2,

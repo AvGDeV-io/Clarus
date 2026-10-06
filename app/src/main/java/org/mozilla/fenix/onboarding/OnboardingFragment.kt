@@ -35,9 +35,11 @@ import mozilla.components.support.base.feature.ViewBoundFeatureWrapper
 import mozilla.components.support.base.log.logger.Logger
 import mozilla.components.support.utils.Browsers
 import mozilla.components.support.utils.BuildManufacturerChecker
+import org.mozilla.fenix.Config
 import org.mozilla.fenix.GleanMetrics.Pings
 import org.mozilla.fenix.R
 import org.mozilla.fenix.components.accounts.FenixFxAEntryPoint
+import org.mozilla.fenix.termsofuse.TOU_VERSION
 import org.mozilla.fenix.components.appstate.AppAction
 import org.mozilla.fenix.components.appstate.SupportedMenuNotifications
 import org.mozilla.fenix.components.initializeGlean
@@ -109,7 +111,8 @@ class OnboardingFragment : Fragment() {
     private val pagesToDisplay by lazy {
         allOnboardingPages
             .filterNot {
-                it.type == OnboardingPageUiData.Type.SYNC_SIGN_IN ||
+                (Config.channel.isReleased && it.type == OnboardingPageUiData.Type.TERMS_OF_SERVICE) ||
+                    it.type == OnboardingPageUiData.Type.SYNC_SIGN_IN ||
                     (it.type == OnboardingPageUiData.Type.MARKETING_DATA &&
                         !requireComponents.settings.shouldShowMarketingOnboarding)
             }
@@ -161,6 +164,13 @@ class OnboardingFragment : Fragment() {
     @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (Config.channel.isReleased) {
+            val settings = requireComponents.settings
+            settings.hasAcceptedTermsOfService = true
+            settings.termsOfUseAcceptedVersion = TOU_VERSION
+            settings.termsOfUseAcceptedTimeInMillis = System.currentTimeMillis()
+        }
+
         if (pagesToDisplay.isEmpty()) {
             // do not continue if there's no onboarding pages to display
             onFinish(null)
@@ -389,6 +399,13 @@ class OnboardingFragment : Fragment() {
         val settings = requireComponents.settings
         settings.recordOnboardingCompleted()
         settings.onboardingCurrentPageIndex = 0
+
+        if (Config.channel.isReleased) {
+            settings.hasAcceptedTermsOfService = true
+            settings.termsOfUseAcceptedVersion = TOU_VERSION
+            settings.termsOfUseAcceptedTimeInMillis = System.currentTimeMillis()
+            startGlean()
+        }
 
         // Telemetry and daily usage ping get enabled after ToU acceptance.
         startMetricsIfEnabled(
