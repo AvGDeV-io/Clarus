@@ -1,156 +1,143 @@
-> **Google has announced that, starting in 2026/2027, all apps on certified Android devices
-> will require the developer to submit personal identity details directly to Google.
-> Since the developers of this app do not agree to this requirement, this app will no longer 
-> work on certified Android devices after that time.**
-> https://keepandroidopen.org/
+# Clarus Browser 🐉
 
-# Iceraven Browser! [![CI](https://github.com/fork-maintainers/iceraven-browser/actions/workflows/ci.yml/badge.svg)](https://github.com/fork-maintainers/iceraven-browser/actions/workflows/ci.yml) ![Release](https://img.shields.io/github/v/release/fork-maintainers/iceraven-browser)
+A Firefox-engine browser for Android with a dragon, a glassy tab tray, and a few tricks up its sleeve.
 
-Definitely not brought to you by Mozilla!
+> **Beta.** It works, I use it, and it has rough edges. See [Known issues](#known-issues) before you get attached.
 
-Iceraven Browser is a web browser for Android, based on [Mozilla's Fenix version of Firefox](https://github.com/mozilla-mobile/fenix/), [GeckoView](https://mozilla.github.io/geckoview/) and [Mozilla Android Components](https://mozac.org/).
+<p align="center">
+  <a href="https://vimeo.com/1233824379?share=copy&fl=sv&fe=ci">
+    <img src="Clarus_Cover.png" alt="Clarus Browser showcase cover" width="520">
+  </a>
+</p>
 
-Our goal is to be a close fork of the new Firefox for Android that seeks to provide users with more options, more opportunities to customize (including a broad extension library), and more information about the pages they visit and how their browsers are interacting with those pages.
+<p align="center">
+  <a href="https://vimeo.com/1233824379?share=copy&fl=sv&fe=ci"><strong>▶ Watch the Clarus showcase on Vimeo</strong></a>
+</p>
 
-Notable features include:
-  * `about:config` support
-  * The ability to *attempt* to install a much longer list of add-ons than Mozilla's Fenix version of Firefox accepts. Currently the browser queries [this AMO collection](https://addons.mozilla.org/en-US/firefox/collections/16201230/What-I-want-on-Fenix/) **Most of them will not work**, because they depend on code that Mozilla is still working on writing in `android-components`, but you may attempt to install them. If you don't see an add-on you want, you can [request it](https://github.com/fork-maintainers/iceraven-browser/issues/new).
-  * Option to suspend tabs to avoid being killed for memory (https://bugzilla.mozilla.org/show_bug.cgi?id=1807364)
-  * Option not to display recently visited websites at HomePage
-  * **No warranties or guarantees of security or updates or even stability**! Note that Iceraven Browser includes some unstable code written by Mozilla, with our own added modifications on top, all shipped with the stable version of GeckoView engine. Hence, the browser may contain bugs introduced upstream. Binaries are currently built automatically by our Github release automation. These binaries are signed with a debug key. When we finally publish this somewhere official like F-droid, we will sign the apks with a proper key suitable for public release. Due to the current way we create the releases and sign them, you may not want to rely on such "alpha" quality software as your primary web browser, as it will have bugs. So, use this browser only if you are comfortable with these limitations/potential risks.
+## Showcase
 
-**Note/Disclaimer:** Iceraven Browser could not exist without the hardworking folks at the Mozilla Corporation who work on the Mozilla Android Components and Firefox projects, but it is not an official Mozilla product, and is not provided, endorsed, vetted, approved, or secured by Mozilla.
+### Home
 
-In addition, we intend to try to cut down on telemetry and proprietary code to as great of an extent as possible as long as doing so does not compromise the user experience or make the fork too hard to maintain. Right now, we believe that no telemetry should be being sent to Mozilla anymore, but we cannot guarantee this; data may still be sent. Because of the way we have implemented this, the app may still appear to contain trackers when analyzed by tools that look for the presence of known tracking libraries. These detected trackers should actually be non-functional substitutes, many of which are sourced [from here](https://gitlab.com/relan/fennecbuild/-/blob/master/fenix-liberate.patch). **If you catch the app actually sending data to Mozilla, Adjust, Leanplum, Firebase, or any other such service, please open an issue!** Presumably any data that reaches Mozilla is governed by Mozilla's privacy policy, but as Iceraven Browser is, again **not a Mozilla product**, we can make no promises.
+<p align="center">
+  <img src="Clarus_HomePage.png" alt="Clarus home page" width="420">
+</p>
 
-Iceraven Browser combines the power of Fenix (of which we are a fork) and the spirit of Fennec, with a respectful nod toward the grand tradition of Netscape Navigator, from which all Gecko-based projects came, including the earliest of our predecessors, the old Mozilla Phoenix and Mozilla Firefox desktop browsers.
+A clean, focused starting point with the dragon at the center and a minimal search bar at the bottom.
 
-That said, Iceraven Browser is an independent all-volunteer project, and has no affiliation with Netscape, Netscape Navigator, Mozilla, Mozilla Firefox, Mozila Phoenix, Debian, Debian Iceweasel, Parabola GNU/Linux-libre Iceweasel, America Online, or Verizon, among others. :)  Basically, if you don't like the browser, it's not their fault. :)
+### Private Browsing
 
-## 📥 Installation
+<p align="center">
+  <img src="Clarus_Private.png" alt="Clarus private browsing" width="420">
+</p>
 
-Right now, releases are published as `.apk` files, through Github. You should download and install the appropriate one for your device.
+A separate private browsing space with its own visual identity and a cool violet treatment.
 
-1. **Determine what version you need**. If you have a newer, 64-bit device, or a device with more than 4 GB of memory, you probably want the `arm64-v8a` version. **Any ordinary phone or tablet should be able to use the `armeabi-v7a` version**, but it will be limited to using no more than 4 GB of memory. You almost certainly don't want the `x86` or `x86_64` versions; they are in case you are running Android on a PC.
+### Extensions
 
-2. [**Download the APK for the latest release from the Releases page**](https://github.com/fork-maintainers/iceraven-browser/releases). Make sure to pick the version you chose in step 1.
+<p align="center">
+  <img src="Clarus_Extensions.png" alt="Clarus extensions" width="420">
+</p>
 
-3. **Install the APK**. You will need to enable installation of apps from "unknown" (to Google) sources, and installatiuon of apps *by* whatever app you used to open the downloaded APK (i.e. your browser or file manager). Android will try to dissuade you from doing this, and suggest that it is dangerous. Iceraven is a browser for people who enjoy danger.
+Install and manage compatible browser extensions directly from Clarus, including content blockers, privacy tools, and password managers.
 
-4. **Enjoy Iceraven**. Make sure to install the add-ons that are essential for you in the main menu under "Add-Ons". You may want to set Iceraven as your device's default browser app. If you do this, it will be able to provide so-called "Chrome" [custom tabs](https://developers.google.com/web/android/custom-tabs) for other applications, allowing you to use your add-ons there.
+### Clarus Theater
 
-## 🔨 Building
+<p align="center">
+  <img src="Clarus_Theater.png" alt="Clarus Theater media player" width="800">
+</p>
 
-1. Set up the environment. We need the Android SDK at `$ANDROID_SDK_ROOT` and a Java JDK at `$JAVA_HOME` that isn't the Ubuntu Java 8 one. We want environment variables that look something like:
+A dedicated media experience for audio and video, with fullscreen playback and controls designed around mobile use.
 
-```sh
-# Where does our system install the JDK? This is the right path for the Ubuntu Java 11 JDK, if it is installed.
-export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
-# Where did we install the Android SDK?
-export ANDROID_SDK_ROOT=$HOME/android-sdk/android-sdk-linux/
+### Sidus Trail
+
+<p align="center">
+  <img src="Clarus_SidusTrail.png" alt="Clarus Sidus Trail visual navigation history" width="420">
+</p>
+
+A visual map of your browsing journey. Each tab gets its own branch, with pages represented as connected nodes that you can tap to jump back through your session.
+
+## What's in the box
+
+- **Hold to Peek.** Press and hold a link to get a live preview without leaving your page. Then, without letting go, use gestures:
+  - Swipe **up** to open the link in a new tab.
+  - Swipe **left** to open it in a private tab.
+  - Swipe **down** to reveal the available actions, then release over the one you want.
+  - The actions adapt to what you're holding. On a direct audio link, "New Tab" becomes "Download".
+- **Sidus Trail.** Your browsing history as a map. Each tab gets its own branch, and every page you visit becomes a node in a connected trail. You can see where you started and how you got where you are, and tap any earlier page to jump straight back to it. The trail starts as a blank canvas each new browser session.
+- **Glass tab tray.** Your tabs, but frosted and a bit nicer to look at.
+- **Clarus Theater.** A built-in player for audio and video, so media gets its own space instead of fighting the page.
+- **Haptics.** Little taps where they feel right.
+- **Dragon branding.** Orange, dark, and a bit dramatic.
+- **A lighter app.** No sign-in, no sync, no VPN. Those were removed on purpose.
+
+## Install
+
+1. Go to the [Releases page](https://github.com/AvGDeV-io/Clarus/releases) and grab the APK. Right now only **arm64-v8a** (most modern phones) has been tested.
+2. Check the SHA-256 listed in the release notes against your download.
+3. Open the APK. Android will grumble about installing from "unknown sources". You'll need to allow it for whichever app you opened the file with. That's normal for apps outside the Play Store.
+4. Open Clarus and you're in.
+
+## Privacy, honestly
+
+Here's what I actually checked, not what sounds nice:
+
+- Telemetry upload is **off**. As far as my audit found, nothing is sent to Mozilla for analytics.
+- Crash reporting defaults to **Never**.
+- On first launch the browser makes one request to Mozilla's Remote Settings service. That service delivers things like certificate revocation data and blocklists, so I left it on because turning it off would make the browser less safe.
+- Normal browsing traffic (the sites you visit, search, safe browsing) goes where you'd expect.
+
+The longer version lives in [PRIVACY.md](PRIVACY.md). If you catch Clarus doing something this section doesn't mention, please open an issue. I'd rather know.
+
+## Known issues
+
+It's a beta, so here's the honest list:
+
+- Theater's fullscreen doesn't trigger on some embedded videos.
+- Crash reports aren't collected, so if something breaks, tell me what you were doing (a screenshot helps a lot).
+- Only the arm64 build has been tested.
+- Building from source needs Python installed. The setup script is Windows-only for now, and Linux/Mac get written instructions instead.
+
+## Build it yourself
+
+You don't need `--recursive`. Everything, including `android-components`, lives in this repo.
+
+```
+git clone https://github.com/AvGDeV-io/Clarus.git
+cd Clarus
 ```
 
-If we don't have the Android SDK, we can install it thusly on Linux:
+Then:
 
-```sh
-mkdir -p $HOME/android-sdk/android-sdk-linux
-cd $HOME/android-sdk/android-sdk-linux
-mkdir -p licenses
-echo "8933bad161af4178b1185d1a37fbf41ea5269c55" >> licenses/android-sdk-license
-echo "d56f5187479451eabf01fb78af6dfcb131a6481e" >> licenses/android-sdk-license
-echo "24333f8a63b6825ea9c5514f83c2829b004d1fee" >> licenses/android-sdk-license
-mkdir cmdline-tools
-cd cmdline-tools
-wget "$(curl -s https://developer.android.com/studio | grep -oP "https://dl.google.com/android/repository/commandlinetools-linux-[0-9]+_latest.zip")"
-unzip commandlinetools-linux-*_latest.zip
-cd ..
+1. Install the Android SDK and a recent JDK, and make sure Python 3 is on your PATH.
+2. On Windows, run `setup.ps1` once. It creates the Python environment the build needs. On Linux or Mac, follow the same steps by hand (see the comments in `setup.ps1`).
+3. Build a debug APK:
+
+```
+./gradlew assembleForkDebug
 ```
 
-2. Clone the project (submodules are vendored, no --recursive needed):
+Release builds need your own signing key. Don't commit it. `keystore.properties` and `*.jks` are gitignored for a reason.
 
-```sh
-git clone https://github.com/fork-maintainers/iceraven-browser
-```
+<!-- TODO: confirm these steps match setup.ps1 before publishing -->
 
-3. Go inside `iceraven-browser`.
+## Found a bug?
 
-```sh
-cd iceraven-browser
-```
+[Open an issue](https://github.com/AvGDeV-io/Clarus/issues). Useful things to include: your phone model, Android version, what you tapped, and what you expected to happen. Screenshots welcome.
 
-4. Initialize the Glean telemetry parser virtual environment:
+## Standing on big shoulders
 
-- On Windows (PowerShell):
-  ```powershell
-  .\setup.ps1
-  ```
-- On Linux / macOS:
-  ```sh
-  ./automation/iceraven/setup_venv.sh
-  ```
+Clarus wouldn't exist without:
 
-5. Configure the project. For your personal use you need to sign the apk file. The simplest way to do this is to use the debug key that is auto-generated by Android SDK. This is not a great idea for releasing, but acceptable for your personal use. You can configure it as follows:
+- **Mozilla**, for Firefox for Android (Fenix), GeckoView, and Android Components.
+- **[Iceraven Browser](https://github.com/fork-maintainers/iceraven-browser)**, the fork Clarus is built on.
+- **[akliuxingyuan/android-components](https://github.com/akliuxingyuan/android-components)**, Iceraven's Android Components fork. The vendored copy in this repo starts from commit `56ef46b`.
 
-```sh
-echo "autosignReleaseWithDebugKey=" >> local.properties
-```
+Thank you to everyone who worked on those. The good parts are theirs. The bugs are probably mine.
 
-6. Build the project. To build the Iceraven-branded release APKs, you can do:
+## Not affiliated with Mozilla
 
-```sh
-./gradlew app:assemblefenixForkRelease -PversionName="$(git describe --tags HEAD)"
-```
-
-(If you don't use the `app:` prefix, you might get complaints about the build system being `unable to locate the objcopy executable`.)
-
-The APKs will show up in `app/build/outputs/apk/fenix/forkRelease/`.
-
-## Getting Involved
-
-This is an all-volunteer project. No one is getting paid (at least not by the project itself.).
-
-Therefore, everyone should feel free to open issues and pull requests.  Join the club!
-
-Developers are especially welcome, wanted, and needed.
-
-## I want to open a Pull Request!
-
-We encourage you to participate in this open source project. We love Pull Requests, Bug Reports, ideas, (security) code reviews or any other kind of positive contribution.
-
-### How to Appease the Linter
-
-If you are getting errors form `./gradelw ktlint`, try running `./gradlew ktlintFormat` to let `ktlint` decide how to lay out your code, instead of just yelling at you that you can't read its mind.
-
-### 🙅 How to skip CI checks for PRs 🙅
-
-If you want to skip Github CI checks in a PR, please add the following to the PR title exactly: `[skip ci]`.
-Also, please include the exact phrase `[skip ci]` in every commit message. This is to avoid Travis CI checks as well as skipping Github CI checks after merging the commits to the `fork` branch.
-
-This is useful to do **if** you are sure that your changes do not effect the app's code (ex: changes to `README.md`).
-
-## 🚀 Release automation 🚀
-
-We have now setup release automation so that Github actions automatically trigger a release build and publish a release when we push a tag to the repository.
-
-**NOTE**: The tag should be of the format `iceraven-x.y.z`, where `x.y.z` is the release version, for the automation to kick in and also so that the built app will have the correct version name.
-
-## ✏️  I want to file an issue!
-
-Great! We encourage you to participate in this open source project. We love Pull Requests, Bug Reports, ideas, (security) code reviews or any other kind of positive contribution.
-
-To make it easier to triage, we have these issue requirements:
-
-* Please do your best to search for duplicate issues before filing a new issue so we can keep our issue board clean.
-* Every issue should have **exactly** one bug/feature request described in it. Please do not file meta feedback list tickets as it is difficult to parse them and address their individual points.
-* Feature Requests are better when they’re open-ended instead of demanding a specific solution -ie  “I want an easier way to do X” instead of “add Y”
-* Issues are not the place to go off topic or debate.
-* While we do not yet have Community Participation Guidelines of our own, we ask that you show respect to everyone and treat others as you would like to be treated. Behavior that would violate [Mozilla's Community Participation Guidelines](https://www.mozilla.org/en-US/about/governance/policies/participation/) is almost certainly unwelcome. However, as a small project without community managers, we cannot promise prompt and consistent enforcement.
-
-Please keep in mind that even though a feature you have in mind may seem like a small ask, as a small team, we have to prioritize our planned work and every new feature adds complexity and maintenance and may take up design, research, product, and engineering time. We appreciate everyone’s passion but we will not be able to incorporate every feature request or even fix every bug. That being said, just because we haven't replied, doesn't mean we don't care about the issue, please be patient with our response times as we're very busy.
+Clarus is an independent project. It is not made, endorsed, vetted, or secured by Mozilla. Firefox and Mozilla are trademarks of the Mozilla Foundation.
 
 ## License
 
-
-    This Source Code Form is subject to the terms of the Mozilla Public
-    License, v. 2.0. If a copy of the MPL was not distributed with this
-    file, You can obtain one at http://mozilla.org/MPL/2.0/
+Clarus is released under the [Mozilla Public License 2.0](LICENSE). Original copyright notices and license headers from Mozilla and Iceraven are kept in the source files. If you modify and distribute it, MPL 2.0 asks you to share your changes to those files too.

@@ -109,3 +109,6 @@ test_artifacts/
 
 # Web extensions: manifest.json files are generated
 manifest.json
+
+# Showcase images used by README
+!/Clarus_*.png
